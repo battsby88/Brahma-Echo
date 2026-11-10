@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:cc35bbbf2c6ce2747adc8478749320a5128efa8befae4539e97704339645b9f3",
+  "scoredAt": "2026-10-24T16:34:05.402Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as missing GPU, invalid input paths, or malformed PDFs."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions assume a Unix-like shell and Docker, limiting compatibility with Windows or non-Docker environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.7,
+    "baselineAvg": 0,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "convert-scanned-pdf-to-markdown",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B includes the required chandra CLI command with method hf and no-images, specifies input PDF and output directory, and indicates a .md file will be produced, whereas Response A does not use chandra at all."
+      },
+      {
+        "name": "extract-invoice-tables-into-csv",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A covers almost all rubric items except the exact output filename, while Response B does not meet any of the specified requirements."
+      },
+      {
+        "name": "ocr-images-with-headers-vllm",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A covers some steps and output details but omits the explicit server start command and the --batch-size flag, while Response B provides no content."
+      }
+    ]
+  }
+}

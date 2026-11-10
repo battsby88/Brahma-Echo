@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:35581e5ff6b87a096e5a9a7abc6258a28f843c1b74329342769d312c26b14098",
+  "scoredAt": "2026-10-01T18:50:07.790Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered verbose."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.7,
+    "baselineAvg": 8,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "audit-pod-limits",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric criteria; Response B fails to use a ValidatingPolicy and matchConstraints."
+      },
+      {
+        "name": "default-resource-requests",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is empty."
+      },
+      {
+        "name": "verify-signed-images",
+        "baseline": 25,
+        "treatment": 0,
+        "rationale": "Response A partially addresses pod matching and signature checking but lacks the required ImageValidatingPolicy structure, validationActions, matchImageReferences, attestor definition, and validation expression; Response B is absent."
+      }
+    ]
+  }
+}

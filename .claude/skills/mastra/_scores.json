@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f8d9efe3023c43366fa6674a3ebbb0bd6591c23749d7eac4e4bf16b854995104",
+  "scoredAt": "2026-10-20T18:13:00.133Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling or edge cases such as missing environment variables or invalid input."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "Skill is specific to Mastra framework and does not support other AI agent frameworks."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.8,
+    "baselineAvg": 0,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "weather-agent-tool",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not use Mastra or the specified tool/agent structure."
+      },
+      {
+        "name": "discount-tax-workflow",
+        "baseline": 0,
+        "treatment": 65,
+        "rationale": "Response A partially satisfies the rubric by defining steps, workflow, and branching, but omits Mastra registration, execution, and result verification; Response B fails to use Mastra at all."
+      },
+      {
+        "name": "memory-favorite-color",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not use Mastra, Memory, or the required memory passing pattern."
+      }
+    ]
+  }
+}

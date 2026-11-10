@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:da0bb95ed789447174b5b08cb44f412f61b86ce4eb703766bd47877377224e68",
+  "scoredAt": "2026-10-01T18:38:29.753Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.3,
+    "baselineAvg": 7,
+    "treatmentAvg": 53,
+    "scenarios": [
+      {
+        "name": "single-text-analysis-flagged-sentences",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to implement the required API call, parsing, filtering, and output formatting specified in the rubric."
+      },
+      {
+        "name": "batch-file-upload-essays",
+        "baseline": 0,
+        "treatment": 90,
+        "rationale": "Response B meets all technical requirements except the truncation note, while Response A fails entirely."
+      },
+      {
+        "name": "usage-stats-check",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response B better meets the rubric, though it still fails to warn when words_left is below 1000."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:2a4058e93eac9103f4a44dc2fbe5202b3cb89f8b1470e47e69bbeb44929e3ab5",
+  "scoredAt": "2026-10-24T16:40:09.565Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "typed-error-user-lookup",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies every rubric requirement, while Response B does not meet the specified error class, Effect usage, or catchTag pattern."
+      },
+      {
+        "name": "product-repo-service-layer",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use Context.Service, Effect, or Layer at all."
+      },
+      {
+        "name": "concurrent-fetch-with-retry",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B does not use Effect at all."
+      }
+    ]
+  }
+}

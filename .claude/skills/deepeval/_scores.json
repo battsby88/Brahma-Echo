@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f74650fcb3a626e88c7c7b523e1589ea1c4d6fc3b36a4a6abf45e59f25207c3a",
+  "scoredAt": "2026-10-20T19:20:15.279Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is Python-specific and not designed to work with non-Python AI agents."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases for test failures or missing metrics."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.12,
+    "baselineAvg": 17,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "write-unit-test-with-built-in-metrics",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not use LLMTestCase or the required metrics."
+      },
+      {
+        "name": "run-bulk-evaluation-with-dataset",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "Response B includes LLMTestCase objects and a structured evaluation loop, whereas Response A only processes raw dicts and skips the required LLMTestCase/EvaluationDataset construction."
+      },
+      {
+        "name": "create-custom-max-length-metric",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully implements the required BaseMetric subclass, test case, and assert_test usage, while Response B only provides a simple function and lacks any of the rubric requirements."
+      }
+    ]
+  }
+}

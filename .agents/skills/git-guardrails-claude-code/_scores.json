@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:eef50586107293b29e098294c1aba83c1d409abe1b5a8b1b5925fa6159414164",
+  "scoredAt": "2026-10-01T19:57:17.190Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.2,
+    "baselineAvg": 5,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "install-default-guard",
+        "baseline": 5,
+        "treatment": 45,
+        "rationale": "Response B includes the guard script but misses full constants and the settings.json hook entry, while Response A provides no relevant content."
+      },
+      {
+        "name": "custom-branch-allow",
+        "baseline": 10,
+        "treatment": 80,
+        "rationale": "Response A covers the required constants and path, but omits the explicit note that the PreToolUse entry remains unchanged; Response B does not address the requested guard configuration at all."
+      },
+      {
+        "name": "test-guard-commands",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B covers two of the three required tests, while Response A does not provide any of the specified commands or expected outcomes."
+      }
+    ]
+  }
+}

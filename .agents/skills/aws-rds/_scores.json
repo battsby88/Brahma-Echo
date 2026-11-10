@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fc91895b67ece2f20177598cc6122875960920f9b5b94704789ae2269ec46142",
+  "scoredAt": "2026-10-24T18:53:43.840Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill covers happy path but lacks error handling and edge case scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.15,
+    "baselineAvg": 13,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "multi-az-postgres-creation",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A includes almost all required CLI flags except the missing --master-user-secret-kms-key-id, while Response B provides Terraform code and no aws rds create-db-instance command, failing the rubric."
+      },
+      {
+        "name": "aurora-serverless-v2-cluster",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A includes all required flags and a writer instance; Response B omits key flags and uses the wrong scaling option."
+      },
+      {
+        "name": "cross-region-replica-and-pitr",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A includes all required flags for both commands, while Response B omits the mandatory kms-key-id and subnet group for the replica creation."
+      }
+    ]
+  }
+}

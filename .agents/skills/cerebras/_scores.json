@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:42c5eb40f1c53c29d8b839aa35727171d0eca5366e6ef299b310fe9a52ed06dc",
+  "scoredAt": "2026-10-03T12:58:44.936Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are prose descriptions of steps with no complete runnable code or concrete input/output transcripts, so they are less demonstrative than the code blocks elsewhere in the skill."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.15,
+    "baselineAvg": 41,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "fix-retired-model-404",
+        "baseline": 22,
+        "treatment": 96,
+        "rationale": "B identifies the retirement, switches to gpt-oss-120b, sets reasoning_effort=\"low\" and reasoning_format=\"hidden\"/\"parsed\", and recommends the deprecations page and client.models.list(). A misdiagnoses the problem as a hyphen typo, keeps the old model ID, mentions gpt-oss-120b and reasoning_effort only in passing, and never mentions reasoning_format."
+      },
+      {
+        "name": "strict-schema-ticket-triage",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "B meets every rubric item (strict json_schema with additionalProperties false, required fields and an enum, qwen-3.8-27b with reasoning_effort none, fixed system prompt first for caching, and an explicit rejection of json_object), while A has a correct schema but uses llama3.1-8b, has no reasoning-skip setting for the model it uses, and says nothing about prompt caching."
+      },
+      {
+        "name": "tool-calling-loop-openai-sdk",
+        "baseline": 66,
+        "treatment": 72,
+        "rationale": "Both configure the client correctly and stream with `for await` over `delta.content`, but A passes `reasoning_format` through `extra_body` as the rubric requires (while hedging that the Node SDK may not honor it) and notes that reasoning tokens count toward `max_completion_tokens`. B passes `reasoning_format` as a top-level field, which contradicts the rubric, and never mentions the token-budget point, though its streaming code is more complete and it flags that the model ID is unverified."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a2d150fb2266616f00cf4e0341c4f3a9ac37dad77e3af13613c46cb9701defba",
+  "scoredAt": "2026-10-01T12:36:28.017Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.83,
+    "baselineAvg": 53,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "convert-pdf-to-searchable",
+        "baseline": 20,
+        "treatment": 90,
+        "rationale": "Response B meets the rubric by explaining the need to convert PDF pages to images and providing a tesseract command with the required options and output formats, while Response A does not mention Tesseract or its limitations and uses different tools."
+      },
+      {
+        "name": "extract-total-from-receipt",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "A fully meets rubric, B misses required regex."
+      },
+      {
+        "name": "browser-ocr-single-line",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A explicitly creates a worker, sets PSM and whitelist, recognizes a PNG, and logs the text, fully meeting the rubric; Response B omits explicit worker creation, though it otherwise satisfies the other requirements."
+      }
+    ]
+  }
+}

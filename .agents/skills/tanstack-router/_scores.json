@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ae2c53d9c81d29d9797d5dd9a6624df88f1775a4464a899fcf77a5390fdbdeef",
+  "scoredAt": "2026-10-24T20:05:50.267Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios and edge cases."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to TanStack Router and Vite, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.13,
+    "baselineAvg": 15,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "file-based-routing-structure",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers the required file structure and components, though it adds an extra home route; Response B uses a different routing library and omits the specified files."
+      },
+      {
+        "name": "validated-search-params-loader",
+        "baseline": 5,
+        "treatment": 55,
+        "rationale": "Response B covers most of the required structure and uses createFileRoute, validateSearch, loaderDeps, and loader, but it fails to use the specified enum schema for category and default values, and does not provide a Link that navigates with search params; Response A does not meet the rubric at all."
+      },
+      {
+        "name": "dynamic-route-with-notfound-and-typesafe-link",
+        "baseline": 20,
+        "treatment": 50,
+        "rationale": "Response B aligns more closely with the rubric, using TanStack Router’s createFileRoute, notFound, and type‑safe Link, whereas Response A uses React Router v6.4, incorrect file paths, and lacks the required notFoundComponent and type‑checked Link."
+      }
+    ]
+  }
+}

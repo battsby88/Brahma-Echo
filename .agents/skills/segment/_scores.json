@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e01d7f9637514dbdc1aa5604d88806ea83c4cb65aec675bfc3caf881a5f511db",
+  "scoredAt": "2026-10-24T15:58:38.010Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or missing environment variable scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "browser-consent-gating",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet them."
+      },
+      {
+        "name": "server-order-group-alias",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A meets every rubric requirement with correct code and closeAndFlush, while Response B omits the env-based write key and the final closeAndFlush call."
+      },
+      {
+        "name": "disable-segment-in-tests",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B explicitly creates an Analytics instance with disable: true and explains the no‑op behavior, while Response A only stubs the client and does not use the required disable flag."
+      }
+    ]
+  }
+}

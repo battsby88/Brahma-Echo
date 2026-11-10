@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:cf65cc18b74e567df246bb611494dad9652afe9894130c1ff86936110d7857e7",
+  "scoredAt": "2026-10-24T16:54:04.506Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2,
+    "baselineAvg": 50,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "server-safe-flag-evaluation",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A covers every rubric requirement, while Response B omits the explicit flush and close calls."
+      },
+      {
+        "name": "react-kill-switch-widget",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully covers all rubric items, while Response A is incomplete and missing key details."
+      },
+      {
+        "name": "gradual-rollout-enterprise",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully covers all rubric items, while Response B omits the explicit default rule and uses a segment instead of a direct plan attribute rule."
+      }
+    ]
+  }
+}

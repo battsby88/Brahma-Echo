@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:dbe9b424286947f5f485c75817ab6e38a563031025e212cba78b13b0fb6d7276",
+  "scoredAt": "2026-10-13T16:11:47.640Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.67,
+    "baselineAvg": 30,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "node-dependency-and-secret-audit",
+        "baseline": 30,
+        "treatment": 65,
+        "rationale": "Response A includes npm audit, gitleaks, grep, and a report skeleton, but lacks explicit severity counts; Response B omits gitleaks, grep, and severity reporting."
+      },
+      {
+        "name": "python-django-injection-cve-audit",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A addresses both dependency CVE scanning and SQL injection patterns, while Response B omits the required pip-audit step."
+      },
+      {
+        "name": "mixed-repo-full-security-audit",
+        "baseline": 10,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric items while Response A does not."
+      }
+    ]
+  }
+}

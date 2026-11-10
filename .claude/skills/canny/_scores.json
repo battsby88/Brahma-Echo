@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9c8c0f47fae506c530ec487aa3b3eed5c03b0a158fce53e9759e4aa0a9e22d99",
+  "scoredAt": "2026-10-24T16:33:09.697Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Next.js environment, which may not be available in all AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "embed-canny-widget",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B fails to include the required div, render call, and contains unrelated content."
+      },
+      {
+        "name": "create-and-list-ideas",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B meets the rubric except for the missing 'under review' status, while Response A does not use the required Canny API calls."
+      },
+      {
+        "name": "verify-canny-webhook",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies every rubric requirement, while Response B omits the required Webhook import and verification method."
+      }
+    ]
+  }
+}

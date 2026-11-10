@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:88eab8edeeaa9b8a1fdee04150c03615dcdae2026c5ae8c038e419913257aab7",
+  "scoredAt": "2026-10-01T20:06:34.364Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is macOS-specific and relies on Xcode tools, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.33,
+    "baselineAvg": 33,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "build-and-screenshot",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response B includes the required xcodebuild, install, launch, log stream, and screenshot commands (though the screenshot filename differs), whereas Response A lacks the build step and uses a different screenshot path."
+      },
+      {
+        "name": "crash-report",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items but omits the explicit --console-pty flag, while Response B lacks the required simctl launch and devicectl commands."
+      },
+      {
+        "name": "lldb-backtrace",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response B meets the simctl launch requirement and outputs a backtrace, while Response A fails to use simctl and thus misses a key rubric element."
+      }
+    ]
+  }
+}

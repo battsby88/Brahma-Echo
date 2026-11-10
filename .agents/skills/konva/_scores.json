@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:24d337931d4f5506a928dac9ffe2a186154763997e1e3f5c39da7648adb0378a",
+  "scoredAt": "2026-10-01T18:47:05.184Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.77,
+    "baselineAvg": 47,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "interactive-seat-map",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B is closer to the rubric, using Konva and matching most properties, but still misses the required id 'A1' and the function to retrieve selected seat ids; Response A fails to use Konva entirely."
+      },
+      {
+        "name": "react-konva-design-editor",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A lacks boundBoxFunc and uses onTransform instead of onTransformEnd."
+      },
+      {
+        "name": "high-dpi-export",
+        "baseline": 60,
+        "treatment": 100,
+        "rationale": "Response A meets every rubric requirement, while Response B omits CORS handling, Node rendering, and backend usage."
+      }
+    ]
+  }
+}

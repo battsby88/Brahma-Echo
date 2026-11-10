@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:441a00dc091584fef9af7976a4054f20bf44c4271deb869ece0fb3102de40d26",
+  "scoredAt": "2026-10-01T19:06:16.645Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8,
+    "baselineAvg": 10,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "fuzz-with-injection-dictionary",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with a proper schemathesis.toml and st run command, while Response A lacks the required configuration and command."
+      },
+      {
+        "name": "stateful-junit-report",
+        "baseline": 0,
+        "treatment": 40,
+        "rationale": "Response B includes the required st run command with flags but omits the report location and timestamp, while Response A does not provide the st run command at all."
+      },
+      {
+        "name": "docker-ci-baseline",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A misses key elements such as the correct wait time, baseline file, and volume mounting."
+      }
+    ]
+  }
+}

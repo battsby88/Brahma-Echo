@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bd9cf8dfc6ed7659ace088594c74f9f35eb676be1e8df2aa6f1d65d6999500d9",
+  "scoredAt": "2026-10-03T12:00:38.422Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is mostly limited to fallbacks; it gives no guidance on rate limits, timeouts, auth failures, streaming errors, or database misconfiguration for virtual keys, and no troubleshooting steps."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are prose descriptions that point back to earlier snippets instead of showing full runnable input and output, so they are simplistic."
+      },
+      {
+        "severity": "INFO",
+        "category": "security",
+        "detail": "The skill recommends pinning versions, verifying images and using a venv, which are good supply-chain practices; the only items worth noting are that the docker tag `main-stable` is a floating tag and the skill itself says to verify it."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.75,
+    "baselineAvg": 52,
+    "treatmentAvg": 91,
+    "scenarios": [
+      {
+        "name": "claude-to-gpt-fallback-router",
+        "baseline": 12,
+        "treatment": 95,
+        "rationale": "Response B builds the required litellm Router with anthropic/ and openai/ deployments, env-var keys, fallbacks=[{\"smart\": [\"fast\"]}], num_retries=2, and reads r.choices[0].message.content, while Response A hand-rolls the logic with the raw SDKs and never uses litellm."
+      },
+      {
+        "name": "team-proxy-virtual-keys-budget",
+        "baseline": 82,
+        "treatment": 90,
+        "rationale": "Both give a valid LiteLLM config with os.environ/ refs, master_key and database_url, and a /key/generate call with max_budget 25, rpm_limit and user_id; B states that the master key must start with sk- and that the database is PostgreSQL, and it has an explicit /key/info spend-check command with the master key header, while A mentions /key/info only in passing in the notes without a command and its master_key and database_url are env references without those comments (though its .env sets sk-master- and compose uses Postgres)."
+      },
+      {
+        "name": "safe-install-pinned-litellm",
+        "baseline": 62,
+        "treatment": 88,
+        "rationale": "B states the March 2026 malicious 1.82.7/1.82.8 releases as fact, pins an exact version, uses openai/ and gemini/ prefixes, reads r.choices[0].message.content, and mentions a lock file. A hedges on the incident, leaves the version as a placeholder, uses an unprefixed gpt-4o-mini, and never mentions a lock file."
+      }
+    ]
+  }
+}

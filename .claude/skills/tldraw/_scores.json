@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:52667323d04bd21a7d1d6a2e86dcbc39cc677a25962e8ab14f68694772039154",
+  "scoredAt": "2026-10-01T19:20:08.815Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4,
+    "baselineAvg": 20,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "embed-canvas-with-task-card-and-export",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B provides no content."
+      },
+      {
+        "name": "setup-realtime-collaboration-with-sync",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response B meets most rubric items, while Response A misses key requirements such as using useSync, the correct upload endpoint, and rendering the Tldraw component in a fixed container."
+      },
+      {
+        "name": "auto-save-canvas-with-snapshots",
+        "baseline": 40,
+        "treatment": 60,
+        "rationale": "Response A better meets rubric, providing correct listener and debounce, though missing loadFromServer; Response B lacks required functions and uses different API."
+      }
+    ]
+  }
+}

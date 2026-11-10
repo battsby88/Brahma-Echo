@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:29ea3a8e58a4fb3d85efe3c137050b96887123e28ae846226e9515b9cad71519",
+  "scoredAt": "2026-10-03T12:05:16.526Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.45,
+    "baselineAvg": 60,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "headline-to-svg-path",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "Both slice the ArrayBuffer exactly and use the default import, but B also derives the viewBox from path.getBoundingBox() as the rubric asks. A builds the viewBox from font metrics and only mentions getBoundingBox in a note."
+      },
+      {
+        "name": "digit-font-subset",
+        "baseline": 62,
+        "treatment": 80,
+        "rationale": "A matches the rubric closely: it builds the font from .notdef plus glyphs deduplicated via charToGlyph, copies the metrics, writes with Buffer.from(toArrayBuffer()), says kerning, ligatures and hinting are dropped, and recommends pyftsubset or glyphhanger; B covers the loss points and pyftsubset well but copies glyphs into new Glyph objects without deduplicating and never mentions glyphhanger, so it fits the rubric less closely."
+      },
+      {
+        "name": "measure-text-with-gsub-failure",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "B explicitly wraps the call in try/catch, ties the error to GSUB lookups unimplemented in opentype.js 2.0.0, and gives the per-char charToGlyph advanceWidth sum with fontSize/unitsPerEm scaling and getKerningValue, while A skips the try/catch around the main call and explains the cause less precisely, though its fallback math is correct."
+      }
+    ]
+  }
+}

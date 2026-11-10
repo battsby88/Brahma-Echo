@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9e1b18d5253f723624a564b0c5d2690891fb8312275afc684d967687e765c951",
+  "scoredAt": "2026-10-02T23:22:49.924Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.05,
+    "baselineAvg": 88,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "safe-s3-site-publish",
+        "baseline": 88,
+        "treatment": 88,
+        "rationale": "Both give the correct dry-run-then-real sync with --delete and mention sts get-caller-identity; A explicitly warns that --delete is permanent without versioning, while B has more safeguards (guard script, backup, combined script) but only implicitly warns about destructiveness through emptied-build risk and versioning note."
+      },
+      {
+        "name": "invoke-lambda-json-payload",
+        "baseline": 93,
+        "treatment": 95,
+        "rationale": "Both give the correct flag, the single-quoted payload command with response.json, and the config option; A is more concise and on point, while B adds extra alternatives and a log-tailing tip whose caveat is confusing, though it is still correct overall."
+      },
+      {
+        "name": "list-running-prod-instances-table",
+        "baseline": 82,
+        "treatment": 93,
+        "rationale": "Both give the same correct login and describe-instances commands with server-side filters, a quoted JMESPath query, `--output table`, and explicit profile and region; A also adds the optional `aws sts get-caller-identity` check and explains the quoting, while B leaves that check out and spends space on an unrequested jq variant and a note about being blocked."
+      }
+    ]
+  }
+}

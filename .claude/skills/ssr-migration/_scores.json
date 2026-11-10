@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:912d05daf728e94f386ab0e3fdf17e8c9454e61f808d4cc76a38023679f455f1",
+  "scoredAt": "2026-10-13T16:13:26.360Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Skill focuses mainly on happy path migration steps and does not cover all error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.67,
+    "baselineAvg": 43,
+    "treatmentAvg": 72,
+    "scenarios": [
+      {
+        "name": "marketing-site-ssg-migration",
+        "baseline": 20,
+        "treatment": 65,
+        "rationale": "Response A better covers rubric items, while Response B lacks App Router and several key requirements."
+      },
+      {
+        "name": "dashboard-mixed-rendering",
+        "baseline": 40,
+        "treatment": 70,
+        "rationale": "Response B meets all but the real‑time widget requirement, while Response A lacks the app router structure, middleware, cookie forwarding, and the widget."
+      },
+      {
+        "name": "nuxt4-migration-with-route-rules",
+        "baseline": 70,
+        "treatment": 80,
+        "rationale": "Response B correctly specifies the required routeRules and provides adequate browser-only code examples, while Response A has an incorrect ISR period and both miss data fetching and props serialization details."
+      }
+    ]
+  }
+}

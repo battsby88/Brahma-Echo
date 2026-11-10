@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4a53c4c6231e187a96f752feedf89893ae1eb703fbca2f9dd979fce3ce0be3e2",
+  "scoredAt": "2026-10-03T13:00:42.623Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 70,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "express-logger-with-redaction-and-quiet-tests",
+        "baseline": 72,
+        "treatment": 92,
+        "rationale": "A meets every rubric item: a shared logger with LOG_LEVEL defaulting to info, redact paths for authorization and cookie, pino-http mounted with that logger, data-first console.log replacements, and an explicit LOG_LEVEL=silent npm test. B has the logger, redaction, pino-http and data-first form, but its default level isn't info and it silences tests through NODE_ENV=test instead of LOG_LEVEL=silent, which the rubric requires."
+      },
+      {
+        "name": "error-logging-and-job-child-logger",
+        "baseline": 82,
+        "treatment": 88,
+        "rationale": "Both explain that pino only serializes Errors under `err`, use `logger.child({ jobId, queue })`, and put the data object before the message, but A is more focused and presents the `err` rename as the main fix. B leads with the `error` serializer as the lowest-effort fix, adds unrequested AsyncLocalStorage and winston material, and its `{ err: error }` rename is correct but understated."
+      },
+      {
+        "name": "multi-target-transport-with-text-levels",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "B gives the required pino.transport targets config (pino/file at level error with mkdir, plus pino-pretty) and warns up front that formatters.level cannot be combined with targets, with a workaround; A skips the targets config as its main answer, though it does mention the restriction and the alternative briefly."
+      }
+    ]
+  }
+}

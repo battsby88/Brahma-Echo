@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9e21726a5b1e082fb5272a32effbc7f235a3b57e83851af839d2f3dc9440460c",
+  "scoredAt": "2026-10-24T20:31:36.891Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios such as authentication failures or network issues."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes Docker, Node.js 20+, and Python 3.10+, limiting its applicability to agents without these environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.76,
+    "baselineAvg": 55,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "start-local-cassandra-and-create-schema",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric items, while Response A lacks the required NetworkTopologyStrategy keyspace, version check, and table listing."
+      },
+      {
+        "name": "nodejs-stream-posts-and-manual-paging",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, including the consistency setting, while Response B omits the consistency configuration but otherwise meets the rest of the criteria."
+      },
+      {
+        "name": "python-counter-and-regular-batch-update",
+        "baseline": 55,
+        "treatment": 95,
+        "rationale": "Response A closely follows the rubric, covering all required elements, while Response B uses different table names and lacks the explicit counter batch type, making it less aligned with the task."
+      }
+    ]
+  }
+}

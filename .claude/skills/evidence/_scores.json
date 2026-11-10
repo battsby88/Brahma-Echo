@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4d5d4da896e779ac8fa6d3cedb5f46f96b0bd237164c9730cc21809c0113bce7",
+  "scoredAt": "2026-10-24T16:43:48.513Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.78,
+    "baselineAvg": 23,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "create-sales-report",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response B includes the required init with --warehouse bigquery, page creation with line_chart and table, and shows validate and dev, while Response A lacks many rubric items."
+      },
+      {
+        "name": "migrate-legacy-project",
+        "baseline": 50,
+        "treatment": 90,
+        "rationale": "Response A includes all required Evidence CLI commands and guidance for fixing validation errors, while Response B omits the migration steps and evidence migrate commands."
+      },
+      {
+        "name": "self-host-evidence-server",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use the required base image or environment variable names."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ddc8b4a0ddc27f7c8915681582a8bfe3b8c262e6897debf626cc290cbd3dbe5c",
+  "scoredAt": "2026-10-03T13:08:01.103Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers the happy path plus a few notes on restart limits and journal persistence, but gives no troubleshooting steps for a service that fails to start (e.g. reading `journalctl -xe`, exit-code and permission errors, SELinux denials), and it omits user units, socket activation and `systemctl edit` drop-in syntax."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.98,
+    "baselineAvg": 90,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "node-service-on-boot-with-restart",
+        "baseline": 96,
+        "treatment": 95,
+        "rationale": "Both responses satisfy every rubric element: Restart=on-failure with RestartSec, an absolute ExecStart, User=deploy, After/Requires on postgresql.service, WantedBy=multi-user.target, and daemon-reload followed by enable --now. B edges ahead with extra practical notes on the start-limit behaviour and Postgres readiness, while A adds a verify step and a crash test."
+      },
+      {
+        "name": "replace-cron-backup-with-timer",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both responses supply the full rubric set: a timer with OnCalendar 03:00, Persistent=true and RandomizedDelaySec, a oneshot service, enabling the timer, and verification with list-timers and systemd-analyze calendar. B edges ahead because it adds FixedRandomDelay, notes on failure alerts, and a reminder to check /etc/cron.d. A invents a `User=deploy` taken from a 'reference example' that doesn't appear anywhere in the task, which is a minor flaw, though it does include a useful `systemd-analyze verify` step."
+      },
+      {
+        "name": "harden-and-debug-failing-service",
+        "baseline": 85,
+        "treatment": 82,
+        "rationale": "Both cover journalctl -p err, reset-failed, the start-limit cause, a systemctl edit drop-in, hardening options and systemd-analyze security, but B adds more detail: it explains the start-limit-hit result, provides a fuller hardening set, and covers troubleshooting and revert. A has a slight lead on its note about running systemd-analyze security after the fix, but B includes this as well."
+      }
+    ]
+  }
+}

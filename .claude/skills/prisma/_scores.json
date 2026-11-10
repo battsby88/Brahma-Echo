@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d4c276d5ec152a83f03fde3dbbeb81a27b091a481ce71932368a8571bf0189e0",
+  "scoredAt": "2026-10-24T22:25:18.935Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.8,
+    "baselineAvg": 25,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "setup-postgres-prisma-project",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets every rubric requirement; Response B omits key steps and dependencies."
+      },
+      {
+        "name": "upgrade-prisma-client-js-to-prisma7",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Response A covers all required steps except the explicit removal of prisma-client-js, while Response B lacks most of the detailed Prisma 7 setup."
+      },
+      {
+        "name": "run-migration-and-complex-query",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A misses several key elements."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8cc61fd4569bd3874711ace881b6b720fa1af927284eeb73ebbe619fb13b2b47",
+  "scoredAt": "2026-10-20T17:52:56.719Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.7,
+    "baselineAvg": 7,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "scaffold-and-preview",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B covers most rubric items but omits the required hyperframes add step, whereas Response A fails to address any of the criteria."
+      },
+      {
+        "name": "deterministic-gsap-render",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric points, while Response A omits hyperframes, timeline binding, and determinism warnings."
+      },
+      {
+        "name": "github-actions-render-pipeline",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies all rubric items, while Response B omits hyperframes, Node.js, and the required steps."
+      }
+    ]
+  }
+}

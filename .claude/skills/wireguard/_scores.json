@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d3731ba023bfab436490e0364c8377bb6603e5f70970d4a8ce45e086a7549afc",
+  "scoredAt": "2026-10-24T20:11:21.636Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack explicit error handling or edge case guidance."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tailored to Linux environments and does not support other operating systems."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.02,
+    "baselineAvg": 42,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "split-tunnel-with-qr",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B provides no relevant content."
+      },
+      {
+        "name": "office-site-to-site",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies every rubric requirement, while Response A omits the ufw rule for UDP 51820 and is slightly less comprehensive."
+      },
+      {
+        "name": "pi-hole-dns-integration",
+        "baseline": 45,
+        "treatment": 55,
+        "rationale": "Response A provides more comprehensive steps and starts WireGuard before Pi‑hole, but both miss key rubric items such as pihole‑FTL dns.listeningMode, explicit client DNS setting to 10.10.0.1, and monitoring commands; A covers more of the required content."
+      }
+    ]
+  }
+}

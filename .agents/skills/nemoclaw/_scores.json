@@ -1,0 +1,65 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bb703a5ac409514f7a04ede219b6b46a9694abc868e674ba756942210b23937d",
+  "scoredAt": "2026-10-24T15:42:38.678Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error scenarios and edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Skill has platform-specific limitations, not fully cross-platform."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Installer script is downloaded without a checksum verification."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 0,
+    "treatmentAvg": 60,
+    "scenarios": [
+      {
+        "name": "setup-sandbox-with-npm-pypi",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B includes policy additions and launch but omits the required onboard command and policy list, while Response A fails to meet any rubric items."
+      },
+      {
+        "name": "install-code-review-skill-and-check-logs",
+        "baseline": 0,
+        "treatment": 30,
+        "rationale": "Response A fails to use the required commands and syntax; Response B uses the correct install and log commands (though with a placeholder) but does not provide the actual log output containing \"code-review\" as required."
+      },
+      {
+        "name": "switch-inference-provider-openai",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric by using the required commands and showing the correct output, while Response B uses unrelated commands and does not meet the rubric requirements."
+      }
+    ]
+  }
+}

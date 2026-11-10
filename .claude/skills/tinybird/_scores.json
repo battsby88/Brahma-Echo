@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9227db0736440b6ad1dad4ec493765249fa5df8f6fcfb38c0c3b90c1821f51ee",
+  "scoredAt": "2026-10-24T17:36:12.686Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.38,
+    "baselineAvg": 13,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "setup-daily-active-users",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric while Response B lacks the required Tinybird CLI steps and files."
+      },
+      {
+        "name": "usage-metering-mv-jwt",
+        "baseline": 10,
+        "treatment": 50,
+        "rationale": "Response A includes most of the required components (endpoint, JWT, materialized view) but misses the AggregatingMergeTree engine, month aggregation, and deploy command, whereas Response B lacks all specified elements."
+      },
+      {
+        "name": "bulk-ingest-python-429",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B misses key elements such as the correct endpoint, NDJSON format, Retry-After handling, .pipe file, and fetch example."
+      }
+    ]
+  }
+}

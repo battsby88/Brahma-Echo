@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:20311d93b95ece349fe767aac08fb981dc36a6238a64636ef3a68ae9c7cea3e5",
+  "scoredAt": "2026-10-24T21:31:33.809Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.44,
+    "baselineAvg": 18,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "add-protected-rename-endpoint",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully implements the required tRPC protectedProcedure with middleware, input schema, and user ID update, while Response B uses Express/Mongoose and does not meet the tRPC-specific rubric."
+      },
+      {
+        "name": "call-api-node-script",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "Response B fully satisfies the rubric, while Response A uses the wrong client constructor and mismatches the expected method path."
+      },
+      {
+        "name": "upgrade-v10-to-v11",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A contains more relevant details, though it still misses several rubric items; Response B is incomplete."
+      }
+    ]
+  }
+}

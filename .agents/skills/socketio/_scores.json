@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a0395bc46832a02f8ea1716ef5663068ff0baed2612e133af8f25807b7527370",
+  "scoredAt": "2026-10-24T21:22:40.225Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment, which is a minor platform assumption."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.24,
+    "baselineAvg": 38,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "minimal-authenticated-server",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A satisfies all server‑side requirements but omits the React hook, while Response B fails to meet several key server specifications and also lacks the hook."
+      },
+      {
+        "name": "presence-updates",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not meet the required presence logic or constraints."
+      },
+      {
+        "name": "redis-scaled-server",
+        "baseline": 85,
+        "treatment": 75,
+        "rationale": "Both responses cover the core Redis adapter setup and sticky sessions, but neither mentions that adapter messages are unsigned; Response A provides more detailed transport and sticky‑session configuration, giving it a higher score."
+      }
+    ]
+  }
+}

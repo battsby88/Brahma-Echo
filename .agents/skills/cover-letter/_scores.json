@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0341826d45697c1794637f3048a10741f577f1c19b4ed05742fdfd1441d6cb44",
+  "scoredAt": "2026-10-01T18:31:46.417Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or missing input scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.5,
+    "baselineAvg": 3,
+    "treatmentAvg": 5,
+    "scenarios": [
+      {
+        "name": "write-Stripe-backend-cover-letter",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide any cover letter content, missing all rubric requirements."
+      },
+      {
+        "name": "adapt-google-pm-cover-letter-to-microsoft",
+        "baseline": 5,
+        "treatment": 10,
+        "rationale": "Both responses fail to meet the rubric; A is slightly better due to more detailed request."
+      }
+    ]
+  }
+}

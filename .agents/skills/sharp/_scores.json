@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:568277ea073fee0ddc11293008d876f95b7f35449452aff33ed57217665b135f",
+  "scoredAt": "2026-10-24T16:00:37.817Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 83,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Node.js and does not work with other AI agent platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.71,
+    "baselineAvg": 48,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "responsive-variants-generation",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits the progressive JPEG flag and the required filename suffix, falling short of the specification."
+      },
+      {
+        "name": "batch-image-optimization",
+        "baseline": 55,
+        "treatment": 85,
+        "rationale": "Response A meets most rubric items (rotate, resize with withoutEnlargement, webp conversion, output naming, directory handling) but omits tiff/webp inputs; Response B lacks rotate, withoutEnlargement, and also omits tiff/webp inputs, making it less complete."
+      },
+      {
+        "name": "watermarking-with-png-and-svg",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Both responses miss the required blend option, but Response B avoids the disallowed .toFormat call and otherwise meets the rubric better."
+      }
+    ]
+  }
+}

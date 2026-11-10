@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0dd1500d654ca2d57143401010e18129a2489a18896b2b6b6887016ccf2f8106",
+  "scoredAt": "2026-10-20T19:48:58.713Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as failed deployments or missing tokens."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The document contains repeated lines and filler text that reduce overall conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.7,
+    "baselineAvg": 0,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "deploy-node-api-git",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies every rubric requirement, while Response A omits the required koyeb apps create and services create commands."
+      },
+      {
+        "name": "scale-service-multi-region",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes the exact koyeb command with all required flags; Response A does not contain any koyeb command."
+      },
+      {
+        "name": "create-worker-with-volume",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A covers most required koyeb commands but omits the update step, while Response B provides a Kubernetes manifest unrelated to the rubric."
+      }
+    ]
+  }
+}

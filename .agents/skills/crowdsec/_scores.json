@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b76c10662920743ae5597dc35c747c9dd5da1449dffebf47d745e4d2867dd636",
+  "scoredAt": "2026-10-03T12:59:26.638Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Installation steps and commands are Debian/Ubuntu-centric (apt, systemctl, sudo) and RHEL, FreeBSD and Windows are only mentioned in passing without commands, despite the compatibility claim."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.07,
+    "baselineAvg": 81,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "ssh-brute-force-ban-ubuntu",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both install the engine plus nftables bouncer, install the sshd collection, reload via systemctl, and use cscli explain with --type syslog plus cscli decisions list; A adds a burst test, journald fallback, and bouncer verification, while B is more concise but also correct and covers the rubric items fully."
+      },
+      {
+        "name": "docker-compose-crowdsec-nginx",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": ""
+      },
+      {
+        "name": "remote-bouncer-allowlist-manual-ban",
+        "baseline": 90,
+        "treatment": 82,
+        "rationale": "Both cover all four rubric items (bouncer key, YAML api_url/api_key, allowlist create/add, 24h ban, bouncers list verification), but A is more complete and runnable, with LAPI listen_uri, a firewall rule and a fallback for older versions, while B leaves the listen_uri setting to the docs and refers to a 'reference' the user never saw."
+      }
+    ]
+  }
+}

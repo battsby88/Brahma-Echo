@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4be4eae21b50cab34c3eed8f10a87e34078cb68ccd2e1f56d787eeab983ca6b3",
+  "scoredAt": "2026-10-01T12:20:54.370Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 83,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "Skill is vendor-locked to promptfoo, not platform-agnostic."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.8,
+    "baselineAvg": 7,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "create-basic-eval-suite",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not mention any promptfoo commands or the required YAML structure."
+      },
+      {
+        "name": "compare-models-code-review",
+        "baseline": 20,
+        "treatment": 65,
+        "rationale": "Response A includes tests and latency assertions and a near‑complete command, while Response B lacks tests, assertions, and the required command structure."
+      },
+      {
+        "name": "run-redteam-attack",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B lists the required commands but does not explicitly describe the vulnerabilities found in the report, whereas Response A provides no relevant content."
+      }
+    ]
+  }
+}

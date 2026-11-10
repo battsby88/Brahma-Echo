@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6dd194826dbd4e6c99f0c3ec18ebe029a57af1372910efed2066c3f1b9975065",
+  "scoredAt": "2026-10-24T14:02:48.275Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.2,
+    "baselineAvg": 2,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "async-receipt-retry-rate-limit",
+        "baseline": 5,
+        "treatment": 80,
+        "rationale": "Response B covers almost all rubric items except the apply_async call, while Response A does not meet any of the Celery-specific requirements."
+      },
+      {
+        "name": "nightly-report-beat-worker",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not meet the required task names, arguments, or command specifics."
+      },
+      {
+        "name": "chain-group-inspect",
+        "baseline": 0,
+        "treatment": 65,
+        "rationale": "Response B includes the required Celery chain, group, and active worker inspection, whereas Response A does not use Celery at all."
+      }
+    ]
+  }
+}

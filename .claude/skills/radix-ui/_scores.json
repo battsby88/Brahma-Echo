@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:dca9449dcf840a5110e71583a6e207715fa3c37f89a84c9c4c3b296b07f082f8",
+  "scoredAt": "2026-10-03T13:03:38.710Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers only the happy path for four primitives and omits error and edge cases such as controlled open state, async confirm handlers, forceMount/animation exit handling, SSR hydration issues, and the Dialog/Dropdown focus-return interaction."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples only restate which Step component to reuse with a one-line expected result, and the Example 2 `onSelect` handler is not wired into the `UserMenu` code, so they are not full realistic demonstrations."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.09,
+    "baselineAvg": 81,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "delete-confirm-dialog-a11y",
+        "baseline": 62,
+        "treatment": 88,
+        "rationale": "A matches the rubric directly: it uses Dialog.Root, Trigger, Portal, Overlay and Content, Dialog.Close asChild for Cancel, VisuallyHidden around Dialog.Title, and Dialog.Description with an aria-describedby={undefined} note. B uses AlertDialog (Cancel/Action) instead of Dialog and Dialog.Close, so it misses the specific components the rubric names, though its accessibility handling is sound."
+      },
+      {
+        "name": "menu-keep-open-onselect",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both use onSelect with preventDefault on Copy link, leave Sign out without preventDefault, and note 'use client'; B adds a working copy handler and state and an extra Server Action tip, but A's explanation is also correct and complete, so B is only slightly ahead."
+      },
+      {
+        "name": "tabs-and-tooltips-toolbar",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both responses satisfy every rubric item (Tabs.Root with defaultValue, Tabs.List/Trigger/Content, data-[state=active] styling, Tooltip.Provider delayDuration={300}, Root/Trigger asChild/Portal/Content, and aria-label), but A uses a real Lucide icon with aria-hidden and the standard individual packages, whereas B uses an emoji as the icon and the unified radix-ui package, which is slightly less polished though valid."
+      }
+    ]
+  }
+}

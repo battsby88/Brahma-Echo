@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b7183d28b99fc8e6c128dc6999bcd81ed4484facb4da9e0efbd0c620e45d01df",
+  "scoredAt": "2026-10-24T19:38:20.053Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Next.js and may not work with other frameworks or environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7,
+    "baselineAvg": 10,
+    "treatmentAvg": 70,
+    "scenarios": [
+      {
+        "name": "add-spanish-support",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B covers some steps but omits middleware matcher, next.config.ts plugin, and layout locale setup, while Response A has no content."
+      },
+      {
+        "name": "language-switcher-component",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "B meets almost all rubric requirements except the useLocale import source, while A fails to meet any."
+      },
+      {
+        "name": "format-date-and-currency",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A covers all required formatting and locale setup but omits getTranslations; Response B lacks server‑side locale handling, setRequestLocale, getFormatter, and getTranslations."
+      }
+    ]
+  }
+}

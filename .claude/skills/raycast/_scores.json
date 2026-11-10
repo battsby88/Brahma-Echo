@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:942ddffed75b2f66de006d5b1bd3e363a9875b2e943a973b62ab546898ee3ba0",
+  "scoredAt": "2026-10-20T20:10:09.829Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The guide does not cover all possible error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.2,
+    "baselineAvg": 35,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "github-issues-list-view",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A meets most rubric requirements but lacks error handling with showToast, whereas Response B fails to use useFetch, getPreferenceValues, and mapResult, missing key elements."
+      },
+      {
+        "name": "github-create-issue-form",
+        "baseline": 75,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A omits the TagPicker, enableMarkdown, and popToRoot, missing key elements."
+      },
+      {
+        "name": "github-notifications-menu-bar",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B implements the basic menu bar and fetch logic but omits keepPreviousData, caching, and interval configuration, whereas Response A is empty."
+      }
+    ]
+  }
+}

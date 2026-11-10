@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3ffbf40dee7f45dc91a9cb0b475927b5b95418660623986215c697f7668e88fb",
+  "scoredAt": "2026-10-13T11:52:14.324Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Testing and validation examples are missing; guidelines mention testing RLS but provide no test cases or error scenario examples."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Most sophisticated features (RLS, policies, tenant isolation) are PostgreSQL-only; MySQL and SQLite users would find only basic table/index design applicable."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.43,
+    "baselineAvg": 58,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "multi-tenant-rls-schema",
+        "baseline": 48,
+        "treatment": 72,
+        "rationale": "Response A correctly implements the secure RLS pattern with `current_setting('app.current_tenant_id', true)` and NULLIF (requirement 1), uses FOR ALL policies (requirement 2), and includes ON DELETE clauses (requirement 4), but several composite indexes lack tenant_id first or omit it entirely (requirement 3). Response B has a critical security failure: it omits both the `true` parameter and NULLIF from the RLS policies, allowing potential connection-pool leakage of tenant context; additionally, many composite indexes are missing from its design, though the one composite index (tenant_email) is correctly ordered."
+      },
+      {
+        "name": "retrofit-rls-existing-tables",
+        "baseline": 55,
+        "treatment": 89,
+        "rationale": "Response A omits UPDATE statements to populate existing data and critically uses plain SET instead of set_config() in transactions—both explicit rubric requirements. Response B covers all rubric elements: ALTER TABLE for tenant_id, addresses UPDATE (via migration template), enables RLS, uses USING/WITH CHECK correctly, implements set_config() in proper transactions, and includes explicit admin bypass policies."
+      },
+      {
+        "name": "index-strategy-performance",
+        "baseline": 70,
+        "treatment": 88,
+        "rationale": "Response B addresses all four rubric criteria (FKs, composite indexes, partial indexes integrated into primary design, and tenant_id-first for multi-tenant) with practical examples; Response A covers three well but entirely omits multi-tenant consideration and treats partial indexes as optional refinement rather than primary design."
+      }
+    ]
+  }
+}

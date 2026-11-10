@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4676a3b0f67efbf788d915166dbd9865eaf6381a25d8532701a335ffefc3fbb6",
+  "scoredAt": "2026-10-03T12:15:27.273Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.91,
+    "baselineAvg": 32,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "bundle-gguf-with-zipalign",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "B matches the rubric closely: `-m /zip/Qwen3-8B-Q5_K_M.gguf`, a trailing `...`, `zipalign -j0`, and no `--create`. A also uses `...` and `zipalign -j0`, but its `-m` points to a bare filename instead of `/zip/...`, which the rubric requires explicitly."
+      },
+      {
+        "name": "script-offline-batch-summaries",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response B uses `--cli` in a per-file loop with `-f`, `-sys`, `--temp 0` and `--nothink`, and it runs locally with no server, which is everything the rubric asks for. Response A uses the Ollama HTTP API with curl and never mentions `--cli`, `-f` or `-sys`."
+      },
+      {
+        "name": "secure-lan-server-with-api-key",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "B matches the rubric: llamafile with -m and --server, --host 0.0.0.0, --port, a warning about unauthenticated exposure, --api-key-file, --alias, and an OpenAI client pointed at /v1 with the key. A uses llama-server instead of llamafile, binds to a LAN IP rather than 0.0.0.0, and uses --api-key rather than --api-key-file as its main approach, though it does cover the alias and the client setup."
+      }
+    ]
+  }
+}

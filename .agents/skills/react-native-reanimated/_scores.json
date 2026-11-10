@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6f25dd14d63aa8615357c83334d883ce4b0554bf7d770a2673d56d8f493b188e",
+  "scoredAt": "2026-10-01T19:03:06.917Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases for installation failures or runtime errors."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text and multiple code examples, leading to verbosity beyond what is strictly necessary."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 2,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "swipe-to-delete-list-item",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not use the specified APIs or patterns."
+      },
+      {
+        "name": "animated-list-with-layout-animations",
+        "baseline": 5,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A does not use Animated.FlatList or the specified animation props."
+      },
+      {
+        "name": "parallax-header-on-scroll",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies all rubric requirements; Response B does not use Reanimated at all."
+      }
+    ]
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f95869ae1c03a76a8e4ac55eacebf58aae2bd824b17518689a8a0099782f0544",
+  "scoredAt": "2026-10-24T14:36:59.645Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases, such as handling missing weights or network failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Weights are downloaded from Hugging Face without checksum verification."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "forecast-daily-sales",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not use TimesFM."
+      },
+      {
+        "name": "cpu-anomaly-detection",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use TimesFM at all."
+      },
+      {
+        "name": "multivariate-price-volume-promotion",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B does not use TimesFM3 at all."
+      }
+    ]
+  }
+}

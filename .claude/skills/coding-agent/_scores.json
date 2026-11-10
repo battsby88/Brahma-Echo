@@ -1,0 +1,64 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:274e38d1f612140223251f32044421b0385ade9847bef7b470a66b3159071154",
+  "scoredAt": "2026-10-24T23:04:20.785Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover handling of permission errors, network failures, or agent crashes, leaving edge cases unaddressed."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that could be trimmed without losing essential information."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes specific CLI tools (claude, codex, gemini) and npm installation, limiting portability across different agent environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "delegate-test-writing",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while A does not."
+      },
+      {
+        "name": "parallel-type-and-docs",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not spawn any Claude commands as required."
+      },
+      {
+        "name": "structured-todo-analysis",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B provides no content."
+      }
+    ]
+  }
+}

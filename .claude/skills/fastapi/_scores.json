@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:374175bc35173d1656ebdcf19219fcf0d23a1dbf479825641880532793d8cd24",
+  "scoredAt": "2026-10-24T20:44:44.462Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory text that may be considered padded."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.33,
+    "baselineAvg": 43,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "create-api-with-lifespan-and-auth",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B lacks the required lifespan, dependency, and response model."
+      },
+      {
+        "name": "add-websocket-and-middleware",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, including an APIRouter and correct middleware; Response B lacks the APIRouter requirement, though it otherwise implements the functionality."
+      },
+      {
+        "name": "write-tests-with-lifespan",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits key elements such as the environment variable, negative price test, and ASGITransport usage."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:116b6e05792c0eff406460cf97801f2a94fe198c7a2aedbdbac5f05efd3c0539",
+  "scoredAt": "2026-10-03T12:00:07.488Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path and gives little guidance on failure scenarios such as failed builds, broken generations, credit exhaustion mid-task, or rolling back bad edits beyond a brief mention of version history."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "Most steps are UI-click descriptions or policy advice rather than runnable procedures, and the security review step lacks concrete commands or checks for the two-user RLS test and the built-in scan."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.58,
+    "baselineAvg": 55,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "waitlist-prompt-with-rls-review",
+        "baseline": 74,
+        "treatment": 82,
+        "rationale": "A hits every rubric item compactly: section-based prompt with concrete hero copy, an admin page behind login, Lovable Cloud, a design direction, the exact 'Ask me any questions you need before building' line, the insert-with-check(true) vs select-exposes-all-rows distinction, the built-in security scan, and a three-role test. B is more thorough on security but omits the 'Ask me any questions' line, gives a vague 'Lovable Cloud / Supabase' backend choice, and has little concrete copy or explicit design direction. It also never states that check(true) is fine for insert, and it does not frame the testing as the two-user test the rubric asks for."
+      },
+      {
+        "name": "github-sync-and-cursor-workflow",
+        "baseline": 62,
+        "treatment": 88,
+        "rationale": ""
+      },
+      {
+        "name": "choose-backend-and-manage-credits",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "A covers nearly every rubric point (no-migration lock-in, Supabase first, Chat mode, Plan Mode at 1 credit vs 0.5–1.7 for edits, all core features in the first prompt, one change per follow-up, 5 daily/30 monthly credits), while B recommends Supabase but misstates the migration facts, hedges from memory, says to batch changes (the opposite of one change per follow-up), and omits the credit numbers and Plan Mode cost."
+      }
+    ]
+  }
+}

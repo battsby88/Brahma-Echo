@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:6e06507f78f632010768151c866d9f4420327cd8caa48cacff3218a0f547e94a",
+  "scoredAt": "2026-10-24T20:27:57.151Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "auth-flow-reconstruction",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with all required commands and details, while Response B provides no relevant content."
+      },
+      {
+        "name": "commit-workflow-extraction",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully follows the rubric with ax commands, session details, decisions, and evidence; Response B omits ax usage entirely."
+      },
+      {
+        "name": "csv-export-workflow",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while A does not."
+      }
+    ]
+  }
+}

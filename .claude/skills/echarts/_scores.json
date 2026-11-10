@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:596db01c3a58596cf9000b467c65cac29137fc672980bdb7107842e82c203f5f",
+  "scoredAt": "2026-10-01T18:34:01.577Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "react-stacked-bar-with-toolbox",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets all rubric requirements, while Response B lacks a dataZoom slider and explicit responsive resizing."
+      },
+      {
+        "name": "server-svg-rendering",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B fails to use the SVG renderer, ssr, and proper disposal."
+      },
+      {
+        "name": "upgrade-5-to-6-theme-switch",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not import or use the v5 theme and fails to call chart.setTheme as required."
+      }
+    ]
+  }
+}

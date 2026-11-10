@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:1ee9d452e4d2f69e944ba3d46466f8a9b2f43153b2fed33f041fee93c40421dd",
+  "scoredAt": "2026-10-01T19:31:09.360Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanations that may be considered verbose."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.13,
+    "baselineAvg": 80,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "create-ecommerce-tracking-plan",
+        "baseline": 80,
+        "treatment": 70,
+        "rationale": "Response A covers more rubric items, including DebugView verification, whereas Response B omits several required details."
+      },
+      {
+        "name": "remove-duplicate-purchase-events",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully meets all rubric requirements, while Response A omits the ecommerce reset, items array, and explicit Tag Assistant preview confirmation."
+      },
+      {
+        "name": "implement-consent-mode",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, including wait_for_update and full storage denial, while Response A omits wait_for_update and does not deny all storage types."
+      }
+    ]
+  }
+}

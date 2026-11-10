@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:679f8de3422d37f4e5fd5e90e81d4591e905575221d6d9e5339b3c689d1b401d",
+  "scoredAt": "2026-10-20T18:55:18.037Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.92,
+    "baselineAvg": 13,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "full-migration-static-dynamic-pages",
+        "baseline": 35,
+        "treatment": 55,
+        "rationale": "Response B includes the Playwright extraction, Tailwind config, and correct Next.js scaffolding, while Response A lacks these and misses many rubric items; B still omits dynamic routing, metadata, and redirects, but covers more required elements."
+      },
+      {
+        "name": "headless-wix-store",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A is absent."
+      },
+      {
+        "name": "headless-wix-blog",
+        "baseline": 5,
+        "treatment": 75,
+        "rationale": "Response B covers most rubric items, while Response A misses all key requirements."
+      }
+    ]
+  }
+}

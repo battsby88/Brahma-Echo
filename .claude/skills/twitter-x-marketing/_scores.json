@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:213b229dcfbc78d2f4a761beb3e9f19223eab97f7dde94b564b90fbb182fbc8c",
+  "scoredAt": "2026-10-24T14:38:04.810Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios such as authentication failures, network errors, or media upload limits."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains extensive explanatory text that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.97,
+    "baselineAvg": 33,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "create-marketing-thread",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully implements the required thread‑posting logic with hooks, CTA, timing, and JSON structure, while Response A only provides tweet text without any code or posting mechanism."
+      },
+      {
+        "name": "post-image-tweet",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with v2 media endpoints, three‑step upload, alt text, and tweet posting; Response B uses v1.1 endpoints and OAuth 1.0a, missing the required v2 flow."
+      },
+      {
+        "name": "create-poll-tweet",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, including the poll field and JSON structure, while Response A omits the required poll field in the createPost request."
+      }
+    ]
+  }
+}

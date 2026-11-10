@@ -1,0 +1,53 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0b658a61ab399af2d77384a3080e86097abc6c69712558203c6a5beb24b367d7",
+  "scoredAt": "2026-10-24T19:02:19.696Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not address error handling or edge cases for missing or invalid data inputs."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.98,
+    "baselineAvg": 48,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "saaS-health-check",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "Response B meets all rubric items—calculates LTV, LTV/CAC, flags churn, ranks levers, and warns about cash flow—while Response A omits churn priority, lever ranking, and cash‑flow caution."
+      },
+      {
+        "name": "price-increase-impact-model",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits the required scenarios and key details."
+      }
+    ]
+  }
+}

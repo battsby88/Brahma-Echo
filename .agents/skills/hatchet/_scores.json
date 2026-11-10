@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fab2c979854010e30cc2e2c88f5e7c3f852c822f3bf4c2a125afd52d0e963924",
+  "scoredAt": "2026-10-03T11:58:19.954Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers retries, timeouts and a few edge cases but omits failure handling such as onFailure tasks, cancellation, non-retryable errors, and connection or worker-crash scenarios."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Both examples are prose descriptions of what the agent would do rather than runnable code or concrete input and output, so they are simplistic."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1,
+    "baselineAvg": 82,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "dag-with-parallel-fanout-and-parent-output",
+        "baseline": 95,
+        "treatment": 96,
+        "rationale": "Both use hatchet.workflow with .task(), parents referencing task objects, ctx.parentOutput(taskObject), and retries plus executionTimeout on every task; A adds real sharp code and a policy helper, while B is cleaner and more direct, so they are essentially equal on the rubric."
+      },
+      {
+        "name": "per-tenant-concurrency-limit",
+        "baseline": 82,
+        "treatment": 88,
+        "rationale": "Both use expression 'input.tenantId', maxRuns 2 and GROUP_ROUND_ROBIN, and both warn that the cancel strategies drop runs, so each hits the rubric's core. A imports from the SDK root and B from '/v1', and neither import path is checked. A is slightly cleaner on the rubric but hedges on whether `hatchet.task` supports concurrency, while B adds an unrequested Python version."
+      },
+      {
+        "name": "worker-registration-and-event-trigger",
+        "baseline": 68,
+        "treatment": 62,
+        "rationale": "Both show worker with workflows, worker.start(), and events.push with the matching key, and both mention slots. A explicitly explains that slots must be free and sets HATCHET_CLIENT_TOKEN in the run commands. B has a more complete setup, and its client comment says HATCHET_CLIENT_TOKEN is read from the environment. B only sets slots: 10 in the code and never explains that slots must be available, but it covers the token and env more clearly."
+      }
+    ]
+  }
+}

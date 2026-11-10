@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e12eddc283a9eb2e97d651772aadbded868590b6f9a5cecdce7118b6fc19fe9d",
+  "scoredAt": "2026-10-02T22:51:45.504Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are prose descriptions of what the agent does, with no concrete config files, commands with full output, or before/after diffs, so they are less demonstrative than runnable examples."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.12,
+    "baselineAvg": 74,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "migrate-eslint-flat-config-hybrid",
+        "baseline": 62,
+        "treatment": 80,
+        "rationale": "A covers all three rubric items (runs `npx @oxlint/migrate`, installs eslint-plugin-oxlint and spreads `oxlint.configs[\"flat/recommended\"]` last, and runs oxlint before ESLint in the script), while B only recommends flat/recommended as a fallback, preferring `buildFromOxlintConfigFile`, and its migrate command is less precise."
+      },
+      {
+        "name": "ts-project-config-with-plugins-and-overrides",
+        "baseline": 88,
+        "treatment": 82,
+        "rationale": "Both configs set categories, an explicit plugin list including typescript and react, namespaced rules, and ignorePatterns, but A's test override globs (test, spec and __tests__) are broader than B's (only .test.ts and .test.tsx), and B adds an unneeded 'import' plugin."
+      },
+      {
+        "name": "github-actions-ci-fail-on-warnings-and-precommit",
+        "baseline": 72,
+        "treatment": 88,
+        "rationale": "A uses `npx oxlint --deny-warnings` in the workflow, lint-staged with a js/jsx/ts/tsx glob running plain `oxlint --fix`, and says warnings never fail the build without the flag; B has the same pieces but adds `--deny-warnings` to the hook, runs the lint through an npm script, and never says warnings don't fail the build without the flag."
+      }
+    ]
+  }
+}

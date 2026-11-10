@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e249286bc33e8854504ed56daf36f742d99c99eb14dc1d677fa1e0f4eeff8520",
+  "scoredAt": "2026-10-03T13:09:17.458Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers the happy path and a few guidelines but gives no troubleshooting for common failures such as port already in use, worker crashes or OOM, import errors for the app module, or failed proxy header trust."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.08,
+    "baselineAvg": 85,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "fastapi-behind-nginx-workers",
+        "baseline": 80,
+        "treatment": 95,
+        "rationale": "Both give the uvicorn command with --workers 4, --proxy-headers, --forwarded-allow-ips 127.0.0.1, host 127.0.0.1 and no --reload; B explicitly warns against '*' and --reload, while A adds extras, never mentions --reload, and suggests '*' for unix sockets (contradicting the rubric's spirit), though it isn't the primary command."
+      },
+      {
+        "name": "fix-gunicorn-worker-deprecation",
+        "baseline": 92,
+        "treatment": 90,
+        "rationale": "Both name the uvicorn-worker package, switch to uvicorn_worker.UvicornWorker and keep the app path, worker and bind options, but A also says explicitly that uvicorn.workers is deprecated since 0.30 while B only calls the old class 'deprecated' in passing and adds extra Dockerfile and proxy detail."
+      },
+      {
+        "name": "dockerize-fastapi-production",
+        "baseline": 82,
+        "treatment": 90,
+        "rationale": "Both use non-root users, exec-form CMD, uvicorn_worker.UvicornWorker, and uvicorn-worker; B puts `--workers`, `--worker-class` and `--bind 0.0.0.0:8000` literally in the CMD as the rubric specifies, while A moves them into gunicorn.conf.py (workers and bind via env/config, not CLI flags) and adds a tini ENTRYPOINT, so gunicorn is not PID 1."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8f8b3a65a4117a37612abce69bd8255a17dd11bcf8816d726b0c08b4d57701a6",
+  "scoredAt": "2026-10-24T15:25:42.321Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases for command failures or permission issues."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Google Cloud Platform, limiting applicability to other environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.7,
+    "baselineAvg": 7,
+    "treatmentAvg": 47,
+    "scenarios": [
+      {
+        "name": "define-slos-for-web-service",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A is empty."
+      },
+      {
+        "name": "regional-gke-autoscaling-healthchecks",
+        "baseline": 20,
+        "treatment": 40,
+        "rationale": "Response B covers more rubric items, including the correct readiness probe path and CPU target, whereas Response A fails on several key requirements."
+      },
+      {
+        "name": "create-backup-plan",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Neither response includes the exact gcloud command required by the rubric."
+      }
+    ]
+  }
+}

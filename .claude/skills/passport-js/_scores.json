@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:926c95f03e2c59086e30d9517df2a14b065111cd265c419c1466b209876d29dd",
+  "scoredAt": "2026-10-03T13:08:55.185Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is thin: the local strategy has no try/catch around async DB calls, the Google callback ignores a missing email, accounts are created without checking for an existing email (risking duplicate or hijacked accounts), and CSRF is only mentioned as a guideline with no implementation."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The examples are prose descriptions of requests and expected responses rather than runnable end-to-end demonstrations, and the password is elided with '...'."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.42,
+    "baselineAvg": 60,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "email-password-login-express",
+        "baseline": 25,
+        "treatment": 95,
+        "rationale": "A matches the rubric nearly point for point (express-session with the required options, passport.authenticate('session'), LocalStrategy with usernameField 'email' and bcrypt.compare, serializeUser/deserializeUser, POST logout using req.logout with a callback, and an isAuthenticated middleware that redirects to /login), while B skips Passport and uses manual sessions with session.destroy, so it misses the Passport-specific items even though its session config and bcrypt use are sound."
+      },
+      {
+        "name": "google-signin-behind-proxy",
+        "baseline": 88,
+        "treatment": 80,
+        "rationale": "Both include the passport-google-oauth20 strategy, env-var credentials, /auth/google and /auth/google/callback routes with profile and email scope, trust proxy 1, and a safe profile.emails access; A sets an absolute callbackURL with proxy:true and a persistent store, which fits the proxy problem better, while B uses a relative callbackURL that may still resolve to http and only suggests an absolute one as a fallback."
+      },
+      {
+        "name": "fix-legacy-logout-and-hardening",
+        "baseline": 66,
+        "treatment": 80,
+        "rationale": "B covers every rubric item, including bcrypt with cost 12+, env-sourced secrets, CSRF, a persistent store and POST logout with a callback. A omits the bcrypt cost factor (it only says 'argon2 or bcrypt') and gives less explicit emphasis to the Redis store and CSRF, though its code is richer."
+      }
+    ]
+  }
+}

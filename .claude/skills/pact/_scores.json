@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:5a3535e4a3fe712d7ad4db860d57a6a5243f1c4c2df6a254321e4b932ace1332",
+  "scoredAt": "2026-10-21T23:44:06.795Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.33,
+    "baselineAvg": 30,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "write-consumer-pact-test",
+        "baseline": 60,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits key elements such as executeTest and setting the client base URL to mockServer.url."
+      },
+      {
+        "name": "setup-provider-verification",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits key elements such as Verifier import, providerBaseUrl, pactUrls, publishVerificationResult, and server cleanup."
+      },
+      {
+        "name": "ci-pact-publish-and-gate",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B provides no content."
+      }
+    ]
+  }
+}

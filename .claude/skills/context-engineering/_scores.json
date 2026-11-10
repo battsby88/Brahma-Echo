@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:a5aff6e22fb138adf93bd43f3c99b50804cb4622876eaa2db22c9e85adb77895",
+  "scoredAt": "2026-10-01T19:43:12.191Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered padded, reducing overall conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.77,
+    "baselineAvg": 13,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "audit-context-files",
+        "baseline": 0,
+        "treatment": 30,
+        "rationale": "Response B attempts to guide the user but fails to provide the required file list and details, whereas Response A simply refuses."
+      },
+      {
+        "name": "reorganise-money-rule",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Response A fully meets the rubric by extracting the rule into .claude/rules/api.md with a paths section, removing it from CLAUDE.md, and noting the file is under 200 lines, whereas Response B places the rule in src/api/rules/money-rule.ts and does not satisfy the required file location or line count requirement."
+      },
+      {
+        "name": "create-log-reader-subagent",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response B includes the required .claude/agents/log-reader.md structure but misses full delegation details; Response A lacks the file entirely."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:d5eb49a98f98b63adec096394ff55763c1112fca1507db3e14bd53150238022f",
+  "scoredAt": "2026-10-01T20:31:33.606Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill specifies support for only certain AI agents, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.71,
+    "baselineAvg": 28,
+    "treatmentAvg": 20,
+    "scenarios": [
+      {
+        "name": "break-prd-into-issues",
+        "baseline": 30,
+        "treatment": 10,
+        "rationale": "Both responses miss the required table, gh issue create commands with --parent and --blocked‑by, label creation, and URLs, but Response B provides a runnable script and more detail, earning it a higher score."
+      },
+      {
+        "name": "create-issues-from-file-old-gh",
+        "baseline": 20,
+        "treatment": 30,
+        "rationale": "Both responses miss the required gh api linking and URL reporting, but A outlines the needed steps while B provides a concrete script, making A slightly better."
+      },
+      {
+        "name": "extend-existing-prd-breakdown",
+        "baseline": 35,
+        "treatment": 20,
+        "rationale": "Response B offers concrete gh commands and a workflow, whereas Response A is only a high‑level outline and lacks any commands or parent linkage."
+      }
+    ]
+  }
+}

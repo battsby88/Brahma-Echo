@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bbad3506f3503c82463c2a87c1b8c7387eae582cd58dc62261bf6827eb9fa97b",
+  "scoredAt": "2026-10-20T20:24:40.968Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions lack error handling and edge case coverage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.3,
+    "baselineAvg": 3,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "train-mnist-with-checkpoint",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B meets most rubric items but omits EarlyStopping and ReduceLROnPlateau, whereas Response A is entirely unrelated to Keras."
+      },
+      {
+        "name": "custom-training-loop-example",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "A fully meets TF requirements; B is PyTorch."
+      },
+      {
+        "name": "install-gpu-export-tflite",
+        "baseline": 10,
+        "treatment": 70,
+        "rationale": "Response A includes the required pip command and export snippet, while Response B omits both; neither fully meets the TFLite conversion requirements, but A is closer."
+      }
+    ]
+  }
+}

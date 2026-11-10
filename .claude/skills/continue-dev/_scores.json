@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6f16c87854c5c1449405d2e0eb39bf154871be63c7f56fa3217c1053694ace4b",
+  "scoredAt": "2026-10-01T18:30:49.598Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.12,
+    "baselineAvg": 17,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "migrate-config-json-to-yaml",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A includes the required sections with most fields, missing only a rule description; Response B lacks a config.yaml snippet entirely."
+      },
+      {
+        "name": "add-autocomplete-model",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits required fields and uses an incorrect structure."
+      },
+      {
+        "name": "git-commit-message-alias",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A includes most required elements (diff, cn, -p, prompt, --exclude Bash) but omits --silent, while Response B lacks the required flags, prompt, and silent mode."
+      }
+    ]
+  }
+}

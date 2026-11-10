@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:5193c8c37f7414816e85801b4484c7cef847b5ca2e8f713fde1c70d37ac5d2bb",
+  "scoredAt": "2026-10-01T20:35:42.784Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2,
+    "baselineAvg": 7,
+    "treatmentAvg": 20,
+    "scenarios": [
+      {
+        "name": "set-up-marketing-context",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response A is closer to the rubric, providing the required sections and source tags for most statements, whereas Response B lacks the required structure and source tags entirely."
+      },
+      {
+        "name": "update-marketing-context-pricing",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to modify the .claude/product-marketing-context.md file as required; A provides a JSON object, while B is empty."
+      },
+      {
+        "name": "verify-marketing-context-completeness",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required run‑time check and report of all conditions; B only offers instructions, not the actual verification."
+      }
+    ]
+  }
+}

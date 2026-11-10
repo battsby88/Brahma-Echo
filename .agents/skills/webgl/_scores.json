@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ebf4b30bafdbd70859a43a4f5aee1e5b819b1729100bf326c6172739ab722b2c",
+  "scoredAt": "2026-10-24T14:39:14.733Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.7,
+    "baselineAvg": 47,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "spinning-textured-triangle",
+        "baseline": 50,
+        "treatment": 50,
+        "rationale": "Both responses implement all required steps but do not use the specified helper function names from the rubric, so they receive equal partial credit."
+      },
+      {
+        "name": "diagnose-black-canvas",
+        "baseline": 10,
+        "treatment": 90,
+        "rationale": "Response A covers WebGL debugging steps while Response B focuses on 2D canvas and misses all rubric requirements."
+      },
+      {
+        "name": "handle-context-loss",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, including explicit deletion of GPU resources, whereas Response B omits the deletion step."
+      }
+    ]
+  }
+}

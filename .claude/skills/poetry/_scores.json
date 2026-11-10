@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:936bc91323a1192aa2ccf004c50b3ac4413624a26c0c04ee22375dc74020ab0a",
+  "scoredAt": "2026-10-02T22:56:54.288Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path and omits error scenarios such as resolver conflicts, lock file out of sync with pyproject.toml, PyPI authentication or token setup for publishing, and private repository sources."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.48,
+    "baselineAvg": 63,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "fastapi-project-with-dev-group",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both give the poetry new scaffolding, poetry add for runtime deps, poetry add --group dev for pytest and ruff, and the correct Poetry 2.x layout with [project] dependencies and [tool.poetry.group.dev.dependencies]; A is cleaner and more concrete, while B adds Poetry 1.x and PEP 735 alternatives plus placeholder 'x' versions, which are slightly less runnable but more thorough."
+      },
+      {
+        "name": "activate-venv-poetry-2",
+        "baseline": 95,
+        "treatment": 93,
+        "rationale": "Both explain the removal of `poetry shell` in 2.0 and give `eval $(poetry env activate)`, the `poetry self add poetry-plugin-shell` plugin route, and `poetry run pytest`; A adds more detail (other shells, direct activation, in-project venv) while B is more concise but equally complete on the rubric."
+      },
+      {
+        "name": "docker-image-without-poetry",
+        "baseline": 5,
+        "treatment": 96,
+        "rationale": "Response A matches the rubric: its builder stage installs poetry with poetry-plugin-export, runs the specified export command, and the final stage installs only requirements.txt with pip, while Response B uses `poetry install` into a copied venv and never uses the export approach."
+      }
+    ]
+  }
+}

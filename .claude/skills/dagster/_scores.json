@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:98e516cc5d72ad00410c7fd4c6182f3ec57f7ee3aa421ca43a441ff935bba89f",
+  "scoredAt": "2026-10-03T12:56:40.611Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is largely absent: the API-fetching assets never call raise_for_status or handle HTTP failures, empty responses, or timeouts, and the sensor yields only the first new file with no handling for already-processed files."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "Some snippets are not runnable as written: partitioned.py calls an undefined fetch_events, revenue_by_user declares deps while also taking the upstream DataFrames as parameters, and the merge uses an inconsistent 'id_x' column."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.22,
+    "baselineAvg": 72,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "daily-revenue-pipeline-with-schedule",
+        "baseline": 82,
+        "treatment": 90,
+        "rationale": "Both define the three assets, a job, a 6 AM cron schedule and Definitions, but A shows `dagster asset materialize --select raw_users,raw_orders,revenue_by_user`, which names the raw assets as the rubric expects. B's materialize examples use `--select '*'` and `--select revenue_per_user`, and its assets are named users/orders rather than raw users/raw orders. B is otherwise thorough, with pagination, a resource and a timezone setting, but that doesn't make up for the weaker match on the rubric's on-demand example."
+      },
+      {
+        "name": "csv-drop-folder-sensor",
+        "baseline": 72,
+        "treatment": 95,
+        "rationale": ""
+      },
+      {
+        "name": "database-resource-and-validate-ci",
+        "baseline": 62,
+        "treatment": 80,
+        "rationale": "A covers every rubric point in a clean form (ConfigurableResource with a connection_string field, typed injection, Definitions populated from os.environ, `dagster definitions validate` in CI) and notes that import-time env reads need dummy values in CI, which touches the import-time point. B uses a multi-field resource with EnvVar instead of a connection_string field and os.environ, and it includes a garbled draft test with a correction. It does say importing no longer needs the variables to be set, and it does recommend validate in CI."
+      }
+    ]
+  }
+}

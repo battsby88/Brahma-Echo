@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:943bdefc8787969d672dea0f5a88e11fc6694f12df016d0331c4cd3811d71201",
+  "scoredAt": "2026-10-01T19:51:59.342Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose sections that may be considered padded explanations."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.92,
+    "baselineAvg": 25,
+    "treatmentAvg": 48,
+    "scenarios": [
+      {
+        "name": "find-physio-saas-community",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A includes a 30‑day plan and a scoring table, whereas Response B lacks all required files and scoring details."
+      },
+      {
+        "name": "create-30day-plan-physio-group",
+        "baseline": 20,
+        "treatment": 55,
+        "rationale": "Response A covers more rubric items, including moderation contact, disclosure, ratio rule, and metrics, whereas Response B lacks these key elements."
+      },
+      {
+        "name": "hn-schema-drift-activity-log",
+        "baseline": 25,
+        "treatment": 35,
+        "rationale": "Both responses lack the required JSON snippet, tally script, and CSV, but Response A offers more detail and sample output, earning a slightly higher score."
+      }
+    ]
+  }
+}

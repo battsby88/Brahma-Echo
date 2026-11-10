@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8952a1f794952d92400ae8401e4a98b411623356c0201e67c240cfe8b993f582",
+  "scoredAt": "2026-10-24T21:34:06.388Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios and edge cases, such as connection failures or authentication errors."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 0,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "run-weaviate-docker",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B does not include a docker compose command or compose file and therefore fails to satisfy the requirements."
+      },
+      {
+        "name": "create-article-collection-and-import",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies rubric, A does not."
+      },
+      {
+        "name": "backup-and-restore-article-collection",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response A covers most of the required curl steps (backup creation, deletion, restore) but omits the GET to check the backup and the final GET confirming SUCCESS, whereas Response B uses MongoDB tools instead of the specified API calls, missing all rubric items."
+      }
+    ]
+  }
+}

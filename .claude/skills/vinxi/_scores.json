@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:216dafd95398f4075875f0ac5b516adce63d8b141de3652b1cd842ca3c269f47",
+  "scoredAt": "2026-10-20T20:31:28.433Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Skill does not cover error scenarios or edge cases, only happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.59,
+    "baselineAvg": 27,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "setup-vinxi-app-with-routers",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not meet the required structure."
+      },
+      {
+        "name": "build-vinxi-app-for-vercel-edge",
+        "baseline": 50,
+        "treatment": 90,
+        "rationale": "Response B fully satisfies the rubric, while Response A lacks the output path and provides multiple commands."
+      },
+      {
+        "name": "add-server-functions-to-vinxi-app",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response A fully covers all rubric items, while Response B omits the required router and directive details."
+      }
+    ]
+  }
+}

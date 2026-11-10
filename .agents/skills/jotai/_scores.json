@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e7c8a71d024c5903d325b70c3b9464a133358c380b0033eeffd275512fb85ccf",
+  "scoredAt": "2026-10-24T21:58:42.303Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.85,
+    "baselineAvg": 20,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "theme-toggle-with-persistence",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses Recoil instead of Jotai and misses all required Jotai specifics."
+      },
+      {
+        "name": "add-to-cart-button-no-re-render",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with correct jotai atoms and hooks, while Response B uses Recoil and does not meet the specified requirements."
+      },
+      {
+        "name": "migrate-v2-to-v3-atomfamily-and-unwrap",
+        "baseline": 60,
+        "treatment": 90,
+        "rationale": "Response A fully meets the rubric, importing atomFamily from jotai-family, defining a todoAtomFamily, and replacing loadable with unwrap and a fallback; Response B imports unwrap incorrectly, omits a fallback, and is less complete."
+      }
+    ]
+  }
+}

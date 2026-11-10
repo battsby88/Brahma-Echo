@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:68e9270390c3da37bb1d6944bff082e14f106ab0cadd569e9f84af3ace02851e",
+  "scoredAt": "2026-10-03T13:07:33.114Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Mostly covers happy-path usage and gives little on error scenarios or edge cases such as SSR/hydration mismatches, AnimatePresence with custom components needing forwardRef, or exit animations failing when keys are missing or the AnimatePresence parent unmounts."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.69,
+    "baselineAvg": 35,
+    "treatmentAvg": 94,
+    "scenarios": [
+      {
+        "name": "toast-stack-exit-without-jump",
+        "baseline": 12,
+        "treatment": 97,
+        "rationale": "Response B meets every rubric item: AnimatePresence with mode=\"popLayout\", layout plus initial/animate/exit on the motion item, a stable id key, and the \"motion/react\" import. Response A uses a CSS-only approach with no motion library, so it misses all of those items, although it does mention stable keys."
+      },
+      {
+        "name": "reading-progress-and-scroll-reveal",
+        "baseline": 4,
+        "treatment": 96,
+        "rationale": "Response A matches the rubric: it uses useScroll, useSpring, scaleX with transformOrigin '0 0', whileInView with viewport once:true, and imports from 'motion/react'. Response B uses manual scroll listeners and IntersectionObserver with setState and no motion library, so it misses nearly everything the rubric asks for."
+      },
+      {
+        "name": "migrate-framer-motion-nextjs-lazy",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both cover the `motion` install, the `motion/react` import change, `motion/react-client` for server components, and LazyMotion with `m` and `domAnimation`/`domMax`, but B also adds `strict`, async feature loading and `react-m` in a server component, and gives extra savings tips; A has a minor caveat about `react-client` weight and a cleaner `domMax` explanation, while B's note is accurate that `m` can be used from `motion/react-m`."
+      }
+    ]
+  }
+}

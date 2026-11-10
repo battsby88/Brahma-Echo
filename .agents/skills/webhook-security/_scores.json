@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:25ec0228d4594761d891cb3cab193b250ad971d05fd63870dbe390f3c743ae4b",
+  "scoredAt": "2026-10-24T14:40:21.618Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment and uses Node-specific modules, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.6,
+    "baselineAvg": 52,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "stripe-signature-verification",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "Response B covers more rubric items, including express.raw, stripe.webhooks.constructEvent, processOnce usage, and 400 on signature failure, whereas Response A lacks processOnce and immediate 200 response."
+      },
+      {
+        "name": "github-retry-deduplication",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "A covers most rubric items but returns 202 instead of 200, while B lacks key elements."
+      },
+      {
+        "name": "slack-request-verification",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B fails to return the correct 401 status for signature mismatches."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:45656764ed1c173a4c7faf3793050b9dbb5398ecb9eef9dd8b45d75e8588d244",
+  "scoredAt": "2026-10-24T20:23:10.283Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.2,
+    "baselineAvg": 15,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "import-users-with-unique-constraint",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A partially covers the required Cypher statements but omits the name index and uses a different label; Response B does not provide any of the required Neo4j Cypher code."
+      },
+      {
+        "name": "friend-recommendation-query",
+        "baseline": 0,
+        "treatment": 40,
+        "rationale": "Response A provides a query but fails to use the $name parameter and mismatches the required alias and limit, whereas Response B offers no query at all."
+      },
+      {
+        "name": "nodejs-create-friendship",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A omits the required use of driver.executeQuery."
+      }
+    ]
+  }
+}

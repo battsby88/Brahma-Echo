@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c2a69b99f9cfe399bb614536fbc89de2b4eab3ef4366d2be2f7d560c2782cc70",
+  "scoredAt": "2026-10-03T12:05:56.209Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.01,
+    "baselineAvg": 86,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "ami-nginx-from-scratch",
+        "baseline": 80,
+        "treatment": 92,
+        "rationale": "Both cover required_plugins, the amazon-ebs source with the Canonical owner ID and noble filter, file and shell provisioners, and packer init before packer build with -var; A also ends the build with explicit apt cache cleanup (apt-get clean and removing /var/lib/apt/lists), which B omits entirely."
+      },
+      {
+        "name": "docker-tag-push-chain",
+        "baseline": 88,
+        "treatment": 90,
+        "rationale": "Both use a docker source with commit=true, the docker plugin in required_plugins, and a single post-processors chain, and both explain that separate blocks run on the original artifact; B uses one chain with tags latest plus a version variable, which matches the rubric exactly, while A splits the tags across two chains and hedges about the single-chain approach but is otherwise correct and more thorough."
+      },
+      {
+        "name": "fix-unknown-source-and-debug",
+        "baseline": 90,
+        "treatment": 80,
+        "rationale": "Both cover packer init, the ansible-playbook binary and -on-error=ask with PACKER_LOG/PACKER_LOG_PATH, but B gives more detail on where the binary must be found and on keeping and cleaning up the failed instance, while A is correct but thinner."
+      }
+    ]
+  }
+}

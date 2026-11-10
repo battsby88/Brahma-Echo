@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f8f30376b85d3c40dbb94552babf5651869d7d5e06f7ce288d15aa4e2ba12805",
+  "scoredAt": "2026-10-20T18:53:29.722Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing dependencies or unsupported file formats."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2,
+    "baselineAvg": 50,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "whisper-cpp-transcribe-wav",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits the required ffmpeg conversion command and uses the wrong CLI path and model reference."
+      }
+    ]
+  }
+}

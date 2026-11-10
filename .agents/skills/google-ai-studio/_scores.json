@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8d66f531972bae2e7b74eefec9eee4042f0b3dcfa19320aa50ea926ae021895e",
+  "scoredAt": "2026-10-03T11:58:28.120Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Example 2 (porting old code) has no runnable code or before/after snippet and only gives a prose summary, and Example 1 reuses undefined setup (client, types, BaseModel imports) from earlier sections."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.95,
+    "baselineAvg": 79,
+    "treatmentAvg": 75,
+    "scenarios": [
+      {
+        "name": "port-legacy-generativeai-script",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both responses cover the rubric: they use `from google import genai` and `from google.genai import types`, create `genai.Client`, call `client.models.generate_content`, put temperature and system_instruction in `types.GenerateContentConfig`, and drop `GenerativeModel`. B says outright that Google replaced the old package, while A only implies deprecation by telling the user to uninstall it. A has a clear old-versus-new table and B has useful chat and reuse notes, so I scored them equal."
+      },
+      {
+        "name": "extract-invoice-pdf-structured-json",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "B follows the rubric's upload path with `client.files.upload`, passes the file in `contents` next to an instruction, uses a Pydantic schema with `response_mime_type` and `response_schema`, and reads `r.parsed`. A sends inline bytes and only mentions `files.upload` in a note, though its schema and `response.parsed` handling are correct and its `date` type fits the typed-object request better, while B uses `str` for the date."
+      },
+      {
+        "name": "grounded-answer-with-sources",
+        "baseline": 92,
+        "treatment": 55,
+        "rationale": "Both enable grounding and read web_search_queries and grounding_chunks correctly, but B prints search_entry_point.rendered_content and gives detailed display requirements (render unmodified, chips open Google Search, show sources) plus billing, whereas A only mentions search_entry_point in passing and its code does not render it."
+      }
+    ]
+  }
+}

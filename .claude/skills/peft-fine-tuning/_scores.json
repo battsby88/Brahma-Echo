@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:715d6f22acaaa51e00a7872861a7bac768219b31928015540e0350487397e69f",
+  "scoredAt": "2026-10-13T13:04:25.930Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Missing error handling and debugging guidance for common training failures (OOM errors, convergence problems, divergence) and evaluation beyond eval_loss metrics."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Tightly coupled to Hugging Face ecosystem (transformers, PEFT, TRL libraries); NVIDIA GPU with CUDA is a hard requirement with only secondary mention of GGUF export for portability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.11,
+    "baselineAvg": 46,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "qlora-on-limited-vram",
+        "baseline": 32,
+        "treatment": 100,
+        "rationale": "Response A implements all three rubric requirements exactly: BitsAndBytesConfig with load_in_4bit=True and nf4, quantization_config and device_map in model_init_kwargs, and SFTConfig with per_device_train_batch_size=2 and gradient_checkpointing=True. Response B configures BitsAndBytesConfig correctly but fails the other two: it passes quantization_config/device_map directly to from_pretrained (not in model_init_kwargs), uses standard Trainer/TrainingArguments instead of SFTTrainer/SFTConfig, sets per_device_train_batch_size=4 (exceeds ≤2 requirement), and omits gradient_checkpointing entirely."
+      },
+      {
+        "name": "conversational-assistant-only-loss",
+        "baseline": 45,
+        "treatment": 98,
+        "rationale": "Response B directly implements all three rubric requirements (assistant_only_loss=True, messages format, LoraConfig with task_type=CAUSAL_LM) with specific, runnable code; Response A shows conceptual mastery but omits the exact API parameters, never mentioning assistant_only_loss=True and only showing LoraConfig in a secondary 'manual' approach."
+      },
+      {
+        "name": "merge-and-export-gguf",
+        "baseline": 60,
+        "treatment": 92,
+        "rationale": "Response B meets all 5 rubric requirements exactly (16-bit dtype, PeftModel.from_pretrained, merge_and_unload, saved tokenizer, convert_hf_to_gguf.py), while Response A uses 'auto' precision instead of explicit 16-bit and substitutes convert.py instead of the specified convert_hf_to_gguf.py script."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:123355865f5a5c83a3acca761fc0f414d8d43d63eb9f52b9faabf35d078332ef",
+  "scoredAt": "2026-10-24T16:37:37.585Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Cloudflare Workers AI, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "rag-help-center",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, Response B does not."
+      },
+      {
+        "name": "streaming-chat-endpoint",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "A fully meets the rubric, B does not."
+      },
+      {
+        "name": "image-generation-endpoint",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fulfills every rubric requirement, while Response A does not use env.AI.run or return a JPEG via Uint8Array."
+      }
+    ]
+  }
+}

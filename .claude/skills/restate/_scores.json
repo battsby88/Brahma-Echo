@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:92aadf74f4b64aa1671ebd3b26ee8db2db10e9f7e57fa7694f227427f3174a01",
+  "scoredAt": "2026-10-01T12:24:46.442Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text beyond concise instructions."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Restate, limiting compatibility with other AI agent platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 5,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "payment-service-idempotent-retries",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric, while Response A does not use Restate at all."
+      },
+      {
+        "name": "shopping-cart-virtual-object",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use Restate at all."
+      },
+      {
+        "name": "booking-saga-compensation",
+        "baseline": 10,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items but omits throwing restate.TerminalError; Response B does not use restate at all."
+      }
+    ]
+  }
+}

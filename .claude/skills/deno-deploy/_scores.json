@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d9009141b84419eae2b8fbccd10fa194890506fc734c6f95674528f98d85ccb8",
+  "scoredAt": "2026-10-24T19:08:25.825Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions cover some error scenarios but do not comprehensively address all potential error cases and edge conditions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 5,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "create-app-with-kv-and-prod-deploy",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies every rubric requirement, while Response A omits all required commands and flags."
+      },
+      {
+        "name": "add-env-vars-with-secret-and-load-file",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with all required commands and context, while Response A provides no content."
+      },
+      {
+        "name": "add-cron-job-before-serve",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric, while Response A uses a different KV import and setInterval instead of Deno.cron, missing key requirements."
+      }
+    ]
+  }
+}

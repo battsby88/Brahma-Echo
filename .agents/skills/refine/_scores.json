@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9e9e7080991a3febc95f3af049661b6cc03a98c4ba7710684d765c48be3b3ead",
+  "scoredAt": "2026-10-20T20:11:36.285Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases beyond basic examples."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The guide contains extensive explanatory text that may be considered verbose for a concise skill."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js and React environment, which is a minor platform assumption."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.7,
+    "baselineAvg": 50,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "create-rest-admin-panel",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "B fully satisfies the rubric while A lacks key elements."
+      },
+      {
+        "name": "add-auth-and-rbac",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response B provides a more complete implementation, including a full authProvider, accessControlProvider, and app wiring, whereas Response A is truncated and lacks key components."
+      },
+      {
+        "name": "custom-graphql-data-provider",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully implements all required CRUD methods, integrates the provider, and uses useList to render a table, while Response A only implements getList and omits the other CRUD methods."
+      }
+    ]
+  }
+}

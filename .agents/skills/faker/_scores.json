@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:40c725f9b5a977db02a7b6ef89d0745ecee0dc2a823287f25df82e17c1099fc0",
+  "scoredAt": "2026-10-21T23:42:33.419Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered padded, reducing conciseness."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Node.js and does not support other AI agent platforms, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.86,
+    "baselineAvg": 28,
+    "treatmentAvg": 52,
+    "scenarios": [
+      {
+        "name": "user-factory-with-seed-and-optional-phone",
+        "baseline": 15,
+        "treatment": 55,
+        "rationale": "Response B meets more rubric items (buildUser, overrides, helpers.maybe) but still mis‑seeds, provider, and days; Response A fails on all key requirements."
+      },
+      {
+        "name": "seed-polish-german-customers-and-orders",
+        "baseline": 50,
+        "treatment": 0,
+        "rationale": "B includes many details but misses key rubric items; A is empty."
+      },
+      {
+        "name": "vitest-invoice-vat-consistency",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A uses beforeAll, wrong seed, and omits ref date."
+      }
+    ]
+  }
+}

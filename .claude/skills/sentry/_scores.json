@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:941cce303c8687ad0e14397033bac1166d7c50ec5ebdfefe3958eccdf6c081f3",
+  "scoredAt": "2026-10-02T22:54:43.623Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers setup and best practices well but gives little troubleshooting for failure cases such as source maps not resolving, events not arriving, wrong DSN, or set-commits failing without a repository integration."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.14,
+    "baselineAvg": 77,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "nextjs-sentry-setup-secure-sourcemaps",
+        "baseline": 68,
+        "treatment": 80,
+        "rationale": "A runs the wizard command the rubric requires and sets `release` in `instrumentation-client.ts`, plus the 0.1 traces rate, replay integration with 0.1/1.0 sample rates, a CI-secret auth token and `withSentryConfig({org, project})`. B never runs the wizard (it uses `npm i @sentry/nextjs`) and omits `release`, though its token handling and CI secret guidance are more thorough."
+      },
+      {
+        "name": "python-release-tracking-regression",
+        "baseline": 72,
+        "treatment": 95,
+        "rationale": "B matches the rubric almost exactly: SDK init with the DSN from an env var, environment, release set to the git SHA, and traces_sample_rate 0.1, plus the exact set-commits --auto and deploys commands with --org billing-platform, and a note that a repository integration is required. A has the integration note and mostly correct commands, but it sets release to billing-service@SHA instead of the git SHA, its deploy command omits `--org billing-platform` (it relies on SENTRY_ORG instead), and it adds extra material."
+      },
+      {
+        "name": "vite-sourcemaps-and-adblock-noise",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both configure the Sentry Vite plugin last with hidden sourcemaps, an env-based auth token, filesToDeleteAfterUpload, and ignoreErrors for ResizeObserver and extension noise; A adds more extras (allowUrls, beforeSend, a note on already-public maps, a disable guard) while B is more concise and also covers the core, so A is slightly more thorough."
+      }
+    ]
+  }
+}

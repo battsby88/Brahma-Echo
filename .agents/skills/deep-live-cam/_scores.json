@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ecceb8278b28c973756141c76a30aba7c8df032c2485ae1b109cca793be07e32",
+  "scoredAt": "2026-10-21T23:16:41.479Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as missing dependencies or unsupported hardware."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 7,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "swap-video-with-gpu",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes the exact CLI command with all required flags and states frame‑rate preservation, while Response A does not provide the required command."
+      },
+      {
+        "name": "real-time-webcam-mouth-mask",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes the required command and explanation, while Response A is empty."
+      },
+      {
+        "name": "programmatic-face-swap-python",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A is incomplete."
+      }
+    ]
+  }
+}

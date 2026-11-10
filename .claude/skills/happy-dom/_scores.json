@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4fc812d70d29e37fbce0dad0e40e589eb5c34bb93adeb0520099d49a0a02a770",
+  "scoredAt": "2026-10-24T19:14:58.312Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js/Bun environment, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.47,
+    "baselineAvg": 43,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "vitest-happy-dom-switch",
+        "baseline": 80,
+        "treatment": 90,
+        "rationale": "Response B more fully meets the rubric by explicitly showing time command usage, example output, and a clear before/after comparison, whereas Response A provides the steps but lacks a concrete example of the time comparison."
+      },
+      {
+        "name": "standalone-html-parsing",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide any code or steps described in the rubric."
+      },
+      {
+        "name": "jest-happy-dom-setup",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A omits the required @happy-dom/jest-environment package and uses the wrong environment string."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d74e1c9a2ae9ac706793e9b78b77c0984fb54a2daae209c4b7f50de676466951",
+  "scoredAt": "2026-10-01T11:50:54.427Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill file does not cover error handling or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that may be unnecessary."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "github-actions-integration",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses the CLI instead of the required secrets-action."
+      },
+      {
+        "name": "pre-commit-secret-scan",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not mention the required Infisical command or behavior."
+      },
+      {
+        "name": "kubernetes-secret-sync",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A does not provide the required YAML."
+      }
+    ]
+  }
+}

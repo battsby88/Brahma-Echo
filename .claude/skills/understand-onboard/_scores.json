@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:6cfd13abcb7472270467a6336bd34c17a8196e08883b5304a021dd3d9a60edaa",
+  "scoredAt": "2026-10-01T21:10:53.726Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to the Understand-Anything plugin and assumes specific environment, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.15,
+    "baselineAvg": 20,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "backend-developer-onboarding",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response A includes all required sections and details, while Response B lacks the mandated structure and content."
+      },
+      {
+        "name": "monorepo-stale-graph-onboarding",
+        "baseline": 35,
+        "treatment": 65,
+        "rationale": "Response A includes most of the required sections (Reading route, Where execution starts, Files the rest leans on, Handle with care) though it is incomplete, whereas Response B lacks those sections entirely."
+      },
+      {
+        "name": "product-manager-architecture-overview",
+        "baseline": 20,
+        "treatment": 30,
+        "rationale": "Response A includes a provenance line but violates the no-code-reference and no-table rules, while Response B lacks provenance and the required dashboard link, making it slightly less compliant."
+      }
+    ]
+  }
+}

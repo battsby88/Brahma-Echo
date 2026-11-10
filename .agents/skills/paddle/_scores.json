@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a8190d752b3d707dcf32e571b1f6d52170ff5544aa7ead43919e61fca4d94ebc",
+  "scoredAt": "2026-10-01T12:17:39.371Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 7,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "checkout-integration-with-webhook",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B lacks the required Paddle initialization, priceId usage, and complete webhook handling."
+      },
+      {
+        "name": "customer-portal-link",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric by using the Paddle SDK with sandbox, calling customerPortalSessions.create, and returning a JSON 'url'; Response A does not use the SDK or sandbox and returns a different field name."
+      },
+      {
+        "name": "cancel-subscription-at-period-end",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, Response B does not use Paddle at all."
+      }
+    ]
+  }
+}

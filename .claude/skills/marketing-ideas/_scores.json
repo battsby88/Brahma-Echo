@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:4e8ae238f7911f136a2091492cf7840ed880ec5c5d516a37413a226bac7a073e",
+  "scoredAt": "2026-10-01T20:15:03.031Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive narrative that may be considered padded, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1,
+    "baselineAvg": 28,
+    "treatmentAvg": 28,
+    "scenarios": [
+      {
+        "name": "full-marketing-plan",
+        "baseline": 20,
+        "treatment": 0,
+        "rationale": "Response B contains more detail but still fails to meet the rubric’s required sections and test card format, whereas Response A provides no plan at all."
+      },
+      {
+        "name": "arithmetic-output",
+        "baseline": 35,
+        "treatment": 30,
+        "rationale": "Both responses miss several required keys, but B provides more arithmetic detail and cost‑per‑visit calculations, giving it a slightly higher score."
+      },
+      {
+        "name": "paid-search-test-card",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response B includes all required fields but fails the numeric thresholds, whereas Response A omits several mandatory fields and does not meet the pass_mark or stop_rule criteria."
+      }
+    ]
+  }
+}

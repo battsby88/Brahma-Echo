@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a89833c5af291a06a0cc1e1b0c56e57d65baf99e8f2f5899889302c9257236d9",
+  "scoredAt": "2026-10-01T11:46:30.560Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that exceeds the concise style expected for actionable instructions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 58,
+    "treatmentAvg": 93,
+    "multiplier": 1.6,
+    "scenarios": [
+      {
+        "name": "CharacterBody2D platformer with coyote time",
+        "baseline": 55,
+        "treatment": 93,
+        "rationale": "Baseline covers Godot 4 basics but commonly omits proper coyote-time wiring or slips into Godot 3 names; treatment uses @export/@onready, Timer-based coyote logic, Input.get_axis, and move_and_slide as documented."
+      },
+      {
+        "name": "Decoupled coin -> manager via signals + groups",
+        "baseline": 60,
+        "treatment": 92,
+        "rationale": "Baseline uses signals but often skips groups for discovery; treatment declares typed signal collected(value: int), emits on body_entered filtered by is_in_group(\"player\"), and connects via get_nodes_in_group(\"coins\") as the skill prescribes."
+      }
+    ]
+  }
+}

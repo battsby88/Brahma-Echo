@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:cbf3caa077bbe7c8c7ecd3f56926cdc6359495c079b6f40adc218f850a2cbbfc",
+  "scoredAt": "2026-10-20T17:37:27.667Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling scenarios such as command failures or permission errors."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.48,
+    "baselineAvg": 63,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "deploy-multi-region-web-app",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A lacks the required fly scale count commands and fly-replay header."
+      },
+      {
+        "name": "staging-environment-scale-to-zero",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement with explicit commands and configuration, while Response B provides the launch command but omits the detailed fly.toml section and scaling notes."
+      },
+      {
+        "name": "canary-deploy-auto-rollback",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A includes the required canary deploy, health check, and rollback image command, while Response B lacks the explicit canary flag, rollback image command, and mention of secrets."
+      }
+    ]
+  }
+}

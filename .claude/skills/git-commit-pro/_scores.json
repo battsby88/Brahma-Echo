@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a5cb94a35679eb05d8fc0076652dc641fa7a6d6d4da24701c674497b4d58c06a",
+  "scoredAt": "2026-10-13T12:05:06.452Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Edge cases like merge conflicts, binary file changes, and whitespace-only diffs are not explicitly addressed."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.04,
+    "baselineAvg": 57,
+    "treatmentAvg": 59,
+    "scenarios": [
+      {
+        "name": "feature-oauth-endpoints",
+        "baseline": 8,
+        "treatment": 12,
+        "rationale": "A correctly identifies that OAuth2 files are absent from the visible working tree (radar-data/refresh only) and directly asks for paths; B makes assumptions about the backend directory without acknowledging the current git status context. Neither provides a commit message, so both fail the rubric entirely, but A diagnoses the blocker more accurately."
+      },
+      {
+        "name": "breaking-api-response-format",
+        "baseline": 92,
+        "treatment": 78,
+        "rationale": "A uses the `!` syntax and provides detailed examples, but violates the 72-character wrapping requirement (title is 79 chars, breaking change line is 76 chars); B meets all rubric requirements including proper line wrapping, though it omits the `!` from the title (relying solely on the BREAKING CHANGE footer, which satisfies the OR condition)."
+      },
+      {
+        "name": "refactor-error-handling",
+        "baseline": 70,
+        "treatment": 87,
+        "rationale": "Response B immediately provides a commit message meeting all rubric requirements (refactor type, error-handling scope, explains why, wraps at 72 chars), while Response A's primary examples omit the required scope—only the second option includes it, making the response less direct in addressing the rubric."
+      }
+    ]
+  }
+}

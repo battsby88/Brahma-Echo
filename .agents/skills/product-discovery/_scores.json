@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8765b93afbec28eba62f69d2dce41eba0860e5aae78aa411f1438869309fc33d",
+  "scoredAt": "2026-10-24T15:52:23.886Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.34,
+    "baselineAvg": 50,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "build-ost-for-onboarding",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets all rubric requirements, while Response B lists opportunities and solutions but omits riskiest assumptions and cheapest experiment types."
+      },
+      {
+        "name": "design-experiment-willingness-to-pay",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B includes all rubric items, while Response A omits riskiest assumption, experiment type, success metric, and decision rule."
+      },
+      {
+        "name": "map-prioritize-assumptions",
+        "baseline": 50,
+        "treatment": 0,
+        "rationale": "Response B provides assumptions, risk and impact scores, but omits required categories and explicit high‑risk/high‑impact highlighting, whereas Response A is empty."
+      }
+    ]
+  }
+}

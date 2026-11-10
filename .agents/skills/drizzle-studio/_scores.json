@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c008616da7cb3fc99c43de460d6abf24a2e62eb4919877d236491b6015b479e3",
+  "scoredAt": "2026-10-24T16:39:16.759Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 32,
+    "treatmentAvg": 84,
+    "multiplier": 2.63,
+    "scenarios": [
+      {
+        "name": "Launch a visual browser against an existing Drizzle project",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Treatment runs npx drizzle-kit studio (which reads drizzle.config.ts on http://localhost:4983) and points the user to the existing schema/dbCredentials config; baseline reaches for pgAdmin/DBeaver and never invokes drizzle-kit studio."
+      },
+      {
+        "name": "Quickly inspect a Postgres database with no Drizzle ORM project",
+        "baseline": 35,
+        "treatment": 82,
+        "rationale": "Treatment uses the documented standalone form DATABASE_URL=... npx drizzle-kit studio --host 0.0.0.0 --port 4983 to launch without a config file; baseline installs a heavyweight GUI or psql instead of leveraging drizzle-kit studio standalone."
+      }
+    ]
+  }
+}

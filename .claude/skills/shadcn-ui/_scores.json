@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4c910420af359f9a542daffbc2ab42c3b497986ac653146623ac3945034cef9e",
+  "scoredAt": "2026-10-20T20:13:24.774Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "setup-vite-base-ui-dialog-dryrun",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B includes the init and add commands but omits the components.json creation, the --diff flag, and the description of the output, whereas Response A lacks all required elements."
+      },
+      {
+        "name": "react-hook-form-field-validation",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits required imports, components, and structure."
+      },
+      {
+        "name": "sonner-toast-in-nextjs",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets every rubric requirement, while Response B omits the required shadcn command, toast positioning, and auto‑dismiss details."
+      }
+    ]
+  }
+}

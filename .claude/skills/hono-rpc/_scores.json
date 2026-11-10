@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a2b127db1aa8c20f882e75b4f779097055633079017862f222409aa352ca9080",
+  "scoredAt": "2026-10-24T15:31:59.521Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.59,
+    "baselineAvg": 17,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "create-hono-rpc-server-with-post-users",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B provides no content."
+      },
+      {
+        "name": "generate-client-call-users-post",
+        "baseline": 10,
+        "treatment": 85,
+        "rationale": "Response A covers all rubric items except the explicit use of InferResponseType, while Response B omits the required hono/client imports and type usage entirely."
+      },
+      {
+        "name": "build-cloudflare-workers-hono-d1-app",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B is incomplete and missing key elements."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4fe9aea26f12941a45fdc74b550a10b175410f1ad76615a817b855f8dd69b1fd",
+  "scoredAt": "2026-10-20T19:15:26.221Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for misconfigurations or runtime failures."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Cursor and does not support other AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.7,
+    "baselineAvg": 0,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "create-api-validation-rule",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is not provided for evaluation."
+      },
+      {
+        "name": "setup-database-mcp-server",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B provides no relevant content."
+      },
+      {
+        "name": "refactor-auth-middleware",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses lack the required @ mentions for src/middleware.ts, src/lib/auth.ts, and src/app/api, so they fail to meet the rubric's essential criteria."
+      }
+    ]
+  }
+}

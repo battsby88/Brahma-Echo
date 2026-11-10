@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c25e21ddf7af28d535972493f9190599f862624a4769d4fbc0ed0b09b634e062",
+  "scoredAt": "2026-10-01T19:07:51.460Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Instructions use Unix-specific activation command 'source .venv/bin/activate', which is not applicable on Windows, reducing cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.08,
+    "baselineAvg": 12,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "passive-domain-scan-summary",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A follows the exact SpiderFoot command, parses JSON, counts IP and hostname types, while Response B uses a different tool and omits the required steps."
+      },
+      {
+        "name": "http-api-scan-and-count",
+        "baseline": 35,
+        "treatment": 90,
+        "rationale": "Response B fully follows the rubric steps, while Response A uses incorrect endpoints and does not count findings from /scanexportjsonmulti."
+      },
+      {
+        "name": "configure-keys-and-verify-modules",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not meet the required steps or module specifications."
+      }
+    ]
+  }
+}

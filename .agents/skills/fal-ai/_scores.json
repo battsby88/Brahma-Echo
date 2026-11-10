@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a1c87132add77abc35fdfbc881d104c300a171d021c29c6d604cbad149744bb2",
+  "scoredAt": "2026-10-20T19:25:02.899Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 3,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "flux-pro-product-images",
+        "baseline": 10,
+        "treatment": 70,
+        "rationale": "Response A meets most rubric items but omits the required onQueueUpdate callback, whereas Response B does not use fal.subscribe at all."
+      },
+      {
+        "name": "whisper-transcribe-with-webhook",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use Fal at all."
+      },
+      {
+        "name": "kling-video-queue",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use fal.queue.submit and fails to meet the required steps."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b174f5e41a81072995790b54a320354cb17dba95b56a5a21518bea89ded7c85b",
+  "scoredAt": "2026-10-24T15:15:04.443Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 0,
+    "treatmentAvg": 60,
+    "scenarios": [
+      {
+        "name": "parse-string-with-casting",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B correctly uses csv-parse/sync with most required options (missing only skip_empty_lines), whereas Response A does not use the parse function at all."
+      },
+      {
+        "name": "stream-transform-large-file",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is a Python script and does not meet the Node.js pipeline requirements."
+      },
+      {
+        "name": "validate-required-fields",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Neither response explicitly uses csv-parse with the required options, so both fail to meet the rubric."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:32e6383806a167b71c1915f3baaf14ff19116671358884f15509d71beee0e77d",
+  "scoredAt": "2026-10-24T18:48:00.898Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios and edge cases comprehensively."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.76,
+    "baselineAvg": 83,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "reallocate-budget-for-max-roas",
+        "baseline": 55,
+        "treatment": 0,
+        "rationale": "Response B gives a budget plan but omits conversion data reasoning, while Response A is empty."
+      },
+      {
+        "name": "retargeting-funnel-for-new-product",
+        "baseline": 100,
+        "treatment": 90,
+        "rationale": "Response A provides a more detailed, structured plan with clear tier definitions, exclusion logic, and bid strategies, while Response B also meets the rubric but with slightly less depth."
+      },
+      {
+        "name": "linkedin-creative-testing-plan",
+        "baseline": 95,
+        "treatment": 100,
+        "rationale": "Both responses meet all rubric items, but Response A is more concise and directly aligns phases with budget percentages, giving it a slight edge."
+      }
+    ]
+  }
+}

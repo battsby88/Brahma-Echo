@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:494c95320c8328e2beaa99abf2af860b2627a7cdb234254f2197fbd00c93bd33",
+  "scoredAt": "2026-10-24T16:09:28.668Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.3,
+    "baselineAvg": 8,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "client-side-search-sort-pagination-selection",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric, while Response A lacks the required TanStack Table features, type definitions, and rendering methods."
+      },
+      {
+        "name": "server-side-pagination-sorting",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not."
+      },
+      {
+        "name": "column-visibility-virtualization",
+        "baseline": 10,
+        "treatment": 55,
+        "rationale": "Response A implements most of the required TanStack Table features and virtualization, though it misuses FlexRender and does not call toggleVisibility; Response B uses a different library and misses all rubric requirements."
+      }
+    ]
+  }
+}

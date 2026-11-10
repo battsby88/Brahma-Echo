@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5863ba6f41718998f23dd959ca522e6e4ac48cf89dbd54f082029600bee7c987",
+  "scoredAt": "2026-10-20T20:25:45.657Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack handling for error scenarios such as missing agent detection or API failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5,
+    "baselineAvg": 0,
+    "treatmentAvg": 50,
+    "scenarios": [
+      {
+        "name": "deploy-to-coolify",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not mention any terminal-skills commands or auto‑detection details."
+      },
+      {
+        "name": "fetch-wcag-skill-md",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B includes the raw SKILL.md but omits the required search call, whereas Response A provides no relevant content."
+      },
+      {
+        "name": "plan-stripe-vercel",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses lack the required MCP registration, plan_task call, skill slugs, and API key note."
+      }
+    ]
+  }
+}

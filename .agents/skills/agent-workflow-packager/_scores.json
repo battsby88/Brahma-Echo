@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:0219315e5c086b2149e7e19d39c0131ff528c96457bc9cea3e730121fb3cdfbf",
+  "scoredAt": "2026-10-24T20:15:46.829Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.33,
+    "baselineAvg": 12,
+    "treatmentAvg": 52,
+    "scenarios": [
+      {
+        "name": "weekly-release-notes-packager",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B covers many rubric items but lacks validation, host scanning, and explicit six‑line facts, while Response A is missing entirely."
+      },
+      {
+        "name": "db-migration-runner-packager",
+        "baseline": 5,
+        "treatment": 45,
+        "rationale": "Response A is closer to the rubric, providing a skill skeleton, while Response B is a workflow and misses most required elements."
+      },
+      {
+        "name": "code-review-checklist-packager",
+        "baseline": 30,
+        "treatment": 50,
+        "rationale": "Response A includes a skill definition with lint, tests, and docs checks, but lacks many required elements; Response B is a workflow and misses most rubric items."
+      }
+    ]
+  }
+}

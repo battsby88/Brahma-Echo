@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b508ac032cb59b39c56e60fd5bbda1ac106aa55a223b3e2be442cf3162b38dbd",
+  "scoredAt": "2026-10-20T18:10:29.331Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases in the instructions, leaving potential gaps for users encountering failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered padded, reducing overall conciseness."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Liveblocks and specific to React/Next.js, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 3,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "setup-liveblocks-provider",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A includes all required elements (LiveblocksProvider with authEndpoint and throttle, RoomProvider with id, initialPresence, initialStorage using LiveList, and ClientSideSuspense with fallback), whereas Response B omits throttle, initialPresence, initialStorage, LiveList, and ClientSideSuspense."
+      },
+      {
+        "name": "live-cursors-component",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A does not use the required hooks."
+      },
+      {
+        "name": "liveblocks-auth-endpoint",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric by importing Liveblocks, creating an instance, preparing a session with userInfo, granting FULL_ACCESS, authorizing, and returning the token, whereas Response A omits these key steps."
+      }
+    ]
+  }
+}

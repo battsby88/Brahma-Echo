@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:222ea076309d5054e9c1854166613e1227d187d6afe2c7ed623b1b25ccbbfa1a",
+  "scoredAt": "2026-10-01T20:33:02.716Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2,
+    "baselineAvg": 10,
+    "treatmentAvg": 20,
+    "scenarios": [
+      {
+        "name": "make-plan-from-prd",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide any implementation plan, merely requesting the PRD text."
+      },
+      {
+        "name": "plan-with-spike-phase",
+        "baseline": 30,
+        "treatment": 10,
+        "rationale": "Response A gives a structured table and phases but lacks the required Phase 0 spike, covers/size/risk/check/verification details, whereas Response B only asks for more information and provides no plan."
+      },
+      {
+        "name": "update-plan-after-spike",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B contains most required sections but omits the Change log and Open questions, whereas Response A provides no relevant plan updates."
+      }
+    ]
+  }
+}

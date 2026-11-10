@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:cb8be89722bba665fc8aa39e525ca14ab5986aa69a7ded01c2f64f1e62053e88",
+  "scoredAt": "2026-10-02T23:23:14.746Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path with no guidance on API errors (401/400/429), rate limits, failed webhooks, or backup/upgrade of the self-hosted instance."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 58,
+    "treatmentAvg": 75,
+    "scenarios": [
+      {
+        "name": "self-host-and-push-leads",
+        "baseline": 40,
+        "treatment": 90,
+        "rationale": "A pins the image to 2.3.3, sets BASEROW_PUBLIC_URL, sends a table-scoped token as 'Authorization: Token', POSTs to the single-row endpoint with user_field_names=true, and notes the token only works on the Leads table. B uses :latest, which the rubric forbids. B's Python script also posts to the /batch/ endpoint instead of the specified single-row endpoint, and it never says the token applies to one table only."
+      },
+      {
+        "name": "rollup-total-paid-per-client",
+        "baseline": 80,
+        "treatment": 62,
+        "rationale": "B covers the link field with the reverse related field and gives a Rollup plus a filtered formula, with a Paid Amount helper-field alternative, but doesn't mention verifying new invoices. A gives the link, the reverse field and a filtered formula, and it does include a verification step, but it never uses the Rollup field type and its filtered formula is hedged, so it is less complete on the rollup and sum-restricted-to-Paid requirement."
+      },
+      {
+        "name": "filter-update-rows-and-webhook",
+        "baseline": 55,
+        "treatment": 72,
+        "rationale": "A matches the rubric's list call (filter__Status__equal=Active, order_by=-Created), PATCH with a Token header, and Settings → Webhooks with the three row events, though it puts user_field_names=true only on the PATCH; B uses single_select_equal with an option ID instead of filter__Status__equal=Active, wrongly says webhooks need a JWT, and gives the API route rather than the Settings → Webhooks UI as its main path."
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:040dce26979104abc218b6437aff7df3c96f9d5646dcbab490791d55649d205b",
+  "scoredAt": "2026-10-01T19:37:51.959Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1,
+    "baselineAvg": 35,
+    "treatmentAvg": 35,
+    "scenarios": [
+      {
+        "name": "simplify-shipping-logic",
+        "baseline": 30,
+        "treatment": 0,
+        "rationale": "B provides a refactored implementation, whereas A only asks for clarification."
+      },
+      {
+        "name": "tidy-payment-module",
+        "baseline": 40,
+        "treatment": 70,
+        "rationale": "Response A correctly splits the function and removes dead code, while Response B does not perform the required refactoring and omits key steps."
+      }
+    ]
+  }
+}

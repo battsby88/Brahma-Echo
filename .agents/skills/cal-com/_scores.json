@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:45abdffec03f9bb6828ca301f9cab75784c51ca6adf412323395abe878955b99",
+  "scoredAt": "2026-10-24T13:59:14.277Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios and edge cases, such as rate limiting or missing API keys."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains verbose explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions assume a Node.js environment and specific frameworks, limiting portability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.8,
+    "baselineAvg": 8,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "embed-react-booking-widget",
+        "baseline": 10,
+        "treatment": 70,
+        "rationale": "Response A omits the required package, imports, and API calls, while Response B includes the necessary package, imports, useEffect, and config explanation, but uses different calLink and namespace values than specified."
+      },
+      {
+        "name": "create-event-type-and-slots",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, Response B does not."
+      },
+      {
+        "name": "webhook-signature-validation",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric requirements, while Response A fails on imports, header key, signature logic, and event handling."
+      }
+    ]
+  }
+}

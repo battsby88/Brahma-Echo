@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:86dc87afe3791bf2a92cd08fff4ba14ab81f4dc0225fac5f8ba3c3372b80414f",
+  "scoredAt": "2026-10-01T12:47:38.935Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly cover error handling or edge cases, limiting robustness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7,
+    "baselineAvg": 10,
+    "treatmentAvg": 70,
+    "scenarios": [
+      {
+        "name": "init-react-project",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A exactly follows the required command sequence, mentions the React template, and explains that npm run dev opens Chrome with the extension and hot reload; Response B uses a different init command, omits the required details, and does not state the Chrome extension behavior."
+      },
+      {
+        "name": "add-blocking-content-script",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response A includes the required content script file and logic but omits the storage.defineItem declaration and the .content.ts note; Response B does not meet any of the rubric requirements."
+      },
+      {
+        "name": "build-and-zip-firefox",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B covers some required elements but omits the build step, output path, and warning, while Response A fails to meet any rubric criteria."
+      }
+    ]
+  }
+}

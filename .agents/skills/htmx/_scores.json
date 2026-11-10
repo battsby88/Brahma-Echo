@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:33a5283c5dc1bd665614d9fc55d47d38fceca28b9c332392b7bacc40ada73443",
+  "scoredAt": "2026-10-24T14:19:17.726Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.2,
+    "baselineAvg": 2,
+    "treatmentAvg": 72,
+    "scenarios": [
+      {
+        "name": "live-search-as-you-type",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not include any htmx attributes or a results container."
+      },
+      {
+        "name": "delete-article-with-confirmation",
+        "baseline": 5,
+        "treatment": 35,
+        "rationale": "Response B includes htmx attributes but not the exact target and swap values required, while Response A lacks htmx attributes entirely."
+      },
+      {
+        "name": "real-time-article-updates-sse",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A includes the required SSE container and swap attributes (though the child div is misplaced), whereas Response B provides no correct markup at all."
+      }
+    ]
+  }
+}

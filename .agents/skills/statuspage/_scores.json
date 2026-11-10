@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8fbb0e1bc2ce4da8f5604c17c57c319ae8c39af4b444e2b3f39c9de7cc8606c5",
+  "scoredAt": "2026-10-24T21:47:09.957Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases, such as missing environment variables or non-200 HTTP responses beyond rate limiting."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 10,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "update-component-status-with-group",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with a correct curl PATCH request, while Response B does not provide the required curl request at all."
+      },
+      {
+        "name": "schedule-database-maintenance",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not provide the required curl request."
+      },
+      {
+        "name": "python-incident-automation",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A omits key fields and uses incorrect status."
+      }
+    ]
+  }
+}

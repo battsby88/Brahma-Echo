@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:6596b9a022c8af600b966f4e049bb2e7e532cfb7acbc7546bd36737ce5b9ccfb",
+  "scoredAt": "2026-10-01T19:55:00.669Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanations that may be considered verbose."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.38,
+    "baselineAvg": 42,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "reduce-fields-and-improve-conversion",
+        "baseline": 55,
+        "treatment": 75,
+        "rationale": "Response B covers more rubric items, including autocomplete, aria attributes, and validation logic, while Response A lacks these details and a test plan."
+      },
+      {
+        "name": "accessibility-audit-and-rewrite",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses lack the required audit table and replacement markup, though B is marginally more detailed."
+      },
+      {
+        "name": "ga4-funnel-tracking-and-ab-test",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits the guardrail metric and detailed sample‑size formula."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:45d06306b9fed514540a8f5cf4fd2d67dfaf0b4c2ef29f493fa15f739a8444e7",
+  "scoredAt": "2026-10-01T19:47:34.639Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that may be considered padded."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.85,
+    "baselineAvg": 20,
+    "treatmentAvg": 37,
+    "scenarios": [
+      {
+        "name": "design-user-registration-api",
+        "baseline": 20,
+        "treatment": 10,
+        "rationale": "Response A offers more concrete design details, whereas Response B merely requests additional information and lacks any of the rubric requirements."
+      },
+      {
+        "name": "refactor-send-notification",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A includes a decision record, type‑checking example, and a migration plan, whereas Response B lacks the required facts, scenarios, and type‑checking proofs, making A the better answer."
+      },
+      {
+        "name": "design-avatar-upload-endpoint",
+        "baseline": 10,
+        "treatment": 45,
+        "rationale": "Response B includes facts and caller scenarios, whereas Response A lacks these sections entirely."
+      }
+    ]
+  }
+}

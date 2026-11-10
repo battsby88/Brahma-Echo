@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4f50f3a97bc07419eec9e936ff1508fc8a8b6d0e0c04b73ae631bbded671e8e6",
+  "scoredAt": "2026-10-02T23:25:14.780Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The code is tied to React/Next.js (App Router, proxy.ts, next/server) and Google Consent Mode, with only brief mention of vanilla JS and no non-Next server equivalents for the consent endpoint or GPC detection."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.3,
+    "baselineAvg": 27,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "nextjs-banner-gated-ga4",
+        "baseline": 22,
+        "treatment": 90,
+        "rationale": "Response A sets inline Consent Mode v2 defaults to denied for all four signals in the head, loads gtag.js only after analytics consent through a consent store that sends a 'consent update', and puts Reject all, Accept all and Customize on the first layer with identical styling; Response B has no Consent Mode defaults and no Customize option, and only gates the script on a localStorage flag with plain Accept and Reject buttons."
+      },
+      {
+        "name": "gpc-signal-server-and-client",
+        "baseline": 30,
+        "treatment": 88,
+        "rationale": "B covers all three rubric items (client-side GPC check saving a 'gpc' rejection without the banner, proxy.ts setting a gpc_optout cookie, and a curl -sI -H 'Sec-GPC: 1' test for the cookie), while A never sets a gpc_optout cookie, never saves consent with source 'gpc', and its curl test greps page HTML instead of checking a cookie."
+      },
+      {
+        "name": "consent-withdrawal-and-versioned-records",
+        "baseline": 30,
+        "treatment": 88,
+        "rationale": "Response B covers nearly every rubric element (record with version, timestamp, preferences and source, CONSENT_VERSION re-ask, footer link that clears the record and reopens the banner, denied Consent Mode update, _ga deletion, ga-disable flag, salted IP hash), while Response A gives a generic backend design with no ga-disable flag or _ga deletion, no timestamp-based re-ask, and no clear-record footer behavior."
+      }
+    ]
+  }
+}

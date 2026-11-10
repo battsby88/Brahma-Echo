@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c7470497bee73f340eda2a7390173657171658040053e0a39dbaf36d0cb992de",
+  "scoredAt": "2026-10-20T18:59:13.001Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not handle errors or edge cases such as missing API keys or network failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains verbose comments and explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is Python-specific and relies on external libraries, limiting its use across different AI agent platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.32,
+    "baselineAvg": 25,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "quick-educational-video",
+        "baseline": 10,
+        "treatment": 80,
+        "rationale": "Response A covers all required function calls except the subtitle filename, while Response B does not invoke any of the specified functions."
+      },
+      {
+        "name": "batch-viral-tiktok-videos",
+        "baseline": 25,
+        "treatment": 35,
+        "rationale": "Response A contains more of the required functions and structure, but still lacks the final invocation, subtitles, and output listing; Response B is even more incomplete."
+      },
+      {
+        "name": "custom-cta-video",
+        "baseline": 40,
+        "treatment": 60,
+        "rationale": "Response B better meets the HOOK‑BODY‑CTA structure and provides more subtitle entries, though neither includes the required assemble_video call."
+      }
+    ]
+  }
+}

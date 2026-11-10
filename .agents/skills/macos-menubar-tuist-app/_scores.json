@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:238c92217672f4ce6788cc47498cdff843d82793eda1ca2cdcb6aa1493c491b1",
+  "scoredAt": "2026-10-01T20:12:34.862Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is limited to macOS and requires Xcode and Tuist, so it does not work on other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.84,
+    "baselineAvg": 25,
+    "treatmentAvg": 96,
+    "scenarios": [
+      {
+        "name": "create-new-panel-menu-bar-app",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B lacks the required MenuBarExtra scene, .window style, SMAppService registration, and LSUIElement setting."
+      },
+      {
+        "name": "add-settings-and-dependency-to-beacon",
+        "baseline": 35,
+        "treatment": 92,
+        "rationale": "Response B fully satisfies all rubric items, while Response A omits the Project.swift dependency, SettingsLink, and LSUIElement requirement."
+      },
+      {
+        "name": "create-dev-script-for-rebuild-and-relaunch",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric requirements, while Response A misses key elements such as --no-open, macOS destination, and proper kill/launch logic."
+      }
+    ]
+  }
+}

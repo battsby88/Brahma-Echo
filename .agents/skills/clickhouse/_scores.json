@@ -1,0 +1,65 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:59babe046ad2b287298bc3471b0bc106ea71121279e49b1e05d6952f368aa7fc",
+  "scoredAt": "2026-10-24T19:04:57.289Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover all error scenarios and edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that could be trimmed."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksumMissing",
+        "detail": "Docker image tag is specified without a digest, making it possible to pull a different image version."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 8.33,
+    "baselineAvg": 12,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "run-clickhouse-docker-auth",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements; Response B lacks required image, user, password, ports, ulimit, volume, and curl syntax."
+      },
+      {
+        "name": "design-merge-tree-events-table",
+        "baseline": 15,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A misses key requirements."
+      },
+      {
+        "name": "nodejs-insert-query-dau",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B fails to use createClient, environment variables, proper insert/query syntax, and result.json()."
+      }
+    ]
+  }
+}

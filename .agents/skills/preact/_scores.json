@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:711e82fee657877ef18cd947e7ac7dd1a4e7c61ad4b593881857bef4baf02da3",
+  "scoredAt": "2026-10-03T12:07:38.501Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Mostly covers the happy path; the guidelines note some caveats, but there is no troubleshooting for failed aliasing, TypeScript config (jsxImportSource/paths) for non-Vite setups, or signal cleanup/disposal of global effects."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.16,
+    "baselineAvg": 79,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "signal-counter-no-rerender",
+        "baseline": 85,
+        "treatment": 93,
+        "rationale": "Both tell the user to install @preact/signals, pass {tick} rather than .value, and explain why. A shows signal, computed and effect all used together in a runnable example with the correct import. B imports effect but only uses it in a secondary snippet, and its main example relies on useSignalEffect, so the rubric's core trio is less directly shown. B also adds extras like batch, but they don't make up for that gap."
+      },
+      {
+        "name": "react-library-in-preact-vite",
+        "baseline": 80,
+        "treatment": 92,
+        "rationale": "Both install preact and @preact/preset-vite, add preact() to plugins, and state the preset auto-aliases react/react-dom to preact/compat; B concisely covers all three rubric points including the compat-limitations/React-internals caveat, while A omits that caveat (only a vague 'sensitive to compat differences' note) and adds extra, partly unnecessary and questionable content (npm overrides, manual alias, removing recharts reinstall)."
+      },
+      {
+        "name": "webpack-jest-compat-alias-and-events",
+        "baseline": 72,
+        "treatment": 90,
+        "rationale": "B hits all rubric points directly (hand-set aliases for webpack and Jest, native DOM events, preact-render-to-string, and not assuming a React Node SSR setup works unchanged), while A is more detailed but never says the alias must be set by hand for non-Vite tooling and never warns against assuming a React SSR setup carries over, though it does recommend preact-render-to-string and mentions native events."
+      }
+    ]
+  }
+}

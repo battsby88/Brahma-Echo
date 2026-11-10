@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:20a4b013f8c33410bd6634c1618c50571ee15b34af6b8a3192fc2caec258a022",
+  "scoredAt": "2026-10-24T22:21:14.734Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing environment variables or connection failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.21,
+    "baselineAvg": 43,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "setup-local-mysql-docker-and-query",
+        "baseline": 0,
+        "treatment": 85,
+        "rationale": "Response A meets almost all rubric items (docker run, import, query) with only a minor naming mismatch, while Response B is incorrect."
+      },
+      {
+        "name": "nodejs-mysql2-transaction-module",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A omits the required utf8mb4 charset in the pool configuration."
+      },
+      {
+        "name": "setup-mysql-replication",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B meets every rubric requirement, while Response A omits GTID settings, uses the wrong replication command, and lacks the required SSL flag."
+      }
+    ]
+  }
+}

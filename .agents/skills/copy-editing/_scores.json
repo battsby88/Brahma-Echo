@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:989244002a47a5c3398d9cedbb19a80796c8fa28d7d0c92a261195538e549017",
+  "scoredAt": "2026-10-01T19:45:08.555Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered padded, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0,
+    "baselineAvg": 0,
+    "treatmentAvg": 0,
+    "scenarios": [
+      {
+        "name": "proofread-email-launch",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide any edited copy, change log, queries, evidence flags, or mechanical check summary, so neither meets the rubric."
+      },
+      {
+        "name": "clean-landing-page-copy",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses lack the edited copy, change log, evidence flag, and mechanical check summary required by the rubric; A is more detailed but still incomplete, while B is even less comprehensive."
+      },
+      {
+        "name": "light-proofread-newsletter",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required proofread details."
+      }
+    ]
+  }
+}

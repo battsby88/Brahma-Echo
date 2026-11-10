@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b8616b54536bbffbe9fda74a873bbcfd7a90345637d7015abd32addb845aad5f",
+  "scoredAt": "2026-10-24T22:13:53.580Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases comprehensively."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 3,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "limit-concurrent-fetches",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the Rust‑specific semaphore and task requirements, while Response B is a Python solution that does not meet the rubric."
+      },
+      {
+        "name": "producer-consumer-status",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not."
+      },
+      {
+        "name": "graceful-tcp-echo-server",
+        "baseline": 10,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric with CancellationToken, TaskTracker, select! loop, and graceful shutdown logic, whereas Response A uses Go constructs and lacks the required Rust-specific components."
+      }
+    ]
+  }
+}

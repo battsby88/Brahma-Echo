@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1b2273cea41e9195ab6e55cbabdd8f1896134c52f988f4dbc7080665e9571d63",
+  "scoredAt": "2026-10-01T19:22:30.101Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as API failures or missing credentials."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The instruction set contains verbose explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tailored to Vercel's v0 platform and may not function with other AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.85,
+    "baselineAvg": 13,
+    "treatmentAvg": 50,
+    "scenarios": [
+      {
+        "name": "pricing-page-github-sync",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response A includes the required v0.chats.create call, GitHub repo creation, and code push, but omits the v0.messages.send refinement and preview URL; Response B lacks any v0 API usage and therefore fails to meet the rubric."
+      },
+      {
+        "name": "node-script-generate-table",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to meet the rubric; neither imports the v0 SDK nor uses the v0 API to generate and retrieve files."
+      },
+      {
+        "name": "integrate-checkout-form",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response B fully meets the rubric, while Response A lacks the required generation step, copy instructions, and shadcn/ui confirmation."
+      }
+    ]
+  }
+}

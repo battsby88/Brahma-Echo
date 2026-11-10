@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bfd7579a74b7e80057e93394c0b2af73a2a52f6cd8740fbbf4026c480a03facf",
+  "scoredAt": "2026-10-24T19:51:53.641Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover all error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.85,
+    "baselineAvg": 53,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "setup-expo-project-with-navigation",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric items, while Response A omits the required `npx create-expo-app@latest my-cool-app` command."
+      },
+      {
+        "name": "large-list-with-flatlist",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A satisfies all rubric requirements, while Response B omits the required RefreshControl prop for pull-to-refresh."
+      },
+      {
+        "name": "biometric-login-with-secure-store",
+        "baseline": 10,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A uses different libraries and omits key Expo modules and Zustand."
+      }
+    ]
+  }
+}

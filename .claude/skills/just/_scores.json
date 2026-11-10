@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1cc9e2689eb0a9917cec737b53ebca11d7242f91f0691ad8bc96b2d538a40414",
+  "scoredAt": "2026-10-24T14:22:25.084Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.41,
+    "baselineAvg": 27,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "confirm-and-private-recipes",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not meet the required syntax or commands."
+      },
+      {
+        "name": "module-and-alias-setup",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A uses incorrect syntax and omits the required mod declaration."
+      },
+      {
+        "name": "platform-specific-and-default",
+        "baseline": 30,
+        "treatment": 75,
+        "rationale": "Response A largely follows the rubric, missing only the env=\"staging\" syntax, while Response B deviates from the required structure and syntax."
+      }
+    ]
+  }
+}

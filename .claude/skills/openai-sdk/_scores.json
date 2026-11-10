@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a0cfe0e996c88ba97b80c13b6138ee9adb6f026b5d3b56160531df973a05ba7a",
+  "scoredAt": "2026-10-24T15:47:32.529Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases comprehensively."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.81,
+    "baselineAvg": 37,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "customer-support-chatbot-function-calling",
+        "baseline": 10,
+        "treatment": 80,
+        "rationale": "Response A largely satisfies the rubric, implementing the required OpenAI API calls, tool schemas, function call handling, and streaming, whereas Response B omits all of those elements."
+      },
+      {
+        "name": "contract-data-extraction-vision-structured-output",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response B references the required OpenAI Responses API calls, whereas Response A does not; however, B’s code is incomplete and does not explicitly show the calls, so it receives a low score."
+      },
+      {
+        "name": "document-embeddings-generation",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, with A providing additional language options and B a concise Python example."
+      }
+    ]
+  }
+}

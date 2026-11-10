@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ab88cdc91bcc280165563644fd80b182d3e1a70107beb10db5ca30e0127288a0",
+  "scoredAt": "2026-10-03T13:03:42.611Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is limited to 429 retries; timeouts, empty or incomplete output, non-HTML content, and 5xx failures have no concrete procedure, and the batch example retries a 429 only once."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The crawl endpoint is described but its request format is explicitly left out, so it cannot be run from this skill, and the token-count one-liner uses 'wc -w' without applying the stated words/0.75 conversion."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.2,
+    "baselineAvg": 8,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "summarize-article-with-token-check",
+        "baseline": 8,
+        "treatment": 62,
+        "rationale": "A gives the correct markdown.new curl command that saves to a file, captures headers with -D, and checks x-markdown-tokens (plus the POST fallback), though it never ran it; B skipped the markdown.new, header-check and save-to-file approach entirely and used WebFetch without verifying size."
+      },
+      {
+        "name": "retry-empty-spa-with-browser",
+        "baseline": 12,
+        "treatment": 92,
+        "rationale": "Response A gives the `method: browser` fix in both POST JSON and `?method=browser` query forms and explains that it renders JavaScript in a headless browser, but it never says to try `auto` first with `browser` as the fallback; Response B never recommends markdown.new's browser method and says it doesn't know whether the option exists, offering Statuspage API and Playwright workarounds instead."
+      },
+      {
+        "name": "batch-extract-with-rate-limit-handling",
+        "baseline": 3,
+        "treatment": 92,
+        "rationale": "A matches the rubric: it POSTs JSON with url and method to markdown.new, sleeps between requests, detects 429 and retries with backoff, catches per-URL failures, stores results keyed by URL in a manifest, and sets retain_images to False. B never calls markdown.new. It fetches each page directly and extracts with trafilatura, so it misses the core requirement."
+      }
+    ]
+  }
+}

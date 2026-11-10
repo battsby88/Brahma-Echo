@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:23276792e62d47848d028a298c63d6ea0a6cf7272c77c20ff7534458adaeffd6",
+  "scoredAt": "2026-10-01T11:41:29.327Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill relies on Figma MCP server commands specific to certain agents, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.2,
+    "baselineAvg": 3,
+    "treatmentAvg": 2,
+    "scenarios": [
+      {
+        "name": "react-nav-from-figma-url",
+        "baseline": 10,
+        "treatment": 5,
+        "rationale": "Response A gives concrete code (though not React/Tailwind and includes hardcoded strings), whereas Response B only asks a question and provides no implementation."
+      },
+      {
+        "name": "vue-card-from-screenshot",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to analyze the screenshot and provide a Vue component, so neither meets the rubric."
+      },
+      {
+        "name": "tailwind-config-from-tokens",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required Tailwind config and simply request the JSON, so neither meets the rubric."
+      }
+    ]
+  }
+}

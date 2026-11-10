@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3e854bb70f3ae2d802df2daed31d34c4aadcde2c1d10778279817772f978fa3d",
+  "scoredAt": "2026-10-02T22:52:41.159Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Example 1 is a prose description of UI steps and expected outcomes, and Example 2 gives no CI job snippet or status-polling code, so neither shows concrete runnable output."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.76,
+    "baselineAvg": 50,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "deploy-pentagi-with-secure-env",
+        "baseline": 74,
+        "treatment": 80,
+        "rationale": "Both set ANTHROPIC_API_KEY, fetch .env and docker-compose.yml, run docker compose up -d, set PENTAGI_LISTEN_IP/PUBLIC_URL/CORS_ORIGINS, and firewall 8443; A also covers the Neo4j password and tells the user to change the default login, while B omits Neo4j and adds extras like embeddings, but its hedging about recall is slightly weaker."
+      },
+      {
+        "name": "trigger-flow-from-ci-via-api",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "A covers every rubric point: the token is created under Settings → API Tokens and stored as a secret, the GraphQL createFlow call carries a Bearer header and a scope-limited prompt, it polls GET /api/v1/flows until the flow is finished, and it notes that -k is only for the default self-signed certificate. B polls via a GraphQL flow query instead of GET /api/v1/flows, never mentions -k, and hedges that its API details come from memory, though its scope-limited createFlow call and secret handling are fine."
+      },
+      {
+        "name": "run-scoped-flow-and-handle-report",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "A covers every rubric item (Automation flow, prompt with target/scope limits/confirmed findings with reproduction steps, Report menu download as Markdown or PDF with no JSON, LLM-generated findings needing manual verification, supervised run) with PentAGI-specific detail, while B stays generic, never mentions the Automation flow or the Report menu or export formats, and opens with a partial refusal, though it does cover supervision and hand-verification."
+      }
+    ]
+  }
+}

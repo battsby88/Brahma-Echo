@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:03d8af40e9e3394cb4863b323ebf8565e39345a22b4f61c55ae64cd34c761294",
+  "scoredAt": "2026-10-24T19:39:37.503Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.29,
+    "baselineAvg": 17,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "cached-order-detail-page",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B is not provided."
+      },
+      {
+        "name": "upgrade-nextjs-14-to-16",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet any of them."
+      },
+      {
+        "name": "server-action-ship-order",
+        "baseline": 50,
+        "treatment": 70,
+        "rationale": "Response A correctly implements revalidateTag('order-list', 'max') and useActionState, but omits updateTag('order-${id}'); Response B lacks both the max parameter and updateTag, making it less complete."
+      }
+    ]
+  }
+}

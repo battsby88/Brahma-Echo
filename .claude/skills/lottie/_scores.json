@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9b84173a86605a27d3c7103603f29bcc479cc5fa25703093f45d117c259b5afb",
+  "scoredAt": "2026-10-01T11:55:23.502Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3,
+    "baselineAvg": 25,
+    "treatmentAvg": 75,
+    "scenarios": [
+      {
+        "name": "pause-after-5-seconds",
+        "baseline": 45,
+        "treatment": 60,
+        "rationale": "Response B meets the import requirement and otherwise matches the rubric, while Response A lacks the import and cleanup step, making it less complete."
+      },
+      {
+        "name": "recolor-and-play-once",
+        "baseline": 0,
+        "treatment": 85,
+        "rationale": "Response A meets the rubric requirements (imports recolorAnimation, recolors the JSON, passes to LottiePlayer with loop=false, and sets container dimensions), whereas Response B does not use recolorAnimation or LottiePlayer at all."
+      },
+      {
+        "name": "dotlottie-error-handling",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A meets most rubric items (import, DotLottie instance, loadError listener) but omits setSpeed(1.5); Response B fails to use DotLottie and lacks the required event handling and speed setting."
+      }
+    ]
+  }
+}

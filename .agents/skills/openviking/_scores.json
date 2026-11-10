@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:62f8379bcbddc86eecd0c2b5c87a4c6edaddcf04ce3056ec40be61efa21c3709",
+  "scoredAt": "2026-10-24T14:46:36.506Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.47,
+    "baselineAvg": 15,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "setup-local-server-and-cli",
+        "baseline": 15,
+        "treatment": 85,
+        "rationale": "Response B covers almost all rubric items, while Response A omits the required commands and config files."
+      },
+      {
+        "name": "import-docs-and-search",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "Response B uses the required ov commands (add-resource, find, overview, read) albeit with a different URI, whereas Response A uses unrelated openviking commands and misses the rubric's specific ov syntax."
+      },
+      {
+        "name": "record-conversation-and-extract-memories",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully follows the rubric with all required commands, while Response B does not use the specified OpenViking session workflow at all."
+      }
+    ]
+  }
+}

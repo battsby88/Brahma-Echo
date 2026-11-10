@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:70672aa6f7b693b7a60bffb03f35518ba12977e69decd31130cf2a261b09283f",
+  "scoredAt": "2026-10-13T11:50:46.401Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.17,
+    "baselineAvg": 23,
+    "treatmentAvg": 50,
+    "scenarios": [
+      {
+        "name": "build-cv-from-career-data",
+        "baseline": 20,
+        "treatment": 40,
+        "rationale": "Response A delivers a complete, polished resume but entirely ignores the rubric's core requirement to use `rendercv` with YAML—it provides Markdown instead and doesn't run any tools to produce PDF. Response B demonstrates correct understanding of the `rendercv new` → YAML scaffold → `rendercv render` workflow and acknowledges the specific field requirements (company, position, start_date, end_date, highlights), but fails to execute and requests information the user already provided (BS graduation year is missing, but 6 years experience + both employers + dates are given)."
+      },
+      {
+        "name": "add-recent-job-to-cv",
+        "baseline": 35,
+        "treatment": 62,
+        "rationale": "Response A provides specific details on the YAML edits and mentions rendercv rendering, partially satisfying the rubric's edit and re-render requirements; Response B only requests the file location without explaining how the edits will be made or how the output will be rendered."
+      },
+      {
+        "name": "switch-cv-theme-for-industry",
+        "baseline": 15,
+        "treatment": 48,
+        "rationale": "Both ask for the file path (necessary), but Response B provides the exact YAML syntax, render command, and explicit offer to execute, while Response A gives no technical guidance or added value beyond a blocking question."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ca5d53c1d019962a0933c358b2ab43081f3bde6c71333ce7d6bd424db7d310b5",
+  "scoredAt": "2026-10-24T17:31:02.703Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover network errors, rate limiting, or other API failure scenarios."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes Node.js or Python environments and OpenAI/Anthropic APIs, limiting applicability to other providers."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 33,
+    "scenarios": [
+      {
+        "name": "openai-structured-product-review",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required Zod schema and parsing logic."
+      },
+      {
+        "name": "anthropic-structured-event-extraction",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to include the required Zod schema definition and parsing logic."
+      },
+      {
+        "name": "instructor-structured-email-analysis",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A does not provide any code or structure."
+      }
+    ]
+  }
+}

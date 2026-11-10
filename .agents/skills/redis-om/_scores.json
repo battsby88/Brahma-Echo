@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1cf333405a7f1e2a1fda0396f0bcb17c3444db4da2f6423e5524acf836be1ba7",
+  "scoredAt": "2026-10-24T20:17:36.163Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all possible error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4,
+    "baselineAvg": 25,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "node-create-product-schema",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric items, while Response A lacks required imports, fields, and EntityId usage."
+      },
+      {
+        "name": "node-search-in-stock-electronics",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric criteria; Response B does not use the required API."
+      },
+      {
+        "name": "python-store-and-query-product",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A lacks required fields, indexing, and correct query syntax."
+      }
+    ]
+  }
+}

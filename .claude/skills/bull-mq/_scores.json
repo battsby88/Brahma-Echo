@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:32fd911e79125e0066290a6c07c2dc23a81c08799ef9d8c25b88fb71e768b8ca",
+  "scoredAt": "2026-10-03T12:55:50.529Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.19,
+    "baselineAvg": 77,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "migrate-repeatable-jobs-to-schedulers",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "A matches the rubric closely: upsertJobScheduler with tz UTC, getJobSchedulers/removeJobScheduler, the v5-first order with removeRepeatableByKey, and the silent no-schedule and v6 error notes. B has the right API and a similar order but hedges, never states the v6 error or silent-failure behavior, and defers to release notes."
+      },
+      {
+        "name": "rate-limited-api-worker-with-429-handling",
+        "baseline": 80,
+        "treatment": 95,
+        "rationale": "B hits every rubric item (setGlobalRateLimit(10,1000), worker.rateLimit then Worker.RateLimitError, UnrecoverableError, maxRetriesPerRequest: null, and worker.on('error')), while A has the other items but omits the worker.on('error') handler and uses only the limiter option."
+      },
+      {
+        "name": "report-flow-with-failure-propagation",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both use FlowProducer.add with children carrying queueName and failParentOnFailure: true, read results via job.getChildrenValues(), and mention ignoreDependencyOnFailure; B explicitly notes the parent would wait indefinitely without failParentOnFailure, a rubric point A leaves implicit, while A adds extras like getFailedChildrenValues and retry guidance but never states that the parent would hang."
+      }
+    ]
+  }
+}

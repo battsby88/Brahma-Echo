@@ -1,0 +1,48 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:73ffafbc88357c443392752cbd9d85896edeafb0476666e7390a5b2421b974a2",
+  "scoredAt": "2026-10-28T18:42:31.618Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.35,
+    "baselineAvg": 23,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "create-basic-gp-drawing",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with detailed, runnable code, while Response B provides no content."
+      },
+      {
+        "name": "apply-gp-modifiers",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric while Response A is incomplete and uses the wrong property for layer filtering."
+      },
+      {
+        "name": "animate-expanding-square",
+        "baseline": 60,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A does not use drawing.add_strokes and attributes as specified."
+      }
+    ]
+  }
+}

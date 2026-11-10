@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:84925ba68287db7d64e664aff1fc2dd0e3bed4aa88d9b01551f1e8c2eaf870ab",
+  "scoredAt": "2026-10-24T20:03:24.230Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.7,
+    "baselineAvg": 10,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "create-project-with-api",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "Response B better meets the rubric, using the correct `npx sv create` command and `Response.json`, while Response A fails on the command, adapter setup, and JSON response format."
+      },
+      {
+        "name": "form-action-validation",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B is unrelated to SvelteKit and fails to meet any of the specified requirements."
+      },
+      {
+        "name": "auth-middleware-logging",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B is unrelated to SvelteKit and fails to meet any of the specified requirements."
+      }
+    ]
+  }
+}

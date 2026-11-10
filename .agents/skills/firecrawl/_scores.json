@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1fcec1b4bc74c2695d54d1f99d74964b93f4e108a67c97d336d64bbf1f3d1da9",
+  "scoredAt": "2026-10-03T12:14:45.784Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.96,
+    "baselineAvg": 46,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "crawl-docs-into-rag-with-limits",
+        "baseline": 8,
+        "treatment": 93,
+        "rationale": "Response B uses Firecrawl crawl with an explicit limit (noting the 10,000-page default), includePaths, markdown scrapeOptions with onlyMainContent, and metadata.sourceURL as the chunk source, which covers the rubric. Response A never uses Firecrawl and builds a custom sitemap scraper, so it misses nearly every rubric item."
+      },
+      {
+        "name": "extract-product-json-with-schema",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both use a `json` format object with a schema and prompt, read `doc.json`, and state 1 base + 4 extra = 5 credits; B adds useful caveats (stealth proxy cost) and field descriptions, while A's Python/TS mostly equal but includes a caveat about guessing SDK details and uses a possibly less standard TS import."
+      },
+      {
+        "name": "self-host-firecrawl-securely",
+        "baseline": 40,
+        "treatment": 88,
+        "rationale": "B covers nearly every rubric item: from-source Docker Compose with a checked-out release tag, port 3002, apiUrl/FIRECRAWL_API_URL, no-auth default, the AI provider needed for JSON extraction, and a pointer to SELF_HOST.md. A gives from-source compose and apiUrl but never checks out a release tag, omits the JSON-extraction AI provider warning (only mentions an optional OPENAI_API_KEY), and never points to SELF_HOST.md for exposure."
+      }
+    ]
+  }
+}

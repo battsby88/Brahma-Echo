@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b39432210ce62bfbf0897c75d156fe7a8e3d3ce499adc147f407e8741214d613",
+  "scoredAt": "2026-10-24T21:23:53.028Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Instructions only cover TypeScript usage, lacking guidance for Python or Go."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "click-dynamic-subscribe-button",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements with a stagehand.act call and no hard‑coded selectors, while Response A lacks a stagehand.act call and includes hard‑coded selectors."
+      },
+      {
+        "name": "extract-top-10-products",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B includes a stagehand.extract call but the Zod schema uses a 'title' field and allows up to 10 items, not exactly 10 with a 'name' field; Response A lacks a stagehand.extract call entirely."
+      },
+      {
+        "name": "secure-login",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B meets most rubric requirements but omits cache or logging settings; Response A fails to meet any requirement."
+      }
+    ]
+  }
+}

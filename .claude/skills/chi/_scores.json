@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ff0444856c885b71a7e33b831b4dcd96d9f6572674db32fd92f1873b46ddc36a",
+  "scoredAt": "2026-10-24T20:36:26.264Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.04,
+    "baselineAvg": 28,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "api-key-protected-items-route",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A omits r.Route usage, correct middleware ordering, and missing Timeout and cors middleware."
+      },
+      {
+        "name": "mount-admin-subrouter",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response B fully meets the chi-specific requirements, while Response A uses Express and does not satisfy the rubric."
+      },
+      {
+        "name": "test-router-with-httptest",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A covers most rubric items but omits the required context loader middleware, whereas Response B does not meet any of the Go/chi/httptest requirements."
+      }
+    ]
+  }
+}

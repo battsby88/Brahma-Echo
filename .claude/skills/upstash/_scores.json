@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e9f7c1e07a1066fc9a3c5d74f6c97c6cf52e13139e93191b7a8112d03e2cdc8d",
+  "scoredAt": "2026-10-24T16:13:55.597Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly cover error handling for missing environment variables or network failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.38,
+    "baselineAvg": 13,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "rate-limit-api-route",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response A covers most rubric items but uses a user ID instead of IP and returns a different JSON body; Response B lacks the required Redis, sliding window, and header logic entirely."
+      },
+      {
+        "name": "delayed-email-reminder",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response B meets almost all rubric requirements (Client, publishJSON, delay, callbacks, Receiver, signature verification, 401 on failure) with only a minor retry count mismatch, while Response A lacks the required Client usage, publishJSON call, callbacks, and proper signature verification."
+      },
+      {
+        "name": "order-processing-workflow",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not."
+      }
+    ]
+  }
+}

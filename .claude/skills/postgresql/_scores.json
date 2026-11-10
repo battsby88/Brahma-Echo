@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:48a40af1c148827beeb0f54c97976f35d5f72c6799ef9f1f8730741f9e926f7e",
+  "scoredAt": "2026-10-24T19:47:29.290Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.15,
+    "baselineAvg": 13,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "multi-tenant-rls-projects",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully meets all rubric requirements, while Response A fails key specifications."
+      },
+      {
+        "name": "full-text-search-articles",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A misses key requirements such as generated column, GIN index, and correct query functions."
+      },
+      {
+        "name": "partitioned-jsonb-events",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses omit the required partial GIN index on event_data and use the wrong column name, so neither meets the rubric."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f4ac36f07db6154510ded57ff000edcc8580d58163309de18d21d446f4af888b",
+  "scoredAt": "2026-10-13T12:08:27.943Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions cover happy-path scenarios and include a Common Pitfalls section, but lack error handling patterns in the main Steps (e.g., handling missing/invalid API keys, dataset creation failures, network timeouts, rate limiting)."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Skill claims Python 3.10+ or Node.js 18+ support and mentions npm install, but all runnable examples are Python-only; Node.js users must infer TypeScript translations without concrete code samples."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.12,
+    "baselineAvg": 41,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "setup-qa-bot-with-evaluation",
+        "baseline": 48,
+        "treatment": 78,
+        "rationale": "Response A correctly sets LANGSMITH_TRACING and LANGSMITH_API_KEY as specified in the rubric, defines three evaluators, and demonstrates evaluate() integration with clean code; Response B fails the primary requirement by using incorrect LANGCHAIN_* environment variable names instead of LANGSMITH_*, additionally uses outdated callback patterns, and neither response fully demonstrates actual trace output structure with metadata tags."
+      },
+      {
+        "name": "monitor-production-latency-and-errors",
+        "baseline": 62,
+        "treatment": 87,
+        "rationale": "Response A comprehensively demonstrates client.list_runs() with multiple complete examples, correct filter syntax (eq, gte, gt operators), and extraction of all three required metrics (latency_ms, error, total_tokens) with aggregations; Response B focuses on instrumentation setup and provides minimal API examples, lacks token count extraction entirely, and does not show programmatic extraction of metrics from run objects."
+      },
+      {
+        "name": "custom-evaluator-from-production-traces",
+        "baseline": 12,
+        "treatment": 96,
+        "rationale": "Response B directly implements the rubric requirements using create_dataset(), create_examples() with 'inputs'/'outputs' keys, and defines evaluators with the correct signature (outputs, reference_outputs) returning {key, score} dicts, then runs evaluate(); Response A uses a completely different framework (Anthropic SDK with manual JSON) and never calls any of the specified functions."
+      }
+    ]
+  }
+}

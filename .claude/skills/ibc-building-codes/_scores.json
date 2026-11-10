@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ca397986d8e481375c5c0ce16556d7d7c86acccba172c3d5ad96ce753a5652a5",
+  "scoredAt": "2026-10-03T12:00:28.240Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The skill is a lookup reference with only a tiny ceil() formula and worked checks, so it offers no runnable code or step-by-step procedure for generating or validating a building model against the tables."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.14,
+    "baselineAvg": 76,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "mixed-use-restaurant-over-apartments-height-check",
+        "baseline": 62,
+        "treatment": 72,
+        "rationale": "Both classify R-2/A-2, use the S column at 5 stories/75 ft without a bonus, and flag Table 506.2; B stays close to the rubric and avoids stating unverified numbers, while A gives more detail but claims A-2 III-B S is 3 stories with 75 ft and asserts a 1-hr separation. It also conflicts with the rubric's 'each use meets its own limits' by treating the A-2 and R-2 limits as separate and wrongly picks separated use outright, but A's A-2 story limit of 3 may be inaccurate (A-2 III-B S is 3 stories is plausible) so the penalty is moderate."
+      },
+      {
+        "name": "r2-egress-and-stair-width-check",
+        "baseline": 70,
+        "treatment": 93,
+        "rationale": "B hits all three rubric items cleanly (travel passes at 250 ft, stair width fails at 44 in, single exit fails with the 4-unit/3-story cap, and the unit doorway passes at ≤20 occupants and ≤125 ft common path), while A gets the main verdicts right but cites the wrong table for the single-exit exception (1006.3.4(2) instead of (1006.3.4(1))), hedges the common-path limit as 'at least 75 ft, I recall 125', and adds speculative extras."
+      },
+      {
+        "name": "occupant-load-calculation-mixed-floors",
+        "baseline": 97,
+        "treatment": 97,
+        "rationale": "Both responses apply ceil(area/factor) with the correct Table 1004.5 factors and give 6, 21 and 84, and both say to round up; A adds a formula block and edition notes, while B adds a worked ceil() code block, so they are about equal on the rubric."
+      }
+    ]
+  }
+}

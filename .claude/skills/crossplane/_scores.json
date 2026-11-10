@@ -1,0 +1,65 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b798cb317fdcd858bd8332b8161c51bed85f93773ee473a70c6c63b4b0ad4334",
+  "scoredAt": "2026-10-02T22:50:39.504Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is limited to a brief note on stuck managed resources; it omits provider install failures, missing Function dependencies, XR composition errors, deletion policies, and credential rotation."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Example 1 relies on an XBucket XRD and Composition that are never shown (only described as 'same shape as XDatabase'), and Example 2 is just a few debug commands, so the examples are not fully runnable or realistic end to end."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": [
+      {
+        "severity": "INFO",
+        "category": "credentials",
+        "detail": "The Secret manifest uses AWS's documented placeholder example keys (AKIAIOSFODNN7EXAMPLE), and the Guidelines explicitly warn against committing real credentials."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 1.53,
+    "baselineAvg": 57,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "namespaced-queue-abstraction",
+        "baseline": 45,
+        "treatment": 95,
+        "rationale": "B matches the rubric: Namespaced scope, required size enum, engine enum, no claimNames, Pipeline with function-patch-and-transform and a map transform from size to instance class, and a direct namespaced XDatabase. A uses function-go-templating with dict lookups instead of patch-and-transform and a map transform, and makes engine required but not size, so it misses key rubric items despite a correct XRD scope and direct XR."
+      },
+      {
+        "name": "debug-stuck-managed-resource",
+        "baseline": 45,
+        "treatment": 95,
+        "rationale": "B hits every rubric item (kubectl get managed, describe bucket, the events field-selector command, and the missing ProviderConfig and IAM-permission causes), while A skips the events command and only touches the credentials cause in a table of many causes."
+      },
+      {
+        "name": "install-and-configure-aws-provider",
+        "baseline": 82,
+        "treatment": 72,
+        "rationale": "Both install Crossplane via Helm into crossplane-system, pin providers (though both use placeholders or unverified versions, A with a concrete v2.8.2 tag), create a Secret and a default ProviderConfig with source: Secret and secretRef, and warn against committing credentials. B adds a stronger production-safety treatment (IRSA, deletion policies, etc.) and mentions External Secrets/SOPS for keeping secrets out of git, while A only says to keep the secret out of git and to use an external secrets operator in passing, so B edges ahead on the secrets-manager suggestion."
+      }
+    ]
+  }
+}

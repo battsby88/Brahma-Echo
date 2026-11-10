@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ba874167b5d60a57cf5c6fb03f36f889b361c69cc5f8d1427281251ec6817be3",
+  "scoredAt": "2026-10-24T21:06:23.794Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all possible error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.33,
+    "baselineAvg": 45,
+    "treatmentAvg": 60,
+    "scenarios": [
+      {
+        "name": "clean-inventory-and-summarize-by-category",
+        "baseline": 35,
+        "treatment": 65,
+        "rationale": "Response B covers more rubric items (dtype, assign, named aggregation, fillna) than Response A, though both miss .pipe() and drop_duplicates."
+      },
+      {
+        "name": "merge-customer-transactions-and-export",
+        "baseline": 55,
+        "treatment": 60,
+        "rationale": "Both responses omit the required validate='one_to_many' and .pipe() chaining, but Response A includes more explicit steps and named aggregation, giving it a slightly higher score."
+      },
+      {
+        "name": "monthly-average-temperature-from-parquet",
+        "baseline": 45,
+        "treatment": 55,
+        "rationale": "Response A better meets the rubric by using ME resampling and a more complete pipeline, though it still lacks .pipe(), fillna(), and column renaming; Response B misses ME, .pipe(), fillna(), and renaming."
+      }
+    ]
+  }
+}

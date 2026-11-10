@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:ede857ecd9d464adfff02df12bd31590a2487c51cb0c27b531c76b74b4bfe444",
+  "scoredAt": "2026-10-01T19:37:05.096Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains excessive verbosity that may hinder quick comprehension."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.8,
+    "baselineAvg": 8,
+    "treatmentAvg": 8,
+    "scenarios": [
+      {
+        "name": "faithful-rebuild-shop-site",
+        "baseline": 25,
+        "treatment": 5,
+        "rationale": "Response A contains more detailed steps and references, whereas Response B is incomplete and lacks any substantive content."
+      },
+      {
+        "name": "reference-build-competitor-page",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response A provides a partial plan and acknowledges brand asset use, but lacks the required capture/plan.md, pattern brief, and other rubric items, whereas Response B offers no relevant content."
+      },
+      {
+        "name": "decline-copy-login-page",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses are identical refusals and do not include any of the required elements from the rubric."
+      }
+    ]
+  }
+}

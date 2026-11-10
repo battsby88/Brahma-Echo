@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b5e459b059737d5c89c6d013cffb28eef7b39fcb4fbe1899e538bb8090a7c680",
+  "scoredAt": "2026-10-01T18:23:02.488Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for missing files or invalid input."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The instructions contain verbose explanatory comments that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.66,
+    "baselineAvg": 50,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "duplicate-template-and-queue",
+        "baseline": 60,
+        "treatment": 80,
+        "rationale": "Response B includes the required output module template and a file path, whereas Response A omits both the Lossless template and the specific output path, making B the stronger answer."
+      },
+      {
+        "name": "aerender-with-options",
+        "baseline": 10,
+        "treatment": 70,
+        "rationale": "Response B is closer to the rubric, correctly using aerender and most required flags, while Response A uses the wrong tool and many incorrect flags."
+      },
+      {
+        "name": "cep-panel-list-comps",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits the explicit string split step, using JSON parsing instead."
+      }
+    ]
+  }
+}

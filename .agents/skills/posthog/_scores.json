@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:dfd801df76323d4fad474ffafcfb1953e96df3787f749ea4bad713f077268cf2",
+  "scoredAt": "2026-10-20T20:07:02.365Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing environment variables or network failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory text that could be streamlined for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.33,
+    "baselineAvg": 27,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "browser-event-tracking",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response B covers more rubric items, especially init config and event capture, while Response A lacks key configuration and event details."
+      },
+      {
+        "name": "python-backend-events",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses Mixpanel instead of Posthog and omits required details."
+      },
+      {
+        "name": "server-side-feature-flag",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric, while Response A is incomplete and omits key details."
+      }
+    ]
+  }
+}

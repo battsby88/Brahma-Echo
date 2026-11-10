@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ba29d6dbc64dca4ca4a903a5c358775ff6979de84a325b3dba793c4b0218923e",
+  "scoredAt": "2026-10-24T15:24:30.230Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases such as missing labels or disabled billing export."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.48,
+    "baselineAvg": 23,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "top-services-cost-report",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response B is closer to the rubric, matching the required columns, aggregation, and ordering, whereas Response A omits credits, net_usd, and uses a different table name."
+      },
+      {
+        "name": "project-budget-creation",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "Response A is closer to the rubric, providing the required gcloud command with most flags (though the display name differs), whereas Response B uses a JSON file and an alpha command, missing the single command with the specified flags."
+      },
+      {
+        "name": "storage-lifecycle-policy-setup",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully matches the required JSON structure and command, while Response B omits the top-level \"lifecycle\" wrapper and uses incorrect action syntax."
+      }
+    ]
+  }
+}

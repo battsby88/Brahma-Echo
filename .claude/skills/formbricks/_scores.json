@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5d421066620a580302eb77106274327c0dc429e3d7d26ee3c41f57b7d16e21a5",
+  "scoredAt": "2026-10-01T11:42:56.295Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered padded, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.7,
+    "baselineAvg": 0,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "setup-nps-survey-after-onboarding",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not mention Formbricks at all."
+      },
+      {
+        "name": "feature-request-button-with-webhook",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B does not address any of the Formbricks-specific steps."
+      },
+      {
+        "name": "api-list-and-create-surveys",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses do not meet the rubric requirements."
+      }
+    ]
+  }
+}

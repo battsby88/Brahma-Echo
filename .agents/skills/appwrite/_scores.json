@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5194583cf9bb717f5983b77754ee838175bfb2de8cf562f8e9e5cd1566907061",
+  "scoredAt": "2026-10-24T15:03:52.698Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error scenarios or edge cases, focusing only on the happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Docker image is pulled without checksum verification, which could allow tampering."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 5.87,
+    "baselineAvg": 15,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "deploy-appwrite-database-collection",
+        "baseline": 30,
+        "treatment": 75,
+        "rationale": "Response A covers the Docker Compose deployment, collection creation with correct permissions, and attempts an index, though the index code is incomplete; Response B lacks Docker Compose, collection creation, and index setup."
+      },
+      {
+        "name": "realtime-subscribe-messages",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with Appwrite realtime subscription and event handling, while Response B uses Firebase and does not meet the Appwrite requirement."
+      }
+    ]
+  }
+}

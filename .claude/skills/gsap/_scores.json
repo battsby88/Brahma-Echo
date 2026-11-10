@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bcc94b389a9e064d3db2635c8a23d1982e47c302d659124016238e0fc377af75",
+  "scoredAt": "2026-10-24T20:49:45.038Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing elements or plugin load failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8,
+    "baselineAvg": 3,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "hero-timeline-entrance",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not use GSAP."
+      },
+      {
+        "name": "horizontal-scroll-pin",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B covers almost all rubric items (registers ScrollTrigger, uses gsap.to with correct x function, trigger, pin, end), but uses scrub:true instead of scrub:1, whereas Response A is empty."
+      },
+      {
+        "name": "headline-reveal-reduced-motion",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response A follows most of the rubric but omits the required mask and uses the wrong target in onSplit; Response B does not use GSAP or SplitText at all."
+      }
+    ]
+  }
+}

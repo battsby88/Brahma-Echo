@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6c63e9f186706eb6834288973cc1533b046ee0d2c724988a2aae3839e4e811f5",
+  "scoredAt": "2026-10-24T17:12:20.908Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling scenarios or edge cases for API failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.83,
+    "baselineAvg": 18,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "create-service-with-escalation-and-grouping",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items but misses num_loops and includes an extra field; Response B is incomplete and omits key requirements."
+      },
+      {
+        "name": "trigger-acknowledge-resolve-alert",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A provides no content."
+      },
+      {
+        "name": "create-weekly-schedule-and-query-oncall",
+        "baseline": 35,
+        "treatment": 80,
+        "rationale": "Response B meets the rubric requirements with only a minor formatting issue, while Response A lacks key details and uses the wrong endpoint."
+      }
+    ]
+  }
+}

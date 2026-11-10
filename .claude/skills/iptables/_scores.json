@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1e561ba2f0568ca3a6313326fd545a7d2f1ac9255f7cb5f63c597352edea1071",
+  "scoredAt": "2026-10-24T14:21:14.336Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Linux environment with root access, limiting applicability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.18,
+    "baselineAvg": 68,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "minimal-firewall-with-rollback",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A covers most rubric items but uses the wrong set name and omits the ICMP limit, while Response B misses the set, ICMP limit, rollback via at, and boot enable step."
+      },
+      {
+        "name": "migrate-iptables-to-nftables",
+        "baseline": 95,
+        "treatment": 85,
+        "rationale": "Response B explicitly demonstrates iptables-translate on a sample rule, shows the add rule syntax, writes to /etc/nftables.conf, and enables persistence, while Response A focuses on bulk conversion with iptables-restore-translate and omits a direct iptables-translate example."
+      },
+      {
+        "name": "vpn-nat-with-nftables",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric with the exact IP‑forwarding command, nftables syntax, and persistence steps, while Response B omits the required exact sysctl command but otherwise covers the rest."
+      }
+    ]
+  }
+}

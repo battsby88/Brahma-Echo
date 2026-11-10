@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e9bbc9029e07136d6d1b78e1903149fc3384dafdec0d5924de8356632ae0ca40",
+  "scoredAt": "2026-10-01T11:38:39.014Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.63,
+    "baselineAvg": 38,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "setup-detox-new-project",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A omits key steps such as applesimutils installation, detox init, and the exact build/test commands."
+      },
+      {
+        "name": "write-login-test",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A omits key elements such as process.env usage, welcome text check, and correct testIDs."
+      },
+      {
+        "name": "debug-hanging-test-long-polling",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A covers all rubric items, while Response B omits key steps such as debug-synchronization, URL blacklisting, and synchronization control."
+      }
+    ]
+  }
+}

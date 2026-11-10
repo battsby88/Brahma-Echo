@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3d6179512e5789cace18666e3b5ed49fb20edfa07cf59fc106784534b40ff797",
+  "scoredAt": "2026-10-03T12:10:14.911Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill covers missing credentials and unsupported actions but gives no guidance for API errors, rate limits, partial import failures, bounced or invalid recipients, or how to recover from a failed command."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": [
+      {
+        "severity": "INFO",
+        "category": "credentials",
+        "detail": "The example MCP setup command passes the API key inline on the command line, where it may be stored in shell history. The key shown is an illustrative placeholder, and the skill requires explicit approval before sends and deletes."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 3.54,
+    "baselineAvg": 24,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "draft-trial-welcome-campaign-safely",
+        "baseline": 22,
+        "treatment": 90,
+        "rationale": "B gives the exact CLI flow the rubric asks for: `sequenzy account`, `companies list`, `--company`, a draft made with `campaigns create --html-file --segment`, a review URL, and approval before scheduling; A names no Sequenzy CLI command and only asks questions."
+      },
+      {
+        "name": "add-subscriber-verify-segment",
+        "baseline": 5,
+        "treatment": 82,
+        "rationale": "Response B gives the correct sequenzy command sequence (lists lookup first, subscribers add with --tag founder, lists add-subscribers, segments count and subscribers list --segment verification) but only as unexecuted commands, while Response A uses the wrong tooling (Kompot), does nothing, and asks for clarification."
+      },
+      {
+        "name": "cancel-enrollments-with-guardrails",
+        "baseline": 45,
+        "treatment": 82,
+        "rationale": "B inspects before mutating (sequences enrollments, campaigns get), explains that cancel-enrollments previews without --apply and campaigns delete needs --yes, and prompts for approval before the delete, while A uses unverified placeholders, never mentions --apply or --yes, and has no inspection step, though its dry-run default is sensible; neither mentions API key permissions beyond the default safer-agent preset."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:49c0eeab710d679cf61f1793d201edc499946ff4c55ea506afe0fe8a1780c546",
+  "scoredAt": "2026-10-20T19:08:00.753Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error scenarios or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "Documentation contains verbose sections that could be trimmed."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.2,
+    "baselineAvg": 5,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "create-github-issue-agent",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use Composio or the required agent framework."
+      },
+      {
+        "name": "migrate-legacy-v1-code",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B fully addresses all rubric points, while Response A does not mention the required dependency replacements or session-based tool usage."
+      },
+      {
+        "name": "reuse-session-id",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A covers session creation, persistence, and resumption but omits MCP details; Response B is unrelated to composio and fails the rubric entirely."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d6dde88242a49336d0033dd7a352d92123d6ea38ee48297a12cc861910dcd0ae",
+  "scoredAt": "2026-10-24T21:07:29.233Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory text that could be trimmed for conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.29,
+    "baselineAvg": 35,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "profile-domain-with-json-output",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Response A implements the required functions and prints the JSON path, while Response B lacks the specified function calls and structure."
+      },
+      {
+        "name": "resolve-subdomains-by-ip",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A covers almost all rubric items but omits marking unresolved names as 'historical', while Response B fails to use the required Python functions and DNS resolver, missing key rubric requirements."
+      },
+      {
+        "name": "wayback-url-pattern-summary",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response B covers most rubric items (function call, regex patterns, summary) while missing unique host count; Response A lacks the required function call, host count, and some patterns."
+      }
+    ]
+  }
+}

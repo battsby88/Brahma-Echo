@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:cf8753a20f77332652f66f7b9c70fa60f17efd132a0f2c28437eeeb8468b4ba9",
+  "scoredAt": "2026-10-24T17:27:45.393Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill requires a Python environment with soda-core, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "postgres-data-source-contract",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not mention soda or the required YAML files."
+      },
+      {
+        "name": "python-local-verify",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A covers almost all rubric items but omits the explicit call to result.assert_ok(); Response B does not follow the rubric at all."
+      },
+      {
+        "name": "run-only-schema-rowcount",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric by providing the correct soda contract verify command and explanation, while Response B does not include the required command or context."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e72594e0c880ee13921a2f4ae0f7453778b7ee24ac087fdf0784e4e3ebc4adda",
+  "scoredAt": "2026-10-01T11:53:15.737Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.12,
+    "baselineAvg": 17,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "docker-registry-deploy-with-approval",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "Response B covers more rubric items (timeout, concurrency, credentials, input) than Response A, though both miss several key requirements."
+      },
+      {
+        "name": "multibranch-pr-tests-and-deploy",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits the PR-specific when block, junit step, Docker agent, and proper githubNotify usage."
+      },
+      {
+        "name": "shared-library-build-and-notify",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements exactly, while Response B uses a different library name/tag and omits the required post-success Slack notification."
+      }
+    ]
+  }
+}

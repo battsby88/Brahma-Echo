@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3761552f7439c2c5c316689b32ca5aa33f00506124f94eec7e0aa766ad7171f6",
+  "scoredAt": "2026-10-24T22:12:03.751Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.8,
+    "baselineAvg": 10,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "posts-list-create-action",
+        "baseline": 10,
+        "treatment": 65,
+        "rationale": "Response B covers most of the rubric (server functions, middleware, routes, loaders, notFoundComponent) but misses the root layout, vite config, and package.json scripts; Response A lacks all required server-side code and configuration."
+      },
+      {
+        "name": "health-check-dashboard",
+        "baseline": 10,
+        "treatment": 50,
+        "rationale": "Response A correctly outlines the required route files but omits router export, Vite config, package.json scripts, and root layout; Response B is irrelevant to TanStack Start."
+      },
+      {
+        "name": "cloudflare-prerender-deploy",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response A covers most rubric items but misses router and scripts, while Response B lacks almost all required details."
+      }
+    ]
+  }
+}

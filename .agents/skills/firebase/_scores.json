@@ -1,0 +1,54 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:ae7a02bffc00882b9835f9a639b643d787034eaf0c3feb721a05dea12acf23b5",
+  "scoredAt": "2026-10-20T19:25:53.294Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions cover only the happy path and do not address error scenarios or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.39,
+    "baselineAvg": 23,
+    "treatmentAvg": 32,
+    "scenarios": [
+      {
+        "name": "setup-project-with-emulators",
+        "baseline": 50,
+        "treatment": 45,
+        "rationale": "Both miss the required --only flag and project alias, but B provides more detailed setup steps."
+      },
+      {
+        "name": "firestore-security-rule-user-profile",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses do not match the rubric's required read and write rule syntax exactly."
+      },
+      {
+        "name": "cloud-function-on-order-create",
+        "baseline": 20,
+        "treatment": 50,
+        "rationale": "Response B better meets the rubric by using onDocumentCreated and the correct console.log syntax, though it still omits getFirestore; Response A uses older syntax and fails to meet several rubric points."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0dc34ed166fbd984006717816bcfbdd2cf5e9ccee459a0c1fd489c1f2ba7f12a",
+  "scoredAt": "2026-10-03T12:58:31.201Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.96,
+    "baselineAvg": 46,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "persistent-jaeger-badger-compose",
+        "baseline": 62,
+        "treatment": 95,
+        "rationale": "Both use Jaeger v2 with a correct Badger config (ephemeral false, 168h TTL, OTLP on 0.0.0.0, jaeger_storage_exporter). B explains the uid 10001 volume permission error and gives a chown fix, which the rubric requires. A only works around it with user: root and mentions chown 10001 briefly as an aside, so it covers the permission point less fully."
+      },
+      {
+        "name": "sampling-payment-full-health-low",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "A matches the rubric closely: payment-service probabilistic 1.0, api-gateway ratelimiting 5, a default_strategy carrying the /health operation_strategies entry at 0.001, a remote_sampling file config, curl checks against port 5778, and OTEL_TRACES_SAMPLER=jaeger_remote. B gives api-gateway a probabilistic 0.1 in its main file instead of ratelimiting 5, and puts /health under api-gateway rather than in default_strategy, so it misses the central config even though its verification and SDK notes are thorough."
+      },
+      {
+        "name": "query-slow-traces-v3-api",
+        "baseline": 20,
+        "treatment": 96,
+        "rationale": "B uses the stable /api/v3/traces endpoint with query.service_name, start_time_min/max and duration_min=500ms, pipes through jq over resourceSpans/scopeSpans/spans for traceId and name, and mentions the 404 'No traces found' case; A uses the internal /api/traces endpoint and the wrong jq path, and only gets partial credit for noting the endpoint is unstable."
+      }
+    ]
+  }
+}

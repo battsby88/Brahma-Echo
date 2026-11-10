@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:194956b56b6eed1f77908bd39f8870d0caae705179bc641935b0cac9e5b935b4",
+  "scoredAt": "2026-10-24T21:11:02.356Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 49,
+    "treatmentAvg": 87,
+    "multiplier": 1.78,
+    "scenarios": [
+      {
+        "name": "Find the aha moment for a SaaS product",
+        "baseline": 48,
+        "treatment": 88,
+        "rationale": "Treatment ran the documented aha-moment method (list week-1 actions, split did vs didn't, compare D30 retention by group) and tied the winning action to onboarding redesign; baseline suggested generic engagement scoring and feature usage tracking without the retention-gap comparison."
+      },
+      {
+        "name": "Diagnose a leaky AARRR funnel",
+        "baseline": 50,
+        "treatment": 86,
+        "rationale": "Treatment measured drop-off at each AARRR stage, identified the largest absolute drop as the bottleneck, cohorted by acquisition channel and plan tier, and refused to optimize acquisition before retention; baseline recommended broad conversion optimization without cohorting or bottleneck identification."
+      }
+    ]
+  }
+}

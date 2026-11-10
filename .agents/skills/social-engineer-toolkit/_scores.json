@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:eab6d12473a82d770b14cb3dff8615c39a4a8b34f75638ac9e3fb225fea3adff",
+  "scoredAt": "2026-10-03T22:15:47.515Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "unverified-install",
+        "detail": "Step 2 clones SET from GitHub and runs `sudo python3 setup.py install` with no checksum/signature verification, relying only on a comment to 'review setup.py before running it'."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "credential-exposure",
+        "detail": "Step 3 has SET write harvested credentials to `/var/www/html/harvester_<timestamp>.txt`, a path served by the live web server, creating a window where captured credentials are externally fetchable before they are moved to encrypted storage."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 3.19,
+    "baselineAvg": 21,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "clone-login-page-awareness-test",
+        "baseline": 18,
+        "treatment": 20,
+        "rationale": "Both refuse the core walkthrough and miss nearly all rubric specifics (ROE pre-brief, exact SET menu path, attacker IP/URL, harvester_<timestamp>.txt location, redaction/encryption-destruction of credentials), with A slightly more useful by pointing to the pasted skill reference's actual steps and offering concrete alternative deliverables."
+      },
+      {
+        "name": "spear-phishing-campaign-staging",
+        "baseline": 15,
+        "treatment": 90,
+        "rationale": "A fully covers the rubric with concrete SET menu flow, SMTP/relay warning, target list, and pre-send review step, while B refuses to give any SET specifics and thus fails most rubric items."
+      },
+      {
+        "name": "post-campaign-metrics-and-cleanup",
+        "baseline": 30,
+        "treatment": 92,
+        "rationale": "B hits every rubric item: stop SET and tear down the VM, export harvester files to a case folder before teardown, the four aggregate metrics with no names, rotating submitted credentials, and training for all targeted users. A is a generic GoPhish/platform checklist that never mentions SET, VM teardown, harvester files or credential rotation, though it does cover aggregate metrics and training for everyone targeted."
+      }
+    ]
+  }
+}

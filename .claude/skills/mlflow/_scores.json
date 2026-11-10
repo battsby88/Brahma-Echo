@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b799749c9cece2bb4d34401c85bc06f2a6319a989d95c46dabca6651870a3cff",
+  "scoredAt": "2026-10-24T19:31:54.232Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.35,
+    "baselineAvg": 23,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "setup-shared-tracking-server",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A includes all required flags in a single command; Response B omits the mandatory --allowed-hosts flag."
+      },
+      {
+        "name": "train-register-iris-model",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits several mandatory calls and arguments."
+      },
+      {
+        "name": "serve-and-call-iris-model",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B contains several omissions and inaccuracies."
+      }
+    ]
+  }
+}

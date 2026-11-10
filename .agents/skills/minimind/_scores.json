@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a9995e52e5c299d125ee0bd9ddd0e8e9f7b636356a4d2caaa94bb7a463f7c0fe",
+  "scoredAt": "2026-10-01T12:57:44.678Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Instructions assume Unix shell activation and may not work on Windows without modifications."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.74,
+    "baselineAvg": 23,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "train-from-scratch",
+        "baseline": 30,
+        "treatment": 75,
+        "rationale": "Response A covers most required steps but omits log and speed details, while Response B lacks the essential training and evaluation commands."
+      },
+      {
+        "name": "lora-finetune-and-serve",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Response A covers the required steps except evaluation, while Response B omits the key commands and dataset format specified in the rubric."
+      },
+      {
+        "name": "dpo-training-and-evaluation",
+        "baseline": 10,
+        "treatment": 30,
+        "rationale": "Response A covers more of the required steps and mentions the output directory, whereas Response B omits the default dataset path, output file name, reward model, and eval script details."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a25a143c069beceba6bfa6f8d785a1d0533a24046c475ea96e294cf33ad10ea7",
+  "scoredAt": "2026-10-24T20:26:48.939Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling or edge cases such as missing IAM permissions or command failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.18,
+    "baselineAvg": 82,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "create-standard-queue-batch-send-receive",
+        "baseline": 95,
+        "treatment": 90,
+        "rationale": "Response A includes explicit region usage and covers all rubric items, while Response B also meets the rubric but omits region specification and has a minor syntax issue."
+      },
+      {
+        "name": "create-fifo-queue-with-dedup-and-order",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, providing queue creation, message sending with the required attributes, message receiving, and explicit confirmation of FIFO ordering."
+      },
+      {
+        "name": "add-dlq-and-move-messages-back",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A covers all rubric items, while Response B omits the DLQ retention setting, the start-message-move-task, and the list-message-move-tasks steps."
+      }
+    ]
+  }
+}

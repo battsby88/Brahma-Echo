@@ -1,0 +1,54 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:126020fa3b2b912290618009e4dededa2e28559f23669c5c74f16d9753cd2d33",
+  "scoredAt": "2026-10-24T23:06:52.412Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Node.js and does not support other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 10,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "send-invoice-with-attachments-tags",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric, while Response A fails on tag format, attachment content type, and error handling."
+      },
+      {
+        "name": "create-react-email-template-preview",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements, while Response B fails to import from the correct package and omits the preview command."
+      },
+      {
+        "name": "setup-webhook-verify-bounced",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use the required resend.webhooks.verify method or the specified handler signature."
+      }
+    ]
+  }
+}

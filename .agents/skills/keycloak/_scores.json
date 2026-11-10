@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1a11069204ef2fdb379d25afb20c45603d9f97465b90fa6a3566ee9acc5e50af",
+  "scoredAt": "2026-10-01T18:45:04.724Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered verbose."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.41,
+    "baselineAvg": 32,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "local-keycloak-nextjs-client",
+        "baseline": 40,
+        "treatment": 70,
+        "rationale": "Response B meets most rubric items except the exact clientId name, while Response A fails on the bootstrap admin variables, clientId, redirect URI, and secret retrieval command."
+      },
+      {
+        "name": "reverse-proxy-https-setup",
+        "baseline": 0,
+        "treatment": 85,
+        "rationale": "Response B covers most rubric items but omits the issuer URL detail, while Response A is not provided and thus cannot be evaluated."
+      },
+      {
+        "name": "create-user-admin-api",
+        "baseline": 55,
+        "treatment": 75,
+        "rationale": "Response B better meets the rubric, providing the required functions and correct payloads, while Response A uses the wrong realm for the token, omits VERIFY_EMAIL, and extracts the user ID incorrectly."
+      }
+    ]
+  }
+}

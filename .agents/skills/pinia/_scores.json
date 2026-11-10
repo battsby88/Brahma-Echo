@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b45bffefed8cc17df999873c7f9828538a55a97b1a27a8c3f2e968f2668925a1",
+  "scoredAt": "2026-10-24T21:09:08.927Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for API failures and SSR scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 43,
+    "treatmentAvg": 95,
+    "multiplier": 2.21,
+    "scenarios": [
+      {
+        "name": "Type-safe auth store with computed flags",
+        "baseline": 45,
+        "treatment": 95,
+        "rationale": "Baseline defaults to options-store; treatment uses the setup-store form with ref/computed and returns the full surface, matching the skill's recommended pattern."
+      },
+      {
+        "name": "Destructure store state preserving reactivity",
+        "baseline": 40,
+        "treatment": 95,
+        "rationale": "Baseline likely uses plain destructure that breaks reactivity; treatment uses storeToRefs for state/getters and calls actions off the store instance per the skill."
+      }
+    ]
+  }
+}

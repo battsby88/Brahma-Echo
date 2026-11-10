@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1ec4930335c199efe4d8a18886bd61e143e4a4cd3ef294dc9cbab964a58a13c7",
+  "scoredAt": "2026-10-24T15:48:22.473Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 83,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Node.js, not cross-platform."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.3,
+    "baselineAvg": 3,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "invoice-with-table-and-custom-font",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets every rubric requirement, whereas Response A uses XeLaTeX and does not involve pdfkit at all."
+      },
+      {
+        "name": "multi-page-report-with-page-numbers",
+        "baseline": 10,
+        "treatment": 20,
+        "rationale": "Response A references PDFKit and hints at the required approach, whereas Response B uses a different library (ReportLab) and does not meet the rubric's PDFKit-specific requirements."
+      },
+      {
+        "name": "express-invoice-streaming-route",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric by creating and streaming a PDFDocument with headers, title, and doc.end(), while Response B merely streams an existing file and never creates a PDFDocument."
+      }
+    ]
+  }
+}

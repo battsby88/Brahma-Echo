@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f1792591d924f670537a4c89c85e962d90b8aab9fc49688be689d818d16d8439",
+  "scoredAt": "2026-10-24T16:51:11.624Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 7,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "extract-product-reviews-with-retries",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric by using instructor.from_provider, client.create with a validated rating field, max_retries=3, and showing retry logic; Response A does not meet these requirements."
+      },
+      {
+        "name": "stream-contact-extraction-anthropic",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A does not."
+      },
+      {
+        "name": "local-ollama-json-mode-with-raw-completion",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies all rubric requirements, while Response B does not use the required API calls or settings."
+      }
+    ]
+  }
+}

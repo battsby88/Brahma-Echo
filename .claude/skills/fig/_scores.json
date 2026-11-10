@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e760d64c5a9d68690235b940ca18749d8899c79eacfc9ad54b4afc273938d270",
+  "scoredAt": "2026-10-01T18:35:11.053Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.8,
+    "baselineAvg": 3,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "setup-inshellisense-autocomplete",
+        "baseline": 0,
+        "treatment": 90,
+        "rationale": "Response A covers all required steps (install, init, scaffold, create spec, test, build, add to config) with detailed commands, while Response B omits every inshellisense‑specific requirement."
+      },
+      {
+        "name": "replace-fig-with-kiro",
+        "baseline": 10,
+        "treatment": 70,
+        "rationale": "Response A covers most of the rubric but omits the Amazon Q Developer CLI mention, while Response B fails to address the required points."
+      },
+      {
+        "name": "generate-spec-from-commander",
+        "baseline": 0,
+        "treatment": 75,
+        "rationale": "Response A covers most of the required steps but omits adding the build directory to ~/.inshellisenserc and verifying the spec with is specs list, while Response B provides no content."
+      }
+    ]
+  }
+}

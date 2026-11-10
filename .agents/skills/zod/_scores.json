@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f6080996226548960431883b19ed8136908f09683b998fb736661f25555f4b23",
+  "scoredAt": "2026-10-20T18:57:39.450Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a TypeScript environment, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.87,
+    "baselineAvg": 15,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "validate-env-with-coercion",
+        "baseline": 5,
+        "treatment": 75,
+        "rationale": "Response B meets almost all rubric items, while Response A lacks zod usage and prettified error handling."
+      },
+      {
+        "name": "discriminated-union-request-validation",
+        "baseline": 20,
+        "treatment": 30,
+        "rationale": "Response A better meets the rubric by using a discriminated union and flattenError, while Response B uses a plain union; both miss the required refine, strictObject, and role key."
+      },
+      {
+        "name": "recursive-category-schema-with-json-schema",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response A covers most rubric items (recursive schema with getter, JSON schema generation, codec) but omits type inference; Response B fails to use a getter, z.codec, and z.infer, making it less compliant."
+      }
+    ]
+  }
+}

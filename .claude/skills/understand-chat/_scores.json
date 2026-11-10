@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:18f3cc9287ffb205811b4e3f73f9348cf83d9cfef703a33c20a2c55e4816c1c1",
+  "scoredAt": "2026-10-01T21:05:24.971Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered verbose for a concise skill definition."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 8,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "explain-checkout-logic",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not."
+      },
+      {
+        "name": "list-dependents-of-money-lib",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A uses the graph, lists dependencies with line numbers, and explains the query, but omits commit hash confirmation; Response B relies on grep, lacks graph usage, line numbers, and commit hash verification."
+      },
+      {
+        "name": "install-and-analyze-billing",
+        "baseline": 5,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits all required steps and details."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0bc2be289a33af0cfa2c5e3eb265da69f34f97174ee859a271a830eb0833a62a",
+  "scoredAt": "2026-10-24T21:35:26.211Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.62,
+    "baselineAvg": 37,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "create-block-theme",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies every rubric requirement, while Response B fails to meet key criteria such as the required theme.json version and missing templates/index.html."
+      },
+      {
+        "name": "register-custom-post-type",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, providing the required CPT registration and REST route with correct parameters and callback."
+      },
+      {
+        "name": "search-replace-staging-to-production",
+        "baseline": 10,
+        "treatment": 90,
+        "rationale": "Response A includes the required WP‑CLI commands and references the $DB_PASSWORD variable, while Response B uses a MySQL script and does not provide the WP‑CLI commands specified in the rubric."
+      }
+    ]
+  }
+}

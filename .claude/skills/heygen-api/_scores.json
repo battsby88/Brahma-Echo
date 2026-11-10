@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:85f52a1daea96c8fbbd624088cb0f0572e68f700b467b7c390c0adcf5eedc41f",
+  "scoredAt": "2026-10-01T11:49:52.001Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The code handles rate limiting but does not cover quota_exceeded or insufficient_credit errors, leaving some error scenarios unhandled."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered verbose beyond necessary instructions."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is implemented in Python and relies on specific libraries, limiting its applicability to agents that support Python execution."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5,
+    "baselineAvg": 20,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "bulk-personalized-video-generation",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully implements the required batch workflow, while Response B uses a single‑job approach and omits batch handling."
+      },
+      {
+        "name": "video-translation-lip-sync",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully implements the required API calls, polling, and download logic, while Response A does not use the specified endpoint or download the translated videos."
+      },
+      {
+        "name": "setup-webhook-notifications",
+        "baseline": 60,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, while Response B omits the webhook registration step and the storage of the returned secret."
+      }
+    ]
+  }
+}

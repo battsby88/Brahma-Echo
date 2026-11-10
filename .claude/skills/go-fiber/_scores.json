@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0a71ac401f95cfd8638f47eaeffb39cd735ea7f4c25082afd6de8cec1b6e1531",
+  "scoredAt": "2026-10-24T20:48:53.886Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Go and assumes a Go environment, which is a minor platform assumption."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2,
+    "baselineAvg": 50,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "simple-health-and-items-api",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A omits the required c.Bind().JSON usage and graceful context setup."
+      },
+      {
+        "name": "add-rate-limiter",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses correctly call limiter.New with Max:20 and Expiration: time.Minute, apply it globally, and use the correct time.Duration type."
+      },
+      {
+        "name": "migrate-fiber-v2-to-v3",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies every rubric requirement, while Response A fails to implement the necessary changes."
+      }
+    ]
+  }
+}

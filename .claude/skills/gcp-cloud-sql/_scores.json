@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:572886e0b276deeff658907bb7a80bea79f74b5360f31c194dc8b58ac83c04d1",
+  "scoredAt": "2026-10-20T19:32:23.195Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack explicit error handling and edge case scenarios, such as handling failed instance creation or network configuration errors."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "provision-ha-private-iam-postgres",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A omits several required flags and options."
+      },
+      {
+        "name": "replica-auth-proxy-gke",
+        "baseline": 30,
+        "treatment": 50,
+        "rationale": "Response B correctly creates the replica with the required tier and region and references the connection name, whereas Response A uses the wrong tier and image; however, both responses lack a complete, correctly specified deployment YAML with the required sidecar image and DATABASE_URL."
+      },
+      {
+        "name": "terraform-cloudsql-iam",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B is empty."
+      }
+    ]
+  }
+}

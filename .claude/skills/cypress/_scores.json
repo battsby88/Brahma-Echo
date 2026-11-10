@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e071be85a4b698457a1511ccc4155349df18246fcd67be614c047006d669e214",
+  "scoredAt": "2026-10-24T14:08:38.996Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack explicit error handling or edge case scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.4,
+    "baselineAvg": 20,
+    "treatmentAvg": 68,
+    "scenarios": [
+      {
+        "name": "e2e-login-with-session-and-intercept",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric criteria, while Response A fails on data-cy selectors, uses cy.wait, and does not fully satisfy the requirements."
+      },
+      {
+        "name": "setup-vue-component-testing",
+        "baseline": 40,
+        "treatment": 70,
+        "rationale": "Response B better meets the rubric by correctly importing mount, declaring the chainable, and using JSX mounting, whereas Response A misses the chainable declaration, uses the wrong import, and does not use JSX or getByRole."
+      },
+      {
+        "name": "ci-parallel-recording-with-cypress",
+        "baseline": 0,
+        "treatment": 40,
+        "rationale": "B contains more relevant details than the empty A"
+      }
+    ]
+  }
+}

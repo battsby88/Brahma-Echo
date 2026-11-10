@@ -1,0 +1,59 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:c9d72a3df7f23191d7ec82a162bf1a75401d68a1fd42e9de17607260014e146d",
+  "scoredAt": "2026-10-29T22:26:10.174Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases, such as API rate limits or missing fields."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill relies heavily on Node.js SDK and code examples, limiting usability for agents that do not support Node.js."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8,
+    "baselineAvg": 0,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "create-project-with-issue",
+        "baseline": 0,
+        "treatment": 65,
+        "rationale": "Response A covers most rubric items but omits targetDate and startDate, while Response B uses a different platform and misses all Linear-specific requirements."
+      },
+      {
+        "name": "auto-assign-and-notify-webhook",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B implements a GitHub Actions workflow unrelated to Linear webhooks."
+      },
+      {
+        "name": "roll-issues-and-velocity-report",
+        "baseline": 0,
+        "treatment": 75,
+        "rationale": "Response A meets most rubric items but misses the exact active cycle filter; Response B fails to use Linear API and rubric requirements."
+      }
+    ]
+  }
+}

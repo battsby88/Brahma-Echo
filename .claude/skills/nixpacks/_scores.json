@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4ca078627dfdd926bd4aea0f3daf2258bd2b2f826fdec4dae2559ab927bbda9c",
+  "scoredAt": "2026-10-01T11:21:59.975Z",
+  "backend": "gemini",
+  "model": "gemini-2.5-flash",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 35,
+    "treatmentAvg": 85,
+    "multiplier": 2.43,
+    "scenarios": [
+      {
+        "name": "Django app with native deps via nixpacks.toml",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Treatment uses nixpacks.toml with [phases.setup] nixPkgs for postgresql, pythonVersion pin, and collectstatic in [phases.build] exactly as documented; baseline writes a generic Dockerfile and never invokes nixpacks."
+      },
+      {
+        "name": "GitHub Actions build/push with Nixpacks",
+        "baseline": 40,
+        "treatment": 85,
+        "rationale": "Treatment installs nixpacks via the documented curl install, uses nixpacks build with --name and --env per the SKILL.md workflow, and pushes to GHCR; baseline uses docker/build-push-action and a hand-written Dockerfile."
+      }
+    ]
+  }
+}

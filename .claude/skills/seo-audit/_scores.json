@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:90bab5082122d1759f86c42becd8fc79b8e8f332a009d3e1abe582c4ed4682b7",
+  "scoredAt": "2026-10-01T20:49:19.029Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered padded, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.26,
+    "baselineAvg": 27,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "migration-traffic-drop-audit",
+        "baseline": 30,
+        "treatment": 65,
+        "rationale": "Response A covers the required curl checks and seo_page_check.py usage but omits core web vitals and trace commands, while Response B lacks all specified diagnostics."
+      },
+      {
+        "name": "blog-pages-indexing-check",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully addresses all rubric requirements, while Response B provides no content."
+      },
+      {
+        "name": "core-web-vitals-audit",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets all rubric requirements, while Response B omits the CrUX query, lighthouse@13 specifics, performance/SEO score extraction, and table output."
+      }
+    ]
+  }
+}

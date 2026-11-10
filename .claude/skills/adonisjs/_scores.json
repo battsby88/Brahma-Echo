@@ -1,0 +1,54 @@
+{
+  "version": "1.3.0",
+  "skillHash": "sha256:7ae84724e1a583c7582cd181f9e6cfd38b2effd2b66df89bb657167b7b0b7df4",
+  "scoredAt": "2026-10-20T16:58:49.129Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that may be considered padded."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.64,
+    "baselineAvg": 33,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "full-stack-blog-hypermedia",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Response A meets almost all rubric items (kit, model, controller, validator, routes, migration, validation, redirect) but omits the serve command; Response B fails the required kit and command usage."
+      },
+      {
+        "name": "api-token-auth-pagination",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B deviates from the specified token guard, model, and API kit setup."
+      },
+      {
+        "name": "github-social-login-ally",
+        "baseline": 60,
+        "treatment": 75,
+        "rationale": "Response B covers more rubric items (correct command, use of ally.use, built‑in state check) but both miss the required User model mixin; Response A includes manual state protection but uses the wrong ally method and also lacks the mixin."
+      }
+    ]
+  }
+}

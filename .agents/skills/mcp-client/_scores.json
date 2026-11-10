@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7a6dd68129ee0ae5cbceb42c666e439a673fef2acc1799b12ccac4fa8ae3106b",
+  "scoredAt": "2026-10-24T16:56:01.683Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "list-tools-resources-stdio",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets rubric, A does not."
+      },
+      {
+        "name": "call-get-weather-remote-error",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A provides only a minimal JSON payload and lacks the required imports, instantiation, connection, and error handling."
+      },
+      {
+        "name": "read-config-resource",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully follows the rubric by importing and using Client, connecting, reading the resource, iterating contents, checking for text, and printing MIME type and text; Response A does not use Client or readResource and thus fails the rubric."
+      }
+    ]
+  }
+}

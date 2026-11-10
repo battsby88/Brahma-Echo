@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:85627ace96a0b337096f75f57f199fcde36f775210eaa4e8f0b0b1ee36272397",
+  "scoredAt": "2026-10-24T14:34:20.168Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not address how to handle insufficient or ambiguous user data."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.58,
+    "baselineAvg": 62,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "identify-constraint-in-manufacturing",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully covers the rubric, while Response B omits the required 5 Theory of Constraints focusing steps."
+      },
+      {
+        "name": "map-feedback-loops-streaming-service",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully meets all rubric requirements, while Response B provides most of the needed content but lacks explicit loop labeling and a clear recommendation to strengthen or break a specific loop."
+      },
+      {
+        "name": "predict-second-order-effects-pricing-tier",
+        "baseline": 55,
+        "treatment": 95,
+        "rationale": "Response B explicitly covers first-order, second-order, third-order effects and mitigation, while Response A omits first-order and mitigation details."
+      }
+    ]
+  }
+}

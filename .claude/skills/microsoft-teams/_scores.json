@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0f952d83eed1a4d4c832c8cb374d98065e418618c092a73f991fc36d6fe0d580",
+  "scoredAt": "2026-10-24T19:30:35.210Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 10,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "send-deployment-notification",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric, while Response A uses a different card format, curl, and lacks the required fetch logic and environment variable usage."
+      },
+      {
+        "name": "create-channel-and-meeting",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet the specified implementation details."
+      },
+      {
+        "name": "status-bot",
+        "baseline": 10,
+        "treatment": 85,
+        "rationale": "Response A meets almost all rubric requirements, missing only the note about DANGEROUSLY_ALLOW_UNAUTHENTICATED_REQUESTS; Response B fails to use the required Teams SDK imports and patterns."
+      }
+    ]
+  }
+}

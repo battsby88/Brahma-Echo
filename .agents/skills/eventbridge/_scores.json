@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b3699ee7e0b1c7a4da382ac8cd19950a6055345233db8021a046c85bcc62adcf",
+  "scoredAt": "2026-10-24T14:10:45.634Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.13,
+    "baselineAvg": 15,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "publish-user-signed-up-event",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A is empty."
+      },
+      {
+        "name": "cloudformation-rule-order-created-dlq",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not provide the necessary CloudFormation resources."
+      },
+      {
+        "name": "scheduler-daily-report-berlin",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response B covers most rubric items (schedule expression, timezone, flexible window, target and role) but misnames the resource; Response A uses CLI instead of CloudFormation and omits several required properties."
+      }
+    ]
+  }
+}

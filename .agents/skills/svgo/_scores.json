@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ec8499839ab5d5e7d0183666f4e88f9c5026814cb52f7f769dc45d26a9967ca8",
+  "scoredAt": "2026-10-24T21:26:41.929Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling for CLI failures or file system permission errors."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment, limiting its applicability to agents that can run Node.js."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.7,
+    "baselineAvg": 27,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "optimize-folder-with-pretty-output",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "B matches the required command and config details; A does not."
+      },
+      {
+        "name": "programmatic-api-optimizing-svg",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "A fully meets the rubric, B misses the required import of SvgoParserError and the exact config shape."
+      },
+      {
+        "name": "custom-plugin-add-path-class",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B deviates from the required plugin structure and usage."
+      }
+    ]
+  }
+}

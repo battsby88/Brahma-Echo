@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:506cdb2f1d212f190e3eeb264c5b7f1d4dad72317c02b300577e5e9d6321d41d",
+  "scoredAt": "2026-10-24T15:04:42.761Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios and edge cases, such as network failures or invalid input handling."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains verbose explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes an AWS environment with boto3 and AWS credentials, limiting portability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.4,
+    "baselineAvg": 20,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "converse-simple-explanation",
+        "baseline": 30,
+        "treatment": 75,
+        "rationale": "Response A meets most rubric requirements but lacks the correct system message and token usage output, while Response B fails to use bedrock.converse, the specified model ID, and the required system message."
+      },
+      {
+        "name": "converse-stream-quick-sort",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric, while Response A uses the wrong API and model, missing key requirements."
+      },
+      {
+        "name": "knowledge-base-refund-policy",
+        "baseline": 10,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric by using the correct client, method, and parameters, while Response A uses the wrong client and method and omits required configuration."
+      }
+    ]
+  }
+}

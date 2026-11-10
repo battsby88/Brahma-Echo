@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1f88d71127d8ff6fc8a57fa2e0afea2b68c8bf356bf3f310ad63388924ff79ad",
+  "scoredAt": "2026-10-02T23:20:42.084Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.91,
+    "baselineAvg": 32,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "node-sse-server-with-state-and-tool",
+        "baseline": 22,
+        "treatment": 96,
+        "rationale": "B uses EventEncoder from @ag-ui/encoder with getContentType(), emits every required event type including STATE_SNAPSHOT then STATE_DELTA JSON Patch, streams text word by word, and takes threadId/runId from the input; A hand-rolls SSE with no @ag-ui/encoder (a core rubric item) but does otherwise cover the event types, so it earns only partial credit."
+      },
+      {
+        "name": "langgraph-agent-to-copilotkit-chat",
+        "baseline": 18,
+        "treatment": 90,
+        "rationale": "B matches the rubric: it registers HttpAgent({url}) in a CopilotRuntime agents map, exposes it with createCopilotRuntimeHandler, and renders CopilotKit with runtimeUrl and a CopilotChat with a matching agentId, all from the v2 paths, without rewriting the agent. A uses the older v1 API (copilotruntime NextJS endpoint, LangGraphHttpAgent, react-ui, the `agent` prop), and it tells the user to add a Python AG-UI adapter, which means changing the agent."
+      },
+      {
+        "name": "fix-run-failing-on-unclosed-message",
+        "baseline": 55,
+        "treatment": 92,
+        "rationale": "B covers all the rubric points: it says the unclosed message needs TEXT_MESSAGE_END before RUN_FINISHED, that unknown properties are stripped with metadata as the place for extra data, that optional fields must be absent not null, and it mentions RUN_ERROR. A gets the TEXT_MESSAGE_END fix and the null handling, but wrongly suggests unknown keys are tolerated and never mentions RUN_ERROR."
+      }
+    ]
+  }
+}

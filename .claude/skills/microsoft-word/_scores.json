@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:78c2c5a697a49bcf337b733c3279041601b4432e3395e7b97489cb8cece7a1e4",
+  "scoredAt": "2026-10-24T15:40:16.227Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not address error handling or edge cases such as missing files or network failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory comments that could be condensed for brevity."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is limited to Python and Microsoft Graph, making it vendor-specific and not universally applicable."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.15,
+    "baselineAvg": 13,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "generate-report-with-python-docx",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B provides no relevant content."
+      },
+      {
+        "name": "mail-merge-with-docxtpl",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses pandas instead of csv.DictReader, missing a key requirement."
+      },
+      {
+        "name": "upload-and-convert-with-graph-api",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Neither response uses async/await with graphClient .api(...).put/getStream/post as required by the rubric."
+      }
+    ]
+  }
+}

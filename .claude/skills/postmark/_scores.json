@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7df7422dd0e2bca7d005af5a0399cb1e41643caf4935f16ae7679005af50ec0d",
+  "scoredAt": "2026-10-24T17:13:46.360Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Node.js, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.45,
+    "baselineAvg": 40,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "send-password-reset-template",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A omits MessageStream, Tag, and uses the wrong environment variable."
+      },
+      {
+        "name": "batch-invoice-email",
+        "baseline": 70,
+        "treatment": 95,
+        "rationale": "Response A meets all rubric requirements, including batching, correct method, fields, token usage, and error filtering, while Response B omits the Tag and MessageStream fields, uses a different token variable, and a different method name, falling short of full compliance."
+      },
+      {
+        "name": "inbound-support-webhook",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B fails to meet key requirements."
+      }
+    ]
+  }
+}

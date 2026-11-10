@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a84623036d5f4ff8100cf4389e4c0c97ca5ceb284aec56ef2526e062fdd930a8",
+  "scoredAt": "2026-10-03T13:06:08.061Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The Go section has no runnable code or concrete options, and defers to external documentation for details such as sorted map keys."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.96,
+    "baselineAvg": 89,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "websocket-binary-frames-with-dates",
+        "baseline": 88,
+        "treatment": 80,
+        "rationale": "Both set binaryType to arraybuffer, wrap data in new Uint8Array before decode, pass a Date directly, and say the server must send binary frames; B follows the rubric more closely by using the `encode`/`decode` functions, says plainly that the server must send and accept MessagePack, and includes a server-side example, while A uses Encoder/Decoder class instances instead of the plain functions and adds decoder size limits the task didn't ask for."
+      },
+      {
+        "name": "set-extension-codec-ts",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both create an ExtensionCodec, register type 0 (within the 0-127 range), and pass { extensionCodec } to the top-level and nested encode/decode calls; A explicitly says to document the type ID because other-language services will see it as an ExtType, while B only says both ends must use the same SET_EXT_TYPE (and only in the Socket.IO note), so A covers the cross-language contract point slightly better, but B's wrapper helpers and more thorough notes make its overall answer a bit stronger."
+      },
+      {
+        "name": "python-redis-cache-and-stream",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both use datetime=True, timestamp=3, and Unpacker.feed() with iteration, but A adds a chunked-read example with max_buffer_size and notes that it must exceed the largest record, while B mentions the 100 MiB default max_buffer_size for untrusted data and covers the Unpacker pitfalls with a shorter, less thorough stream example."
+      }
+    ]
+  }
+}

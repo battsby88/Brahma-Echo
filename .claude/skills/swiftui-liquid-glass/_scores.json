@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:b6351ca6342acc7d07190d43f6ca9c7881251a0f326c3fba3825159ea3fb2fb0",
+  "scoredAt": "2026-10-01T20:55:59.864Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "floating-map-controls-with-glass",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits the GlassEffectContainer, glassEffectID, and iOS 26 availability logic."
+      },
+      {
+        "name": "review-and-fix-glass-usage-in-bar",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements; Response B is empty."
+      },
+      {
+        "name": "add-clear-glass-caption-over-video",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B is closer to the rubric, applying the glass effect and capsule background, but it fails to render the background first and lacks the iOS < 26 fallback, whereas Response A does not meet any of the SwiftUI requirements."
+      }
+    ]
+  }
+}

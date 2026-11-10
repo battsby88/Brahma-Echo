@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:83c5301c6fe5537ad0d2a89920ec9fa10c0420f4bddc2afac1b3ee76d92992c7",
+  "scoredAt": "2026-10-13T12:03:07.554Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Missing error handling for common scenarios like rate limiting, token expiry, invalid credentials, and network failures; only covers the happy path for most workflows."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.5,
+    "baselineAvg": 46,
+    "treatmentAvg": 69,
+    "scenarios": [
+      {
+        "name": "verify-and-merge-pr",
+        "baseline": 68,
+        "treatment": 78,
+        "rationale": "Both responses show the two required commands (`gh pr checks` and `gh pr merge --squash --delete-branch`), but neither confirms the merge with a URL as the rubric requires; Response A is more direct and actionable, while Response B unnecessarily gatekeeps execution with permission-asking that the system handles automatically."
+      },
+      {
+        "name": "search-related-issues",
+        "baseline": 35,
+        "treatment": 60,
+        "rationale": "Response A uses the correct `gh search issues` command with proper filters (--state, --limit, --repo) as required by the rubric, but doesn't execute it. Response B uses the wrong command entirely (`gh issue list --search` instead of `gh search issues`), which violates the explicit rubric requirement; it also fails to deliver actual results or recommendations from the search."
+      },
+      {
+        "name": "investigate-workflow-failure",
+        "baseline": 35,
+        "treatment": 68,
+        "rationale": "Response B includes all three commands from the rubric (`gh run list`, `gh run view`, and crucially `gh run view --log-failed`), while Response A omits the `--log-failed` option entirely; both fail to execute the commands to actually identify the failing job and root cause, but Response B properly requests permission and provides complete, runnable command syntax."
+      }
+    ]
+  }
+}

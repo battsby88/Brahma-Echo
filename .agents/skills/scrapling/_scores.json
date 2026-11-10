@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:764b1a03c1dbc8257745f630d21a1733a88a5ce431a95bc9262c879448b571da",
+  "scoredAt": "2026-11-05T20:43:00.364Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.31,
+    "baselineAvg": 13,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "adaptive-selector-after-redesign",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not mention adaptive selectors or the required configuration."
+      },
+      {
+        "name": "resume-crawl-with-crawldir",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response B covers the required Spider subclass, start(crawldir=\"crawl-state\"), resume logic, checkpoint removal, and export to JSON‑lines, while Response A only shows command‑line usage without the subclass or checkpoint details."
+      },
+      {
+        "name": "scrape-cloudflare-page-with-stealthyfetcher",
+        "baseline": 10,
+        "treatment": 55,
+        "rationale": "Response A partially meets the rubric but omits the required wait_selector and markdown/css methods, while Response B does not use StealthyFetcher.fetch at all."
+      }
+    ]
+  }
+}

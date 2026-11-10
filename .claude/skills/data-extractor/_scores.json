@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8f83f470bb39fcd01214d3995f9c8d73e6259d67acf59576a008e5feaea6cac3",
+  "scoredAt": "2026-10-13T11:51:11.642Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Instructions assume local Python/bash execution capabilities that may not be equally supported across all listed compatible tools (e.g., OpenAI Codex)."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.61,
+    "baselineAvg": 18,
+    "treatmentAvg": 65,
+    "scenarios": [
+      {
+        "name": "invoice-pdf-extraction",
+        "baseline": 28,
+        "treatment": 22,
+        "rationale": "Both correctly identify the missing PDF prerequisite and cannot execute the rubric's core requirements (pdfplumber extraction, regex patterns, JSON/CSV outputs), but Response A provides more helpful guidance on how to supply the file (upload or path), making it marginally better at facilitating the actual task."
+      },
+      {
+        "name": "scanned-form-ocr-extraction",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response A asks for the image but provides no demonstration of the required methodology; Response B directly addresses all rubric requirements—showing OCR with pytesseract, regex patterns for all four fields with email validation, and extraction logic—despite also requesting the image file."
+      },
+      {
+        "name": "batch-docx-consolidation",
+        "baseline": 20,
+        "treatment": 78,
+        "rationale": "Response A asks clarifying questions but provides zero implementation code, failing to meet any rubric requirement. Response B delivers working code with python-docx iteration, regex email extraction, text/table parsing, clean lowercase column names, and CSV export—but uses a dict list instead of explicitly creating a pandas DataFrame as required, missing one specific rubric element while being otherwise complete and runnable."
+      }
+    ]
+  }
+}

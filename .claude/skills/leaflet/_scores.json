@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:df6d7ec7f59904c1a60a5cb16c4ab0766ab2d76a6261fdfd25f615fc5294a5b8",
+  "scoredAt": "2026-10-01T18:51:53.734Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 5,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "clustered-custom-markers-with-click",
+        "baseline": 15,
+        "treatment": 100,
+        "rationale": "Response B fully implements all rubric requirements, while Response A only lists dependencies and lacks any functional code."
+      },
+      {
+        "name": "geojson-delivery-zones-with-dynamic-styling",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric items, while Response A does not use a React Leaflet GeoJSON component or a key prop and thus fails the rubric."
+      },
+      {
+        "name": "nextjs-ssr-leaflet-with-locate-control",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits the required LocateControl, useMap, and error handling."
+      }
+    ]
+  }
+}

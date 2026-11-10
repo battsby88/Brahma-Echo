@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1b0c5a6ca0226c04bf16717b4614ec7bd87fa409dd6fa82bd1fb982c79b3dd14",
+  "scoredAt": "2026-10-24T21:10:36.970Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases, focusing only on happy path examples."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose examples and explanatory text that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.75,
+    "baselineAvg": 53,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "streaming-aggregate-country-sales",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B explicitly uses collect(engine='streaming') or sink_parquet, fully satisfying the rubric, while Response A omits the streaming engine argument in collect()."
+      },
+      {
+        "name": "product-sales-window-rank",
+        "baseline": 80,
+        "treatment": 80,
+        "rationale": "Both responses correctly use with_columns and the required expressions, but neither names the new columns exactly 'rank' and 'cumulative', so they are slightly below perfect."
+      },
+      {
+        "name": "join-orders-customers-validate",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A uses pandas and lacks the required Polars join parameters."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5d31a96a771e989243dff61b1ccde0f07d377c92c047ca95c777698550f195f1",
+  "scoredAt": "2026-10-20T19:16:44.885Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for data processing."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains verbose sections that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.33,
+    "baselineAvg": 27,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "responsive-line-chart",
+        "baseline": 60,
+        "treatment": 70,
+        "rationale": "Response B meets the 750 ms duration requirement (though it lacks the specified easeCubicInOut), whereas Response A uses a 2000 ms transition and also omits the easing function, making B slightly more compliant."
+      },
+      {
+        "name": "force-directed-graph",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully implements all rubric items, while Response A is incomplete and lacks key features."
+      },
+      {
+        "name": "choropleth-map",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response A includes a D3 setup with tooltip but omits the required projection, path, and color scale; Response B uses Plotly, not D3, and thus fails the rubric entirely."
+      }
+    ]
+  }
+}

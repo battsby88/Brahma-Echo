@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9a21923b286758fc1812847cb6a55de8f3ed61a144aa7a110607831c219fdb5c",
+  "scoredAt": "2026-10-24T20:25:43.555Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose sections that may distract from core instructions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.03,
+    "baselineAvg": 33,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "function-url-dynamodb",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, providing a SAM template with nodejs24.x runtime, arm64 architecture, IAM‑protected Function URL, and a DynamoDBCrudPolicy referencing an in‑template table."
+      },
+      {
+        "name": "s3-image-processor",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet the specified bucket name, policy, or Pillow inclusion criteria."
+      },
+      {
+        "name": "sqs-batch-item-failures",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Unable to evaluate responses because their content is not provided."
+      }
+    ]
+  }
+}

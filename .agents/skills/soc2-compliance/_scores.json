@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f129b83a156bf2ffef850dbbe4cb09bb2e4c871f6021a1049b42e6abde48de59",
+  "scoredAt": "2026-10-03T12:09:36.490Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "Only the MFA middleware and IAM access review script are runnable, and the AWS script ignores access keys, MFA device status and last-used data, while the CC8 'cat deployment-log.json' block is a commented mock rather than a procedure to produce the record."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are short prose descriptions of outputs without concrete sample data (no actual gap table, report JSON or file naming), so they are more illustrative than fully realistic demonstrations."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 55,
+    "treatmentAvg": 71,
+    "scenarios": [
+      {
+        "name": "series-a-gap-assessment",
+        "baseline": 40,
+        "treatment": 78,
+        "rationale": "B picks Security plus Availability, scopes AWS, GitHub, IdP and support tooling, maps its gap table to CC1-CC9 with owner and due columns, but leaves them blank and gives no start date, while A picks Security only, has no CC mapping and no owner/due table, and does not recommend an observation start date."
+      },
+      {
+        "name": "quarterly-iam-access-review",
+        "baseline": 62,
+        "treatment": 55,
+        "rationale": "Neither uses the boto3 script the rubric expects. A does adapt a boto3 function that matches the rubric's approach, but it is thin on fields and flags the missing groups and reviewer. B is a comprehensive CLI and CSV pipeline with dated evidence, sign-off, tickets and auditor-sampling framing, but it never uses boto3 and omits an explicit review-date/reviewer field in the export."
+      },
+      {
+        "name": "soc2-claims-and-timeline-honesty",
+        "baseline": 62,
+        "treatment": 80,
+        "rationale": "A covers every rubric element: it says not to claim 'certified', explains there is no certificate, gives the 'report available under NDA' wording (though only after issuance), gives a 3-12 month timeline, mentions Type I as a stopgap, and advises continuous dated evidence. It does not say the auditor decides the final controls. B also rejects 'certified' and gives a table, but it never says evidence must be collected continuously from the start of the period, never says the auditor decides controls, and suggests a bridge letter where the rubric expects Type I as the stopgap. B does mention Type I but only as wording to use if one already exists."
+      }
+    ]
+  }
+}

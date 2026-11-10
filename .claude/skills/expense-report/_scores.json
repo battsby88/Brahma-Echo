@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:674320a88414f5a36bffdb1857c6b24148e7be899edf9499e731a2589e3f9b0c",
+  "scoredAt": "2026-10-13T11:59:15.968Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Skill is Python-specific with pandas/openpyxl dependencies, but lists equal support for agents like openai-codex and gemini-cli which may be JavaScript-first; non-Python agents would require substantial translation effort."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.52,
+    "baselineAvg": 56,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "csv-to-excel-expense-report",
+        "baseline": 35,
+        "treatment": 93,
+        "rationale": "Response A loads CSV and creates an Excel workbook but fails on three core rubric requirements: it expects a pre-existing category column instead of auto-categorizing from vendor/description patterns, uses wrong sheet names (no 'By Category' sheet), and applies no actual currency formatting to Excel cells. Response B fully implements all requirements: loads/normalizes CSV, auto-categorizes with regex pattern matching across 8 vendor categories, creates Summary + By Category + All Expenses sheets, and properly formats currency cells with '$#,##0.00' number format in Excel."
+      },
+      {
+        "name": "annual-tax-expenses-schedule-c",
+        "baseline": 62,
+        "treatment": 73,
+        "rationale": "Both correctly request expense data first, but Response B explicitly addresses the required 50% meals deduction note while Response A omits it; Response A provides a more comprehensive IRS category list, but neither explicitly promises percentage breakdown by category in their final output."
+      },
+      {
+        "name": "duplicate-detection-and-reconciliation",
+        "baseline": 72,
+        "treatment": 88,
+        "rationale": "Both identify the duplicate flight correctly and note data quality issues, but Response B provides accurate calculations ($1,030 deduplicated total vs Response A's incorrect $1,110) and more thorough analysis of the consecutive $180 hotel charges, treating them as likely legitimate multi-night expenses requiring verification rather than ambiguous. Response B also better organizes the cleaned summary with correct totals and category breakdown."
+      }
+    ]
+  }
+}

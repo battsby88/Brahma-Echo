@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:aeefd8f04f8fd06626adde4371820df14ef65ac2e4a6dd51aa1910511999ad3b",
+  "scoredAt": "2026-10-01T20:20:00.782Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 7,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "scope-mvp-marketplace",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits all required sections."
+      },
+      {
+        "name": "cut-feature-list",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response A includes the required classification, half‑day estimates, and justification, while Response B lacks these core elements."
+      },
+      {
+        "name": "plan-saas-mvp",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B lacks all required elements."
+      }
+    ]
+  }
+}

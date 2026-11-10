@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7eb8eb9f53ce1e32ba166ef10f7b29b3b05882924e80493977b30264748aff29",
+  "scoredAt": "2026-10-24T16:38:47.724Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill uses Node.js-specific features, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.33,
+    "baselineAvg": 43,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "create-space-page-hierarchy-with-labels",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B fails to use the correct endpoints for space creation, omits the global type, and does not provide page URLs."
+      },
+      {
+        "name": "create-page-with-jira-macro-and-summary",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A omits the required structured‑macro syntax, column specification, and summary placement."
+      }
+    ]
+  }
+}

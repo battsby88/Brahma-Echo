@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0690afb0a12423d569109d3b13eb2227d7887f6c671b58ac970301a1b39bd50f",
+  "scoredAt": "2026-10-24T21:36:37.370Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly cover error handling or edge cases such as missing files or permission errors."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is limited to Linux with systemd and Xray-core 26.x, not platform-agnostic."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.7,
+    "baselineAvg": 10,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "vless-reality-multi-user-setup",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers most required steps but omits the final share links, while Response B is incomplete."
+      },
+      {
+        "name": "cdn-websocket-fallback-setup",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B is incomplete and does not provide the necessary details."
+      },
+      {
+        "name": "runtime-user-management-and-stats",
+        "baseline": 10,
+        "treatment": 80,
+        "rationale": "Response A includes the required xray API commands and most steps, missing only config and systemctl checks; Response B uses curl instead of the specified xray commands."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fb7ab25fa28e1e5a4cd1d0353a0e09bfe06b860aec22542b47336cf63e43b875",
+  "scoredAt": "2026-10-24T19:29:36.782Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Not all edge cases and error scenarios are explicitly covered."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 0,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "send-welcome-email",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "A meets all rubric requirements; B does not use loops API."
+      },
+      {
+        "name": "trigger-upgrade-workflow",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with a loops.sendEvent call and RateLimitExceededError handling, while Response A does not use loops.sendEvent at all."
+      },
+      {
+        "name": "add-custom-contact-property",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B includes the required loops API calls and error handling, while Response A uses HubSpot endpoints and does not meet the rubric."
+      }
+    ]
+  }
+}

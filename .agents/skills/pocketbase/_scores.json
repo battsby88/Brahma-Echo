@@ -1,0 +1,48 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:d79d26835b13a7621ae2df79c71589cc12d9a35ee5614fe557c865002590d8bb",
+  "scoredAt": "2026-10-03T13:07:38.542Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.47,
+    "baselineAvg": 62,
+    "treatmentAvg": 91,
+    "scenarios": [
+      {
+        "name": "author-only-posts-rules",
+        "baseline": 62,
+        "treatment": 92,
+        "rationale": "A matches the rubric on every rule (empty-string list/view, `@request.auth.id != \"\"` create, `author = @request.auth.id` update/delete) and correctly says 404 for a failed rule and 403 only for a locked null rule, while B changes the createRule and updateRule from the rubric's values by adding extra clauses, even though its 404/403 explanation is correct."
+      },
+      {
+        "name": "hook-validation-and-shared-code",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both responses use onRecordCreateRequest with the trailing \"posts\" argument, throw BadRequestError, call e.next(), explain the isolated handler context, and fix it with require(`${__hooks}/utils.js`) inside the handler, so they cover the rubric equally; B adds version notes and alternatives while A adds notes on goja limitations, and neither extra changes rubric coverage."
+      },
+      {
+        "name": "realtime-chat-subscription-cleanup",
+        "baseline": 35,
+        "treatment": 92,
+        "rationale": "Response A uses subscribe('*') with a server-side filter option, checks e.action === 'create', stores and calls the awaited unsubscribe (including on unmount), and says the SDK reconnects automatically, which covers the whole rubric; Response B wrongly claims subscriptions have no filter option, filters client-side, never mentions automatic reconnect, and only partly meets the unsubscribe requirement."
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c22671a4e559b8c007e3ac2cb97eb1970fa44655607ebe6887333e6d60ef6c06",
+  "scoredAt": "2026-10-13T13:09:07.176Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Limited coverage of error scenarios such as missing python-docx or LibreOffice, malformed data structures, dependency import failures, or conversion failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "Verbose sections in guidelines and overview; DOCX/PDF conversion workflow and writing principles could be tightened."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 24,
+    "treatmentAvg": 91,
+    "multiplier": 3.79,
+    "scenarios": [
+      {
+        "name": "Web redesign proposal for GreenLeaf Organics",
+        "baseline": 25,
+        "treatment": 92,
+        "rationale": "Baseline produces a single-page quote with one total price and no structured sections; treatment delivers the full 10-section proposal with a phased pricing table summing to $25K, python-docx generation, and [TO BE COMPLETED] placeholders."
+      },
+      {
+        "name": "3-month fintech data strategy consulting proposal with tiered pricing",
+        "baseline": 22,
+        "treatment": 90,
+        "rationale": "Baseline gives a single flat fee and a thin three-month outline; treatment provides three tiered pricing options, a phased Audit/Strategy/Roadmap plan with week ranges, and case-study placeholders inside the full section structure."
+      }
+    ]
+  }
+}

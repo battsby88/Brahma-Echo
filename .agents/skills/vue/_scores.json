@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0b2beb711dc956775edccf2a8d8800f3cf60d97829adaf942fb38b87ad44180f",
+  "scoredAt": "2026-10-24T16:16:28.292Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 10,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "create-bare-vue-project",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A uses the exact required command and creates a bare skeleton, while Response B uses a different scaffold command and does not meet the rubric."
+      },
+      {
+        "name": "create-use-api-composable",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A is unrelated Kotlin code and fails to meet any of the specified criteria."
+      },
+      {
+        "name": "add-auth-guard",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits required imports, meta flag, and guard signature."
+      }
+    ]
+  }
+}

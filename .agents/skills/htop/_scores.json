@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ae3f2bd679d35f5e65904afe010a4f9e6971b0c4308a9004520a88c0a729aed4",
+  "scoredAt": "2026-10-20T17:51:46.274Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing htop or permission issues."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 5,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "top-memory-deploy-node-kill",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B covers all rubric items, while Response A omits the htop steps and tagging instructions."
+      },
+      {
+        "name": "identify-d-state-processes",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B does not mention htop or the required flags."
+      },
+      {
+        "name": "readonly-nginx-tree-view",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A does not include the required command or explanations."
+      }
+    ]
+  }
+}

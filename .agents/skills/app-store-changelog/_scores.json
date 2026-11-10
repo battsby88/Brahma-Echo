@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:4f88f4ed1fadc967a44755127e23d41304c59523b94cc6ceaeb56e9517a997e8",
+  "scoredAt": "2026-10-01T19:34:18.827Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanatory text that may be considered padded."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.77,
+    "baselineAvg": 30,
+    "treatmentAvg": 23,
+    "scenarios": [
+      {
+        "name": "generate-app-store-notes-with-tags",
+        "baseline": 10,
+        "treatment": 50,
+        "rationale": "Response B covers some rubric items (notes, character count, trace table) but misses locales and omitted changes; Response A lacks all required elements."
+      },
+      {
+        "name": "generate-google-play-notes-500-char",
+        "baseline": 50,
+        "treatment": 0,
+        "rationale": "Response B includes a concise note but lacks trace table and omitted changes list, whereas Response A fails to provide a note at all."
+      },
+      {
+        "name": "generate-notes-no-tags",
+        "baseline": 30,
+        "treatment": 20,
+        "rationale": "Both responses lack the required notes, character counts, trace table, and omitted changes; B provides a script that outputs a list of commits, so it covers slightly more of the rubric."
+      }
+    ]
+  }
+}

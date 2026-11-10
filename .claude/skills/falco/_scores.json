@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1dad1de103aef71e127b3bf25326d4d96a09c0bac00c7b8182885617d75ead82",
+  "scoredAt": "2026-10-24T19:09:45.061Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.69,
+    "baselineAvg": 13,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "deploy-falco-with-slack",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits the required Helm flags and kubectl commands."
+      },
+      {
+        "name": "custom-sensitive-file-rule",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A misses key elements such as the exact condition syntax, priority, validation command, and Helm/config.d deployment instructions."
+      },
+      {
+        "name": "fix-invalid-ip-field",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits key points such as the fd.sip vs fd.snet distinction, validation, and Helm upgrade."
+      }
+    ]
+  }
+}

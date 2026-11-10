@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:300c88f7b8acca6876f2ad1a5b52561da94b668f2ae429a3131caceba007b372",
+  "scoredAt": "2026-10-24T21:00:00.860Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions assume specific Node.js versions, which may not be available on all platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.96,
+    "baselineAvg": 27,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "create-articles-with-jwt",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B misses key elements such as using `nest g resource`, `registerAsync`, exporting `AuthGuard`, and protecting routes."
+      },
+      {
+        "name": "upgrade-nestjs-11-to-12",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response B explicitly runs the required dry‑run and upgrade commands, confirms @nestjs/* packages are bumped to 12 and TypeScript to 6, while Response A omits the specific upgrade commands and TS 6 bump."
+      },
+      {
+        "name": "unit-test-articles-service",
+        "baseline": 30,
+        "treatment": 50,
+        "rationale": "Response B uses the required useValue provider and vi.fn(), but does not pre‑mock find to resolve an empty array as the rubric demands; Response A uses useClass and jest instead of vi, missing the key useValue requirement."
+      }
+    ]
+  }
+}

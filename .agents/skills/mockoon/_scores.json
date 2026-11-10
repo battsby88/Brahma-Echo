@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:807f6dd40832906957d2f78d52924cb153d53a1f1c35aeaf3bf65419aae7f10a",
+  "scoredAt": "2026-10-01T12:03:19.057Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.2,
+    "baselineAvg": 3,
+    "treatmentAvg": 72,
+    "scenarios": [
+      {
+        "name": "start-mock-with-templating",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items but omits hostname and faker-seed; Response B does not use mockoon-cli at all."
+      },
+      {
+        "name": "validate-and-repair-environment",
+        "baseline": 10,
+        "treatment": 35,
+        "rationale": "Response B better because it includes the required mockoon-cli validate command, while Response A does not."
+      },
+      {
+        "name": "dockerize-mock-server",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not mention mockoon-cli or the required Dockerfile content."
+      }
+    ]
+  }
+}

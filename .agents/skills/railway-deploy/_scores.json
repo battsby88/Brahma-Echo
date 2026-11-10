@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ebe083a8642a3455014e269aff7f4073a0cf5d938464324a348bcdf901896b36",
+  "scoredAt": "2026-10-03T12:08:43.097Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.54,
+    "baselineAvg": 57,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "ci-deploy-with-project-token",
+        "baseline": 80,
+        "treatment": 88,
+        "rationale": "Both use a project token as RAILWAY_TOKEN, pass --service, avoid `railway deploy`, and don't need an interactive login; B uses `--ci` in the actual command, and also mentions `--detach`, while A uses `--detach` in the command and mentions `--ci` as an alternative, but A wrongly claims `--ci` streams until build completion in a way that is fine yet also A is a bit more verbose; B adds a reference to a nonexistent 'Task H' which is a minor flaw."
+      },
+      {
+        "name": "postgres-add-and-migrate",
+        "baseline": 50,
+        "treatment": 88,
+        "rationale": "B matches the rubric closely: `railway add --database postgres`, `railway variable set ... --service`, `railway run --service orders-api -- npx prisma migrate deploy` with flags before `--`, and the note that `railway run` runs locally against a private `*.railway.internal` host with a pre-deploy command as the alternative; A uses `railway variables --set` and never runs the required migration command for orders-api, only running it via `--service Postgres` with the public URL or a pre-deploy command, though it does cover the local/internal-host caveat."
+      },
+      {
+        "name": "rollback-and-secret-safe-variable",
+        "baseline": 40,
+        "treatment": 88,
+        "rationale": "A states there is no rollback command, rejects `railway down` and `railway redeploy`, gives the dashboard and `git checkout` plus `railway up` routes, and uses the exact `echo \"$STRIPE_SECRET\" | railway variable set STRIPE_SECRET_KEY --stdin --skip-deploys`; B hedges on the CLI having no rollback command, recommends a dashboard 'Rollback' button, and uses `--set` with the expanded value instead of the `--stdin` pipe."
+      }
+    ]
+  }
+}

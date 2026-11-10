@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:18ae3f91c559933b64ba2b5d974c3dcd2bb5b9cb27ceb549778b2340738a831e",
+  "scoredAt": "2026-10-20T19:17:54.009Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases, focusing mainly on happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.67,
+    "baselineAvg": 48,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "incremental-daily-sales-model",
+        "baseline": 60,
+        "treatment": 80,
+        "rationale": "Response A includes the required on_schema_change and most rubric items, while Response B lacks that setting and the CLI command."
+      },
+      {
+        "name": "bigquery-project-setup",
+        "baseline": 85,
+        "treatment": 80,
+        "rationale": "Both responses cover most of the rubric, but neither includes the required source definition for raw.users in _staging.yml; A matches the env_var names exactly, giving it a slight edge."
+      },
+      {
+        "name": "fix-deprecation-accepted-values",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B covers most rubric items but fails to explicitly show the deprecation warning, whereas Response A is empty."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:1ffc78d68ce812177d4f3615673e38d88c55b6138a0355e0212c5e114a9d03cc",
+  "scoredAt": "2026-10-01T20:53:51.252Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.3,
+    "baselineAvg": 10,
+    "treatmentAvg": 43,
+    "scenarios": [
+      {
+        "name": "hook-stitch-claude-api-key-proxy",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B includes the exact command and explains its purpose, while Response A does not contain the required command."
+      },
+      {
+        "name": "setup-stitch-cursor-oauth-system-gcloud",
+        "baseline": 30,
+        "treatment": 50,
+        "rationale": "Response A includes the required STITCH_USE_SYSTEM_GCLOUD flag and gcloud commands, but omits the init command; Response B lacks both the flag and the init command."
+      },
+      {
+        "name": "diagnose-stitch-mcp-permission-errors",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to meet the rubric; A includes many disallowed commands, B is empty."
+      }
+    ]
+  }
+}

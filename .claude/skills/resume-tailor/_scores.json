@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d02f0490b2ab878b73b9dbfe407c39dc4ebdc25b49871fded68a419cd49bdd5f",
+  "scoredAt": "2026-10-13T13:05:48.643Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions lack explicit guidance for real-world edge cases such as parsing PDF/Word files, handling ambiguous or incomplete job descriptions, converting unsupported resume formats, or recovering from parsing failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.7,
+    "baselineAvg": 43,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "cloud-engineer-keyword-optimization",
+        "baseline": 15,
+        "treatment": 55,
+        "rationale": "Response A correctly identifies the necessary inputs and explicitly commits to delivering all three rubric requirements (keyword categorization, match rate calculation, before/after examples), but currently provides none of them. Response B refuses the task entirely based on scope concerns, providing 0 rubric content and actively preventing compliance with alternatives instead."
+      },
+      {
+        "name": "career-pivot-section-reordering",
+        "baseline": 60,
+        "treatment": 84,
+        "rationale": "Response A outlines a specific, methodical workflow directly addressing all rubric requirements (keyword extraction, rewriting bullets with action verbs and metrics, before/after comparison showing improved section order), while Response B provides only high-level promises without detailing the techniques or concrete approach that would ensure those requirements are met."
+      },
+      {
+        "name": "ats-compatibility-fix",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "Response B meets the rubric more completely by requesting both the resume AND job description (essential for keyword analysis), providing specific formatting examples ('My Journey' → 'Work Experience'), and explicitly committing to extracting posting requirements and rewriting bullets with exact terminology. Response A identifies some formatting issues but omits the job description requirement and provides only generic promises about keyword density without demonstrating understanding of job-specific analysis."
+      }
+    ]
+  }
+}

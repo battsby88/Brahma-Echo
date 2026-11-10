@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4b6df36562ebfa7a771ae943a29829d39b4a942919ba5f5f5640db2ff414c728",
+  "scoredAt": "2026-10-03T13:01:34.405Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "WEAK",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "clarity",
+        "detail": "The flow log command is commented as 5% sampling but sets --logging-flow-sampling=0.5 (50%). Example 1 also refers to a Cloud Run service while the Connectivity Test command uses --source-instance (a VM)."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill gives little guidance on failure modes: missing IAM permissions, flow logs not yet enabled or ingested, empty or lagging Log Analytics links, the 'INCONCLUSIVE' Connectivity Test result, or the cost of 100% sampling and BigQuery scans. The rule to never cross-check a second source also rules out recovering when the first query is wrong or misleading."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Both examples are short prose narratives with no commands, queries or output, and Example 2 skips the actual steps (kill VM, file incident) without any concrete procedure or confirmation step."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.26,
+    "baselineAvg": 39,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "diagnose-unreachable-payments-api",
+        "baseline": 40,
+        "treatment": 88,
+        "rationale": "A uses the connectivity test create/run/describe with the required flags, interprets UNREACHABLE as naming the failing hop, and says to treat the result as the answer, though it includes an optional firewall-log query that goes against the rubric. B starts with the correct test but then adds many other sources (firewall rules, routes, SSH checks, logs), which is exactly the double-checking the rubric forbids."
+      },
+      {
+        "name": "top-egress-talkers-bigquery",
+        "baseline": 55,
+        "treatment": 82,
+        "rationale": "A covers nearly every rubric item: the _AllLogs query with log_id, NET.IP_IN_NET RFC1918 exclusion, grouping by VM and destination, ordering by bytes, the EXCLUDE_ALL_METADATA src_ip fallback, and a single-query run with no cross-checking. B groups by VM only in its main query, never names the EXCLUDE_ALL_METADATA/src_ip fallback, and suggests cross-checking with the billing export and a second diagnostic query, which goes against the 'one query only' requirement."
+      },
+      {
+        "name": "nat-port-exhaustion-and-flow-log-setup",
+        "baseline": 22,
+        "treatment": 93,
+        "rationale": "B matches the rubric closely: it uses the exact _Default update and links create commands, queries _AllLogs with log_id = 'compute.googleapis.com/nat_flows' and COUNTIF on allocation_status = 'DROPPED' over 30 minutes, and says dropped > 0 means raising min-ports-per-vm or adding NAT IPs. A uses a dedicated bucket instead of _Default, filters with log_name LIKE and COUNT(*) rather than log_id and COUNTIF, and gives no explicit dropped > 0 interpretation, though it does mention fixes."
+      }
+    ]
+  }
+}

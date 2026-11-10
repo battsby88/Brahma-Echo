@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:01d1ac6b1cb976b51f302eaf6b1c25e1e05b30dee83ae5f2bf78e77be1c25d76",
+  "scoredAt": "2026-10-24T20:37:58.420Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.69,
+    "baselineAvg": 83,
+    "treatmentAvg": 57,
+    "scenarios": [
+      {
+        "name": "ts-function-documentation",
+        "baseline": 100,
+        "treatment": 70,
+        "rationale": "Response A fully meets the rubric with accurate, concise TSDoc, while Response B contains an incorrect return-value description (mentions rounding) and thus falls short."
+      },
+      {
+        "name": "go-architecture-overview",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, while Response B omits the required Environment Variables section."
+      },
+      {
+        "name": "python-onboarding-guide",
+        "baseline": 70,
+        "treatment": 0,
+        "rationale": "Response A covers most rubric items but lacks a Purpose section and proper Setup/Installation labeling, whereas Response B provides no content."
+      }
+    ]
+  }
+}

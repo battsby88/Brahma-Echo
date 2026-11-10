@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4954b84f839de89f9118d8ebf32b9bfffaeeb5d3bb148caacceca7454d7efca1",
+  "scoredAt": "2026-10-01T12:39:54.449Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.59,
+    "baselineAvg": 27,
+    "treatmentAvg": 70,
+    "scenarios": [
+      {
+        "name": "generate-design-system",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B meets command and output path requirements but lacks explicit design system details; Response A fails to meet any rubric criteria."
+      },
+      {
+        "name": "recommend-navigation-pattern",
+        "baseline": 80,
+        "treatment": 70,
+        "rationale": "A provides more detail and code examples, but both miss the required reference to the navigation patterns list."
+      },
+      {
+        "name": "suggest-form-pattern",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B covers most rubric points but omits the required reference to the form patterns list, whereas Response A fails to recommend the stepped wizard at all."
+      }
+    ]
+  }
+}

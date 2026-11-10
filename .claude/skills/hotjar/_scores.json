@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c47efb5292685c1693efeffbfd8932f6bf759f04ce2d98dbb72a3f8d8d54d940",
+  "scoredAt": "2026-10-24T16:47:06.437Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as missing site ID or script load failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.41,
+    "baselineAvg": 27,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "add-hotjar-production-only",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric with a HotjarInit component, production-only init, correct identify and event calls, while Response A misuses the identify signature, uses a different event name, and lacks a proper HotjarInit component."
+      },
+      {
+        "name": "trigger-survey-and-hide-field",
+        "baseline": 45,
+        "treatment": 80,
+        "rationale": "Response A meets the event trigger and suppression requirements but omits tagRecording, while Response B fails to use the required event trigger and also lacks tagRecording."
+      },
+      {
+        "name": "spa-route-change-and-csp-nonce",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B provides no content."
+      }
+    ]
+  }
+}

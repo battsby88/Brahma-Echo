@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:2666ea386dfa3f2ea44e1c043cc2650d4cf6de82a9b83580234cdc7e31f0a327",
+  "scoredAt": "2026-10-24T17:28:31.865Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes Python 3.10+ and AWS CLI v2, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.43,
+    "baselineAvg": 40,
+    "treatmentAvg": 57,
+    "scenarios": [
+      {
+        "name": "scan-and-rewrite-ssrf",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Neither response includes the required grep pattern or the specific validate_url/PinnedHTTPConnection code with MAX_BYTES usage."
+      },
+      {
+        "name": "validate-url-bad-cases",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric with correct imports, iteration, and expected output; Response B fails to import BlockedURL, misidentifies example.com, and does not show the required BLOCKED message."
+      },
+      {
+        "name": "harden-aws-metadata",
+        "baseline": 100,
+        "treatment": 70,
+        "rationale": "Response A includes both the exact command and an explanation, while Response B only provides the command without explanation."
+      }
+    ]
+  }
+}

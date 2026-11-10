@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1729f30947d2a75fbd977cca49bb1ce2e5b1a6f01a2f679fbf6ec277b9a430c0",
+  "scoredAt": "2026-10-01T18:43:51.041Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases, focusing only on the happy path."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanatory text that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.22,
+    "baselineAvg": 78,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "create-react-tabs-app",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, providing the required commands and mentioning the tabs layout."
+      },
+      {
+        "name": "add-camera-plugin",
+        "baseline": 55,
+        "treatment": 85,
+        "rationale": "Response A covers installation, sync, import, and rendering photo.webPath (though it uses IonButton instead of IonFabButton), while Response B fails to use photo.webPath and IonFabButton, making it less complete."
+      },
+      {
+        "name": "dark-theme-variables",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B exactly matches the required file name and variable overrides, while Response A uses a .scss file instead of .css, slightly missing the rubric requirement."
+      }
+    ]
+  }
+}

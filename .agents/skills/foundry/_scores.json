@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:caec8680647b34e554d7071060a7fbd9877f813c4d29454cb0e6b9fec4c0149e",
+  "scoredAt": "2026-10-01T11:44:08.020Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.51,
+    "baselineAvg": 55,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "setup-foundry-project-with-fuzz-test",
+        "baseline": 20,
+        "treatment": 85,
+        "rationale": "Response A covers most rubric items with correct commands and a bound fuzz test, missing only the explicit snapshot command; Response B fails on version, test function, and gas reporting requirements."
+      },
+      {
+        "name": "fork-mainnet-test-with-cast",
+        "baseline": 70,
+        "treatment": 75,
+        "rationale": "Both answers cover most rubric items, but neither includes the required skip line; B uses the exact fork syntax requested, giving it a slight edge."
+      },
+      {
+        "name": "deploy-and-verify-contract-with-etherscan",
+        "baseline": 75,
+        "treatment": 90,
+        "rationale": "Response A includes the exact forge script command with verification and uses vm.startBroadcast()/vm.stopBroadcast(), plus cast call/send; Response B omits the combined verify flag and uses a separate verify command, missing the rubric's exact command."
+      }
+    ]
+  }
+}

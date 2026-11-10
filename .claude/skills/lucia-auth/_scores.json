@@ -1,0 +1,36 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3038f06c1aea53d796526e31282e1fd97c6229ede58adc5c7eee582bdbf812bc",
+  "scoredAt": "2026-10-01T11:55:55.541Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "add-csrf-protection",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A includes the exact rejectCrossSite function and a POST‑handler example, while Response B omits the required function entirely."
+      }
+    ]
+  }
+}

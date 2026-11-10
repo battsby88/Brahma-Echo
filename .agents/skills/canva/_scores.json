@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9460e7fedcb44e42abb583c277d7f7826bffd371fea983bbf34e528cf8e330ac",
+  "scoredAt": "2026-10-28T18:45:02.174Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.95,
+    "baselineAvg": 40,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "generate-social-post-mcp",
+        "baseline": 40,
+        "treatment": 80,
+        "rationale": "Response A covers all required steps with detailed API calls, while Response B is incomplete and lacks the necessary export URL."
+      },
+      {
+        "name": "batch-product-cards-connect-api",
+        "baseline": 35,
+        "treatment": 55,
+        "rationale": "Response A covers more of the required endpoints (upload, autofill, export, polling) even though some names differ, whereas Response B omits the asset upload step."
+      },
+      {
+        "name": "edit-and-export-mp4-mcp",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully matches the required function names and returns a signed export URL, while Response A uses different command names and does not provide the signed URL."
+      }
+    ]
+  }
+}

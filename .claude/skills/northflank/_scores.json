@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b748e82aa0b012d46340ffbbb26b6db549fd2b771f8d1abc5e55bcf67b24acc2",
+  "scoredAt": "2026-10-03T12:06:24.114Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mainly the happy path and gives almost no guidance on handling errors such as failed builds, unlinked Git accounts, auth or permission failures, or rollback and cleanup of resources."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.83,
+    "baselineAvg": 46,
+    "treatmentAvg": 84,
+    "scenarios": [
+      {
+        "name": "stack-template-with-random-secret",
+        "baseline": 22,
+        "treatment": 72,
+        "rationale": "B matches most of the rubric: apiVersion v1.2, a sequential Workflow, refs on every node, ${args.environment}, ${refs.orders-db.id}, ${fn.randomSecret(256)}, `northflank run template --template orders-stack`, and `northflank.json` with `options.autorun: true`. A has no refs, no `${refs...}` usage, uses randomSecret(64), runs the template with a different `--input` form, and gives UI-only Git sync steps with no `northflank.json` or autorun, so it misses most key rubric items."
+      },
+      {
+        "name": "scheduled-job-and-migration",
+        "baseline": 72,
+        "treatment": 90,
+        "rationale": "B matches the rubric closely: `--file`, `deployment.docker` customCommand, cron schedule, a manual job with the same body minus `schedule`, `start job run`, and the replica-concurrency reason for keeping migrations out of start. A gets the structure right but uses `--input` instead of `--file`, puts `vcsData` at top level, and only weakly explains why migrations should be manual jobs (it says to remove migrate-on-start, with no mention of multiple replicas)."
+      },
+      {
+        "name": "ci-login-and-scale-service",
+        "baseline": 45,
+        "treatment": 90,
+        "rationale": "Response A matches the rubric's commands: login with `-t \"$NORTHFLANK_API_TOKEN\" -n ci` from a secret, `scale service --project/--service --input`, `get service logs --tail`, and a note on limiting token permissions. Response B uses `tail service logs` with `--projectId`/`--serviceId` flags, which differ from the rubric, and it only vaguely mentions giving the token a role, with hedging about its own accuracy."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9971e38e0ef6261e51cdccabea1d6aa9409787d2d0610dd0bb4ab14070e5b34b",
+  "scoredAt": "2026-10-13T16:15:57.005Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.22,
+    "baselineAvg": 55,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "express-books-api",
+        "baseline": 35,
+        "treatment": 45,
+        "rationale": "Response A covers more of the rubric (JWT, Zod, pagination placeholder, error handling) but still lacks full route definitions; Response B is less complete and does not meet the required error format."
+      },
+      {
+        "name": "fastapi-movies-api",
+        "baseline": 80,
+        "treatment": 55,
+        "rationale": "Response A covers more rubric items, including models, router, dependency injection, and 404 handling, while Response B lacks endpoint implementation and 409 handling."
+      },
+      {
+        "name": "express-middleware-enhancements",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits key elements such as the exact CORS syntax, proper route prefix, and the global error handler."
+      }
+    ]
+  }
+}

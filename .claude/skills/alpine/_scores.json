@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:eb600abaeaa7300a019d0bcd85f0a6a39fabf47156fe724105205599a85e94e2",
+  "scoredAt": "2026-10-24T22:20:20.031Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill file does not cover error handling or edge cases for Alpine.js usage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.3,
+    "baselineAvg": 10,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "modal-dialog",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "Response B aligns more closely with the Alpine.js requirements, while Response A lacks the required Alpine directives entirely."
+      },
+      {
+        "name": "todo-list-component",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the Alpine.js rubric, while Response A is a React implementation and does not meet the requirements."
+      },
+      {
+        "name": "debounced-search",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A implements most Alpine features but omits the required Alpine.data('searchBox') definition, whereas Response B uses React and fails all rubric criteria."
+      }
+    ]
+  }
+}

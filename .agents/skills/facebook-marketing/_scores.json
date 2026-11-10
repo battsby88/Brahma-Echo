@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3cc9495d77717e8bb4a5873a555bca9fc9b62ef60f99707dc183da67c19df191",
+  "scoredAt": "2026-10-24T15:18:22.336Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Missing error handling for API responses and edge cases such as rate limits or token expiration."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "Excessive explanatory text and heuristics that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Assumes Node.js environment with fetch and TypeScript; not portable to other runtimes."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.11,
+    "baselineAvg": 57,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "group-engagement-plan",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items (setup, screening, approval, rules, welcome, daily cadence) but misses tags, description, and privacy; Response B lacks many of those core details."
+      },
+      {
+        "name": "page-posting-script",
+        "baseline": 75,
+        "treatment": 45,
+        "rationale": "Response B covers more rubric items, though still missing authentication steps and using wrong metrics, whereas Response A is incomplete and also lacks authentication steps."
+      },
+      {
+        "name": "ads-campaign-creation",
+        "baseline": 45,
+        "treatment": 65,
+        "rationale": "Response A covers most rubric items, missing only schedule, placements, and CTA, while Response B omits ad creative and ad creation entirely."
+      }
+    ]
+  }
+}

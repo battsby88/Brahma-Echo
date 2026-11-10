@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3e24b2927835251c33687f3c08c62b7e57250926088b4adb4f7dc8bcf6e17bea",
+  "scoredAt": "2026-10-01T12:09:16.498Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive narrative that may be considered padded, reducing overall conciseness."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to LangChain, limiting compatibility with other AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.25,
+    "baselineAvg": 20,
+    "treatmentAvg": 65,
+    "scenarios": [
+      {
+        "name": "deploy-with-docker-and-github-app",
+        "baseline": 10,
+        "treatment": 0,
+        "rationale": "Response B includes some Docker setup but omits the required build/run commands, GitHub App permissions, and webhook/callback URLs, whereas Response A is empty."
+      },
+      {
+        "name": "trigger-by-issue-comment",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Response A covers all rubric points with detail, while Response B omits key steps like the 👀 reaction, sandbox workflow, and sign‑in requirement."
+      },
+      {
+        "name": "ci-diff-review-with-oswe",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric items, while Response A omits checksum verification, the correct command, exit code details, environment variable, and output redirection."
+      }
+    ]
+  }
+}

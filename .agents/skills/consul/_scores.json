@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ef72f74458a146a52d0a8a3e93c30f310ed8100c7e1b307395a5c1ac5b29ec89",
+  "scoredAt": "2026-10-03T12:58:32.339Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Mostly happy-path commands with little troubleshooting or error handling (e.g., failed ACL bootstrap, agent join failures, unhealthy checks, snapshot restore errors, Envoy not connecting)."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.21,
+    "baselineAvg": 70,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "register-service-with-health-check",
+        "baseline": 66,
+        "treatment": 78,
+        "rationale": "A matches the rubric closely: JSON service definition with name, port 8080, an http check at /health, interval 10s and a deregister_critical_service_after value. It registers with `consul services register`, runs the SRV dig, and queries `?passing=true`. B uses HCL rather than JSON, leans on `consul reload` to load the file, and uses `?passing` instead of `?passing=true`. It does show the register command as an alternative and covers DNS and the failure path in more depth, but it misses the JSON format and the exact query form the rubric asks for."
+      },
+      {
+        "name": "restrict-mesh-traffic-with-sidecar",
+        "baseline": 72,
+        "treatment": 88,
+        "rationale": "A matches the rubric closely, with the api intention containing both web allow and '*' deny sources, and it uses `consul config write`, `consul intention check web api`, and `consul connect envoy -sidecar-for web`; B gets the sidecar, upstreams, Envoy command and intention check right but puts the '*' deny in a separate wildcard Name='*' entry instead of in the api entry's Sources, so it deviates from the rubric's api-intention structure."
+      },
+      {
+        "name": "harden-production-server-config",
+        "baseline": 72,
+        "treatment": 90,
+        "rationale": "B puts both agent and default tokens in the acl block, as the rubric asks. It also says never to use -dev, explains the permission errors for registration, anti-entropy and DNS, and names CONSUL_HTTP_TOKEN and -token-file. A deliberately leaves tokens out of the config and sets them at runtime, so it misses the rubric's tokens requirement. A also never mentions -dev or -token-file, though its failure-mode table is detailed."
+      }
+    ]
+  }
+}

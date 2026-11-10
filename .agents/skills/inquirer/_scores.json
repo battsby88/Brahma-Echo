@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0ac9239d944763df959526d88804ac869f3953cc207c0862a0428d74678d8368",
+  "scoredAt": "2026-10-20T19:44:39.861Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 83,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Node.js, not platform-agnostic."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.31,
+    "baselineAvg": 13,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "multi-step-wizard",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response B fully satisfies the rubric, while Response A fails to use @inquirer/prompts and lacks proper cancel handling."
+      },
+      {
+        "name": "npm-package-search",
+        "baseline": 10,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric with the correct search prompt, source function, signal usage, and return format, while Response A uses a different prompt library and does not implement the required source function."
+      },
+      {
+        "name": "prompt-timeout-handling",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A does not use the required confirm prompt or error handling."
+      }
+    ]
+  }
+}

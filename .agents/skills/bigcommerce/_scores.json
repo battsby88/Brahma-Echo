@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:545f5c3b508c6197fb4dc169ffb47a89cd3244917d8fe25fdc6d5432dba7801f",
+  "scoredAt": "2026-10-02T22:48:03.602Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Code samples ignore error handling (no res.ok check, GraphQL errors not inspected, no handling of rate limits/429 or failed POST responses), and edge cases like pagination beyond the first page are not covered."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.92,
+    "baselineAvg": 49,
+    "treatmentAvg": 94,
+    "scenarios": [
+      {
+        "name": "headless-newest-products-graphql",
+        "baseline": 25,
+        "treatment": 95,
+        "rationale": "B queries `site.products(first: $first, sortBy: NEWEST)` against the `/graphql` endpoint with a Bearer token from an env var, selects the expected fields and notes the 50-per-page limit with first: 8, which matches the rubric. A uses a `newestProducts` connection and never adds `sortBy: NEWEST` inside `products(...)`, and it doesn't mention the 50-per-page limit."
+      },
+      {
+        "name": "create-product-and-list-awaiting-orders",
+        "baseline": 93,
+        "treatment": 90,
+        "rationale": "Both meet every rubric item (POST to /v3/catalog/products with X-Auth-Token, physical type, price and weight, V2 /v2/orders with status_id=11, and a server-side env token); B is slightly better because it handles 204 responses inside a helper, adds a try/catch, and doesn't invent a placeholder category ID like A's categories: [23] that would fail."
+      },
+      {
+        "name": "scaffold-catalyst-storefront",
+        "baseline": 30,
+        "treatment": 97,
+        "rationale": "B gives all three required commands, Node.js 24 and pnpm prerequisites, the store hash/channel prompts and .env.local, and warns against the old Vercel commerce template; A hedges on the Node version (20/22), uses `npm create` instead of `pnpm create`, omits the Vercel warning, and says `pnpm dev` rather than `pnpm run dev`."
+      }
+    ]
+  }
+}

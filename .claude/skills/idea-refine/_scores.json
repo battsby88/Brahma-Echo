@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:489c63d13c2476ea3d4f31c6ad44d0f8e98315d09464fcad2d21952ed473de05",
+  "scoredAt": "2026-10-01T19:59:11.933Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0,
+    "baselineAvg": 3,
+    "treatmentAvg": 0,
+    "scenarios": [
+      {
+        "name": "water-tracking-app-refine",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Neither response contains the required job story, options table, or assumptions and tests table in markdown."
+      },
+      {
+        "name": "auto-save-draft-feature-evaluation",
+        "baseline": 10,
+        "treatment": 0,
+        "rationale": "Response B contains some relevant content but still lacks the required sections; Response A provides no required sections."
+      },
+      {
+        "name": "recurring-meeting-scheduler-options",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide SCAMPER options, a scoring table, or a pre‑mortem analysis as required by the rubric."
+      }
+    ]
+  }
+}

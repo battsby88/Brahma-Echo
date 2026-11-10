@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8294a2701ed823b3891acf0c27c17d9b56b2bc5ee561e84c35ee494d37ea0d50",
+  "scoredAt": "2026-10-24T20:40:19.716Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory sections that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.3,
+    "baselineAvg": 50,
+    "treatmentAvg": 65,
+    "scenarios": [
+      {
+        "name": "custom-user-model-bio-admin-migration",
+        "baseline": 70,
+        "treatment": 80,
+        "rationale": "Both responses meet most rubric items but fail to use the required 'core' app name; Response A is slightly more complete in its admin configuration and model definition."
+      },
+      {
+        "name": "article-api-author-permission-token-auth",
+        "baseline": 50,
+        "treatment": 60,
+        "rationale": "Response B better meets the rubric, covering filtering, correct permissions, and authentication, while Response A lacks author_name, filtering, and uses wrong permission classes."
+      },
+      {
+        "name": "production-settings-security-middleware",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A covers more rubric items than Response B."
+      }
+    ]
+  }
+}

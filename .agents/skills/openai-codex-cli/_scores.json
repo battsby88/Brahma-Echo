@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fbec9ade834a9c987df93d1ac08f41d86461575fb852aa2cf60291cb136efd80",
+  "scoredAt": "2026-10-24T17:10:18.023Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 33,
+    "scenarios": [
+      {
+        "name": "run-pnpm-with-network-access",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets the rubric requirements while Response A does not include the required codex exec command."
+      },
+      {
+        "name": "generate-todo-json-report",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses omit the required single-sentence Codex prompt and include extraneous flags or entirely different approaches, so neither meets the rubric."
+      },
+      {
+        "name": "review-changes-against-main",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required single-line codex review command with the --base main flag and omit the necessary flag while including disallowed ones."
+      }
+    ]
+  }
+}

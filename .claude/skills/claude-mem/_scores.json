@@ -1,0 +1,54 @@
+{
+  "version": "2.1.0",
+  "skillHash": "sha256:8b9a0cbfd8fafa78fc863db1511c8d07d583f48518860cb3b2f26ef8dabcb295",
+  "scoredAt": "2026-10-24T14:04:50.123Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 83,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Claude Code and does not support other AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 2,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "install-claude-mem-with-provider",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes all required commands and details, while Response A omits the npx install command and relevant status check."
+      },
+      {
+        "name": "search-memory-for-auth-flow",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric, while Response A does not mention the required command or tools."
+      },
+      {
+        "name": "repair-and-update-claude-mem",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits the required npx commands and explanations."
+      }
+    ]
+  }
+}

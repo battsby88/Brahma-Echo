@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e838a8bcbce9e6ebf68b023dc624e6b5b758798c5429f37b497c6ef7e3ad666b",
+  "scoredAt": "2026-10-13T11:57:08.495Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The type/tone table defines eight email types but only three are demonstrated in examples; apology, request, and introduction scenarios lack concrete illustrations."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.68,
+    "baselineAvg": 53,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "cold-email-saas-product",
+        "baseline": 10,
+        "treatment": 90,
+        "rationale": "Response B delivers a complete cold email meeting all three rubric requirements: subject line (35 chars, specific benefit), concise mobile-friendly body, and concrete CTA proposing specific days; Response A requests clarification instead of attempting the task and provides zero deliverables against the rubric."
+      },
+      {
+        "name": "vendor-delay-apology-email",
+        "baseline": 82,
+        "treatment": 93,
+        "rationale": "Both responses meet the rubric requirements, but A provides significantly more concrete detail about resolution steps (weekend work, component arrival, integration progress) and preventive measures (2-week buffer, direct oversight), stronger accountability language ('That's on us, that's a mistake we won't repeat'), and a specific call to action; B hits all rubric points competently but with less depth and detail."
+      },
+      {
+        "name": "team-process-announcement",
+        "baseline": 68,
+        "treatment": 85,
+        "rationale": "Response A provides three explicit, numbered action items (update PR templates, join Slack channel, use SLA as target) that directly address the rubric's requirement for specific team actions, and clearly distinguishes changing from staying the same. Response B has a more specific subject line with actual metrics, but primarily describes the new process rather than stating concrete action items—it has only one clear action ('post in #code-review if blocked'), leaving it short on the implementation guidance the rubric requires."
+      }
+    ]
+  }
+}

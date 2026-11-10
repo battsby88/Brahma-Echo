@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8b43a823cc3b3582675f7b177cf4fc6c50de7ec14b3341f9ccc2da74b08097ee",
+  "scoredAt": "2026-10-13T12:59:00.986Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Lacks comprehensive troubleshooting, resource requirements, monitoring setup, and error-handling guidance beyond backup/rollback scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 32,
+    "treatmentAvg": 87,
+    "multiplier": 2.72,
+    "scenarios": [
+      {
+        "name": "Scale n8n to queue mode with Redis workers",
+        "baseline": 30,
+        "treatment": 88,
+        "rationale": "Treatment sets EXECUTIONS_MODE=queue, QUEUE_BULL_REDIS_HOST, shares N8N_ENCRYPTION_KEY across services using YAML anchors, and scales workers with docker compose up -d --scale n8n-worker=N exactly as documented; baseline guesses generic Redis env vars and misses encryption key sharing requirement."
+      },
+      {
+        "name": "Restore encrypted credentials onto a fresh n8n host with new encryption key",
+        "baseline": 35,
+        "treatment": 86,
+        "rationale": "Treatment runs n8n export:credentials --all --decrypted on source then n8n import:credentials --input=creds.json on target as documented; baseline tries to copy the SQLite/Postgres data directly and fails to address the encryption key mismatch."
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:00ef2cc8741fad236d68326e9aebc807fb44524191107990f71825b25cca2634",
+  "scoredAt": "2026-10-24T20:23:19.407Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases, focusing only on happy paths."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to AWS CLI, limiting applicability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.37,
+    "baselineAvg": 73,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "launch-instance-with-user-data",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses include all required flags and details specified in the rubric."
+      },
+      {
+        "name": "setup-auto-scaling-group-with-launch-template",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits critical details and uses incorrect commands."
+      }
+    ]
+  }
+}

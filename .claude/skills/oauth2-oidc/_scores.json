@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9823d7d9fce0aa56fd64cff59b91700622a64574508287b84cf157783b610e51",
+  "scoredAt": "2026-10-24T14:28:14.437Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that may distract from core instructions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.54,
+    "baselineAvg": 50,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "nextjs-social-login-pkce",
+        "baseline": 15,
+        "treatment": 55,
+        "rationale": "Response B covers more rubric items (PKCE, state/nonce, cookie handling) than Response A, though it still omits token exchange, ID‑token validation, GitHub profile fetch, and refresh‑token rotation."
+      },
+      {
+        "name": "api-jwt-validation",
+        "baseline": 80,
+        "treatment": 95,
+        "rationale": "Response B explicitly fetches the JWKS via the discovery endpoint, verifies all required claims, checks scope, and handles 401/403, whereas Response A uses a hard‑coded JWKS URL and separates scope checking into a separate helper."
+      },
+      {
+        "name": "spa-logout-token-revocation",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "Response B covers revocation, id_token_hint, post_logout_redirect_uri, and uses the end_session_endpoint, while Response A omits id_token_hint, post_logout_redirect_uri, and does not use the end_session_endpoint, making B more complete."
+      }
+    ]
+  }
+}

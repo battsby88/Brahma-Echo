@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fe7dc91f991ae05142f15091463e7b17bad939c4f5db333ebeddc2238ad101c7",
+  "scoredAt": "2026-10-21T23:39:54.713Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.8,
+    "baselineAvg": 5,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "meeting-prep-with-sarah-chen",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric while Response A does not."
+      },
+      {
+        "name": "daily-planning-with-reminders",
+        "baseline": 15,
+        "treatment": 65,
+        "rationale": "Response A covers calendar and reminders queries and gives a schedule, but omits weather; Response B fails to use iMCP or weather and offers no real query."
+      },
+      {
+        "name": "coffee-locating-and-directions",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not provide any relevant information."
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8843bbd8b37fa9997cf6354563bed120dc9457f140f9802e665f65b14da2f3e4",
+  "scoredAt": "2026-10-24T22:02:43.255Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "WEAK",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "clarity",
+        "detail": "The instructions contain incomplete environment variable assignments and ambiguous steps, making them hard to follow."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling and edge cases are not addressed, limiting robustness."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is limited to Linux, macOS, and Docker, excluding Windows users."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "go-install",
+        "detail": "The skill uses 'go install' to fetch MinIO from GitHub without verifying checksums, which is a medium security risk."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 2.5,
+    "baselineAvg": 40,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "deploy-minio-from-source",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies every rubric requirement, while Response A omits key elements such as the go install command, correct data directory, and proper readiness check."
+      },
+      {
+        "name": "mc-bucket-file-ops",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric items exactly, while Response A uses a different alias name and omits the required trailing slash, missing key rubric elements."
+      },
+      {
+        "name": "presigned-upload-url-node",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A satisfies all rubric requirements, while Response B omits returning the key and does not derive it from the filename."
+      }
+    ]
+  }
+}

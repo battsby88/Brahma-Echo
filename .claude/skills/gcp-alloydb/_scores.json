@@ -1,0 +1,70 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:68dc3d4ffbb750e8e8bc2cde9af5a46a06576cb63acec6b04496b7ed62ebde22",
+  "scoredAt": "2026-10-24T14:15:56.269Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions focus on happy path scenarios and do not cover error handling or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains verbose explanatory sections that could be trimmed for brevity."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is tightly coupled to GCP services and does not support other cloud providers or generic AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Auth Proxy binary is downloaded without a checksum, increasing risk of tampering."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 5.29,
+    "baselineAvg": 17,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "setup-production-cluster-with-read-pool",
+        "baseline": 30,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items but misses the cluster availability flag, while Response B omits several key commands and flags."
+      },
+      {
+        "name": "enable-vector-search-on-existing-database",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A omits the required extensions, uses the wrong vector dimension, lacks an SQL UPDATE, and does not use the specified similarity operator or filter."
+      },
+      {
+        "name": "terraform-provision-alloydb-cluster",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits key elements such as cluster_id, initial_user, correct backup policy, and instance configuration."
+      }
+    ]
+  }
+}

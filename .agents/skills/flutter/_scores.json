@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7407655db18ac36aaa0b213a68cf00ad3da30a9fe06c6453ea891c9cc8683717",
+  "scoredAt": "2026-10-24T19:13:36.284Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error scenarios or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory sections that could be trimmed."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.12,
+    "baselineAvg": 33,
+    "treatmentAvg": 70,
+    "scenarios": [
+      {
+        "name": "create-flutter-project-with-dependencies",
+        "baseline": 50,
+        "treatment": 60,
+        "rationale": "Both miss the exact org flag, but B lists each dependency command separately, whereas A combines them into one command."
+      },
+      {
+        "name": "add-auth-notifier-with-dio",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "Response B meets most rubric items (Notifier, build, login, storage, provider) but misses the explicit ref.read(apiClientProvider) call; Response A uses StateNotifier and a different API call, missing several rubric requirements."
+      },
+      {
+        "name": "setup-go-router-auth-guard",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response B meets almost all rubric requirements except the missing '/project/:id' route, while Response A fails to use a Provider<GoRouter>, ValueNotifier, or the specified redirect logic."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:c1455690c1a43b7914ca3d6089381b8bd4795779006038cefb21392e55b8dc13",
+  "scoredAt": "2026-10-01T21:04:33.039Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.35,
+    "baselineAvg": 20,
+    "treatmentAvg": 7,
+    "scenarios": [
+      {
+        "name": "create-glossary-from-notes-and-code",
+        "baseline": 5,
+        "treatment": 10,
+        "rationale": "Both responses fail to produce the required glossary, but Response A offers more detailed guidance and structure, earning a slightly higher score."
+      },
+      {
+        "name": "update-existing-glossary-with-new-context",
+        "baseline": 55,
+        "treatment": 10,
+        "rationale": "Response A provides a concrete inventory section with terms and preserves billing, but lacks file detection, in-place update, and mapping; Response B merely requests information and does not update the glossary."
+      },
+      {
+        "name": "detect-code-drift-from-glossary",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required drift table with at least five items and suggested rename actions."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8df59742566b9ff971fe9434f02e5cf044afb7aba161e94624e23660aee247a1",
+  "scoredAt": "2026-10-13T11:58:36.729Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is documented in guidelines but missing from Instructions and Examples (file not found, missing columns, invalid data types, permission errors)."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.21,
+    "baselineAvg": 42,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "deduplicate-and-export",
+        "baseline": 72,
+        "treatment": 95,
+        "rationale": "Response A covers all rubric requirements explicitly: it loads CSV with pd.read_csv(), prints shape (rows × columns) and column names immediately, uses drop_duplicates(subset=['SKU']), applies .str.title(), exports to Excel, and reports before/after counts. Response B omits two rubric requirements: it does not print column names at all, and only prints row count without showing the column count (incomplete shape). While Response B has a practical advantage in handling column name variations with if/elif checking, it fails the core rubric requirement to print shape and column names immediately."
+      },
+      {
+        "name": "parse-ambiguous-dates-and-filter",
+        "baseline": 5,
+        "treatment": 88,
+        "rationale": "Response B provides a complete, working solution covering all rubric requirements: pd.to_datetime() with explicit format='%d/%m/%Y', date comparison filtering (dt.year == 2024), and reporting both total rows loaded and matching rows; Response A declines to attempt the task and asks for file location instead, providing no code or implementation of any rubric element."
+      },
+      {
+        "name": "multi-metric-aggregation",
+        "baseline": 50,
+        "treatment": 95,
+        "rationale": "Response A provides a complete, runnable script that covers all rubric elements (groupby, named aggregations, reset_index, Excel export, row count reporting) plus data inspection and error guidance; Response B shows the correct code structure but is incomplete, hedges with a confirmation request, and crucially omits the required row count reporting."
+      }
+    ]
+  }
+}

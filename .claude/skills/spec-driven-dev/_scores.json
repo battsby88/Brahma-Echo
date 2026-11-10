@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b81baea90ec5fb21ed447abb26eb5cc218991c3b31764b1b6931c8aa106cdc0c",
+  "scoredAt": "2026-10-24T19:57:08.818Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.81,
+    "baselineAvg": 43,
+    "treatmentAvg": 35,
+    "scenarios": [
+      {
+        "name": "spec-user-profile-editing",
+        "baseline": 45,
+        "treatment": 50,
+        "rationale": "Both specs miss key rubric items, but B covers more required headings (Goals, Non‑Goals, Technical Design) while A includes acceptance criteria and security considerations."
+      },
+      {
+        "name": "rfc-migrate-rest-graphql",
+        "baseline": 85,
+        "treatment": 55,
+        "rationale": "Response B covers more required headings and details, but lacks a table of alternatives and an Open Questions section, whereas Response A misses many headings and key sections."
+      },
+      {
+        "name": "validate-team-invitations-spec",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide any validation output and thus do not meet any rubric criteria."
+      }
+    ]
+  }
+}

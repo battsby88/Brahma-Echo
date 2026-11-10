@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:112209f734043fe5b64ca5bb34b8e467e5421cb6f9e404769ba4ca5770fc18f2",
+  "scoredAt": "2026-10-20T19:38:22.082Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as rate limits and network failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.7,
+    "baselineAvg": 7,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "streaming-chat-endpoint",
+        "baseline": 20,
+        "treatment": 30,
+        "rationale": "Response B is closer to the rubric, using groq-sdk and a for-await loop, but still lacks the onChunk callback and return string; Response A uses fetch and SSE, missing all rubric requirements."
+      },
+      {
+        "name": "structured-entity-extraction",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "A fully satisfies the rubric, B does not use Groq API."
+      },
+      {
+        "name": "audio-transcription-with-timestamps",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully implements the required function with the correct API call and parsing, while Response B uses a different endpoint and does not meet the rubric."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4ac159e6e215a1d5b35227580e96faf4468a659a7187d6bfe22342b09be57e8c",
+  "scoredAt": "2026-10-24T16:19:33.598Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.7,
+    "baselineAvg": 3,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "cross-compile-windows-from-linux",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A provides no content."
+      },
+      {
+        "name": "upgrade-0-13-cli-to-0-17",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A provides no content."
+      },
+      {
+        "name": "simple-http-health-server",
+        "baseline": 10,
+        "treatment": 90,
+        "rationale": "Response B meets all rubric requirements (uses std.Io, std.net, std.http, correct listener, http.Server, proper JSON response, 404 handling, build command), while Response A does not use std.Io/std.http and manually parses requests, missing key rubric items."
+      }
+    ]
+  }
+}

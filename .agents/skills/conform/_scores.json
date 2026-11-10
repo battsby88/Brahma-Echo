@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1c3c5afa55941726b1b0d7a741335aafb69cd251956511afedbeb57368e47153",
+  "scoredAt": "2026-10-01T11:33:36.619Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.36,
+    "baselineAvg": 28,
+    "treatmentAvg": 94,
+    "scenarios": [
+      {
+        "name": "nextjs-server-action-contact-form",
+        "baseline": 25,
+        "treatment": 95,
+        "rationale": "Treatment uses Conform's `parseWithZod` and `submission.reply({ resetForm: true })`, wires `useActionState` to `useForm` with `lastResult`, and sets `shouldValidate: 'onBlur'`; baseline typically reaches for react-hook-form/zodResolver, missing Conform's submission API entirely."
+      },
+      {
+        "name": "progressive-enhancement-shared-schema",
+        "baseline": 30,
+        "treatment": 92,
+        "rationale": "Treatment shares a single Zod schema, uses `parseWithZod` on both sides, threads `lastResult` through `useForm`, and applies `action={action}` and `noValidate` so the form works without JS; baseline duplicates validation and omits the progressive-enhancement plumbing."
+      }
+    ]
+  }
+}

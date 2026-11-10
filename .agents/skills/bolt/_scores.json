@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:361771ea2526e7a26f9f363845cbbaa6c9bfb262746cf44c88a53dec6b2dd1e4",
+  "scoredAt": "2026-10-24T20:30:27.116Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all error scenarios and edge cases."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Bolt and does not work with other AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.15,
+    "baselineAvg": 13,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "create-task-manager-app",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully covers all rubric items, while Response B does not mention Bolt or any of the required steps."
+      },
+      {
+        "name": "stripe-integration-security-audit",
+        "baseline": 40,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items, missing only the paid‑plan note, while Response B omits key Bolt‑specific steps and the audit button."
+      },
+      {
+        "name": "setup-bolt-diy-local",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits the required Node.js version, uses the wrong clone URL, incorrect dev server port, and does not provide the exact pnpm run dev command."
+      }
+    ]
+  }
+}

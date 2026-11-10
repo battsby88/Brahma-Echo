@@ -1,0 +1,59 @@
+{
+  "version": "1.2.1",
+  "skillHash": "sha256:7ed3c18d757bf6dd27c9f70f413f384b58c33452523b6c6c79f4890203fb607e",
+  "scoredAt": "2026-11-04T23:55:37.722Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing API keys or network failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The file contains extensive explanatory text that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.86,
+    "baselineAvg": 22,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "install-snippet",
+        "baseline": 0,
+        "treatment": 55,
+        "rationale": "Response B covers most of the required snippet but omits the required autoCapturePageviews option, while Response A is empty."
+      },
+      {
+        "name": "custom-event-goal",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A includes the required button class and goal name, while Response B lacks the button and explicit note about goal creation."
+      },
+      {
+        "name": "stats-api-query",
+        "baseline": 15,
+        "treatment": 55,
+        "rationale": "Response A uses the correct endpoint and method but omits the required visitors metric and order_by, while Response B uses the wrong endpoint and HTTP method entirely."
+      }
+    ]
+  }
+}

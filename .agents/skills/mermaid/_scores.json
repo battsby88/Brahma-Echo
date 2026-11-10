@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b5205de1c691cc9e9766f81254b5b2bb6ecea0eb60b057e81c07e06a14a9b061",
+  "scoredAt": "2026-10-24T15:38:44.846Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly cover error handling or edge cases for diagram parsing failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive examples and guidelines that may be considered verbose beyond what is necessary for core instructions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1,
+    "baselineAvg": 100,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "flowchart-authentication-flow",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses include a fenced mermaid block with a flowchart TD, a decision node, and a terminal node, fully satisfying the rubric."
+      },
+      {
+        "name": "er-diagram-from-schema",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric requirements."
+      },
+      {
+        "name": "export-mermaid-to-png",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses correctly provide the required mmdc command with all specified flags and include optional installation guidance."
+      }
+    ]
+  }
+}

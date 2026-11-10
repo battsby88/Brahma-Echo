@@ -1,0 +1,58 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ab89ce142bc37f93566b5cff31eaa0d45c38d041344a5d76512512620c0c1904",
+  "scoredAt": "2026-10-01T12:15:01.157Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as installation failures or unsupported OpenVPN versions."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text and guidelines that increase verbosity beyond what is necessary for execution."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The instructions are specific to Debian/Ubuntu Linux and do not support other operating systems or package managers."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 50,
+    "treatmentAvg": 95,
+    "multiplier": 1.9,
+    "scenarios": [
+      {
+        "name": "Deploy production OpenVPN with EC keys, NAT, and self-contained .ovpn profiles",
+        "baseline": 45,
+        "treatment": 95,
+        "rationale": "Baseline used AES-256-CBC, no tls-auth, RSA defaults, and external-file client profile; treatment hit EC keys, AES-256-GCM, inline tls-auth with key-direction 1, and dynamic-interface NAT MASQUERADE."
+      },
+      {
+        "name": "Add TOTP MFA and revoke a compromised client",
+        "baseline": 55,
+        "treatment": 95,
+        "rationale": "Baseline mentioned components but used an incorrect plugin filename and omitted google-authenticator rate-limit flags; treatment matched the documented plugin path, full flag set, and complete revoke+gen-crl+restart sequence."
+      }
+    ]
+  }
+}

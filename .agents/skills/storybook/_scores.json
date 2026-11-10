@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:87b91edd6da6c589b3f0174b0fa7d725175908a8aeeac1a90216596d87d018da",
+  "scoredAt": "2026-10-24T21:25:59.837Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error scenarios or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.86,
+    "baselineAvg": 35,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "setup-vue3-storybook-with-addons",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A omits key commands and details."
+      },
+      {
+        "name": "github-actions-vitest-storybook-tests",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits key steps and details."
+      },
+      {
+        "name": "generate-autodocs-mdx-page",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B lacks a proper autodocs story tag, Controls import, and correct MDX structure."
+      }
+    ]
+  }
+}

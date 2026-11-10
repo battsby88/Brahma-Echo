@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:9275c52029fb38c0e1b01269dc1cf304352edac9736e454f24a91907a9d8394a",
+  "scoredAt": "2026-10-01T21:08:05.901Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered padded."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill relies on specific tools (Node.js, jq, git) and the Understand-Anything plugin, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4,
+    "baselineAvg": 0,
+    "treatmentAvg": 40,
+    "scenarios": [
+      {
+        "name": "pr-impact-analysis",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide any of the required impact analysis details."
+      },
+      {
+        "name": "branch-blast-radius",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response B contains more detail but still misses all rubric requirements, whereas Response A is empty."
+      },
+      {
+        "name": "graph-too-old-warning",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully addresses all rubric points, while Response B fails to mention any of them."
+      }
+    ]
+  }
+}

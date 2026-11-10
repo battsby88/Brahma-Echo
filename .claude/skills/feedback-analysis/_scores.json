@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:2bb084964abaf23ebb79d9e107941e7fb8abea37fafff439a09b555fe70971ac",
+  "scoredAt": "2026-10-20T17:33:41.249Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions lack explicit error handling for API failures and missing environment variables."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.81,
+    "baselineAvg": 77,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "analyze-app-store-reviews",
+        "baseline": 65,
+        "treatment": 55,
+        "rationale": "Response A covers sentiment trend, top 5 negative issues, and rating distribution more fully, while Response B lacks the required table and actionable recommendations."
+      },
+      {
+        "name": "design-multi-channel-feedback-system",
+        "baseline": 70,
+        "treatment": 45,
+        "rationale": "Response B covers all channels with triggers and wording, while A omits details for feature requests and reviews and lacks the aggregation and pipeline steps."
+      },
+      {
+        "name": "prioritize-feature-backlog",
+        "baseline": 95,
+        "treatment": 85,
+        "rationale": "Response A gives a complete, runnable script that computes RICE, adjusts for churn, and outputs a top‑10 backlog with data sources and confidence, while Response B offers an illustrative table that meets the rubric but lacks a full computational implementation."
+      }
+    ]
+  }
+}

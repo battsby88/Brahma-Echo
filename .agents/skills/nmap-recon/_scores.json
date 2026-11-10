@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:85c8d3543c2ef300f3bd153fdb76befa491823315042af298824fafe245757e3",
+  "scoredAt": "2026-10-20T20:35:52.985Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.89,
+    "baselineAvg": 82,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "live-hosts-xml-scan",
+        "baseline": 75,
+        "treatment": 70,
+        "rationale": "Both answers include the required nmap command with -sn, target, and XML output, but neither explicitly states that the XML will contain at least one host marked as up; B’s mention of “live hosts” makes it slightly better."
+      },
+      {
+        "name": "full-tcp-os-nse-scan",
+        "baseline": 70,
+        "treatment": 50,
+        "rationale": "Response A includes the default script flag (-sC) and explains OS detection, but omits -sV; Response B omits both -sV and -sC, making it less complete."
+      },
+      {
+        "name": "ssl-heartbleed-xml-check",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses correctly include the required nmap command, script, port, target, and XML output flag with no extraneous options."
+      }
+    ]
+  }
+}

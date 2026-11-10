@@ -1,0 +1,54 @@
+{
+  "version": "1.3.0",
+  "skillHash": "sha256:177fcca0f14d147d287bb9eb27c7815bd6cb3144cc77df128cb4cf5b49b2c60e",
+  "scoredAt": "2026-10-20T20:16:21.529Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions mention error types but do not provide guidance on handling errors or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "ingest-conversation-with-dreaming-instant",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A never uses client.add or dreaming, while Response B includes client.add with dreaming: 'instant' and a stable id but lacks an explicit wait loop for dreamingStatus to become 'done'."
+      },
+      {
+        "name": "create-notion-connector-and-search",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements with complete code, while Response B is incomplete and does not meet the rubric."
+      },
+      {
+        "name": "build-system-prompt-from-profile",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes the required client.profile call, extraction of static and dynamic memories, and builds the system prompt string, whereas Response A only provides a placeholder template without any code to retrieve or format the memories."
+      }
+    ]
+  }
+}

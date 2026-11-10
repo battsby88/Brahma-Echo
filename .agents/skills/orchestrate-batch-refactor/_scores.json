@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:7ef4f96923f5902e3b9f85b8e3bb45bde0dc07b4736b9ee05d01fb57416e582d",
+  "scoredAt": "2026-10-01T20:23:02.648Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that may be considered padded."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to specific AI agents and does not work with any AI agent."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.67,
+    "baselineAvg": 15,
+    "treatmentAvg": 55,
+    "scenarios": [
+      {
+        "name": "orchestrate-large-refactor",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B covers some aspects of the rubric but omits several required sections (DO NOT TOUCH, KEEP, GIT, RETURN, typecheck, diff stats, and explicit test count comparison), whereas Response A is empty."
+      },
+      {
+        "name": "decide-orchestrate",
+        "baseline": 45,
+        "treatment": 55,
+        "rationale": "Response A covers the file count, threshold, and main session directive, but omits baseline checks and a plan; Response B is more detailed but fails to mention the count, threshold, main session, and baseline checks, making it less complete."
+      },
+      {
+        "name": "map-code-shared-files",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A provides a detailed plan and wave structure, but lacks the required explorer reports and verification commands; Response B is empty."
+      }
+    ]
+  }
+}

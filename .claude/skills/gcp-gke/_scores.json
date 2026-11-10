@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:aaacbcaf5ad3fe4a0662b4b14463d7afccad6f9fd0d3b1917b93d79c8835376d",
+  "scoredAt": "2026-10-24T14:18:11.856Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.13,
+    "baselineAvg": 40,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "autopilot-cluster-with-gateway-hpa-pdb",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with the required create-auto command, default Managed Prometheus note, and matching labels across all resources, while Response B uses the wrong cluster creation command and omits the default Prometheus detail."
+      },
+      {
+        "name": "autopilot-gpu-spot-inference",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with complete YAMLs and quota note, while Response A lacks the required Deployment and PodMonitoring manifests."
+      },
+      {
+        "name": "standard-cluster-workload-identity",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response B includes the required cluster creation command and is closer to the rubric, while Response A omits the cluster command and key IAM bindings."
+      }
+    ]
+  }
+}

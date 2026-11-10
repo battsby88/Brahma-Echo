@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:cfda77246ce85d7cc0fd2e22ac67564f537bda37cbb874f6e22b1236d11d8c02",
+  "scoredAt": "2026-10-01T20:52:06.475Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that may be considered padded."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 38,
+    "treatmentAvg": 91,
+    "multiplier": 2.39,
+    "scenarios": [
+      {
+        "name": "B2B SaaS founder weekly LinkedIn plan",
+        "baseline": 35,
+        "treatment": 90,
+        "rationale": "Baseline gives generic frequency advice with no pillar percentages, no concrete hook text, and no batching workflow; treatment defines the five pillars with explicit percentages, writes specific hook lines per day, caps promotional at 5%, and prescribes a 2-3 hour weekly batching session with a daily 30-min engagement routine."
+      },
+      {
+        "name": "Repurpose a single blog post into a week of Instagram and TikTok content",
+        "baseline": 40,
+        "treatment": 91,
+        "rationale": "Baseline suggests cross-posting near-identical content (an anti-pattern per the skill) and lacks concrete hooks or platform-native formats; treatment extracts distinct insights per day, uses Reels/short-form TikTok with trending audio, gives specific hook lines, and batches creation on Sunday with platform-appropriate schedulers."
+      }
+    ]
+  }
+}

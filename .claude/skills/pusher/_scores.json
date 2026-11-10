@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bcbbe72a889a3853ecfff896d3359d71f31e8339b93b9221c826bed7d3a16123",
+  "scoredAt": "2026-10-24T17:19:49.019Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.92,
+    "baselineAvg": 13,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "exclude-sender-trigger",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A includes the required trigger with socket_id and await, but only catches a generic error instead of Pusher.RequestError, while Response B provides no trigger at all."
+      },
+      {
+        "name": "presence-channel-subscription",
+        "baseline": 20,
+        "treatment": 90,
+        "rationale": "Response B fully satisfies the rubric with correct client setup and event bindings, while Response A uses Echo abstractions and wrong auth endpoint, missing required events."
+      },
+      {
+        "name": "verify-pusher-webhook",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A does not use the required pusher.webhook helper, uses a different raw body type, and implements custom HMAC logic instead of the specified verification method."
+      }
+    ]
+  }
+}

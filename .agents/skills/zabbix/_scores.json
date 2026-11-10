@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3c92a2aaf6ed22b15e96374bbeb5ebeb03a1a69dc1b56699a92f64f9cb831f15",
+  "scoredAt": "2026-10-01T12:49:10.001Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not handle API errors, missing tokens, or network failures, leaving error scenarios unaddressed."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Linux environment with bash, curl, jq, and Docker, limiting portability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "deploy-zabbix-server",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "A meets all rubric items; B misses key env var syntax and export command."
+      },
+      {
+        "name": "create-custom-template",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A provides no content."
+      },
+      {
+        "name": "auto-register-hosts",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with the required hostgroup.create and action.create calls, while Response A uses autoregistrationrule.create instead of action.create and thus does not meet the rubric."
+      }
+    ]
+  }
+}

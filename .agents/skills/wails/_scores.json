@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ea65c506f2d106143775745654a8e389833f1c51fb234da1ee2e0a1e42d78b38",
+  "scoredAt": "2026-10-01T19:25:42.437Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.12,
+    "baselineAvg": 17,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "scaffold-vue-ts-project-with-menu-dialog",
+        "baseline": 35,
+        "treatment": 65,
+        "rationale": "Response B covers more rubric items, including menu creation with keys and EventsEmit, whereas Response A omits keys, EventsEmit, and frontend event listening."
+      },
+      {
+        "name": "cross-compile-windows-nsis-installer",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric requirements, while Response A does not use the correct build flags or output paths."
+      },
+      {
+        "name": "export-note-markdown-dialog",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the Go and frontend requirements; Response B is an Electron implementation and does not meet the rubric."
+      }
+    ]
+  }
+}

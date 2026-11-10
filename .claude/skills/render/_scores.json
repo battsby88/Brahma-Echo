@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:be3761c2ed35ade6d98dc6094c8c642d7f81a2f1c94b26f882fc3428c8be9b8c",
+  "scoredAt": "2026-10-03T13:10:53.021Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is limited to the missing-port case; failed builds, failed Blueprint syncs, rollbacks, and API error responses (rate limits, 401/404) are not covered."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Both examples are prose descriptions with no complete runnable YAML or command output, and Example 1 only lists fields to include instead of showing the full render.yaml."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.27,
+    "baselineAvg": 70,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "blueprint-secrets-and-db-wiring",
+        "baseline": 72,
+        "treatment": 90,
+        "rationale": "Both use fromDatabase with connectionString, fromService with type keyvalue, generateValue and sync:false, but A gives the keyvalue service `ipAllowList: []` while omitting it from the database, whereas B includes ipAllowList on both the keyvalue service and the database, with region consistency and a validate command, making B slightly more complete against the rubric."
+      },
+      {
+        "name": "fix-no-open-port-deploy",
+        "baseline": 84,
+        "treatment": 88,
+        "rationale": "Both explain the 0.0.0.0:$PORT bind (default 10000) and use `render deploys create <id>`; A also recommends healthCheckPath and mentions the PORT=8000 alternative, while B omits healthCheckPath and the PORT=8000 option and adds extra material (a PATCH payload it admits it is unsure of)."
+      },
+      {
+        "name": "autoscaling-and-cron-modernized-config",
+        "baseline": 55,
+        "treatment": 88,
+        "rationale": "B covers all rubric items (scaling block, Pro workspace requirement, cron with UTC note, autoDeployTrigger, keyvalue) while A omits the Pro workspace note (it says Standard plan instead) but otherwise covers the rest; B is more complete on the rubric."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e0fb85505d15fb21b61fcbb16eab54470bdf805c1e7dd9848e8ae78ed5c1dd25",
+  "scoredAt": "2026-10-13T16:14:14.655Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack error handling and edge case coverage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.67,
+    "baselineAvg": 15,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "yolo-detection-count",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response A meets most rubric items but uses a different filename and save method, while Response B uses a different model and manual drawing, missing the required YOLO('yolo26n.pt') and results[0].save('result.jpg') steps."
+      },
+      {
+        "name": "sam-segmentation-mask",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response A follows the SAM workflow but uses a different output filename, while Response B uses an entirely different model and fails the rubric."
+      },
+      {
+        "name": "tensorrt-export-inference",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A follows the rubric exactly, while Response B does not use the required export/load steps."
+      }
+    ]
+  }
+}

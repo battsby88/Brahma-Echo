@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7b4a4d96f9c90dd4c4c6ce9361a5f5742832acf1369c484f6d445dc6641b2b6f",
+  "scoredAt": "2026-10-20T18:23:02.608Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases for applying mental models."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.44,
+    "baselineAvg": 18,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "daily-work-routine",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully meets all rubric items with detailed MITs, a protected 90‑minute deep‑work block, a 5‑minute brain dump, and Akrasia fixes; Response B lacks MITs, a proper deep‑work block, a brain dump, and clear Akrasia interventions."
+      },
+      {
+        "name": "sprint-root-cause-analysis",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric with a 5‑fold Why, root cause, concrete fixes, and a Brooks’s Law mitigation, while Response A lacks a root‑cause analysis and specific Brooks mitigation."
+      },
+      {
+        "name": "reduce-context-switching",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric while Response B is empty."
+      }
+    ]
+  }
+}

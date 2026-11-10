@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:32b21c22b07dc4a36633bba8c166428d928cdb798ce9b61458be33ed40041a36",
+  "scoredAt": "2026-10-01T11:20:53.423Z",
+  "backend": "gemini",
+  "model": "gemini-2.5-flash",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 28,
+    "treatmentAvg": 97,
+    "multiplier": 3.46,
+    "scenarios": [
+      {
+        "name": "Nextra docs site with install tabs, copy-code, Steps, and a Callout",
+        "baseline": 30,
+        "treatment": 96,
+        "rationale": "Baseline falls back to ad-hoc markdown headings and CSS for blockquote callouts; treatment configures nextra({ theme, themeConfig, defaultShowCopyCode }) and imports Callout/Tabs/Tab/Steps from nextra/components."
+      },
+      {
+        "name": "Custom sidebar order with separator between basic and advanced sections",
+        "baseline": 25,
+        "treatment": 97,
+        "rationale": "Baseline suggests numeric filename prefixes for ordering and misses the framework feature entirely; treatment supplies a folder-level _meta.json with string labels and a typed separator entry exactly matching the SKILL.md."
+      }
+    ]
+  }
+}

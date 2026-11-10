@@ -1,0 +1,53 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1f48eed08999c2cc9d4f18f042e52a30777449523ad8f00594da2c64fd83df8b",
+  "scoredAt": "2026-10-24T15:02:36.259Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling for exceeding field limits or invalid characters."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The skill lacks runnable code or concrete procedures for automating ASO tasks."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.19,
+    "baselineAvg": 43,
+    "treatmentAvg": 94,
+    "scenarios": [
+      {
+        "name": "ios-metadata-rewrite-zenflow",
+        "baseline": 45,
+        "treatment": 95,
+        "rationale": "Treatment respects the 30/30/100 character splits, deduplicates keywords across fields, uses comma-no-space in the keyword field, picks singular OR plural, and avoids 'app'/category names and competitor brands; baseline rewrites copy but typically duplicates terms and ignores the keyword-field formatting rules."
+      },
+      {
+        "name": "google-play-screenshot-ab-test",
+        "baseline": 40,
+        "treatment": 92,
+        "rationale": "Treatment cites Google Play Experiments' 5-variant limit, recommends 7-14 day runs, prioritizes screenshots over icon and description, and ties success to install conversion plus first-3-visible/one-message-per-screenshot design rules; baseline gives generic A/B advice without the platform-specific constraints."
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a30f49caf3f2bc1003ce16196e3086e396ec609887b101b6defd5996cd2c292b",
+  "scoredAt": "2026-10-24T16:36:15.767Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as authentication failures or rate limiting beyond basic guidance."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Clay and assumes specific AI agent platforms (Claude Code, Codex, Cursor), limiting compatibility with other agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.39,
+    "baselineAvg": 67,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "build-table-with-enrichment-and-ai",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy all rubric requirements with detailed, runnable instructions."
+      },
+      {
+        "name": "setup-webhook-source-for-leads",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A omits the correct key name and token usage note."
+      },
+      {
+        "name": "call-public-api-run-routine",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items but omits 429 handling; Response B uses incorrect endpoints and headers, missing key rubric requirements."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:7695f7f385c1a5ab46acf3d6fcdf5f9e3469ff8b887842df2863062de838316a",
+  "scoredAt": "2026-10-01T20:26:19.828Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.07,
+    "baselineAvg": 30,
+    "treatmentAvg": 32,
+    "scenarios": [
+      {
+        "name": "create-paid-ads-plan",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "B includes several required sections and a cost calculation, whereas A lacks any of the rubric elements."
+      },
+      {
+        "name": "budget-viability-check",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to run ads_math.py and show its output, but Response A provides more context and detail, making it marginally better."
+      },
+      {
+        "name": "meta-ad-copy-length-check",
+        "baseline": 60,
+        "treatment": 40,
+        "rationale": "Response A correctly lists 4 headlines and 2 descriptions within limits but omits the required length‑check output, whereas Response B provides the length check but incorrectly supplies 4 descriptions instead of 2."
+      }
+    ]
+  }
+}

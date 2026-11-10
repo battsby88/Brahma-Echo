@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:d93639b3dc62881acf5515f66f3eb04b037d8a938ecc5029948916be7bc035ec",
+  "scoredAt": "2026-10-01T19:39:01.307Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover scenarios where no incidents are available, leaving the process incomplete."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive narrative and examples that add verbosity beyond necessary procedural guidance."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.2,
+    "baselineAvg": 7,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "define-values-from-scratch",
+        "baseline": 20,
+        "treatment": 55,
+        "rationale": "Response A includes the required file structures and placeholders for values, evidence, and interview questions, whereas Response B omits key elements such as trade‑off statements, observable behaviors, limits, stories, a markdown evidence log, and the 3‑level interview scale."
+      },
+      {
+        "name": "create-interview-kit-from-generic-values",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with a clear markdown file, one core question per value, at least two probes, and a 3‑point scoring scale; Response B lacks probes, uses multiple questions per value, and provides a 1‑5 scale instead of the required 3‑point scale."
+      },
+      {
+        "name": "revise-values-after-six-months",
+        "baseline": 0,
+        "treatment": 30,
+        "rationale": "Response B provides some updated content but fails to analyze the evidence log, identify a value with fewer than two incidents, and does not supply the required evidence and interview kit files, whereas Response A offers no revisions at all."
+      }
+    ]
+  }
+}

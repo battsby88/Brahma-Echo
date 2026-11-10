@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:dd7f3379a29d8dbebe92fa36e0448ecd13f901add294126843ab78fda695dc88",
+  "scoredAt": "2026-10-01T18:32:54.025Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 13,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "install-dokploy-with-sha-verification",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits key steps, uses disallowed piping, and fails to meet the specified criteria."
+      },
+      {
+        "name": "deploy-compose-with-env-and-domain",
+        "baseline": 30,
+        "treatment": 35,
+        "rationale": "Both responses omit key rubric items, but B provides more detailed steps and covers additional deployment actions, earning a slightly higher score."
+      },
+      {
+        "name": "trigger-deploy-via-api-from-ci",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B fails to meet the required API call format and headers."
+      }
+    ]
+  }
+}

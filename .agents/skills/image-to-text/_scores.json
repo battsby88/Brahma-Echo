@@ -1,0 +1,54 @@
+{
+  "version": "2.1.0",
+  "skillHash": "sha256:c96dfa0c8e521b414bb137355f652b8bef996649c3daf470e1f72fda8dd1ed28",
+  "scoredAt": "2026-10-20T19:39:57.146Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive narrative and explanations that exceed concise instruction requirements."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.3,
+    "baselineAvg": 3,
+    "treatmentAvg": 23,
+    "scenarios": [
+      {
+        "name": "table-to-csv",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B includes the CSV but omits the reconciliation summary, vision/OCR note, disputed cells, and Route line, whereas Response A provides none of the required content."
+      },
+      {
+        "name": "receipt-total-verification",
+        "baseline": 10,
+        "treatment": 20,
+        "rationale": "Response A gives detailed steps and example JSON but lacks required OCR flags, reconciliation summary, Unverified field, and Route line; Response B is even more incomplete."
+      },
+      {
+        "name": "handwritten-transcription",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses refuse to comply with the rubric and provide no transcription."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:13d40bf4766a845b8b963cebc0fcbab06e131b97b0d4fbb5374096ac9f685009",
+  "scoredAt": "2026-10-20T18:56:14.269Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to JavaScript/TypeScript and may not work with non-JavaScript AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.23,
+    "baselineAvg": 73,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "signup-form-validation-with-conditional-phone",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric items, including stripUnknown, while Response B omits stripUnknown but otherwise satisfies the rest."
+      },
+      {
+        "name": "product-schema-with-discount-constraint-and-type-inference",
+        "baseline": 40,
+        "treatment": 70,
+        "rationale": "Response B covers most rubric items but lacks the required yup.when for discount, whereas Response A misses several key requirements such as tags min, abortEarly, and yup.when."
+      },
+      {
+        "name": "config-validation-with-defaults-and-strict-mode",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, defining the schema, using strict mode, stripping unknown keys, validating with yup.validate(), and mapping errors correctly."
+      }
+    ]
+  }
+}

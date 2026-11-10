@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:81d9bbffdad16c739f0f617ad3d071a911a0cb0999e5f070f656fff5f2ee981b",
+  "scoredAt": "2026-10-24T14:25:24.229Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that may be considered padded, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.51,
+    "baselineAvg": 53,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "product-launch-post",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric criteria, while Response B lacks an open‑ended CTA, missing a key requirement."
+      },
+      {
+        "name": "carousel-company-post",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric while Response A deviates significantly from the required endpoints and payload structure."
+      },
+      {
+        "name": "weekly-poll-scheduler",
+        "baseline": 70,
+        "treatment": 45,
+        "rationale": "Response B covers more rubric items, including lifecycleState, visibility, X-Restli-Protocol-Version, cron scheduling, and scope reference, whereas Response A lacks many required details."
+      }
+    ]
+  }
+}

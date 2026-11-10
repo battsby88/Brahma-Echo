@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d01f3e2b3713516a028c85db23ea6b098388f63e337fe5abc326ae630d12af1d",
+  "scoredAt": "2026-10-20T19:30:52.390Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for all function types and deployment scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 10,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "deploy-http-function",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet any of them."
+      },
+      {
+        "name": "deploy-pubsub-function",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "Response A includes most required flags but uses the wrong secret name, while Response B omits several key flags such as --gen2, correct topic, timeout, and --set-secrets."
+      },
+      {
+        "name": "deploy-storage-trigger-function",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes all required flags exactly as specified, while Response A uses different trigger flags and omits --gen2, failing the rubric."
+      }
+    ]
+  }
+}

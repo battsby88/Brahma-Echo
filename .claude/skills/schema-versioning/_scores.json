@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3ea55547944b5676838bf08f3a4d8456207615a85fc40f7edceabdb53691bb3f",
+  "scoredAt": "2026-10-13T16:08:41.421Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.24,
+    "baselineAvg": 37,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "initialize-knex-migration-infrastructure",
+        "baseline": 60,
+        "treatment": 80,
+        "rationale": "Response A includes the required commands (install, init, migrate:make with -x ts) and the correct knexfile.js, while Response B omits the migrate:make command and the -x ts flag, making it less complete."
+      },
+      {
+        "name": "generate-email-verified-migration-with-backfill",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the Knex migration requirements, while Response A is a Ruby migration and does not meet the rubric."
+      },
+      {
+        "name": "github-actions-migration-ci",
+        "baseline": 50,
+        "treatment": 70,
+        "rationale": "Response B is closer to the rubric, using a DATABASE_URL variable (though with a wrong password), whereas Response A omits the required DATABASE_URL entirely."
+      }
+    ]
+  }
+}

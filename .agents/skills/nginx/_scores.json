@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5ac44f6a5a68e97a86fdc830e68b7bc23ed2d662422c690a447b3b4741e31c19",
+  "scoredAt": "2026-10-24T21:02:16.870Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as failed configuration tests or missing certificates."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.08,
+    "baselineAvg": 25,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "reverse-proxy-with-tls-and-rate-limit",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B provides no content."
+      },
+      {
+        "name": "load-balancer-with-health-checks",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A meets several rubric items (upstream, keepalive, proxy settings) but lacks the required name, least_conn, and backup server; Response B misses most rubric items."
+      },
+      {
+        "name": "static-spa-serve-with-caching",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items (gzip, headers, SPA fallback, long‑term caching) but omits sendfile on and short caching for non‑HTML files; Response B lacks sendfile, proper short caching, and the required security headers."
+      }
+    ]
+  }
+}

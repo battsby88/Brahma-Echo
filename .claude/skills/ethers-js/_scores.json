@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9805d4bd3f74c75083b0ce08da8f9f494dd6df852b3f56dd8711e03fe0da9620",
+  "scoredAt": "2026-10-24T20:42:47.959Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.67,
+    "baselineAvg": 60,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "read-balances",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses instantiate JsonRpcProvider, fetch ETH and USDC balances, format them correctly, and output two balance lines, fully satisfying the rubric."
+      },
+      {
+        "name": "send-usdc-transfer",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A meets every rubric requirement, while Response B omits the receipt.status check."
+      },
+      {
+        "name": "sign-message-metamask",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric by using ethers.BrowserProvider, obtaining a signer, signing the exact message, and outputting the signature, whereas Response B uses Web3Provider instead of BrowserProvider and therefore does not satisfy the rubric."
+      }
+    ]
+  }
+}

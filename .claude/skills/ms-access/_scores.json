@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:29b5e577da475338d3cb8c1df15b0af090ea3187e65464f79b6acc13538fbe8c",
+  "scoredAt": "2026-10-01T12:05:45.323Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanations and examples, making it verbose."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "Skill is vendor-locked to Microsoft Access and Windows, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.82,
+    "baselineAvg": 33,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "build-bookstore-database",
+        "baseline": 60,
+        "treatment": 80,
+        "rationale": "Response A includes cascade update and no delete, while Response B omits cascade update; both miss the required indexes, but A covers more rubric items."
+      },
+      {
+        "name": "customer-search-form",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements, while Response B fails the NOT IN subquery and subform filter specification."
+      },
+      {
+        "name": "export-report-and-link-sql",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with the required VBA code, while Response A provides unrelated ASP.NET code."
+      }
+    ]
+  }
+}

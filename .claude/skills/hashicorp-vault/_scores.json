@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:87ae7004f81bcc18428172551d78a7314661e0835cc587505c42dd10c6e747ad",
+  "scoredAt": "2026-10-24T15:29:43.642Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions focus on happy path and do not cover error handling or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 70,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "enable-transit-key-encrypt-rotate",
+        "baseline": 70,
+        "treatment": 80,
+        "rationale": "Both responses omit the decrypt command, but B uses the correct key name and otherwise matches the rubric more closely, earning a higher score."
+      },
+      {
+        "name": "dynamic-db-credentials",
+        "baseline": 70,
+        "treatment": 90,
+        "rationale": "Response B aligns more closely with the rubric, using the exact commands and parameters, while Response A uses different names, TTLs, and omits the required statement about new users per read."
+      },
+      {
+        "name": "approle-policy-setup",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits the metadata path, secret_id_ttl, and uses a different login method, missing some key details."
+      }
+    ]
+  }
+}

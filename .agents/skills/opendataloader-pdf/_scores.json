@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ca1529ff96191afdf1270b3849c9b58231dc648566d4b575420e611ad7219935",
+  "scoredAt": "2026-10-01T12:12:49.422Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 7,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "markdown-with-page-separators",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B exactly matches the rubric with a single opendataloader-pdf command and required flags, while Response A uses a different approach and does not meet the rubric."
+      },
+      {
+        "name": "extract-tables-to-csv",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not meet the required CLI call or use of opendataloader-pdf."
+      },
+      {
+        "name": "hybrid-ocr-tagged-pdf",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response A follows the required opendataloader-pdf commands and shows server startup, missing only the OCR engine flag and explicit server reference, while Response B uses a different CLI and omits most rubric requirements."
+      }
+    ]
+  }
+}

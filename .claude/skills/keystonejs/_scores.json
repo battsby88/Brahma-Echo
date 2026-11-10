@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:db081d1e534dd2f9537bb164f4d32aa0bea4c0c42caad50bcc71af0e95fb254e",
+  "scoredAt": "2026-10-24T14:24:16.220Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for missing environment variables or database connection failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that could be trimmed for brevity."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to KeystoneJS and does not generalize to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.06,
+    "baselineAvg": 18,
+    "treatmentAvg": 55,
+    "scenarios": [
+      {
+        "name": "role-based-access-with-hooks",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response A covers the required keystone.ts, access rules, and hooks (though incomplete), while Response B lacks key elements such as statelessSessions, onConnect seeding, and the specified hooks."
+      },
+      {
+        "name": "upgrade-keystone-6-to-8",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "No content provided for either response, so cannot assess rubric coverage."
+      },
+      {
+        "name": "custom-graphql-extensions",
+        "baseline": 10,
+        "treatment": 90,
+        "rationale": "Response A meets the rubric with only a missing note, while Response B fails to use gWithContext and Keystone conventions."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5b47ecaf0b3795d90a741344c93130f8775b401b326d6014f6143508b1bab42f",
+  "scoredAt": "2026-10-24T22:08:46.720Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not handle error scenarios such as model failures, timeouts, or network issues."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.26,
+    "baselineAvg": 23,
+    "treatmentAvg": 52,
+    "scenarios": [
+      {
+        "name": "summarize-meeting-transcripts",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response B covers more rubric items, though still missing a full comparison table and one test case."
+      },
+      {
+        "name": "compare-support-ticket-prompts",
+        "baseline": 5,
+        "treatment": 30,
+        "rationale": "Response A contains more relevant content and partial structure, whereas Response B merely requests the prompts and does not address any rubric requirements."
+      },
+      {
+        "name": "test-sql-generation-prompt",
+        "baseline": 45,
+        "treatment": 65,
+        "rationale": "Response B includes a rubric, two prompt variants, and a test suite, whereas Response A lacks a rubric and comparison table, making B the stronger answer."
+      }
+    ]
+  }
+}

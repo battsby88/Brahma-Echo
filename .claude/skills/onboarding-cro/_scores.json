@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:45bebd53b4774a6c04131b8fe036541eeaece268d9a931740a14507500fbb6a4",
+  "scoredAt": "2026-10-01T20:21:13.133Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains excessive padding and verbose sections that reduce conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.76,
+    "baselineAvg": 33,
+    "treatmentAvg": 25,
+    "scenarios": [
+      {
+        "name": "audit-activation-flow",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses omit all required sections of the rubric."
+      },
+      {
+        "name": "mobile-permission-onboarding",
+        "baseline": 45,
+        "treatment": 0,
+        "rationale": "Response B includes a decision table and a new flow, but lacks lifecycle messages, event specs, experiment design, and the required seven‑section Markdown structure, whereas Response A provides no relevant content."
+      },
+      {
+        "name": "experiment-onboarding-flow",
+        "baseline": 55,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items (primary metric, sample size, guardrail, event spec) but lacks a detailed screen list and decision table; Response B includes more planning details but omits key flow, decision table, base rate, target, and guardrail."
+      }
+    ]
+  }
+}

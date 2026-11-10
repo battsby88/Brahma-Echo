@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:90571b903c5bdd612859825e7dbf08a408d9cbc0d1cb4254f3b2e3845132e898",
+  "scoredAt": "2026-10-20T19:02:15.462Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 83,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Node.js and amqplib, not platform-agnostic."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 15,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "publish-order-confirmation",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements, while Response B omits the confirm channel, confirms, and backpressure handling."
+      },
+      {
+        "name": "consume-with-dead-letter",
+        "baseline": 45,
+        "treatment": 70,
+        "rationale": "Response B correctly implements redelivery‑based nack logic and uses nack, but both miss the required x-message-ttl argument; A uses a header retry scheme and reject instead of nack, making it less compliant."
+      },
+      {
+        "name": "auto-reconnect",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not meet any of the required elements."
+      }
+    ]
+  }
+}

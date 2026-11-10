@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:5fe02f90605c1547d14add97f44c0f22632af341f69b07feb455f665d4819009",
+  "scoredAt": "2026-10-01T20:14:04.821Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is macOS-specific and does not support other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.2,
+    "baselineAvg": 15,
+    "treatmentAvg": 48,
+    "scenarios": [
+      {
+        "name": "package-and-notarize-swiftpm-app",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B covers most steps but omits spctl verification, so it scores high but not perfect; Response A is empty."
+      },
+      {
+        "name": "create-universal-binary-app-with-resources",
+        "baseline": 45,
+        "treatment": 0,
+        "rationale": "Response A covers most steps but omits separate architecture builds, lipo merging, iconutil, and ad hoc signing; Response B is empty."
+      },
+      {
+        "name": "generate-sparkle-update-feed",
+        "baseline": 0,
+        "treatment": 65,
+        "rationale": "Response A covers most steps but omits notarization and stapling, while Response B provides no content."
+      }
+    ]
+  }
+}

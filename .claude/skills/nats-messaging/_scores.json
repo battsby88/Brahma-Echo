@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5f10fae260c7c22d84f483856cfe5e298cd5a6e6e959b73484ef08b9742eb58e",
+  "scoredAt": "2026-10-24T17:02:38.557Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases in its examples."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment and does not provide guidance for other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 7,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "jetstream-stream-consumer",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A meets most rubric items except the specific publish subject, while Response B fails to use the required APIs and subject patterns."
+      },
+      {
+        "name": "request-reply-user-info",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not use NATS at all."
+      },
+      {
+        "name": "kv-session-store",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses a different system and misses all required Kvm steps."
+      }
+    ]
+  }
+}

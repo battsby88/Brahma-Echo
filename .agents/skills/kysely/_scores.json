@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0a63825d40a057b34c4fdd329d69a3e0b63b19fda47424c81d305ae109269d37",
+  "scoredAt": "2026-10-24T15:35:56.325Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.5,
+    "baselineAvg": 3,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "add-comments-table-migration",
+        "baseline": 10,
+        "treatment": 85,
+        "rationale": "Response B closely follows the rubric, providing the required Kysely migration, down function, and type regeneration steps, while Response A uses Prisma instead of the specified Kysely schema and migration approach."
+      },
+      {
+        "name": "latest-published-posts-with-authors",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with a Kysely query, proper joins, filtering, ordering, limiting, and execution, while Response B is plain SQL, wrong table names, missing filter, and no Kysely usage."
+      },
+      {
+        "name": "transactional-user-post-insert",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric using Kysely's transaction API, while Response B relies on raw SQL and other languages, missing the required Kysely syntax."
+      }
+    ]
+  }
+}

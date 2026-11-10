@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e707f6832c852e2052d2b9e321237c64779f95db4deb07aebab013a4bf37b907",
+  "scoredAt": "2026-10-13T16:17:23.120Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as missing indexes or queries that fail."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.13,
+    "baselineAvg": 55,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "optimize-slow-select",
+        "baseline": 100,
+        "treatment": 0,
+        "rationale": "Response A fully satisfies the rubric with an optimized SELECT, index creation, and explanation, while Response B merely requests more information and does not provide the required optimization."
+      },
+      {
+        "name": "eliminate-n-plus-one",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully addresses the rubric with a JOIN-based solution, index suggestion, and explanation of reduced round-trips, while Response A is missing."
+      },
+      {
+        "name": "replace-offset-pagination",
+        "baseline": 65,
+        "treatment": 85,
+        "rationale": "Response B correctly uses the primary key, replaces OFFSET with a WHERE clause, creates an index, and implies elimination of full scans, while Response A uses a non‑primary key and omits explicit mention of full table scan elimination."
+      }
+    ]
+  }
+}

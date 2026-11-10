@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:33f4a2f832a7e5f7dfcfca337f108b51c385cf6ee72a6d78b89670aae1561b88",
+  "scoredAt": "2026-10-24T21:57:48.529Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill file does not cover error handling or edge cases, focusing only on happy paths."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.7,
+    "baselineAvg": 27,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "image-classifier-demo",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use the required pipeline or output format."
+      },
+      {
+        "name": "streaming-chatbot",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits the required system prompt and uses an incorrect history format."
+      },
+      {
+        "name": "csv-summary-demo",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses Blocks instead of Interface and does not meet the required input/output specifications."
+      }
+    ]
+  }
+}

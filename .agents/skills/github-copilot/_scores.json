@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8cf3cd2813348e54442929d2d6c0764e4b43130d327f57a658687f11c9f168f8",
+  "scoredAt": "2026-10-24T20:46:43.486Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for setup and usage scenarios."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered verbose for a concise skill file."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 10,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "setup-vscode-copilot",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully covers all rubric points, while Response A omits key details and includes unnecessary manual install steps."
+      },
+      {
+        "name": "generate-tests-with-slash",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response A covers most rubric items but omits database failure coverage, while Response B does not address the rubric at all."
+      },
+      {
+        "name": "migrate-gh-copilot-to-cli",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B misses key installation, authentication, and token details."
+      }
+    ]
+  }
+}

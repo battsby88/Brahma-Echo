@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:afd11bb210ac26c79506b74196ccba63f229b7d0bb61dc56eac6e5ef20cfa230",
+  "scoredAt": "2026-10-02T22:55:32.432Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers limits such as no resume option, false positives and WAF misses, but gives no guidance on handling errors like connection failures, timeouts, redirects to login pages, or rate-limit blocks."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The three examples are prompt-only descriptions with no commands or sample outputs, so they do not show concrete runnable usage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.85,
+    "baselineAvg": 48,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "single-plugin-version-probe",
+        "baseline": 88,
+        "treatment": 90,
+        "rationale": "Both correctly recommend -p/--plugins WordPress with -a 3 and explain the reduced-request rationale well; B explicitly notes level 3 still requires permission (a rubric point A omits), giving it a slight edge."
+      },
+      {
+        "name": "subdomain-pipeline-wordpress-extract",
+        "baseline": 2,
+        "treatment": 95,
+        "rationale": "B delivers a correct, complete pipeline matching every rubric requirement with accurate jq filtering and sensible caveats, while A refuses entirely and provides no commands."
+      },
+      {
+        "name": "polite-bulk-scan-cidr",
+        "baseline": 55,
+        "treatment": 82,
+        "rationale": "Response A uses the CIDR target with --url-prefix https://, --no-errors, --wait, --max-threads, --log-brief and states that WhatWeb has no resume option with a split-and-rerun workaround, which covers nearly the whole rubric; Response B omits the CIDR target and --url-prefix, de-emphasizes --wait and recommends a log-subtraction resume instead of simply splitting the list, so it covers less of the rubric even though it also notes there is no resume and mentions chunking."
+      }
+    ]
+  }
+}

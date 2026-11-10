@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e4bd5d1ee7940ec77a37ca2da890616233ad0e4defe071a64775bccee483befd",
+  "scoredAt": "2026-10-24T20:57:03.794Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases for schema validation failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains repeated guidelines and verbose explanations that could be streamlined."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.16,
+    "baselineAvg": 45,
+    "treatmentAvg": 52,
+    "scenarios": [
+      {
+        "name": "chat-schema-design",
+        "baseline": 0,
+        "treatment": 10,
+        "rationale": "Response A offers more detail and covers some schema aspects, but still fails to meet the rubric’s key requirements; Response B is incomplete and does not satisfy the rubric at all."
+      },
+      {
+        "name": "rating-aggregation",
+        "baseline": 55,
+        "treatment": 45,
+        "rationale": "Response A includes a $project stage and uses $lookup, but omits $match and explain(); Response B lacks $project and explain() and also omits $match, making A slightly more complete."
+      },
+      {
+        "name": "movie-vector-search",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, including explain(), while Response B omits the explain() step."
+      }
+    ]
+  }
+}

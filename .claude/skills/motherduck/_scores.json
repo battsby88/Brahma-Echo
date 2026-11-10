@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:345063eb7de9e990c3921ee292c7cc59109ff2c28e2d6cac603ed75457d68e4a",
+  "scoredAt": "2026-10-24T19:32:47.366Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as missing tokens or network failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 7,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "load-csv-and-summarize",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A closely follows the rubric with the correct CREATE OR REPLACE TABLE syntax and a .df() result, though it uses a different column name; Response B diverges from the required syntax, column names, and lacks a .df()/.show() display."
+      },
+      {
+        "name": "share-database-with-finance",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric items; Response A does not."
+      },
+      {
+        "name": "incremental-load-from-s3",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes the exact INSERT statement required by the rubric, while Response A does not."
+      }
+    ]
+  }
+}

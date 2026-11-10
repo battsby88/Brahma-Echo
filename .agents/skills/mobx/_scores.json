@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ae5c0c48599c48a1d2c5979e983137583d2034327b6a2868db18a0f8a2d63231",
+  "scoredAt": "2026-10-01T18:58:04.463Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as network failures or missing context providers."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered verbose for a concise skill file."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.22,
+    "baselineAvg": 82,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "todo-store-with-autoobservable",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric with correct implementation details."
+      },
+      {
+        "name": "upgrade-mobx6-to-7",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully replaces MobX 6 APIs with MobX 7 equivalents and updates React context usage, while Response A retains the old observable.ref and action.bound patterns and does not meet the rubric requirements."
+      },
+      {
+        "name": "fix-component-not-re-rendering",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric by making the store observable with makeAutoObservable, wrapping the TodoList component with observer, reading the observable property directly, and demonstrating that toggling a todo triggers a re‑render."
+      }
+    ]
+  }
+}

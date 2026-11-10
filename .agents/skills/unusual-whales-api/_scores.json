@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8f7d8a4655502df4508ab562b2c662d19e941b79f0e4b3f328eb0cd787a8492b",
+  "scoredAt": "2026-10-03T13:08:38.958Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Examples ignore error handling (no status-code checks, no raise_for_status, no handling of 401/429 or empty data), and 429 backoff is mentioned only in prose without a concrete retry procedure."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.29,
+    "baselineAvg": 41,
+    "treatmentAvg": 94,
+    "scenarios": [
+      {
+        "name": "unusual-flow-alerts-tsla-script",
+        "baseline": 22,
+        "treatment": 96,
+        "rationale": "B matches the rubric: correct endpoint, Bearer token from UNUSUAL_WHALES_API_TOKEN, UW-CLIENT-API-ID header, and params ticker_symbol, min_premium=100000, is_otm and size_greater_oi. A uses the right endpoint but reads UW_API_TOKEN, omits the UW-CLIENT-API-ID header, and uses all_opening instead of size_greater_oi."
+      },
+      {
+        "name": "gex-and-dark-pool-endpoint-mapping",
+        "baseline": 38,
+        "treatment": 97,
+        "rationale": ""
+      },
+      {
+        "name": "avoid-hallucinated-endpoint-options-flow",
+        "baseline": 62,
+        "treatment": 88,
+        "rationale": "A covers every rubric element (GET, /api/option-trades/flow-alerts, Bearer header from UNUSUAL_WHALES_API_TOKEN, UW-CLIENT-API-ID header, and why the original URL, method and query-param auth are invalid), while B gets the endpoint, method and Bearer header right but uses the wrong env var name (UW_API_TOKEN) and omits the UW-CLIENT-API-ID header, and hedges about the original URL."
+      }
+    ]
+  }
+}

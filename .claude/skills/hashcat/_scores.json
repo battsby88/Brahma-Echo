@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7e7e620f9cb8f770db6e90af786b84fd5b2ad90c8fcfc9b2f177f075345242ff",
+  "scoredAt": "2026-10-03T11:59:15.087Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 28,
+    "treatmentAvg": 95,
+    "multiplier": 3.39,
+    "scenarios": [
+      {
+        "name": "Crack NTLM dump from authorized AD engagement",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "Baseline picks the right mode but defaults to brute force and skips engagement isolation; treatment uses -r best64.rule, -w 3, isolated --potfile-path and --session for resume, and --show/--left for follow-up."
+      },
+      {
+        "name": "Crack WPA2 handshake captured from own router",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Baseline calls deprecated -m 2500 / hccapx flow; treatment uses hcxpcapngtool to produce hc22000, runs current -m 22000 with rules and --session as the skill documents."
+      }
+    ]
+  }
+}

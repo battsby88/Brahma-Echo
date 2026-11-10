@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:604de0ad4e0483e1434d14138ebd47b97f67fbf5ff44b41c4a3290880c925e0f",
+  "scoredAt": "2026-10-01T19:50:47.325Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains excessive verbosity that may hinder quick comprehension."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.56,
+    "baselineAvg": 32,
+    "treatmentAvg": 50,
+    "scenarios": [
+      {
+        "name": "trial-onboarding-sequence",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response B covers most rubric items except the measurement plan, whereas Response A lacks the required specification block, sender‑readiness table, and measurement plan."
+      },
+      {
+        "name": "win-back-sequence",
+        "baseline": 25,
+        "treatment": 20,
+        "rationale": "B has more email content details, A has a spec block but lacks email specifics."
+      },
+      {
+        "name": "spam-compliance-sequence",
+        "baseline": 50,
+        "treatment": 60,
+        "rationale": "Response B includes the required sequence spec and fully drafted emails, while Response A lacks the detailed spec and email content; however, neither provides a complete sender‑readiness table or measurement plan, so B scores higher."
+      }
+    ]
+  }
+}

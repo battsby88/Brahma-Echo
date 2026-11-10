@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7962c09a438219f0881004af68400e7e60df72c41e62f19c2dbaa057a9e3a0b1",
+  "scoredAt": "2026-10-24T17:29:24.251Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3,
+    "baselineAvg": 30,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "setup-strapi-postgres-pnpm",
+        "baseline": 50,
+        "treatment": 70,
+        "rationale": "Response A includes the exact command and most rubric items, missing only the TypeScript note and .env detail; Response B uses incorrect flags and omits key requirements."
+      },
+      {
+        "name": "fetch-articles-with-pagination",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, Response B does not provide the required TypeScript function."
+      },
+      {
+        "name": "custom-article-views-controller",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses the wrong service API, route format, and omits permission details."
+      }
+    ]
+  }
+}

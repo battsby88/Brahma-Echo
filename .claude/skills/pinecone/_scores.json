@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ff04d08b1d80d16dd7e0695e0f754be676002874868d14a1c6623f400ad3a03a",
+  "scoredAt": "2026-10-24T19:44:45.372Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack explicit error handling and edge case coverage for API failures and network issues."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.91,
+    "baselineAvg": 23,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "create-vector-index-and-query",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits several key elements such as namespace usage and specific index creation options."
+      },
+      {
+        "name": "integrated-embedding-faq-search",
+        "baseline": 20,
+        "treatment": 70,
+        "rationale": "Response B meets most rubric items, while Response A lacks the required integrated‑embedding index and namespace usage."
+      },
+      {
+        "name": "delete-namespace-and-index",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully implements the required steps, while Response A provides no content."
+      }
+    ]
+  }
+}

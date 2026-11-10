@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6025bcbbbb403e073bb1a5b8678f368746906bb9a6d848a0990b00159652843a",
+  "scoredAt": "2026-10-20T19:06:52.827Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling or edge cases such as failed uploads or invalid credentials."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Skill relies on Node SDK and Next.js, limiting applicability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 0,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "responsive-srcset",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response A lacks any Cloudinary logic or srcset generation, while Response B provides a Cloudinary-based function and srcset string but omits the required dpr='auto' parameter."
+      },
+      {
+        "name": "signed-upload-endpoint",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric by using Cloudinary's signing method and returning the required fields, while Response A describes an S3 solution unrelated to Cloudinary."
+      },
+      {
+        "name": "nextjs-image-component",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements; Response B does not use CldImage and thus fails."
+      }
+    ]
+  }
+}

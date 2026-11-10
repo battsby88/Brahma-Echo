@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:62f311774dbbf26eccc0c4494becd2ee9fa12c6accb19ec5f2bb0ef3ba932767",
+  "scoredAt": "2026-10-24T19:19:09.072Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all possible error scenarios and edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The code assumes a Node.js environment with specific APIs, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.1,
+    "baselineAvg": 30,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "upload-nft-image",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not mention uploadToIPFS, PINATA_JWT, or the network field, thus failing the rubric."
+      },
+      {
+        "name": "upload-nft-metadata",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "A fully meets rubric, B does not use uploadJSON."
+      },
+      {
+        "name": "pin-static-folder",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response B covers more rubric items, including the required commands and the node online note, while Response A omits the -Q flag, gateway info, and explicit online requirement."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:107103916db3e20d46f18b6cb6784d52efe3873bbe2784c9f44fad33cc4de755",
+  "scoredAt": "2026-10-20T17:21:34.220Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 7,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "generate-product-visual",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B provides no content."
+      },
+      {
+        "name": "edit-image-with-mask",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response A implements the required client.images.edit call and decoding logic, but omits explicit mask size and alpha channel checks; Response B uses OpenCV instead of the specified API and thus fails the rubric."
+      },
+      {
+        "name": "migrate-dall-e-3-code",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits key elements such as quality, style, response_format, revised_prompt handling, and proper image decoding."
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b2194980735a6a1bd9fd919484c2daac9117fc9ba1cb5f6f8d9e088d71ae18db",
+  "scoredAt": "2026-10-03T12:16:29.561Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "WEAK",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "clarity",
+        "detail": "Several sections (webpage scan, plagiarism, credits) tell the reader to look up the path or field names in the docs instead of stating them, so the instructions are not self-contained."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is thin: the batch example sleeps on 429 and then skips that article without retrying, and out-of-credits and other non-2xx responses have no concrete handling or code."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "Plagiarism, scan-url and credit-balance have no runnable request or confirmed endpoint path, so only AI detection can be run as written."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.49,
+    "baselineAvg": 57,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "triage-freelancer-draft-ai-score",
+        "baseline": 55,
+        "treatment": 88,
+        "rationale": "A matches the rubric closely: it POSTs to the right endpoint with an env-var API key, builds the body with jq --rawfile, reads score.ai, and says 0.92 goes to a human editor rather than being auto-rejected; B has a safe jq -Rs build and a good corroboration list, but it never states the human-editor routing and instead describes 0.92 as 'high suspicion, worth acting on' with a possible invoice dispute."
+      },
+      {
+        "name": "batch-audit-with-rate-limit-handling",
+        "baseline": 70,
+        "treatment": 88,
+        "rationale": "Both POST `content` with the X-OAI-API-KEY header, compare `score.ai` to 0.5, and retry on 429. A sums `credits_used` from each response as the rubric requires, while B only sums it as a fallback and primarily reports a balance-difference from an unverified balance endpoint, which deviates from the required approach."
+      },
+      {
+        "name": "plagiarism-and-credit-budget-caveats",
+        "baseline": 45,
+        "treatment": 80,
+        "rationale": "A separates billing for AI and plagiarism scans, names the `credits` field and the `balance` field from the credit-balance endpoint, says the plagiarism path and fields are unconfirmed and should be checked in the docs, and lists limitations (public web only, scores as probabilities); B gives a specific plagiarism path and balance path from memory, never mentions the `balance` or `credits` fields, and only gives a general instruction to confirm the docs, though it does cover separate billing and human review."
+      }
+    ]
+  }
+}

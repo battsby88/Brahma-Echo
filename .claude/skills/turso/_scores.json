@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f18da245aaafb41eff2f1c2ac4f15382b73a2e79218f5123f8e257ed7b32661a",
+  "scoredAt": "2026-10-24T21:46:44.787Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes Homebrew installation, which may not be available on all platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 10,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "create-db-readonly-token-connect",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B fails to use the required commands, environment variables, and client API."
+      },
+      {
+        "name": "atomic-fund-transfer",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "A meets all rubric requirements; B does not use db.batch and thus fails."
+      },
+      {
+        "name": "vector-search-articles",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers almost all rubric items except the table name, while Response B omits all required SQL and TypeScript details."
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7d9a22d3787ddc2981878916ac244af1f5f28a9a46aea70e6c3565947668784c",
+  "scoredAt": "2026-10-24T20:12:44.346Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Missing checksum verification for npm install of @xano/cli."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Missing checksum verification for npx install of @xano/developer-mcp."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 5.17,
+    "baselineAvg": 12,
+    "treatmentAvg": 62,
+    "scenarios": [
+      {
+        "name": "create-authenticated-user-table",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response B covers many rubric items but omits the required MCP add command, uses a custom login endpoint instead of the pre-built one, and lists sandbox push commands instead of the specified workspace push commands, resulting in a moderate score; Response A is incomplete or missing key details, earning a low score."
+      },
+      {
+        "name": "add-paginated-orders-endpoint",
+        "baseline": 15,
+        "treatment": 65,
+        "rationale": "Response A covers most Xano-specific requirements and CLI steps (though missing the claude mcp add and table definition), while Response B is unrelated to Xano and omits all rubric items."
+      },
+      {
+        "name": "create-daily-newsletter-task",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A includes the Xano task structure, schedule, external API call, and env var usage, but omits several required CLI commands; Response B is unrelated to Xano and lacks all required elements."
+      }
+    ]
+  }
+}

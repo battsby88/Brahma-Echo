@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:27abfe95683918f32594136d0806517dd07e4ff85dabd18a4b7727c6de9c3f1e",
+  "scoredAt": "2026-10-24T15:37:02.282Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is limited to Node.js 18+ or Python 3.10+, which restricts cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4,
+    "baselineAvg": 23,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "budget-alerts-per-feature",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully implements the required CostTracker usage and alert logic, while Response B does not use CostTracker at all."
+      },
+      {
+        "name": "semantic-caching-faqs",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response B meets the rubric requirements more fully, including cache_control, cache_read_input_tokens, SemanticCache with threshold 0.95, and get/set usage, whereas Response A lacks these key elements."
+      },
+      {
+        "name": "model-routing-for-classification",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric, while Response A does not call pickModel or reference CHEAP_TASKS and uses a different approach."
+      }
+    ]
+  }
+}

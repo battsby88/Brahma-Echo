@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:254e7fa0fa2d88ff98ce01405116cd221bfa6f1aeefa119a258b3931b744a599",
+  "scoredAt": "2026-05-13T14:13:45.309Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases beyond the happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 5,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "http-ecommerce-load-test",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A is incomplete and does not meet the specified YAML structure."
+      },
+      {
+        "name": "websocket-chat-test",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with a correct YAML structure, while Response B provides a Node.js script instead of the required YAML test scenario."
+      }
+    ]
+  }
+}

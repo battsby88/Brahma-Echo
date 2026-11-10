@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4f7e863d409715ee7725f6a47ccde97a3c876abb65e2e9d87fbb065e5ad7dd1a",
+  "scoredAt": "2026-10-24T19:58:51.753Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as CSV import failures or connection errors."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "installation",
+        "detail": "Installation commands lack checksum verification, potentially allowing tampered packages."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 1.38,
+    "baselineAvg": 60,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "import-csv-duplicates",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits the required .import --csv flag and header output."
+      },
+      {
+        "name": "nodejs-wal-transaction",
+        "baseline": 50,
+        "treatment": 50,
+        "rationale": "Both responses omit the required Database('myapp.db') name, but otherwise satisfy the rest of the rubric."
+      },
+      {
+        "name": "fts5-fulltext-search",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A satisfies every rubric requirement, while Response B omits the required INSERT INTO posts_fts(posts_fts) VALUES ('rebuild') statement."
+      }
+    ]
+  }
+}

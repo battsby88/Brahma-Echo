@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4e5af8c595b5befecdcbddefc3dae5fe9f4cf34be00ddece86d77076ed800480",
+  "scoredAt": "2026-10-24T19:17:36.246Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling for missing translation files or network failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The instructions contain verbose explanations that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "add-german-language-switcher",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, while Response B omits the supportedLngs array, the required file location, and explicit localStorage handling."
+      },
+      {
+        "name": "russian-plurals-currency-node",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric requirements, while Response A does not use i18next or the specified locale file structure."
+      },
+      {
+        "name": "list-formatter-react",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric by providing a list‑formatted translation key and a component that calls i18n.t with the array, whereas Response B omits the required list‑formatter syntax in the translation key."
+      }
+    ]
+  }
+}

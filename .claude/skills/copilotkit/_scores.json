@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:54be0531e9bfea9e9f19c10910755a69a50c13ab9755ea379e9e87c24f3d4418",
+  "scoredAt": "2026-10-01T11:35:23.879Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 70,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover all possible error scenarios such as missing environment variables or runtime failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains extensive explanatory text that could be trimmed for brevity."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is tightly coupled to CopilotKit and does not support arbitrary AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.7,
+    "baselineAvg": 3,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "add-ai-sidebar-with-task-tool",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not use CopilotKit or the required runtime setup."
+      },
+      {
+        "name": "migrate-v1-to-v2-copilotkit",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide the required v1‑to‑v2 mapping, import updates, and example code with a zod schema."
+      },
+      {
+        "name": "add-human-in-the-loop-approval",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A is missing key details."
+      }
+    ]
+  }
+}

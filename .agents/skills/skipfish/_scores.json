@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:95e8e018b03cbde9a93a469d60034a9ccc0ff79e000f219df1b058863ab0b8b2",
+  "scoredAt": "2026-10-24T16:01:39.299Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Missing error handling for installation failures, missing dictionary files, and network errors."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "Instructions assume Linux/macOS environments and do not support Windows or other OSes."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 0,
+    "treatmentAvg": 60,
+    "scenarios": [
+      {
+        "name": "quick-triage-staging-site",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B includes most required flags and notes the output directory constraint, but uses the wrong dictionary file; Response A does not meet any of the rubric requirements."
+      },
+      {
+        "name": "authenticated-dashboard-scan",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B includes every required flag and option, whereas Response A is empty."
+      },
+      {
+        "name": "scoped-load-tuned-scan",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response A covers some options but omits many required flags and details, whereas Response B provides no content at all."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d3d9720ddc2c5c53e182a8c5433511dce6d5d8261c5eaee714c6ff31070561a4",
+  "scoredAt": "2026-10-24T15:21:33.214Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling for authentication failures, model not found errors, or network issues."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.92,
+    "baselineAvg": 12,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "streaming-chat-nextjs",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response B meets the rubric requirements (OpenAI import, baseURL, env var, specific model, streaming, iteration) while Response A uses a different SDK, omits the required baseURL and model, and does not expose a function returning the full response."
+      },
+      {
+        "name": "structured-output-review-analysis",
+        "baseline": 5,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not call Fireworks or use the required JSON schema."
+      },
+      {
+        "name": "fine-tune-support-tickets",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B includes the required firectl commands but misnames the output model, whereas Response A does not address any of the rubric requirements."
+      }
+    ]
+  }
+}

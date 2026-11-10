@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:1abb5a7761efbe8b1e1c07438fa70b0577d6341901cbe1063eb442d8543652d7",
+  "scoredAt": "2026-10-01T20:24:08.550Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.75,
+    "baselineAvg": 40,
+    "treatmentAvg": 70,
+    "scenarios": [
+      {
+        "name": "audit-ad-landing-page",
+        "baseline": 30,
+        "treatment": 50,
+        "rationale": "Response A includes a page outline script but lacks CrUX API calls, Lighthouse commands, and conversion rate reporting, while Response B omits all required technical elements."
+      },
+      {
+        "name": "mobile-bounce-rate-analysis",
+        "baseline": 40,
+        "treatment": 60,
+        "rationale": "Both responses omit the required p75 Core Web Vitals values, but Response B identifies a specific defect (LCP > 4s or CLS > 0.25) and offers concrete fixes, whereas Response A only lists generic issues without pinpointing a defect."
+      },
+      {
+        "name": "ab-test-plan-feature-page",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with hypothesis, metric, base/target rates, ab_math.py calculation, weeks, and feasibility; Response B omits the ab_math.py step and weeks, missing key rubric items."
+      }
+    ]
+  }
+}

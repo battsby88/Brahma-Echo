@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:dc5981db6eb3b0cf9da485608291f6819918a442797942825abfd98b0d228dc2",
+  "scoredAt": "2026-10-20T19:27:55.008Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "signup-form-duplicate-email-error",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not use Formik or Yup."
+      },
+      {
+        "name": "dynamic-team-members-form",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies all rubric requirements, while Response B does not use FieldArray or the specified field names."
+      },
+      {
+        "name": "login-form-with-zod",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A satisfies every rubric requirement, while Response B omits the required toFormikValidationSchema import, uses a custom validate instead, and lacks an async fetch on submit."
+      }
+    ]
+  }
+}

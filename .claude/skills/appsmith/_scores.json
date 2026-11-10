@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1bda6d6cf67d3977f24c289543afe444408755e0dfe721d67c33c5e984b9801f",
+  "scoredAt": "2026-10-01T12:53:35.763Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose sections that could be more concise."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.67,
+    "baselineAvg": 52,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "orders-crud-with-jsobject",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B uses different query names and omits the required OrdersQuery and UpdateOrderQuery definitions."
+      },
+      {
+        "name": "self-host-docker-backup-domain",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items (pinned image, docker-compose, backup, custom domain, telemetry) while Response B lacks key details such as a pinned tag, proper env file location, and domain/telemetry settings."
+      },
+      {
+        "name": "git-sync-automatic-deploy",
+        "baseline": 85,
+        "treatment": 80,
+        "rationale": "Both responses cover the key steps, but A provides more detailed instructions and a concrete GitHub Actions workflow, while B omits the branch‑protection note and is slightly less exhaustive."
+      }
+    ]
+  }
+}

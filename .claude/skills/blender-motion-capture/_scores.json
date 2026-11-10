@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d2d829c2548125bc1db52687ca6715338ca29a07531f9b66dbb161ef51e0ca2b",
+  "scoredAt": "2026-10-13T11:13:10.270Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tied to Blender's Python API and specific version assumptions (5.0+ layered actions, with differing 4.x behaviour), and the video tracking section requires the Movie Clip Editor UI context so it cannot run in the headless `--background` mode the compatibility note recommends."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.28,
+    "baselineAvg": 67,
+    "treatmentAvg": 86,
+    "scenarios": [
+      {
+        "name": "retarget-mixamo-to-rigify-5x",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "B matches the rubric closely (target:source mapping, per-frame frame_set, new action with animation_data creation, rotation_quaternion keyframes, location on the root only, no fcurves access), while A uses matrix-based world-space retargeting with inverted mapping direction (source:target), keys rotation_euler as a fallback, and keys extra IK_FK props, deviating from the rubric's simple copy approach and mapping direction."
+      },
+      {
+        "name": "decimate-mocap-fcurves-blender5",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both reach F-curves via layers→strips→channelbag(slot).fcurves with animation_data.action_slot, preserve first/last keys, call fcurve.update(), and note action.fcurves is gone in 5.x; B adds a strip.type check, RDP-based error-aware thinning and fuller usage notes, but A states more explicitly that action.fcurves fails and is simpler, while B's removal with fast=True followed by update() is also fine."
+      },
+      {
+        "name": "track-and-solve-camera-from-footage",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A satisfies the rubric: it loads the clip, sets tracking and camera settings, calls detect_features, track_markers, clean_tracks and solve_camera, compares average_error to 0.5 px, and states that bpy.ops.clip.* needs a Movie Clip Editor context and fails under --background; Response B covers the same pipeline but tells the user to run with -b and only hedges that the context override 'should work', which contradicts the required statement."
+      }
+    ]
+  }
+}

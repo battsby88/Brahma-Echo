@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b07e46fa1262a57edb968c2174811b8dfff71087cd7900e9046dd82c75b108d0",
+  "scoredAt": "2026-10-03T12:17:18.212Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is limited to displaying error.message on write; it does not cover wallet rejection, connector failures, missing wallet extensions, or the wrong-network flow with working code."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are prose summaries with only inline snippets (the balance example uses a vague 'formatted-style' phrasing and the upgrade example has no before/after code), so they are less concrete than runnable demonstrations."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.89,
+    "baselineAvg": 47,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "nextjs-wallet-connect-setup",
+        "baseline": 38,
+        "treatment": 82,
+        "rationale": "A follows the rubric closely (wagmi 3 hooks useConnection/useConnect mutate/useConnectors, config with ssr and cookieStorage, providers with useState QueryClient, and the @walletconnect/ethereum-provider install), whereas B uses wagmi v2 style hooks (useAccount, connect from useConnect, no useConnectors or useConnection) so it misses the wagmi 3 requirement despite a solid config and providers."
+      },
+      {
+        "name": "send-usdc-with-status-and-decimals",
+        "baseline": 80,
+        "treatment": 90,
+        "rationale": "B matches the rubric most closely: it uses the mutate form of useWriteContract, passes chainId 8453 to transfer, parses with parseUnits at 6 decimals, and mentions useSimulateContract and useSwitchChain, while A uses writeContractAsync instead of the required mutate form and has no explicit 8453 constant, although it does use base.id and handles network switching with useSwitchChain."
+      },
+      {
+        "name": "upgrade-wagmi-v2-to-v3",
+        "baseline": 22,
+        "treatment": 95,
+        "rationale": "B hits every rubric item: the install command with wagmi@3, viem@2, react-query@5 and TS ^5.9.3, the useConnection and useConnectors renames, `mutate: writeContract`, connector SDKs, and `npx tsc --noEmit`. A gets the two renames right but says no writeContract change is needed, which is wrong, and it uses loose versions with TS 5.7+ instead of 5.9.3."
+      }
+    ]
+  }
+}

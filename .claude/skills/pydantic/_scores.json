@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5100356172b813a64bcae2b971590c1c54f7f8ba396ba5588880f69e35837959",
+  "scoredAt": "2026-10-24T19:49:28.772Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.15,
+    "baselineAvg": 27,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "fastapi-request-validation",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Response A fully meets the rubric by defining a UserCreate model, a FastAPI route using it, and showing 422 errors for name, email, and age; Response B uses a different model and does not address the required fields or error example."
+      },
+      {
+        "name": "env-settings-fail-fast",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A meets most rubric requirements but omits secret key retrieval and explicit ValidationError example, while Response B does not implement the required Pydantic Settings class at all."
+      },
+      {
+        "name": "webhook-discriminated-union",
+        "baseline": 20,
+        "treatment": 0,
+        "rationale": "Response A partially implements discriminated models but lacks the required Annotated union, TypeAdapter, and validate_json call; Response B provides no content."
+      }
+    ]
+  }
+}

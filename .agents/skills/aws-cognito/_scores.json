@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:490fb71f6e96b8ebea3ab08966b98b9af4368bbd6a7a36c0ff81fd6da4b11027",
+  "scoredAt": "2026-10-24T16:31:02.628Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for the provided commands."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.13,
+    "baselineAvg": 15,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "create-user-pool-with-mfa",
+        "baseline": 0,
+        "treatment": 55,
+        "rationale": "Response B includes some correct commands but omits required schema, tier, and has an incorrect symbol requirement, whereas Response A provides no content."
+      },
+      {
+        "name": "add-google-login-and-hosted-ui",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A includes all required commands with correct details; Response B does not provide the required commands."
+      },
+      {
+        "name": "verify-cognito-access-token",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items and demonstrates group extraction, though it deviates from the exact function signature and omits id‑token audience checks; Response B fails key requirements such as the specified imports, function name, and use of RSAAlgorithm.from_jwk."
+      }
+    ]
+  }
+}

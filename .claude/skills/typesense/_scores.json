@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:db87e5371bd03c0b361f7b35d6544eaafc64f181fd0dc8429af0fc3634c523dd",
+  "scoredAt": "2026-10-24T22:15:17.016Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "checksum",
+        "detail": "Docker image is pulled without verifying checksum."
+      }
+    ]
+  },
+  "impact": {
+    "baselineAvg": 38,
+    "treatmentAvg": 91,
+    "multiplier": 2.39,
+    "scenarios": [
+      {
+        "name": "Deploy Typesense in Docker and search a products collection",
+        "baseline": 45,
+        "treatment": 92,
+        "rationale": "Treatment uses the documented docker run with --api-key/--enable-cors/--data-dir, defines fields with facet:true and default_sorting_field, and demonstrates typo-tolerant search via q/query_by/filter_by/sort_by/facet_by — baseline omits facet config and exact CLI flags."
+      },
+      {
+        "name": "Add geo search for nearby stores",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Treatment defines a geopoint field and uses the exact Typesense filter_by 'location:(lat, lng, 10 km)' and sort_by 'location(lat, lng):asc' syntax — baseline gives generic geo guidance without the platform-specific filter expression."
+      }
+    ]
+  }
+}

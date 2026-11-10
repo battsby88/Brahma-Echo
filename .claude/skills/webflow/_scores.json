@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:109d4a86ea82d4fc979b5f775f8fa72e283f81cd996daf9c226d926aa912b5c3",
+  "scoredAt": "2026-10-24T17:40:55.728Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.24,
+    "baselineAvg": 17,
+    "treatmentAvg": 72,
+    "scenarios": [
+      {
+        "name": "create-and-publish-cms-items",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A better matches the rubric, using the correct insert and publish endpoints and fieldData mapping, though it misses isDraft:false and 429 handling; Response B uses wrong endpoints and field names."
+      },
+      {
+        "name": "setup-form-submission-webhook",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items but omits the required use of webflow.webhooks.verifySignature, whereas Response B fails to meet the core Webflow webhook requirements."
+      },
+      {
+        "name": "publish-site-to-custom-domain",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B includes the required API call details and headers, while Response A only describes UI steps and omits the API requirements."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:2e290ad49271dc45ad0426e92a1428adb11565b4990456113d6563f50834401d",
+  "scoredAt": "2026-10-02T22:48:44.603Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tied to Next.js and the next-auth@beta v5 line, and the setup steps (proxy.ts, middleware, server actions) mostly don't carry over to the SvelteKit and Express frameworks that the description says it covers."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.49,
+    "baselineAvg": 59,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "github-login-with-avatar-header",
+        "baseline": 92,
+        "treatment": 90,
+        "rationale": "Both cover every rubric item (install commands, `auth.ts`, route handler, env vars, callback URL, server-component header with server actions), and B adds the next.config image setup, a name fallback and a clearer header component, while A adds a questionable maintenance-mode note and an unoptimized img tag."
+      },
+      {
+        "name": "admin-role-credentials-nextjs16",
+        "baseline": 8,
+        "treatment": 95,
+        "rationale": "Response B follows the rubric closely: Credentials with JWT, Zod validation, the jwt/session/authorized callbacks, proxy.ts exporting auth as proxy, module augmentation, and a server-side auth() re-check. Response A switches to Better Auth and covers almost none of the Auth.js specifics, though it does mention proxy.ts and a server-side role check."
+      },
+      {
+        "name": "drizzle-adapter-edge-split-config",
+        "baseline": 78,
+        "treatment": 80,
+        "rationale": "Both give the auth.config.ts / auth.ts split with the adapter, jwt strategy, and a proxy built from NextAuth(authConfig).auth; A explicitly states the edge instance can only verify the session cookie and cannot read the database, which the rubric requires, while B conveys this less directly (the proxy validates a signed cookie) and adds tangential edge-driver and Next 16 notes, and neither explicitly states the edge runtime can't open TCP connections."
+      }
+    ]
+  }
+}

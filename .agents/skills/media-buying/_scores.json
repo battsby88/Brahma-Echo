@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:90840fb06b5d44c0c7286875ec0a3272979d9a7bf8700a2a52566d46c485d9ee",
+  "scoredAt": "2026-10-24T16:57:17.674Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error scenarios or edge cases, limiting robustness."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The skill lacks runnable code or concrete procedural steps, reducing immediate execution capability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.86,
+    "baselineAvg": 73,
+    "treatmentAvg": 63,
+    "scenarios": [
+      {
+        "name": "create-programmatic-media-plan",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "Response B includes the required table, budget percentages, and a 4‑week optimization timeline, whereas Response A lacks the timeline and DSP structure, making B the stronger answer."
+      },
+      {
+        "name": "optimize-cross-channel-budget",
+        "baseline": 95,
+        "treatment": 80,
+        "rationale": "Response B fully satisfies all rubric items with explicit calculations, a concrete 20% reduction target, a clear 10‑20% weekly rebalancing schedule, and detailed data collection, whereas Response A covers most points but lacks a concrete demonstration of the 20% CPA reduction and a fully explicit schedule."
+      },
+      {
+        "name": "setup-brand-safety",
+        "baseline": 70,
+        "treatment": 30,
+        "rationale": "Response B covers domain allowlist, category exclusions, keyword blocklist, and a weekly audit process, while Response A lacks the audit process and is incomplete; neither includes viewability thresholds, but B is more complete overall."
+      }
+    ]
+  }
+}

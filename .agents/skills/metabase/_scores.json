@@ -1,0 +1,54 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:85574dec0af1ba6fb34761e21d6713e3bff58a4ac37f79c9381a6e89507a63f6",
+  "scoredAt": "2026-11-05T00:02:26.831Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill file lacks explicit error handling and edge case coverage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.71,
+    "baselineAvg": 17,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "start-metabase-docker",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A covers the export, docker compose command, and health check curl, missing only an explicit wait note, while Response B omits the required password export and primary docker compose usage."
+      },
+      {
+        "name": "connect-postgres-db-api",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A lacks the required POST command and JSON body."
+      },
+      {
+        "name": "generate-guest-embed-token",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A includes most required elements but lacks the specified function, while Response B is in Python and misses all rubric requirements."
+      }
+    ]
+  }
+}

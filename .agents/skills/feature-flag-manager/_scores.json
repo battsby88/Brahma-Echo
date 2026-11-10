@@ -1,0 +1,69 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fb16ef697309a14d1043500727229268437e61a552674690d93a67268bc7a2f9",
+  "scoredAt": "2026-10-13T12:01:06.723Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 73,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "WEAK",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Missing guidance on error scenarios such as malformed allocations, empty variants, cache refresh failures, or null user IDs."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "Provides code snippets but lacks end-to-end examples of targeting rule evaluation, database integration, and admin endpoint implementations."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "All code examples are TypeScript-specific despite claiming compatibility with 'any backend language'; missing examples in Python, Go, or Java."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Examples describe scenarios and expected outputs but lack complete, working code demonstrating flag definitions and actual evaluation results."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.26,
+    "baselineAvg": 38,
+    "treatmentAvg": 86,
+    "scenarios": [
+      {
+        "name": "gradual-api-endpoint-rollout",
+        "baseline": 58,
+        "treatment": 87,
+        "rationale": "Response A fails the explicit rubric requirement for SHA-256 hashing by using MD5 instead, and hashes only userId rather than the required flagKey:userId combination; Response B correctly implements all three rubric items: boolean flag with 95/5 allocation, deterministic bucketing via SHA-256(flagKey:userId), and server-side middleware checking the enabled flag before variant assignment."
+      },
+      {
+        "name": "targeted-multivariant-pricing-test",
+        "baseline": 48,
+        "treatment": 92,
+        "rationale": "Response A is a well-structured test methodology guide (hypothesis, metrics, sample size) but fails the rubric by omitting any flag definition, concrete targeting rules, and entirely missing deterministic bucketing demonstration. Response B directly implements all three rubric requirements: explicit multivariate flag with [33.33, 33.33, 33.34] allocation, targeting rules for country=US and plan=free, and deterministic bucketing via SHA256 hash to ensure consistent variant assignment per user."
+      },
+      {
+        "name": "flag-lifecycle-and-stale-flag-monitoring",
+        "baseline": 8,
+        "treatment": 80,
+        "rationale": "Response A provides no implementation of any rubric requirement, only clarifying questions; Response B implements all three (archiving, logging structure, monitoring) with working code and thorough detail, but uses a PATCH endpoint instead of the DELETE method explicitly specified in the rubric."
+      }
+    ]
+  }
+}

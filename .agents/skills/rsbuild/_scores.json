@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:42ec3142a2806fe5a812f1765d64793e7c78c3ce7dc8a9d97ac26e06177903c5",
+  "scoredAt": "2026-10-03T12:07:03.146Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Example 2 is a list of error-to-fix mappings in prose without runnable commands or config snippets, and Example 1 relies on referring back to the earlier config rather than showing a complete migration."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.35,
+    "baselineAvg": 65,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "cra-to-rsbuild-migration",
+        "baseline": 82,
+        "treatment": 90,
+        "rationale": "Both remove react-scripts, add the required packages, and give a config with defineConfig, pluginReact, source.entry './src/index.tsx' and 'rsbuild dev'/'rsbuild build' scripts, but A moves the template to ./index.html instead of the rubric's public/index.html, while B points html.template at './public/index.html' as required."
+      },
+      {
+        "name": "fix-v2-upgrade-breakages",
+        "baseline": 90,
+        "treatment": 93,
+        "rationale": "Both cover all four rubric items (resolve.alias, npm add core-js, rename to .mjs/.ts or type:module, server.host/--host); A is more direct and confident with extra accurate migration notes, while B hedges about being from memory and frames the ESM fix partly as a Node upgrade, which is slightly less precise."
+      },
+      {
+        "name": "migrate-chunk-split-and-bundle-analyzer",
+        "baseline": 22,
+        "treatment": 82,
+        "rationale": "A gives the correct splitChunks preset \"default\" mapping, says bundleAnalyze is removed, and recommends Rsdoctor (@rsdoctor/rspack-plugin) or webpack-bundle-analyzer via tools.rspack, but omits the Node.js version and plugin 2.x upgrade; B gets the Rsdoctor recommendation and setup right but cannot say where chunkSplit moves to, never mentions splitChunks or preset \"default\", and also omits Node and plugin versions."
+      }
+    ]
+  }
+}

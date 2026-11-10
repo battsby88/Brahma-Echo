@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d117fc545bbc33d1295cdbd1cda5db5f5402b522a7a6b7e212aacd48511b4655",
+  "scoredAt": "2026-10-02T15:14:09.417Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes GitHub Copilot CLI or VS Code, limiting cross-platform compatibility."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.64,
+    "baselineAvg": 22,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "init-squad-with-default-preset-no-workflows",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A includes the required squad init command and Copilot launch, but omits confirming the .squad/ directory; Response B lacks the squad init command entirely."
+      },
+      {
+        "name": "setup-issue-triage-with-execute-and-stop",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B does not include the required squad command or stop marker."
+      },
+      {
+        "name": "export-and-import-squad-snapshot-with-force",
+        "baseline": 45,
+        "treatment": 60,
+        "rationale": "Response A includes the export and import commands (though not the exact path) and implies overwrite, while Response B lacks the import step and the specific archive folder naming, making A more complete."
+      }
+    ]
+  }
+}

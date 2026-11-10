@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:47a3e6e0520bad9417121339dd68b20ee162f627687954c1c0b542284f0c6d69",
+  "scoredAt": "2026-10-24T21:55:25.690Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack coverage of error handling and edge cases, focusing mainly on happy path scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9,
+    "baselineAvg": 0,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "pixiv-oauth-metadata",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not use gallery-dl or the specified options."
+      },
+      {
+        "name": "reddit-filter-metadata",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements while A does not provide any solution."
+      },
+      {
+        "name": "batch-imgur-rate-archive",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "B is closer to the rubric, though it uses a different input file name."
+      }
+    ]
+  }
+}

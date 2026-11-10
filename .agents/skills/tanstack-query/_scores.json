@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:48d14815be05b6ac6d8f3ec9775eb5169b9a052f0c9865bdc012bdf2ad34abc4",
+  "scoredAt": "2026-10-24T20:04:34.136Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to React and may not work with other frameworks or environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.5,
+    "baselineAvg": 7,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "infinite-scroll-feed",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "B meets all rubric criteria; A does not use useInfiniteQuery."
+      },
+      {
+        "name": "optimistic-todo-create",
+        "baseline": 20,
+        "treatment": 85,
+        "rationale": "Response A implements the required useMutation logic and rollback/invalidation, missing only the greyed pending UI detail, while Response B lacks useMutation entirely and fails to meet the core requirements."
+      },
+      {
+        "name": "suspense-user-profile",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A is missing."
+      }
+    ]
+  }
+}

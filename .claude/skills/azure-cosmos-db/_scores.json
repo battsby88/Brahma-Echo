@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:80abb91cf36ef54e8aea9da00519a3b5b9694c06a3abb61df6487d8e16120f9d",
+  "scoredAt": "2026-10-24T18:55:44.727Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as missing partition keys or rate limiting scenarios."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text and comments that add verbosity beyond the essential steps."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions rely on bash commands and Azure CLI, which may not be available or behave differently on non-Unix platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.8,
+    "baselineAvg": 7,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "setup-account-with-entra-id",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B includes the required create command but omits the role assignment and Python client, whereas Response A is empty."
+      },
+      {
+        "name": "create-orders-container-with-indexing",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits required options and JSON fields."
+      },
+      {
+        "name": "process-change-feed-from-beginning",
+        "baseline": 20,
+        "treatment": 85,
+        "rationale": "Response A meets the rubric except for not explicitly noting the deprecation of is_start_from_beginning, while Response B uses a different API and misses the required call and note."
+      }
+    ]
+  }
+}

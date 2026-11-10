@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:d75585764c5a3afc053a37178fca12175d8fc848b817269e4ba885f36b01772d",
+  "scoredAt": "2026-10-01T20:16:25.459Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive narrative and examples, making it verbose beyond necessary instructions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.87,
+    "baselineAvg": 23,
+    "treatmentAvg": 43,
+    "scenarios": [
+      {
+        "name": "90-day-plan-coffee-shop",
+        "baseline": 25,
+        "treatment": 35,
+        "rationale": "Response A contains a partial Goal & Arithmetic section and some planning detail, whereas Response B lacks the required sections and is less aligned with the rubric."
+      },
+      {
+        "name": "b2b-saas-marketing-plan",
+        "baseline": 25,
+        "treatment": 35,
+        "rationale": "Response B includes a channel table and some calculations, whereas Response A lacks any channel table or JSON inputs, making B slightly more complete."
+      },
+      {
+        "name": "new-consulting-firm-plan",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response A includes a Situation section, channel table, stop rule, and some assumptions, whereas Response B lacks most required elements."
+      }
+    ]
+  }
+}

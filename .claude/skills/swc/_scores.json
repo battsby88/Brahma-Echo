@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:2becda4560868c58b4bdb34a093cb4bb66c3ce371746260f6f2b06bb8b7a82d1",
+  "scoredAt": "2026-10-20T20:20:33.276Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases beyond basic usage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.89,
+    "baselineAvg": 53,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "compile-ts-library-esm-cjs",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A includes the exact SWC commands with the required flags and the tsc command, while Response B uses different flags and omits the required --strip-leading-paths and --source-maps options."
+      },
+      {
+        "name": "setup-jest-with-swc-jest",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements by providing inline SWC options and noting .swcrc usage, while Response A lacks that detail."
+      },
+      {
+        "name": "minify-js-function-with-swc",
+        "baseline": 40,
+        "treatment": 100,
+        "rationale": "A fully meets the rubric, B misuses the API options and does not specify compress.drop_console."
+      }
+    ]
+  }
+}

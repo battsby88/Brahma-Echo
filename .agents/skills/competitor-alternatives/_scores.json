@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:40020bacccecf02760d86399fc12c32fb8fc447a3cb0a7e9e8a95f0836ae196f",
+  "scoredAt": "2026-10-01T19:40:22.639Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered padded, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.92,
+    "baselineAvg": 60,
+    "treatmentAvg": 55,
+    "scenarios": [
+      {
+        "name": "helpdesk-pro-vs-supportmaster",
+        "baseline": 100,
+        "treatment": 50,
+        "rationale": "Response A fully meets all rubric items with detailed claims, verdict, comprehensive table, and cited sources, while Response B lacks a formal verdict, complete sources, and a full claims ledger."
+      },
+      {
+        "name": "mailchimp-alternatives-list",
+        "baseline": 60,
+        "treatment": 20,
+        "rationale": "Response A covers most rubric items but lacks explicit suits/does not suit sections and sources, whereas Response B is largely incomplete."
+      },
+      {
+        "name": "recheck-compare-pages",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully implements running check_claims.py, updating stale rows, regenerating pages, and ensuring no stale claims remain, while Response A only updates markdown dates and omits the required ledger and regeneration steps."
+      }
+    ]
+  }
+}

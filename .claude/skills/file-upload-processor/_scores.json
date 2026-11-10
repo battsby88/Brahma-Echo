@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9735b8ae8b3198f8659fb5480392ff0f6ca1ac6b7d8157816e89968348c5dfd4",
+  "scoredAt": "2026-10-13T16:02:48.735Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.62,
+    "baselineAvg": 45,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "small-file-upload-endpoint",
+        "baseline": 55,
+        "treatment": 65,
+        "rationale": "Response A covers more rubric items, including correct multer config, magic‑byte check, S3 upload, and returns a file ID, while B lacks webp support, proper fileFilter, and DB persistence."
+      },
+      {
+        "name": "large-file-presigned-endpoint",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response B better meets key format and filename usage, though both miss expiresIn and StorageService call."
+      },
+      {
+        "name": "upload-status-and-download",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "A fully meets the rubric; B misses status handling, expiry range, and error handling."
+      }
+    ]
+  }
+}

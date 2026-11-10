@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:135dafd675fb1d4afccb60445ff4c649703d51a4079967107d05c8203880dbe6",
+  "scoredAt": "2026-10-24T13:55:22.838Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly handle error scenarios or edge cases such as adapter incompatibility or handshake capture failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is Linux-specific and assumes a monitor-mode-capable Wi-Fi adapter, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.09,
+    "baselineAvg": 43,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "enable-monitor-mode",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits the exact verification command and grep usage."
+      },
+      {
+        "name": "capture-wpa-handshake",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B misses key interface and file name details."
+      },
+      {
+        "name": "crack-handshake-gpu",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B includes the required hashcat conversion and cracking steps, while Response A does not; neither covers pre‑filtering or the aircrack‑ng command."
+      }
+    ]
+  }
+}

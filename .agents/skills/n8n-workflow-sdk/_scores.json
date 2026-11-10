@@ -1,0 +1,48 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:e849e3c3b646750a4d1c0464a8e4b8e31143b632952a29e0c5957e7f9c62a316",
+  "scoredAt": "2026-11-05T20:41:12.214Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 3,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "build-hot-lead-routing-workflow",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric with trigger, ifElse, node, chaining, and validation; Response B does not use any of the required SDK constructs."
+      },
+      {
+        "name": "convert-json-to-sdk-and-back",
+        "baseline": 10,
+        "treatment": 95,
+        "rationale": "Response B follows the rubric exactly, while Response A does not use generateWorkflowCode/parseWorkflowCode and thus fails to meet the requirements."
+      },
+      {
+        "name": "deploy-workflow-via-api",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B uses curl, wrong publish endpoint, and incorrect headers."
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:dc8b76b1b298eb37cf8f0bcf8691c39cbba695a10f4bdcc40f20e41aa3e9de9d",
+  "scoredAt": "2026-10-20T19:29:58.373Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill focuses on happy path scenarios and lacks explicit handling of error cases and edge conditions."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes availability of gcloud, bq CLI, and Python, limiting portability across all AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.03,
+    "baselineAvg": 33,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "create-partitioned-clustered-table",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses use SQL CREATE TABLE syntax instead of the required bq mk --table command with the specified options."
+      },
+      {
+        "name": "load-parquet-from-gcs",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses correctly use bq load with --source_format=PARQUET, specify the target table, and provide the GCS URI pattern, meeting all rubric requirements."
+      },
+      {
+        "name": "rank-products-by-similarity",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not use AI.SIMILARITY or the specified model."
+      }
+    ]
+  }
+}

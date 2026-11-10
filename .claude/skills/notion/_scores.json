@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:000b0ff233d53db1b0a47b562015c8e05a7f6c7011e8a4dbef945ca94969e167",
+  "scoredAt": "2026-10-24T22:04:26.578Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5,
+    "baselineAvg": 15,
+    "treatmentAvg": 75,
+    "scenarios": [
+      {
+        "name": "query-in-progress-due-date",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B meets most rubric requirements but fails to explicitly return page IDs, whereas Response A does not meet any of the rubric criteria."
+      },
+      {
+        "name": "create-task-page",
+        "baseline": 45,
+        "treatment": 65,
+        "rationale": "Response A correctly uses get_data_source_id and create_page with proper properties but omits the children list in the create_page call, whereas Response B includes the children but does not use get_data_source_id or create_page as required."
+      },
+      {
+        "name": "append-todo-after-last-block",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B is unrelated to Notion API and thus fails."
+      }
+    ]
+  }
+}

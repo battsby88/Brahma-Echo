@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:d6f1ffb9f42bba31f931dc23c4d3ce8418cb95c9977e54f0fd6de281055e9a0f",
+  "scoredAt": "2026-10-20T18:13:36.957Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases such as failed database initialization or unsupported platforms."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions assume a Linux environment and may not work on Windows or other platforms without modifications."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.3,
+    "baselineAvg": 0,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "validate-cve-exploit",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric by importing the Nmap XML, searching for the CVE, setting RHOSTS, running check, and showing vulnerability status, whereas Response A omits the import, check command, and status output."
+      },
+      {
+        "name": "generate-windows-reverse-shell",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A does not provide any instructions."
+      },
+      {
+        "name": "pivot-and-scan-internal",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B covers routing and scanning but omits the SOCKS proxy setup, whereas Response A provides no instructions."
+      }
+    ]
+  }
+}

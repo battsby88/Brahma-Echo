@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7a5f6ef28418bf79f75e81d1da375136fd5c43749433ee564b056e02396c829d",
+  "scoredAt": "2026-10-24T21:14:48.861Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.75,
+    "baselineAvg": 32,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "create-api-app-with-postgres-tailwind",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B satisfies every rubric requirement, while Response A omits the Tailwind flag, body validation, scopes, slug callback, and other key elements."
+      },
+      {
+        "name": "add-built-in-authentication",
+        "baseline": 15,
+        "treatment": 65,
+        "rationale": "Response B includes the required generator command, root route, and mentions the Authentication concern, while Response A omits the generator command and key details."
+      },
+      {
+        "name": "create-welcome-email-job",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A deviates on retry settings, perform signature, mailer call, and enqueue example."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:03a310f0a5eb7ef412ee451d7c9e4674f9d941c35ea169376a89c5a3bb74eedd",
+  "scoredAt": "2026-10-24T18:54:58.086Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill lacks explicit error handling or edge case guidance, covering only happy paths."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.9,
+    "baselineAvg": 30,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "create-vm-with-open-port",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response B meets almost all rubric requirements (except az configure), whereas Response A fails to include the required commands and parameters."
+      },
+      {
+        "name": "upload-blob-with-sas",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A misses key flags and parameters."
+      },
+      {
+        "name": "deploy-bicep-with-no-wait",
+        "baseline": 40,
+        "treatment": 80,
+        "rationale": "Response A covers the required commands but omits the portal comment, while Response B uses the wrong wait command and also lacks the portal comment."
+      }
+    ]
+  }
+}

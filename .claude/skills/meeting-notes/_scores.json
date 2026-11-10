@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:58fdf6d967e56a6018dea647c89494056ea9eef72b3e4b955eb61e5fcac6aeaa",
+  "scoredAt": "2026-10-24T20:51:05.551Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0,
+    "baselineAvg": 0,
+    "treatmentAvg": 0,
+    "scenarios": [
+      {
+        "name": "summarize-raw-transcript",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to provide a summary as required."
+      },
+      {
+        "name": "extract-action-items-only",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses are identical and fail to meet the rubric."
+      },
+      {
+        "name": "generate-follow-up-email",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to produce the required email."
+      }
+    ]
+  }
+}

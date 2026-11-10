@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ca36bdc8ec7e46ca3239913184121fe3c8b84ac6aa77b0e69909679c3f2933f3",
+  "scoredAt": "2026-10-03T12:09:27.387Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tied to the Val Town platform and the Deno runtime (Deno.env, esm.town imports, the vt CLI), and the local workflow needs Deno installed."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two Examples sections only describe the handlers in prose, with no complete runnable code or full request and response flow, so they are less concrete than the code in the Instructions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1,
+    "baselineAvg": 81,
+    "treatmentAvg": 81,
+    "scenarios": [
+      {
+        "name": "cron-daily-report-to-slack",
+        "baseline": 80,
+        "treatment": 68,
+        "rationale": "Both give an Interval cron val with Deno.env.get webhook, JSON POST to Slack, UTC note and 15-minute Free limit; A is more complete (computes yesterday's date, error handling, and a more explicit schedule), though it hedges the 15-minute limit as 'I recall' and doesn't use lastRunAt, while B states the limit confidently but fetches the API without selecting yesterday and also omits lastRunAt."
+      },
+      {
+        "name": "stripe-webhook-signature-verification",
+        "baseline": 88,
+        "treatment": 92,
+        "rationale": "Both read the raw body with req.text(), verify with constructEventAsync and the SubtleCrypto provider, return 400 on failure, and check for checkout.session.completed; B also takes STRIPE_SECRET_KEY from Deno.env as the rubric requires, while A hard-codes a dummy 'sk_unused' key and omits STRIPE_SECRET_KEY, though A is otherwise more thorough on security hardening."
+      },
+      {
+        "name": "sqlite-todo-api-and-local-vt",
+        "baseline": 74,
+        "treatment": 82,
+        "rationale": "Both use the std/sqlite import, CREATE TABLE IF NOT EXISTS, parameterized queries, method branching, and the vt install/clone/push/pull/watch workflow. A uses named args (:title, :id), which the rubric asks for. B uses positional `?` args, so it misses that point, and its row mapping from `res.rows` is questionable. B does add useful caveats about auth and the API key."
+      }
+    ]
+  }
+}

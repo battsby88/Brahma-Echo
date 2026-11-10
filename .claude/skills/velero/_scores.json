@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:2ec81f79f10a9b25db06a5e6c805d9d2c15bb83c8d25be1dd1746285f0e1fa8f",
+  "scoredAt": "2026-10-20T20:29:46.959Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases, focusing only on the happy path."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The installation steps assume specific package managers and operating systems, limiting portability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "install-velero-aws",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A misses the required plugin version, --wait flag, and explicit S3-compatible statement."
+      },
+      {
+        "name": "create-nightly-schedule",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not provide the required velero schedule create command or the specified flags."
+      },
+      {
+        "name": "restore-backup-with-namespace-mapping",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A partially meets the rubric but has an incorrect namespace mapping and omits the success statement, while Response B provides no content."
+      }
+    ]
+  }
+}

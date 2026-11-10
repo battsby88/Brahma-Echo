@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a3e4de2b9e733862f27230b177d5a2aa93926ceb32a437a7cf4f825beff825ed",
+  "scoredAt": "2026-10-24T20:53:38.687Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.16,
+    "baselineAvg": 38,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "create-site-with-openapi",
+        "baseline": 25,
+        "treatment": 85,
+        "rationale": "Response A follows the required Mintlify CLI commands and includes the OpenAPI reference in docs.json, while Response B uses the wrong CLI and omits key steps such as mint new, docs.json, and validate."
+      },
+      {
+        "name": "migrate-mintjson-to-docsjson",
+        "baseline": 60,
+        "treatment": 70,
+        "rationale": "Both responses miss one required step, but B covers the rename, schema, relative URL update, and validation via the CLI, whereas A focuses on a script and JSON‑schema validation but omits the CLI update and validation."
+      },
+      {
+        "name": "write-guide-with-builtins-and-lint",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response B satisfies all rubric requirements (MDX frontmatter, required components, and linting commands), whereas Response A lacks frontmatter and uses incorrect linting commands."
+      }
+    ]
+  }
+}

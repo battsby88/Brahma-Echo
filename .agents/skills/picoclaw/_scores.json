@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ecb2e42a9335d92537740389a8abff70fc358fb99ec05c40591b26c7ba2b453a",
+  "scoredAt": "2026-10-03T12:06:14.661Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The Guidelines mix unrelated one-off notes (Groq Whisper transcription, RAM figures, env var patterns, migration tips) into a long list, and the Instructions pack in many peripheral details."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.13,
+    "baselineAvg": 15,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "telegram-bot-on-pi-with-secrets-split",
+        "baseline": 22,
+        "treatment": 90,
+        "rationale": "Response A matches nearly every rubric item: checksum-verified arm64 archive, onboard, model_list with model_name, channel_list.telegram with allow_from, secrets in .security.yml with chmod 600, and gateway/status. Response B guesses at an outdated config format, puts secrets in config.json, skips checksum verification, and uses a bare binary download."
+      },
+      {
+        "name": "docker-discord-nightly-summary",
+        "baseline": 12,
+        "treatment": 90,
+        "rationale": "B follows the rubric closely: launcher profile to generate config, then gateway with up -d, discord allow_from, .security.yml, a Discord DM request for the schedule, cron/ storage and picoclaw cron list; A declines to give any PicoClaw-specific setup and offers only generic Compose and host-cron placeholders."
+      },
+      {
+        "name": "safe-heartbeat-and-cron-hardening",
+        "baseline": 12,
+        "treatment": 95,
+        "rationale": "Response B covers nearly every rubric item (heartbeat interval 60 with HEARTBEAT.md and the 5-minute minimum, allow_from with specific IDs, restrict_to_workspace true, empty command_allowed_remotes never \"*\", and enable_deny_patterns), while Response A refuses to use PicoClaw's config keys and gives only generic advice with a separate cron script."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:029dc37ee5db8c5826eb7537fce8156e979293ec73da8f6537653cb0091774bf",
+  "scoredAt": "2026-10-01T12:49:57.949Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered verbose, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.73,
+    "baselineAvg": 55,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "typed-immer-persist-store",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements, while Response B omits the required createJSONStorage usage."
+      },
+      {
+        "name": "outside-react-session-subscription",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits the required subscription logic and cleanup."
+      },
+      {
+        "name": "use-shallow-selector-avoid-loop",
+        "baseline": 95,
+        "treatment": 85,
+        "rationale": "Both responses meet the rubric, but Response A provides a more complete, runnable example and deeper explanation, earning a higher score."
+      }
+    ]
+  }
+}

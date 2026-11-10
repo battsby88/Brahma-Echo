@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:25766bb627dde6d2de3d6016b581bae4794b2568c212df0ececed1cb2078c526",
+  "scoredAt": "2026-10-24T19:23:04.339Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases for asset loading and runtime failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.28,
+    "baselineAvg": 18,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "basic-platformer",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies every rubric requirement, while Response A provides no content."
+      },
+      {
+        "name": "kaboom-to-kaplay-migration",
+        "baseline": 55,
+        "treatment": 70,
+        "rationale": "Response B addresses more rubric items, including prefixing global functions, whereas Response A omits gravity handling and prefixing."
+      },
+      {
+        "name": "ascii-level-with-patrolling-enemy",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A covers most rubric items but omits enemy spawning loop and collision detection, while Response B provides no content."
+      }
+    ]
+  }
+}

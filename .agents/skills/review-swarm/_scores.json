@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:3e9055a8789c202316fe7dcea277bc4af32fdd350c7329656cb57f565d34e38b",
+  "scoredAt": "2026-10-01T20:42:40.936Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.8,
+    "baselineAvg": 7,
+    "treatmentAvg": 28,
+    "scenarios": [
+      {
+        "name": "swarm-large-branch-review",
+        "baseline": 15,
+        "treatment": 75,
+        "rationale": "Response B covers most rubric items, including brief, scope, house rules, lens selection, concurrent subagents, and a grading scheme, while Response A lacks these details."
+      },
+      {
+        "name": "single-pass-uncommitted-review",
+        "baseline": 5,
+        "treatment": 10,
+        "rationale": "Both responses fail to meet the rubric; A is marginally better because it prompts for a diff summary, whereas B merely lists commands."
+      },
+      {
+        "name": "commit-review-with-inferred-intent",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses refuse to comply and miss all rubric requirements."
+      }
+    ]
+  }
+}

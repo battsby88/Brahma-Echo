@@ -1,0 +1,53 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3e801a5a1d344baa4e0ef2ed361db3858a88baca7436892dff8b38f6811b483e",
+  "scoredAt": "2026-10-01T11:37:21.083Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory text that exceeds concise instructions."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions assume Linux or Docker environments, limiting applicability to other platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.25,
+    "baselineAvg": 40,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "composite-monitor-cpu-mem",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response B includes the required curl POST, query, tags, notify_no_data, escalation_message, and renotify_interval, but lacks a warning threshold; Response A lacks most rubric items."
+      },
+      {
+        "name": "ddtrace-instrumentation-flask",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets all rubric requirements, while Response B omits key configuration details and metric setting."
+      }
+    ]
+  }
+}

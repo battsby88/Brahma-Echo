@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:85ff21434c40b8fdc372be2c53059c5f693c22aed7aea58277b0ae5f33ab42d4",
+  "scoredAt": "2026-10-24T21:54:32.381Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions focus on happy path scenarios and do not cover error handling or edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 33,
+    "treatmentAvg": 95,
+    "multiplier": 2.88,
+    "scenarios": [
+      {
+        "name": "Fan-out error logs to Elasticsearch + Slack, audit to S3",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "Baseline writes two separate matches and misses Slack specifics; treatment uses @type copy with nested <store> blocks for ES and Slack, plus @type s3 with file buffer and JSON format for audit logs."
+      },
+      {
+        "name": "Kubernetes DaemonSet with pod metadata enrichment",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Baseline mounts /var/log and tails containers but omits cri parser, kubernetes_metadata filter, and buffering; treatment uses @type cri parsing, kubernetes_metadata filter, hostPath mounts of /var/lib/docker/containers, and a file-buffered elasticsearch sink."
+      }
+    ]
+  }
+}

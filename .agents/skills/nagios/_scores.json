@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ffa4971ddbc509388f18fde5ea2bcd05c58eb7af21c95e36e7188a953e8af683",
+  "scoredAt": "2026-10-24T17:01:39.040Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all potential error scenarios, such as missing dependencies or package conflicts, leaving users uncertain about troubleshooting steps."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanations and repeated information, which could be streamlined for quicker reference."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions are tailored to Debian/Ubuntu packages and may not apply to other operating systems, limiting portability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.7,
+    "baselineAvg": 43,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "install-nagios-with-nrpe-and-http-disk",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "Response B covers most rubric items with correct commands and verification steps, while Response A misses key package installs, host/service definitions, and verification commands."
+      },
+      {
+        "name": "custom-api-health-plugin",
+        "baseline": 45,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items but misnames the command and service; Response B omits key elements such as option parsing, performance data, and correct command/service definitions."
+      },
+      {
+        "name": "setup-devops-contact-group",
+        "baseline": 55,
+        "treatment": 75,
+        "rationale": "Response B covers more rubric items, including use of generic-contact and explicit mention of the template, while Response A misses the generic-contact usage and the MTA requirement."
+      }
+    ]
+  }
+}

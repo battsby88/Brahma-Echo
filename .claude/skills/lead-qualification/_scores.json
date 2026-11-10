@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f295c52f8f3c32665567d6b1c11f9254ed51704754c748f862d026205fbb007b",
+  "scoredAt": "2026-10-13T12:58:37.641Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 30,
+    "treatmentAvg": 94,
+    "multiplier": 3.13,
+    "scenarios": [
+      {
+        "name": "BANT scoring of 30 webinar signups to ranked CSV",
+        "baseline": 30,
+        "treatment": 95,
+        "rationale": "Treatment applies the exact 30/25/25/20 BANT weights, Hot/Warm/Nurture/Cold tiers at 80/60/40 with tier-specific actions, and descending CSV output; baseline uses arbitrary equal weights and non-skill tier labels."
+      },
+      {
+        "name": "ICP fit scoring for mid-market SaaS prospects",
+        "baseline": 30,
+        "treatment": 92,
+        "rationale": "Treatment uses Company Fit weights (Industry 25, Size 25, Geography 15, Tech 20, Revenue 15), tier classification with actions, and explicit deprioritize callouts; baseline sums binary checks without skill-defined weights or actions."
+      }
+    ]
+  }
+}

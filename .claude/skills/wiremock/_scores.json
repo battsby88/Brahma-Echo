@@ -1,0 +1,48 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:ec0bfbeca7ae300057c0432bf68e126b33c6ed35b5d587ca035fda65c3aabfdf",
+  "scoredAt": "2026-05-13T10:37:45.680Z",
+  "backend": "subagent",
+  "model": "claude-sonnet-4-6",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not address error handling or edge cases such as Docker failures or mapping errors."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 42,
+    "treatmentAvg": 88,
+    "multiplier": 2.1,
+    "scenarios": [
+      {
+        "name": "Stateful order lifecycle mock",
+        "baseline": 38,
+        "treatment": 90,
+        "rationale": "Treatment used WireMock's documented scenarioName/requiredScenarioState/newScenarioState fields with the exact lifecycle transitions; baseline used generic conditional logic with no concept of scenario state."
+      },
+      {
+        "name": "Record real API for offline replay",
+        "baseline": 45,
+        "treatment": 85,
+        "rationale": "Treatment invoked the documented --proxy-all and --record-mappings Docker flags producing reusable JSON mappings; baseline suggested a hand-rolled proxy that does not produce WireMock stubs."
+      }
+    ]
+  }
+}

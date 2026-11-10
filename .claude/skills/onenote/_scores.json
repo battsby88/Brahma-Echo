@@ -1,0 +1,69 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:007c884189158f06404415876415204bd27d34d110070f31a217a68422161fc3",
+  "scoredAt": "2026-10-03T13:05:26.414Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 73,
+    "dimensions": {
+      "clarity": "WEAK",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "clarity",
+        "detail": "Authentication is left as '// ... same auth setup as other Graph API skills' and the empty 'Common Patterns' heading is a dangling stub, and the Guidelines say images can be 'base64 in multipart request' while no multipart example is shown."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "There are no error-handling instructions for 429 throttling, 401/403 token or consent failures, or 404 on missing notebooks, sections or pages. Nothing covers pagination via @odata.nextLink, failed PATCH targets, or the fact that Microsoft Search is a poor fit for finding OneNote pages (filetype:one matches files, not pages)."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The auth snippet is not runnable because token acquisition is omitted, `userId` and `graphClient` are never defined, and the examples are prose narratives of REST calls, not code or command sequences. The second Search snippet queries driveItem with 'filetype:one', which would not return individual pages."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples describe agent behavior in prose rather than showing the concrete request and response, and the example 2 search uses `$filter=contains(title, ...)` without a note that this filter is limited on the pages collection."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.28,
+    "baselineAvg": 39,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "standup-page-with-todo-tags",
+        "baseline": 40,
+        "treatment": 88,
+        "rationale": ""
+      },
+      {
+        "name": "append-update-to-existing-page",
+        "baseline": 8,
+        "treatment": 92,
+        "rationale": "Response A matches the rubric: it finds the page with a contains(title, ...) filter, takes its id, and PATCHes /content with target 'body', action 'append', position 'after' and a paragraph with data-tag=\"important\" containing 1,250 and 900, while Response B does no API calls, gives manual instructions, and wrongly says Graph can't set the Important tag."
+      },
+      {
+        "name": "background-service-auth-pitfall",
+        "baseline": 70,
+        "treatment": 88,
+        "rationale": "Both say app-only auth was retired on March 31, 2025 and that delegated permissions with a signed-in user are required, and both show GET .../pages/{id}/content returning HTML; A names Notes.ReadWrite.All with admin consent as the rubric asks and gives a clean working example, while B recommends Notes.Read.All instead, never names Notes.ReadWrite.All as the required scope, and includes a broken placeholder code block that it then has to correct."
+      }
+    ]
+  }
+}

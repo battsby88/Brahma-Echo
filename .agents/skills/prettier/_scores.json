@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a4dbbd8b9d96728bd3e371b18addf4f43cefadb36b6d022aba6fb1c222d0fa4d",
+  "scoredAt": "2026-10-03T12:08:17.080Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "Some passages are verbose, such as the long default-options and config-file-format paragraphs and the motivational editor-integration prose, which add little actionable value."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The editor section covers only VS Code settings and the CI section covers only GitHub Actions, with no equivalents for other editors or CI systems."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.11,
+    "baselineAvg": 81,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "adopt-prettier-with-ci-gate",
+        "baseline": 72,
+        "treatment": 90,
+        "rationale": "B covers the rubric directly: exact-save install, config with singleQuote and printWidth, an ignore file with dist/ and coverage/, `npx prettier --write .`, and a CI job running `npx prettier --check .`; A is also correct but runs the check through npm scripts, adds extra ignore entries, and reports that it applied nothing because permissions were denied."
+      },
+      {
+        "name": "fix-eslint-prettier-conflict",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both recommend eslint-config-prettier, import it into eslint.config.js, place it last, and explain that order matters; A hedges by also showing eslint-plugin-prettier as optional and puts the conflicting-rules cleanup in extra steps, while B explicitly states to use the config rather than the plugin, though neither states the quality-vs-formatting split as crisply as the rubric wants."
+      },
+      {
+        "name": "precommit-formatting-and-vscode-save",
+        "baseline": 82,
+        "treatment": 90,
+        "rationale": "A puts the lint-staged config in package.json as the rubric asks, includes the ESLint-before-Prettier note and the commit-the-settings instruction, while B uses a separate .lintstagedrc.json instead of package.json and has no ESLint ordering note, though it adds a useful extensions.json and says to commit the VS Code settings."
+      }
+    ]
+  }
+}

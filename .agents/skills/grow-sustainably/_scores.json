@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:24a6a011a2cd1a68f355e537d8070e53d3015729d957464b97f06ab0ea0e9dcd",
+  "scoredAt": "2026-10-01T19:58:32.101Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly handle missing or invalid input data scenarios."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered verbose."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.35,
+    "baselineAvg": 43,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "baseline-guardrails",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response B contains a partial baseline table but lacks the required verdict line and options table, while Response A is missing entirely."
+      },
+      {
+        "name": "commitment-affordability",
+        "baseline": 45,
+        "treatment": 85,
+        "rationale": "Response B includes a baseline table, commitment test with cost, break-even, profit, cash buffer, 20% drop, and verdict, while Response A lacks many required elements."
+      },
+      {
+        "name": "lever-prioritization",
+        "baseline": 85,
+        "treatment": 70,
+        "rationale": "Both responses lack a baseline table, but Response B provides a more detailed lever analysis with numeric targets and impact, earning it a higher score."
+      }
+    ]
+  }
+}

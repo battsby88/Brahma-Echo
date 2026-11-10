@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:79c6a37b6809735addc9898b75e017a4164805ccb1338943f0a7e6eeee253b4f",
+  "scoredAt": "2026-10-24T15:38:05.145Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for API calls."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a React environment and Node package installation, limiting cross-platform usage."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.2,
+    "baselineAvg": 3,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "store-locator-with-popup",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A uses Leaflet and misses every specified detail."
+      },
+      {
+        "name": "delivery-heatmap-layer",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A does not meet the Mapbox-specific criteria."
+      },
+      {
+        "name": "route-from-depot-to-address",
+        "baseline": 10,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items (geocode, getRoute, Mapbox map, route source and layer, duration log) but misses distance, exact token variable, and initialViewState; Response B uses Google Maps and fails all Mapbox‑specific requirements."
+      }
+    ]
+  }
+}

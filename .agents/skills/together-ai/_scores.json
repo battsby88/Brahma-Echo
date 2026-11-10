@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3fc94f40895d926add0e88f89289571357399dce63233248fe74ae5829b23d4b",
+  "scoredAt": "2026-10-24T17:37:02.760Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.17,
+    "baselineAvg": 12,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "structured-json-output-recipe",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "B includes all required steps while A does not."
+      },
+      {
+        "name": "generate-flux-image",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric while Response A does not use the required client call, model, prompt, or parameters."
+      },
+      {
+        "name": "fine-tune-support-bot",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits file upload, status waiting, and proper job retrieval."
+      }
+    ]
+  }
+}

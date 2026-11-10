@@ -1,0 +1,58 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0fac764f7a927e011402530af4691a6cb55f9466cb11be0a53732f7b0ec69791",
+  "scoredAt": "2026-10-01T12:25:38.958Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases for all operations."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered verbose."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill references specific agents (Claude Code, Codex, Cursor) and assumes certain CLI behavior, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 50,
+    "treatmentAvg": 87,
+    "multiplier": 1.74,
+    "scenarios": [
+      {
+        "name": "Build a Stripe refund admin panel with a confirmation flow",
+        "baseline": 52,
+        "treatment": 88,
+        "rationale": "Treatment uses {{ table1.selectedRow.stripe_charge_id }} bindings, utils.openConfirmDialog, refundQuery.trigger(), utils.showNotification, and re-runs usersQuery as documented; baseline writes a generic React + Express refund flow."
+      },
+      {
+        "name": "Trial-expiration reminder workflow",
+        "baseline": 48,
+        "treatment": 85,
+        "rationale": "Treatment builds a Retool Workflow with scheduled trigger, query() for expiring trials, per-row sendgrid.send with template_id, and log-insert step from the skill; baseline writes a standalone cron + Node script."
+      }
+    ]
+  }
+}

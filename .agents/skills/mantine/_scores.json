@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:738f4d7c94ece8467fd8eb24c724d8791c78d1b622e3d4ebc32ea4869a56bab1",
+  "scoredAt": "2026-10-01T18:54:59.246Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.89,
+    "baselineAvg": 18,
+    "treatmentAvg": 52,
+    "scenarios": [
+      {
+        "name": "add-mantine-dark-mode-toggle",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits several key elements such as the full install list, PostCSS config, style imports, and the specified toggle implementation."
+      },
+      {
+        "name": "upgrade-mantine-7-to-9",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "No content provided to evaluate against the rubric."
+      },
+      {
+        "name": "responsive-dashboard-with-search",
+        "baseline": 35,
+        "treatment": 55,
+        "rationale": "Response B better covers the required layout and components, though its SearchBox is incomplete; Response A lacks key elements like Burger, ColorSchemeToggle, and required hooks."
+      }
+    ]
+  }
+}

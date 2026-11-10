@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0dc6aedd4325465f00cee999ea24b997ff161b42f1aadf03ff79ebcb2af8cafd",
+  "scoredAt": "2026-10-24T14:50:46.317Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all error scenarios and edge cases, such as handling HTTP 429 or network failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.2,
+    "baselineAvg": 3,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "send-password-reset-email",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not meet any of the required specifications."
+      },
+      {
+        "name": "onboarding-drip-workflow",
+        "baseline": 10,
+        "treatment": 75,
+        "rationale": "Response A covers most rubric items but omits default disabled state, immutable trigger name, and subscription default; Response B lacks all required API details."
+      },
+      {
+        "name": "verify-email-address",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A does not."
+      }
+    ]
+  }
+}

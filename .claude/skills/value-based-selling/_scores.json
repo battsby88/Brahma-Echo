@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:af00eb7eb969cb6fc586a89d5d086e13a5dabfabd290283d5b4688a17007b918",
+  "scoredAt": "2026-10-24T21:33:22.470Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not address how to handle incomplete user inputs or error scenarios."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.81,
+    "baselineAvg": 48,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "price-saas-product-using-value-based-method",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A includes risk reversal and education tactics, while Response B lacks risk reversal and the required function call; neither includes the calculatePricing call, but A covers more rubric items."
+      },
+      {
+        "name": "identify-and-remove-top-5-barriers",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response A covers all five standard barriers, offers removal tactics, includes risk reversal, but misses explicit education-based selling; Response B fails to list the required barriers and lacks the required elements."
+      },
+      {
+        "name": "create-education-based-email-sequence",
+        "baseline": 65,
+        "treatment": 90,
+        "rationale": "Response B fully covers all education-based selling steps and includes a clear risk reversal, while Response A lacks a proper risk reversal and does not explicitly follow the teach‑problem, cost‑of‑not‑solving, solution‑explanation, differentiation, and conclusion steps."
+      }
+    ]
+  }
+}

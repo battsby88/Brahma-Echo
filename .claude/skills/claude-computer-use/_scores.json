@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:df821cca4294db2e87cdb05fade7007589971223028120f5729e3eb9305ce0c2",
+  "scoredAt": "2026-10-02T22:49:42.240Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The agent loop implements only a subset of member tools (no zoom, drag, triple_click, hold_key) and leaves run_other_tool and screenshot downscaling unimplemented, and the approval helper is never wired into the loop and relies on a crude keyword match on the task text."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tied to the Anthropic API and Claude-specific toolset versions and beta headers, and the code assumes a Linux/Xvfb desktop with scrot, so it does not carry over to other agents or operating systems."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.63,
+    "baselineAvg": 48,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "agent-loop-batch-failure-handling",
+        "baseline": 30,
+        "treatment": 92,
+        "rationale": "A answers every block, echoes toolset_name 'computer', runs in order, halts at the first failure with an is_error 'Not executed' text for the rest, and dispatches on call.name rather than input.action, so it covers all four rubric points; B answers every block and halts after a failure, but it never echoes toolset_name, dispatches on block.input, uses a 'Skipped' message, and calls the old computer_20250124 tool type, while also saying later actions can still run."
+      },
+      {
+        "name": "declare-current-toolset-and-migrate",
+        "baseline": 62,
+        "treatment": 88,
+        "rationale": "B covers every rubric point: the new toolset type, no beta header, rejected display parameters, dispatch on name plus toolset_name, honoring repeat on key, resizing screenshots yourself, and zoom on by default with the configs disable. A omits the repeat field and never says to resize screenshots, though it does cover the declaration, beta header, rejected parameters, dispatch and zoom."
+      },
+      {
+        "name": "safe-sandbox-form-fill-with-approval",
+        "baseline": 52,
+        "treatment": 55,
+        "rationale": "A matches more of the rubric: it recommends a sandbox, a max_steps cap, a per-call approval gate that prompts on clicks, and a task prompt that screenshots after each step and forbids Submit. B has strong guardrails and a good prompt, but it has no throwaway container/VM, no max_steps cap, and no approved() prompt-style human approval; it uses a hook that blocks and a browser guard instead."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:54c61af542afde54bda30173f3523281ed73f77c59cb18eff9d1a6fa152a3c5b",
+  "scoredAt": "2026-10-02T23:21:22.490Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 70,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "deploy-command-viper-precedence",
+        "baseline": 80,
+        "treatment": 93,
+        "rationale": "B matches the rubric closely: it binds flags in PersistentPreRunE on the root, sets the env prefix, key replacer and AutomaticEnv, uses ExactArgs(1) and RunE with viper.GetString/GetBool, states the precedence, and checks ConfigFileNotFoundError. A gets most of this right, but it binds flags in a loadConfig helper called from the deploy RunE and not in PersistentPreRunE, and it uses errors.As, which is fine for the missing-config check."
+      },
+      {
+        "name": "status-command-with-completion",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both responses match the rubric: Args: cobra.MaximumNArgs(1), Aliases: []string{\"st\"}, a ValidArgsFunction returning ShellCompDirectiveNoFileComp, and installation through the built-in completion command with source <(app completion bash) and app completion zsh > \"${fpath[1]}/_app\". Neither writes a custom completion command. A adds extras (validation, macOS paths, a user-directory fallback). B is more concise and reuses a named completeServices function."
+      },
+      {
+        "name": "fix-errors-and-persistent-hooks",
+        "baseline": 40,
+        "treatment": 88,
+        "rationale": ""
+      }
+    ]
+  }
+}

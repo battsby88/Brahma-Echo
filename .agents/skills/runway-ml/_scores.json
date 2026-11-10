@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:59cda8219b1b132c73e2e1645e48d6a3c9dfd8eac5d1e4f7f25ad0d92b74fcba",
+  "scoredAt": "2026-10-03T12:09:27.390Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are prose descriptions that refer back to earlier snippets and give no runnable code, input files or actual output, so they are less demonstrative than the code blocks above them."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.16,
+    "baselineAvg": 43,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "product-photo-to-ad-clip",
+        "baseline": 88,
+        "treatment": 90,
+        "rationale": "Both responses meet the rubric: the Runway SDK, a base64 data URI in prompt_image, gen4_turbo with 1280:720 and duration 5, wait_for_task_output(), task.output[0], and TaskFailedError handling; A is slightly more concise and confident, while B adds a helpful data-URI size caveat but hedges that its values were written from memory."
+      },
+      {
+        "name": "rest-polling-vertical-broll",
+        "baseline": 35,
+        "treatment": 95,
+        "rationale": "B matches the rubric: gen4.5, 720:1280, duration 6, a 5-second sleep, FAILED and CANCELLED both handled with failure and failureCode reported, and an immediate download of output[0]. A uses veo3.1 instead of gen4.5, checks 'CANCELED' (misspelled, so a cancelled task is never caught), reports only 'failure' without failureCode, and admits the model, ratio and duration values were written from memory."
+      },
+      {
+        "name": "restyle-clip-with-aleph-and-costs",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "B matches the rubric: video_to_video with aleph2, video_uri and prompt_text, the 30-second input limit, 28 credits/s giving about 560 credits, the 56-credit minimum, and estimatedCost/cost. A uses the wrong model (gen4_aleph), the wrong cost (about 300 credits) and a wrong 5-second limit."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:1f7c2ac82f196e66ed4b2d3fa094aa51090aea09df2af3361026bdf8ccb4e2a5",
+  "scoredAt": "2026-10-01T20:37:10.386Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that may be considered padded."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.28,
+    "baselineAvg": 32,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "city-guide-pages",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response A covers the go/no-go decision and YAML spec but lacks rollout schedule and API references, while Response B omits all required elements."
+      },
+      {
+        "name": "audit-unindexed-pages",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A covers the policy audit, gate logic, and page fixes, while B lacks policy checks and gate results."
+      },
+      {
+        "name": "integration-pages",
+        "baseline": 35,
+        "treatment": 80,
+        "rationale": "Response B covers most rubric items, while Response A is incomplete and lacks key details."
+      }
+    ]
+  }
+}

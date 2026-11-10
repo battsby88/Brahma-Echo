@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:cadb445fd847bc01228e5e5e4b48bd8b1d95639fa019e157312a7fd708034aa8",
+  "scoredAt": "2026-10-01T20:04:02.275Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.08,
+    "baselineAvg": 40,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "identify-shallow-modules",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response B includes a clear evidence table and merge direction, while Response A lacks both a table and a merging strategy."
+      },
+      {
+        "name": "untangle-clusters",
+        "baseline": 55,
+        "treatment": 75,
+        "rationale": "Response B covers the required metrics and candidate cards, while Response A lacks co‑change and fan‑out analysis and candidate cards."
+      },
+      {
+        "name": "add-ci-dependency-rule",
+        "baseline": 15,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric with a .dependency-cruiser.cjs rule, CI integration, and baseline handling, while Response A uses a custom Python script and lacks the required dependency-cruiser configuration."
+      }
+    ]
+  }
+}

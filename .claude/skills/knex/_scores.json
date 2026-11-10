@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ee260f539fb34abaa368a4ffe5054e2dda12aab56f61e24e79be22a50aeb1820",
+  "scoredAt": "2026-10-03T12:02:09.055Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 68,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "atomic-transfer-with-rollback",
+        "baseline": 62,
+        "treatment": 93,
+        "rationale": "B meets every rubric item: db.transaction with an async callback, trx on every query, forUpdate() on the balance read, an Error thrown on insufficient funds, and decrement/increment for the updates. A uses a transaction, trx, forUpdate and throws, but it does the balance updates with raw SQL instead of decrement/increment, and it doesn't read the balance to check it before debiting."
+      },
+      {
+        "name": "ts-migration-create-and-run",
+        "baseline": 70,
+        "treatment": 90,
+        "rationale": "A covers every rubric item: it runs npx knex init -x ts, uses migrate:make -x ts, sets extension 'ts', and uses enu with defaultTo, timestamps(true, true), references().inTable().onDelete('CASCADE'), and a down that drops posts first. It also runs migrate:latest with NODE_OPTIONS=\"--import tsx\". B skips npx knex init -x ts, writes the knexfile by hand, and defaults to ts-node, so the tsx loader appears only as a side note. B's schema is otherwise correct, and its native enum and DROP TYPE handling is a useful extra."
+      },
+      {
+        "name": "monthly-orders-report-postgres",
+        "baseline": 72,
+        "treatment": 80,
+        "rationale": "A matches the rubric's query form closely (db.raw DATE_TRUNC, sum('amount as total'), count('* as orders'), groupByRaw, orderBy month desc) and explains the string cause with both cast-in-SQL and in-code fixes, while B uses raw SUM/COUNT casts instead of sum()/count() builders and different aliases, though its explanation of why strings come back is thorough and it adds the type-parser option; neither mentions .toQuery()/.toSQL() (B does show equivalent SQL)."
+      }
+    ]
+  }
+}

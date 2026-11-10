@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:179ade25365f960379ca652a8c68aa91575c6f920c8f9ac48ee8b1c04c68851b",
+  "scoredAt": "2026-10-24T17:26:20.506Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.62,
+    "baselineAvg": 13,
+    "treatmentAvg": 47,
+    "scenarios": [
+      {
+        "name": "add-snyk-dependency-gate",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "Response B is closer to the rubric because it uses an npx command (though missing the @1 tag), whereas Response A uses a different Snyk action."
+      },
+      {
+        "name": "scan-docker-image-with-base-image-advice",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A includes most of the required elements but omits the --exclude-base-image-vulns flag, whereas Response B does not provide the required Snyk command at all."
+      },
+      {
+        "name": "generate-sarif-from-iac-scan",
+        "baseline": 10,
+        "treatment": 30,
+        "rationale": "Both responses omit the required severity threshold flag, but Response B correctly names the SARIF file as iac.sarif, whereas Response A uses a different name and also lacks the threshold."
+      }
+    ]
+  }
+}

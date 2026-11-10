@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:4912762586354372268db75e502463b631d8d8e88b1b4baccf2b5cb77e34b4db",
+  "scoredAt": "2026-10-03T13:13:19.973Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 55,
+    "treatmentAvg": 95,
+    "multiplier": 1.73,
+    "scenarios": [
+      {
+        "name": "Test only the query field of a JSON POST endpoint",
+        "baseline": 55,
+        "treatment": 95,
+        "rationale": "Baseline sets JSON via --headers and relies on a star marker rather than --content-type plus -p, so parameter scoping is loose; treatment matches the skill's REST/JSON pattern verbatim."
+      },
+      {
+        "name": "Dump username and password_hash from a Burp-captured request",
+        "baseline": 55,
+        "treatment": 95,
+        "rationale": "Baseline uses -r and --dump but selects columns via --where (wrong flag); treatment uses -C \"username,password_hash\" exactly as the skill documents and respects the minimum-extraction guideline."
+      }
+    ]
+  }
+}

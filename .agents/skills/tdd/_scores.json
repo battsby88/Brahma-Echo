@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:1b0eab9c0f01ee7c35b4663e4575c77701ea208b70c8245d73edda62e2c3772f",
+  "scoredAt": "2026-10-01T21:00:58.017Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text that may be considered padded, reducing conciseness."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill references specific AI agents, indicating minor platform assumptions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.83,
+    "baselineAvg": 63,
+    "treatmentAvg": 52,
+    "scenarios": [
+      {
+        "name": "split-bill-tdd",
+        "baseline": 50,
+        "treatment": 10,
+        "rationale": "Response A provides a test suite and runner command but lacks implementation and refactoring steps, while Response B merely asks for clarification."
+      },
+      {
+        "name": "billing-date-bug-reproduction",
+        "baseline": 70,
+        "treatment": 50,
+        "rationale": "Response A provides a regression test, a buggy implementation, a fixed implementation, and an updated test, whereas Response B only gives a test and a fixed implementation without demonstrating the failure or running the full suite."
+      },
+      {
+        "name": "legacy-code-characterization",
+        "baseline": 70,
+        "treatment": 95,
+        "rationale": "Response A fully covers characterization, initial tests, new tests, minimal implementation, and refactoring, while Response B omits the characterization step and final test suite verification."
+      }
+    ]
+  }
+}

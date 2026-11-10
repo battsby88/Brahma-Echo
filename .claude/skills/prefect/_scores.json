@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c80b2f5549f513008426c53e54f8a9d29c3082acd987fe995f80c34f9b2fdf08",
+  "scoredAt": "2026-10-24T17:16:19.007Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error scenarios or edge cases such as missing dependencies or server failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.2,
+    "baselineAvg": 7,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "deploy-retry-cache-flow",
+        "baseline": 20,
+        "treatment": 75,
+        "rationale": "Response A meets most rubric items but misnames the pool and includes a serve block, whereas Response B does not use Prefect at all."
+      },
+      {
+        "name": "failure-hook-slack-notification",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "B covers most rubric items except the function name mismatch, while A does not meet any of the rubric requirements."
+      },
+      {
+        "name": "serve-concurrent-url-processor",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is empty."
+      }
+    ]
+  }
+}

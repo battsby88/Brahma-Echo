@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9f6bee4f6f30d65e6893ead79a61b7aa8eca85857f6d61e6e22c0782c8ae13ec",
+  "scoredAt": "2026-10-24T21:45:11.521Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.74,
+    "baselineAvg": 42,
+    "treatmentAvg": 73,
+    "scenarios": [
+      {
+        "name": "multi-service-https-setup",
+        "baseline": 50,
+        "treatment": 70,
+        "rationale": "Response A meets most rubric items (correct enable, rule, certresolver, and middleware attachment) but uses different middleware names; Response B also misnames middlewares and uses a different certresolver, so it is less complete."
+      },
+      {
+        "name": "path-based-routing-with-prefix-strip",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A uses nginx instead of Traefik and misses all required labels; Response B uses Traefik but with different router, service, and middleware names, partially meeting the functional intent but not the exact rubric."
+      },
+      {
+        "name": "health-checked-load-balancing",
+        "baseline": 75,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A omits the required server.port=3000 setting."
+      }
+    ]
+  }
+}

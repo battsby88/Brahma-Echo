@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7f572301f14c897ef19b63fe9706a25016496e991d9f32995a323c4f43075245",
+  "scoredAt": "2026-10-01T12:26:33.288Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.7,
+    "baselineAvg": 0,
+    "treatmentAvg": 57,
+    "scenarios": [
+      {
+        "name": "lookup-host-info",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A provides some port and CVE details but omits organization, OS, country, ISP, and last update, whereas Response B gives no information at all."
+      },
+      {
+        "name": "search-ssh-3389",
+        "baseline": 0,
+        "treatment": 70,
+        "rationale": "Response B provides the required Shodan commands and sample hosts but omits CVE details, whereas Response A gives no useful information."
+      },
+      {
+        "name": "create-network-alert",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A covers the creation and enabling steps but omits the required output details, while Response B provides no content."
+      }
+    ]
+  }
+}

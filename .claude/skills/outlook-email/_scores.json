@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7f0f6acdf9c91205826e38b48b1b3ea319ae38d7a45d14302e269276129fc401",
+  "scoredAt": "2026-10-24T17:11:07.537Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly handle error scenarios or edge cases such as API failures or rate limiting beyond brief mentions."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory comments and verbose sections that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill relies on Node.js and TypeScript, limiting its applicability to agents that support these runtimes."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.2,
+    "baselineAvg": 0,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "send-html-email-with-attachment",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not include the required POST request to /users/${userId}/sendMail."
+      },
+      {
+        "name": "read-unread-messages-with-filter",
+        "baseline": 0,
+        "treatment": 75,
+        "rationale": "Response A meets most rubric requirements but omits attachments select/expand, while Response B fails to provide any relevant code."
+      },
+      {
+        "name": "create-folder-and-rule",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with the required POST requests and details, while Response B is unrelated."
+      }
+    ]
+  }
+}

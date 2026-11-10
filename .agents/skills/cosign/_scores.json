@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:799298818db0fbd0fe72d7e95048f16912c99542795174c1e862d3757d16d6af",
+  "scoredAt": "2026-10-24T19:07:15.525Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly cover error handling or edge cases such as missing registry or invalid digests."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The instructions contain verbose explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The installation instructions assume macOS (brew) or Linux, which may not apply to all environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 7,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "keyless-sign-ci",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A does not use a digest or the required verify flags."
+      },
+      {
+        "name": "sbom-attestation",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with all required cosign commands and verification details, while Response B is incomplete and does not provide the necessary commands."
+      },
+      {
+        "name": "enforce-signed-images-kyverno",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with a Kyverno ClusterPolicy, Enforce action, Pod match, imageReferences, and keyless attestor; Response B does not provide a Kyverno policy and thus fails the rubric."
+      }
+    ]
+  }
+}

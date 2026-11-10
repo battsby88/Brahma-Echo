@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:051271c77a92889983719b3aa2b03fcae38a04b09e01ef24e50004dea72a75d1",
+  "scoredAt": "2026-10-03T12:05:54.881Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is covered for serverError and validationErrors, but edge cases like redirect/notFound behavior, unauthenticated middleware errors surfacing as generic messages, and network failures are not addressed."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "Steps 1-3 give runnable code, but the optimistic action in Example 1 is described in prose with a partial inline snippet instead of a full runnable implementation."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Both examples are brief prose descriptions rather than full realistic demonstrations with complete code and expected output."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.08,
+    "baselineAvg": 83,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "auth-middleware-owned-delete-action",
+        "baseline": 94,
+        "treatment": 90,
+        "rationale": "Both use .inputSchema(z.object({id: z.string().uuid()})) and filter on both id and the owner id inside the action, but B shows the authenticated client inline with .use(async ({ next }) => next({ ctx })), a session check that throws, and the user passed via ctx. A only refers to 'Step 1' and an unseen authActionClient, so its auth middleware isn't shown. B also states its version assumption explicitly."
+      },
+      {
+        "name": "hide-generic-server-error-fix",
+        "baseline": 92,
+        "treatment": 90,
+        "rationale": "Both cover the rubric (default DEFAULT_SERVER_ERROR_MESSAGE, handleServerError with a custom class, logging, result.serverError, warning against returning e.message), but B states more explicitly why the generic message appears and adds useful notes, while A is slightly more concise with a good ownerId tip."
+      },
+      {
+        "name": "client-form-with-useaction-and-field-errors",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": ""
+      }
+    ]
+  }
+}

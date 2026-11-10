@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6e1d26cffa95faa2afd4e6c814b52538b265fcd6a6bd25c68bae4b930729d2a0",
+  "scoredAt": "2026-10-02T23:24:00.105Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The coding-agent section is oriented to Claude Code (`claude mcp add`), and the examples default to Anthropic models, although other agents and LLM providers are mentioned."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.29,
+    "baselineAvg": 68,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "structured-laptop-extraction",
+        "baseline": 90,
+        "treatment": 90,
+        "rationale": "Both define Pydantic Laptop and wrapper models, pass the wrapper via output_model_schema, read history.structured_output, use browser_use's ChatAnthropic, and set max_steps on agent.run(), so both meet the rubric and differ only in extras such as B's exact-five validation and A's allowed_domains."
+      },
+      {
+        "name": "login-headless-ci-secrets",
+        "baseline": 30,
+        "treatment": 92,
+        "rationale": "B follows the rubric: it keeps the password out of the task text, logs in once and exports with export_storage_state, reuses auth.json via Browser(headless=True, storage_state=...), sets allowed_domains and max_steps, and gitignores auth.json and stores it as a CI secret. A uses sensitive_data with a TOTP secret in CI, explicitly advises against persisting storage_state, and never mentions export_storage_state, so it misses the core recommendation, though it does set allowed_domains and max_steps."
+      },
+      {
+        "name": "custom-2fa-tool-and-verify",
+        "baseline": 85,
+        "treatment": 82,
+        "rationale": "Both use Tools() with @tools.action returning ActionResult(extracted_content=...), pass tools=, use is_done/is_successful/errors/number_of_steps, and warn that the success flag is the agent's own claim; B is more thorough, with a stop-reason report and an explicit URL assertion, but it hedges about the old Controller and its action description is passed positionally, while A states the caveat clearly in a table and bullets and passes description= as the rubric specifies."
+      }
+    ]
+  }
+}

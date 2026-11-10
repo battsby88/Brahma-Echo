@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5798d8c98c4a2795b5eab6f92a74779d6783fed8aa4d31461f7ea46d380b4689",
+  "scoredAt": "2026-10-13T11:44:28.472Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions omit error scenarios for unsupported platform features, configuration validation procedures, and handling conflicts when users operate multiple monitoring systems simultaneously."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.11,
+    "baselineAvg": 71,
+    "treatmentAvg": 79,
+    "scenarios": [
+      {
+        "name": "sentry-payment-alerts",
+        "baseline": 68,
+        "treatment": 92,
+        "rationale": "Response A directly satisfies all rubric requirements: three alerts in explicit When/If/Then/Throttle format, P1 at 5-min throttle, P2 at 30-min throttle, tagged filters, and PagerDuty/Slack routing. Response B is technically more comprehensive (SDK fingerprinting, custom dashboards, granular tagging) but fails the rubric's format requirement: it uses \"Trigger: if...at least X times in Y minutes\" instead of When/If/Then/Throttle, and Alert 3's 1-hour time window with frequency thresholds doesn't clearly establish a 30-minute throttle per the rubric specification."
+      },
+      {
+        "name": "escalation-policy-small-team",
+        "baseline": 68,
+        "treatment": 58,
+        "rationale": "Both responses acknowledge small team size and specify notification channels, but Response A explicitly proposes only two tiers (contradicting the rubric's mandatory three tiers) and escalates P1 at 15 minutes instead of 10. Response B defines all three required tiers and specifies channels but also misses critical timings: P1 escalates at 5 minutes (not 10) and P2 response is 15 minutes (not 1 hour). Response B is more compliant with the structural requirements despite timing errors."
+      },
+      {
+        "name": "database-runbook",
+        "baseline": 76,
+        "treatment": 87,
+        "rationale": "Response A delivers more detailed diagnostic SQL queries and clearer time-based escalation triggers (30min, hours), plus a bonus prevention checklist, meeting all rubric requirements comprehensively. Response B covers required sections adequately but with less diagnostic depth, weaker escalation clarity (mixes time-based with condition-based triggers), and loses points for the awkward permission-request preamble; however, it correctly targets MongoDB+Docker infrastructure while A assumes PostgreSQL."
+      }
+    ]
+  }
+}

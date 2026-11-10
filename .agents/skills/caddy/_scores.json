@@ -1,0 +1,42 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6b0faf1606606c7d885e6eb9fd02848422d57db4a503c8e97e7afb5da4b53a57",
+  "scoredAt": "2026-10-01T11:25:09.193Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 5,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "admin-api-config-update",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B provides the required curl PATCH with the correct endpoint and JSON array, while Response A is empty."
+      },
+      {
+        "name": "enable-rate-limiting-plugin",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A misses the required install command, Caddyfile syntax, and reload instruction."
+      }
+    ]
+  }
+}

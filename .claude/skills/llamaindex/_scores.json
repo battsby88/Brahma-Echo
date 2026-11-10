@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:eee25ecad47bc7c8e4c57d58facf7f1e2f7adea4410b15eb843891dd7c50b23b",
+  "scoredAt": "2026-10-01T11:54:29.695Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not explicitly handle error scenarios such as missing API keys or failed embeddings, limiting robustness."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The documentation contains extensive explanatory text that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tightly coupled to the llama-index framework, limiting portability to other AI agent platforms."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.8,
+    "baselineAvg": 7,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "ingest-and-query-vector-index",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet the specified tools, parameters, or persistence requirements."
+      },
+      {
+        "name": "hybrid-retrieval-with-rerank",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B does not use the required classes or structure."
+      },
+      {
+        "name": "multi-tool-agent-with-date-math",
+        "baseline": 20,
+        "treatment": 35,
+        "rationale": "Response A is closer to the llama-index based rubric, though incomplete, whereas Response B uses LangChain and misses key elements."
+      }
+    ]
+  }
+}

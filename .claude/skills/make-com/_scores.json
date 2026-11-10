@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1f68284b1476d6b02fdd65652d5bf8d681402626ce7723ab1e59d2633c52a58c",
+  "scoredAt": "2026-10-24T16:55:09.417Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.24,
+    "baselineAvg": 38,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "schedule-iterator-http-retry",
+        "baseline": 65,
+        "treatment": 75,
+        "rationale": "Response B covers more rubric items, including the store incomplete executions setting, while Response A omits that requirement and uses a different mapping syntax."
+      },
+      {
+        "name": "webhook-filter-aggregator-slack",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A covers all rubric items except the JSON > Parse JSON note, while Response B omits the aggregator module and the note, scoring lower."
+      },
+      {
+        "name": "router-commit-mysql-blueprint",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is empty."
+      }
+    ]
+  }
+}

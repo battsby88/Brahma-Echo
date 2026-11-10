@@ -1,0 +1,64 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:b5abaa9ea12b1d30b3d4dec431332412a2200d2dadc15cb760d5016a8ddbd425",
+  "scoredAt": "2026-11-05T00:04:21.016Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack explicit error handling for API failures, rate limits, or unexpected responses."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that could be trimmed for brevity."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is tightly coupled to Hermes Agent and hermes-tweet, limiting portability to other AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.2,
+    "baselineAvg": 5,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "search-tweets-with-replies",
+        "baseline": 10,
+        "treatment": 70,
+        "rationale": "Response B follows the required API calls and notes no write actions, while Response A uses a different library and omits the specified steps and summary."
+      },
+      {
+        "name": "monitor-hashtag-ai",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response B meets all rubric points while A does not."
+      },
+      {
+        "name": "export-followers-openai",
+        "baseline": 0,
+        "treatment": 80,
+        "rationale": "Response B covers most rubric items but omits explicit post‑approval reporting of job ID and link; Response A fails entirely."
+      }
+    ]
+  }
+}

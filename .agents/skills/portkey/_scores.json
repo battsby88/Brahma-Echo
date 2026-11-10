@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8a99eb52552ea06ce1d018fd004d2cd526d477fd239d90573d7002586288ae20",
+  "scoredAt": "2026-10-03T13:01:28.224Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers the happy path and plan limits well but gives little guidance on error handling, such as what the caller should do when all fallback targets fail, how to handle HTTP 446/246 responses in code, or how to troubleshoot an invalid config or missing Model Catalog slug."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.76,
+    "baselineAvg": 49,
+    "treatmentAvg": 86,
+    "scenarios": [
+      {
+        "name": "fallback-with-retry-config",
+        "baseline": 62,
+        "treatment": 80,
+        "rationale": "B matches the rubric's Model Catalog slugs (@openai-prod via provider), override_params, retry on the first target and a request_timeout of 30000. It places that timeout at the config level instead of per target, which is acceptable. A uses the older virtual_key field and only mentions Model Catalog as an alternative. A does cover the retry block, the timeout and the env var key, and it adds useful notes on latency and SDK timeout."
+      },
+      {
+        "name": "weighted-split-with-caching",
+        "baseline": 3,
+        "treatment": 97,
+        "rationale": "Response A gives the Portkey loadbalance config with weights 0.9/0.1, a simple cache with max_age 1800, and the x-portkey-cache-force-refresh header, so it meets the rubric. Response B answers for LiteLLM and never mentions the required Portkey config or header."
+      },
+      {
+        "name": "pii-guardrail-and-status-codes",
+        "baseline": 82,
+        "treatment": 80,
+        "rationale": "Both say checks are created in the dashboard and attached by ID through input_guardrails and output_guardrails, and both give 446 for deny on and 246 for deny off. B adds a full status table, the 200 case and the effect on billing. A is slightly weaker because it also describes before_request_hooks and after_request_hooks and hedges on whether 446 stops the provider call. A's inline config object holds only IDs, so it doesn't contradict the rubric. B also hedges, saying it gives the codes from memory, but that is minor."
+      }
+    ]
+  }
+}

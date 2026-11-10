@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1ba2a69e923d9acffef7e195997bc643d7e413574fb214d7843f8f273b0cfc7f",
+  "scoredAt": "2026-10-02T22:54:55.316Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two examples are prose descriptions of what an agent does rather than runnable end-to-end demonstrations, with only one-line inline snippets and no concrete output shown."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.97,
+    "baselineAvg": 92,
+    "treatmentAvg": 89,
+    "scenarios": [
+      {
+        "name": "add-column-migration-safely",
+        "baseline": 88,
+        "treatment": 93,
+        "rationale": "Both cover the generate/addColumn(TEXT, allowNull)/removeColumn/db:migrate/db:migrate:undo flow and warn against sync alter; B shows a fuller model update with a nullable type (string | null), while A's model snippet is minimal and A adds extra transaction/lock_timeout complexity without model typing."
+      },
+      {
+        "name": "typescript-models-with-managed-transaction",
+        "baseline": 92,
+        "treatment": 80,
+        "rationale": "Both use declare fields, CreationOptional, hasMany/belongsTo with authorId, and a managed transaction passing the transaction to both creates; B is more complete with ForeignKey typing, association declarations, and explicit FK definitions, while A omits createdAt/updatedAt on Post and has less thorough association typing."
+      },
+      {
+        "name": "eager-load-and-safe-raw-query",
+        "baseline": 95,
+        "treatment": 93,
+        "rationale": "Both responses cover every rubric item: include with where published:true and required:false, order createdAt DESC, limit 10, and sequelize.query with replacements and QueryTypes.SELECT with no interpolation; A adds the subquery/limit note and Postgres count-type caveat, while B adds separate:true and its raw query has a minor GROUP BY nuance, so A is marginally more thorough."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.3.0",
+  "skillHash": "sha256:c49c3504625e937f16b3df4a0617b7ca039dcfe8036201cbfef9e84f0702d66a",
+  "scoredAt": "2026-10-28T18:46:09.929Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases, focusing only on happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.54,
+    "baselineAvg": 13,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "file-based-routing-tabs-stack-modal",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A omits key elements such as dynamic routing, useLocalSearchParams, and modal presentation."
+      },
+      {
+        "name": "ota-update-production",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B covers most rubric items but fails to explicitly state the runtimeVersion policy is \"appVersion\", whereas Response A misses all required details."
+      },
+      {
+        "name": "camera-permissions-photo",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies all rubric items, while Response A uses the wrong imports and component, missing key requirements."
+      }
+    ]
+  }
+}

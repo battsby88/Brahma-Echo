@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ee60f0f1c41a2bd759cc0a4d69408f17689806db8abe995250ee31baaafee932",
+  "scoredAt": "2026-10-24T15:57:37.335Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is specific to Node.js and does not support other runtime environments."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.41,
+    "baselineAvg": 27,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "create-s4-business-partner",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response B fully meets the rubric by using OAuth and CSRF tokens, posting the correct JSON payload, and extracting the BusinessPartner ID, whereas Response A uses Basic auth, incorrect fields, and omits the required steps."
+      },
+      {
+        "name": "scaffold-bookstore-cap-service",
+        "baseline": 30,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits key entities, hooks, and details."
+      },
+      {
+        "name": "shopify-to-s4-webhook",
+        "baseline": 45,
+        "treatment": 80,
+        "rationale": "Response A includes the required express.raw middleware, HMAC verification, and a sapApi call with the correct payload structure, though it omits the final 200 response; Response B lacks the express.raw middleware, uses a different payload format, and does not call sapApi with the specified endpoint, so it falls short of the rubric."
+      }
+    ]
+  }
+}

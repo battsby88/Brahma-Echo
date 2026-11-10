@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:929e1051c8ed8d0ca5efcafb15a925de6fc520e7e97cd39b435547e4974bea65",
+  "scoredAt": "2026-10-01T20:50:36.908Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose explanatory sections that may distract from actionable steps."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.35,
+    "baselineAvg": 37,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "audit-and-reduce-fields",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B provides no substantive answer."
+      },
+      {
+        "name": "add-google-signin",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A covers the GA4 instrumentation, method value, and redirect logic, while Response B lacks these key details."
+      },
+      {
+        "name": "instrument-signup-baseline",
+        "baseline": 60,
+        "treatment": 80,
+        "rationale": "Response A covers the required events, triggers, parameters, and rate calculations but omits the sample size calculation, while Response B lacks the verified rate, GA4 context, and sample size calculation."
+      }
+    ]
+  }
+}

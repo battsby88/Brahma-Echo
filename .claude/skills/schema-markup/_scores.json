@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:9ac6cd56a6a51850570b32eb10c38c0a2b98c88d867c3a526282fdd9ed2fea48",
+  "scoredAt": "2026-10-01T21:19:00.506Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.67,
+    "baselineAvg": 15,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "add-product-markup-nextjs",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully meets the rubric, while Response A lacks @graph, escaping, and verification command."
+      },
+      {
+        "name": "repair-retired-faqpage",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits all required points."
+      },
+      {
+        "name": "verify-markup-static-site",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B does not provide the required python3 command or the expected MISSING output format."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fe795b61d6ac23b663cc73de06a89fd0e2ef4d52b977a3f6d7aeb153131343a1",
+  "scoredAt": "2026-10-24T15:10:03.957Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions lack coverage of error handling for token expiration, network failures, and missing required fields."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.7,
+    "baselineAvg": 2,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "create-task-with-custom-field-and-time-entry",
+        "baseline": 5,
+        "treatment": 0,
+        "rationale": "Response B at least acknowledges the need for context, whereas Response A provides no content."
+      },
+      {
+        "name": "setup-webhook-for-urgent-priority-slack-notification",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B is unrelated to ClickUp and lacks the required webhook setup, signature verification, and Slack posting."
+      },
+      {
+        "name": "move-task-with-status-mapping",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is empty and does not provide any solution."
+      }
+    ]
+  }
+}

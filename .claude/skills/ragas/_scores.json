@@ -1,0 +1,48 @@
+{
+  "version": "1.1.1",
+  "skillHash": "sha256:3246226199c2b5fce6bc265e6a78f43962358e2d40db4926724d3ac15b382d39",
+  "scoredAt": "2026-10-03T13:08:58.025Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.1,
+    "baselineAvg": 84,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "baseline-rag-eval-four-metrics",
+        "baseline": 90,
+        "treatment": 93,
+        "rationale": "Both use EvaluationDataset.from_list with the current field names, the four metric instances, LLM and embeddings wrappers, and to_pandas() sorted by faithfulness, so B edges ahead on a slightly tighter worst-rows output and an isna check, while A adds a richer worst-answer display and NaN-first sorting."
+      },
+      {
+        "name": "synthetic-testset-from-markdown-docs",
+        "baseline": 82,
+        "treatment": 90,
+        "rationale": "Both use TestsetGenerator with LangchainLLMWrapper/embedding wrappers, DirectoryLoader, generate_with_langchain_docs(testset_size=30) and to_pandas().to_csv, but B states more explicitly that the CSV lacks response/retrieved_contexts and shows running each user_input through the user's pipeline to fill them, while A covers this too but adds a TextLoader and extra caveats and is less direct in showing the pipeline loop (and claims the docs dir doesn't exist, unverified in the response text)."
+      },
+      {
+        "name": "ci-faithfulness-gate-pytest",
+        "baseline": 80,
+        "treatment": 92,
+        "rationale": "B matches the rubric more closely: it has a THRESHOLDS dict, a session-scoped fixture, a parametrized test, a CI secret, and the 40+ row advice. A has the same fixture and secret but uses two separate tests with env-var thresholds instead of a THRESHOLDS dict and a parametrized test, and only says 'more questions' without a number."
+      }
+    ]
+  }
+}

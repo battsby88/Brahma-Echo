@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8fc2cca7cf33fca58ef5172014d423f698f5ea2264ee7ab4c629a550ef0f0555",
+  "scoredAt": "2026-10-20T19:09:12.228Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases, only happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "bash",
+        "detail": "Uses npm install command without verifying package integrity."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 2.94,
+    "baselineAvg": 33,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "add-plain-widget",
+        "baseline": 100,
+        "treatment": 90,
+        "rationale": "Response A fully satisfies the rubric, while Response B meets the snippet but adds an optional placement that slightly deviates from the strict 'head' requirement."
+      },
+      {
+        "name": "react-integration-with-user-context",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with a complete component and usage details, while Response B provides no relevant content."
+      },
+      {
+        "name": "api-send-message",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with the correct fetch call, headers, body, and environment variables, while Response B uses a different endpoint, headers, and credentials, missing key rubric requirements."
+      }
+    ]
+  }
+}

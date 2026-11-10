@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:eb52c284ef4271795c0b118b66f7fe3dfaaf4a8e92b88bd6e265baa6e66af5bd",
+  "scoredAt": "2026-10-03T12:08:52.410Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Example 2 describes the todo create/delete flow in prose and refers back to earlier sections instead of giving complete runnable code, and the delete mutation is never shown."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.52,
+    "baselineAvg": 27,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "polling-dashboard-with-conditional-key",
+        "baseline": 12,
+        "treatment": 96,
+        "rationale": "B uses useSWR with a null key when userId is missing, a fetcher that checks res.ok and throws an ApiError carrying the status, and calls the hook unconditionally. A hand-rolls fetch in useEffect and only mentions SWR-like libraries as an aside, so it misses the useSWR requirement even though its null handling and error handling are sound."
+      },
+      {
+        "name": "optimistic-todo-add-with-rollback",
+        "baseline": 62,
+        "treatment": 92,
+        "rationale": "B makes useSWRMutation its main approach, sharing the '/api/todos' key with useSWR, and passes optimisticData, populateCache and rollbackOnError: true, which matches the rubric. A's main example uses plain mutate with an async function that returns the new array, which the rubric allows. A's useSWRMutation version is only a short secondary snippet, and it doesn't show the shared useSWR key there."
+      },
+      {
+        "name": "infinite-scroll-feed-load-more",
+        "baseline": 8,
+        "treatment": 97,
+        "rationale": "Response A uses useSWRInfinite from swr/infinite with a getKey(index, previous) that returns null when hasMore is false, builds page = index + 1, flattens with flatMap, and calls setSize(size + 1), so it meets every rubric item; Response B is a hand-rolled fetch/useState hook with none of the required SWR pieces."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:260bf31cfa5aaf84e6df88e1fc217cd6cb0b67c1091d2edfd6bf573886b495f3",
+  "scoredAt": "2026-10-20T19:23:28.902Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is limited to Linux environments, which may not be applicable to all AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.37,
+    "baselineAvg": 73,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "install-ssh-jail-with-custom-settings",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric items, while Response A omits the systemctl enable and reload commands."
+      },
+      {
+        "name": "test-custom-nginx-filter",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully meets the rubric, while Response B omits the required summary details and jail enablement statement."
+      },
+      {
+        "name": "monitor-and-unban-nginx-http-auth",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric, providing the status command, explaining that it lists banned IPs, and giving the unban command."
+      }
+    ]
+  }
+}

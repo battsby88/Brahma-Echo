@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8544eba4c0ac60560026e353a70e5209a731e5451485311ba41b22835217f0b9",
+  "scoredAt": "2026-10-13T11:53:08.183Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 0.93,
+    "baselineAvg": 44,
+    "treatmentAvg": 41,
+    "scenarios": [
+      {
+        "name": "csv-import-validation",
+        "baseline": 25,
+        "treatment": 35,
+        "rationale": "Both responses correctly identify that the CSV file is needed before analysis can proceed, so neither meets the rubric's core requirements (data profile, validation checks with counts/samples, concrete fixes). However, Response A frames a more comprehensive analysis roadmap with 6+ specific validation dimensions (null rates, type consistency, range validity, duplicates, unique values) that directly map to the rubric, while Response B makes more generic promises with less specificity about what will be delivered."
+      },
+      {
+        "name": "schema-contract-validation",
+        "baseline": 40,
+        "treatment": 65,
+        "rationale": "Both responses appropriately request missing information (analytics data and schema files), but Response B is more aligned with rubric requirements by explicitly describing the validation outputs it will deliver (row counts, affected records, compliance checks, concrete remediation steps), while Response A correctly identifies a context mismatch but offers less detail about the analytics-specific validation approach and output format the rubric expects."
+      },
+      {
+        "name": "freshness-and-drift-check",
+        "baseline": 67,
+        "treatment": 22,
+        "rationale": "A requests data without attempting analysis despite files being visible in the user's working directory, failing all rubric requirements; B analyzes actual staleness (112 fresh vs 199 stale, 9-day gap) and identifies quality degradation patterns (documentation-only verifications, uncertain entries, line bloat) but uses non-standard quality metrics and only partially formalizes alert thresholds rather than specifying numeric rules."
+      }
+    ]
+  }
+}

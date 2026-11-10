@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:9815cf468896ad74a259c2afb42e23a38a2dc8ac25175d44b2b9ec6b22937845",
+  "scoredAt": "2026-10-01T19:53:35.414Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly cover all potential error scenarios or edge cases, such as handling missing data or unexpected user inputs."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains extensive explanatory text and tables, leading to verbosity that may distract from core actionable steps."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.83,
+    "baselineAvg": 12,
+    "treatmentAvg": 22,
+    "scenarios": [
+      {
+        "name": "plan-first-10-customers-saas",
+        "baseline": 35,
+        "treatment": 65,
+        "rationale": "Response B covers more rubric items, including target, offer, pipeline arithmetic, hours, rhythm, and outreach messages, while Response A lacks many required sections."
+      },
+      {
+        "name": "write-cold-email-bicycle-service",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses fail to meet the rubric requirements."
+      },
+      {
+        "name": "calculate-prospects-for-20-customers",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses lack the required pipeline table, file, target/deadline, rhythm, and change log."
+      }
+    ]
+  }
+}

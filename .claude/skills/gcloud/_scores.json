@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:53d923ec1e5b21744d4d7d3081be5a75ca292c52636631b57c0f3ccdffd9a62f",
+  "scoredAt": "2026-10-24T15:23:37.234Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for gcloud commands."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.7,
+    "baselineAvg": 10,
+    "treatmentAvg": 97,
+    "scenarios": [
+      {
+        "name": "create-compute-engine-instance",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A includes all required flags and syntax, while Response B uses the wrong flag for the image family, missing a key requirement."
+      },
+      {
+        "name": "generate-cloud-storage-signed-url",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits the required impersonate flag."
+      },
+      {
+        "name": "deploy-cloud-function",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response A includes all required flags except the memory unit (1GB vs 1GiB), while Response B omits several mandatory flags and has syntax errors."
+      }
+    ]
+  }
+}

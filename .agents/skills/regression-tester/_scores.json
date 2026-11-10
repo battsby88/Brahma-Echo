@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9b37fa427eac6645e40f45cc3a36f008b806d9bea949c244ec8a500c72a18ab9",
+  "scoredAt": "2026-10-13T13:03:59.409Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Lacks detailed guidance for testing asynchronous code, handling external API dependencies, and database schema compatibility between baseline and refactored versions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.94,
+    "baselineAvg": 33,
+    "treatmentAvg": 64,
+    "scenarios": [
+      {
+        "name": "audit-refactoring-surface",
+        "baseline": 28,
+        "treatment": 58,
+        "rationale": "Both ask for missing code, but B provides specific file path examples, the exact git diff command it will run, and lists five concrete analysis items aligned with the rubric (signature changes, module extraction, behavior contracts, etc.), while A outlines generic intentions without demonstrating how it will use git diff or categorize changes per the rubric requirements."
+      },
+      {
+        "name": "generate-edge-case-coverage",
+        "baseline": 32,
+        "treatment": 48,
+        "rationale": "Response A provides more thorough analysis, specific edge-case examples with exact CSV syntax, and proposes a sophisticated verification workflow (git worktree comparison), while Response B lists needed information more concisely but with less detail and methodology. Neither actually generates tests as requested by the rubric, but A demonstrates stronger understanding of regression testing strategy and boundary conditions."
+      },
+      {
+        "name": "verify-against-baseline",
+        "baseline": 40,
+        "treatment": 85,
+        "rationale": "Response A directly implements the rubric's core requirement (git worktree), runs tests against both versions, and explicitly addresses reporting specific pass/fail counts and identifying regressions; Response B avoids git worktree entirely (uses cp/git show instead), doesn't show how to extract or report test counts, and asks for clarification rather than providing the requested walkthrough."
+      }
+    ]
+  }
+}

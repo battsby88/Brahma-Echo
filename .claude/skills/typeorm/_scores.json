@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:0893f3853a5f055328108e46f4ebd3c6b60bee34d95daf317a09dba87b59f095",
+  "scoredAt": "2026-10-01T12:38:33.315Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains verbose explanations that could be trimmed for conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.67,
+    "baselineAvg": 55,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "add-column-migration",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric with correct TypeORM TS code, exact npx commands, and migration file content, while Response A uses PHP/Symfony syntax, omits the required npx commands, and does not meet the rubric requirements."
+      },
+      {
+        "name": "upgrade-0.3-to-1.x",
+        "baseline": 45,
+        "treatment": 80,
+        "rationale": "Response A covers most rubric items, missing only findBy/exist syntax and better-sqlite3, while Response B lacks codemod, dependency updates, and manual fix notes."
+      },
+      {
+        "name": "querybuilder-posts-by-author",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses fully satisfy the rubric."
+      }
+    ]
+  }
+}

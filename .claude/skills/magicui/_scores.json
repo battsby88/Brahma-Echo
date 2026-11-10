@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:9376afcd51a9818b15615e94433d4c34e8ee7fcc2f51e8381043191c3e3fa1a1",
+  "scoredAt": "2026-10-03T12:02:10.286Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.21,
+    "baselineAvg": 42,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "confetti-on-purchase-button",
+        "baseline": 62,
+        "treatment": 95,
+        "rationale": "B matches the rubric on every point: the `npx shadcn@latest add @magicui/confetti` install, a client component, `useRef<ConfettiRef>` passed as `ref`, `manualstart`, and `confettiRef.current?.fire(...)` in onClick. A uses the older URL-based install command instead of the `@magicui/confetti` form and leads with ConfettiButton. Its Option B does cover the ref, `manualstart` and `fire()`, but it calls `fire()` after an async fetch rather than directly in the onClick as the rubric describes."
+      },
+      {
+        "name": "fix-outdated-blur-in-and-ticker",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "A hits every rubric point: it uses the named `Marquee` export, replaces `BlurIn` with `TextAnimate` (`blurInUp`, `by=\"word\"`) or `BlurFade`, says `BlurIn` no longer exists, and installs with `npx shadcn@latest add @magicui/...` while calling `magicui-cli` unmaintained. B gets the named export and the shadcn CLI but installs through URLs rather than the `@magicui/` form. It hedges on whether `BlurIn` was folded into `TextAnimate`, never mentions `BlurFade`, says the CLI is only 'deprecated', and its `blurIn` animation and `@/components/magicui/` import path are likely wrong."
+      },
+      {
+        "name": "animated-beam-integration-diagram",
+        "baseline": 3,
+        "treatment": 95,
+        "rationale": "Response A meets every rubric item: it gives the shadcn install command, has \"use client\", uses AnimatedBeam with containerRef/fromRef/toRef via useRef, and sets a relative container; Response B uses a custom framer-motion implementation with no AnimatedBeam, refs, or install command, so it misses nearly everything."
+      }
+    ]
+  }
+}

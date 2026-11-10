@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:570c064efbbf635824af883d4e5fe1b2cd5b89cd2d8a92dcab1cf86939d07931",
+  "scoredAt": "2026-10-24T16:21:56.514Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The implementation is specific to OpenAI and does not support other LLM providers."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.23,
+    "baselineAvg": 65,
+    "treatmentAvg": 80,
+    "scenarios": [
+      {
+        "name": "add-guardrails-to-support-bot",
+        "baseline": 45,
+        "treatment": 80,
+        "rationale": "Response A implements the required guardrail functions, rate limiting, and logging, but uses varied error messages instead of a single fixed refusal; Response B omits the specified guardrail functions and does not meet the rubric's detailed requirements."
+      },
+      {
+        "name": "validate-json-output-with-pydantic",
+        "baseline": 70,
+        "treatment": 90,
+        "rationale": "Response A meets all rubric points with the correct validation method and retry logic, while Response B uses parse_raw instead of model_validate_json, missing a key rubric requirement."
+      },
+      {
+        "name": "grounding-check-for-rag-answer",
+        "baseline": 80,
+        "treatment": 70,
+        "rationale": "Response A correctly returns the exact fallback string and logs the question, but omits the required client argument; Response B includes the client but returns a slightly different fallback message."
+      }
+    ]
+  }
+}

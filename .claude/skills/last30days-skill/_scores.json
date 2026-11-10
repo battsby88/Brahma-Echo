@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:0f967e56634cbd415b48e87ba9d1ba869062c225014838eccd9d6bd32fe39c1e",
+  "scoredAt": "2026-10-01T20:08:52.725Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive narrative and filler text beyond necessary instructions, making it verbose."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is designed for specific Agent Skills hosts and may not work with arbitrary AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3,
+    "baselineAvg": 0,
+    "treatmentAvg": 30,
+    "scenarios": [
+      {
+        "name": "kestrelbase-2-0-research",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A includes a table and evidence file path but lacks the required command line and URLs, while Response B provides no relevant content."
+      },
+      {
+        "name": "weekly-late-payments-digest",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response B contains a command but does not meet the exact rubric requirements, while Response A lacks any command."
+      },
+      {
+        "name": "tool-comparison-30days",
+        "baseline": 0,
+        "treatment": 20,
+        "rationale": "Response B includes a plan with subqueries but lacks the required engine command; Response A has no relevant command."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.2.0",
+  "skillHash": "sha256:c47e6ae4689e334af208add39ec8b5ea0c28957a1efda8ac0ba69b6f8e79a3a7",
+  "scoredAt": "2026-10-24T20:02:16.816Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases, focusing mainly on happy path examples."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.46,
+    "baselineAvg": 13,
+    "treatmentAvg": 58,
+    "scenarios": [
+      {
+        "name": "migrate-svelte4-to-svelte5",
+        "baseline": 10,
+        "treatment": 15,
+        "rationale": "Response A explicitly mentions rewriting with $state, $derived, $props, and @render, aligning slightly more with the rubric than Response B, which only requests the original code."
+      },
+      {
+        "name": "sveltekit-3-vercel-fetch",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "B covers most rubric but misses #lib imports; A likely less complete."
+      },
+      {
+        "name": "form-with-state-raw-and-inspect",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B provides no content."
+      }
+    ]
+  }
+}

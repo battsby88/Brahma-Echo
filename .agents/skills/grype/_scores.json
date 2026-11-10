@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:8808de052d5546bf0248cadb822608960102a57162f01298f63eda94c732e1a0",
+  "scoredAt": "2026-10-03T11:57:38.208Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.76,
+    "baselineAvg": 46,
+    "treatmentAvg": 81,
+    "scenarios": [
+      {
+        "name": "ci-gate-fixable-high-sarif",
+        "baseline": 12,
+        "treatment": 93,
+        "rationale": "Response B uses anchore/scan-action with fail-build: true and severity-cutoff: high, grants security-events: write, uploads steps.scan.outputs.sarif through upload-sarif with if: always(), and says to pin actions to a commit SHA for production, so it meets the whole rubric. Response A uses Trivy instead of anchore/scan-action and never references the scan's SARIF output, so it misses the core required tooling. It does grant security-events: write, use if: always() on the upload step, and mention SHA pinning."
+      },
+      {
+        "name": "suppress-false-positive-with-audit-trail",
+        "baseline": 72,
+        "treatment": 88,
+        "rationale": "B hits every rubric item (reason with ticket/date, the `**/testdata/**` location rule, `--show-suppressed` for auditing, and an optional `--vex` mention), while A covers the config and VEX but never mentions `--show-suppressed`, pointing to `ignoredMatches` in JSON output instead, which misses a key required explanation."
+      },
+      {
+        "name": "airgapped-sbom-scan-workflow",
+        "baseline": 55,
+        "treatment": 62,
+        "rationale": "Response A matches the rubric's exact commands (`-o spdx-json=sbom.spdx.json`, `grype sbom:sbom.spdx.json --fail-on critical`), sets both env vars and covers pre-populating the DB and the stale-DB warning, while Response B uses syft-json with a different filename, imports the DB with `grype db import` and mentions staleness only as a validation-age note, so it departs from the required SBOM format and command."
+      }
+    ]
+  }
+}

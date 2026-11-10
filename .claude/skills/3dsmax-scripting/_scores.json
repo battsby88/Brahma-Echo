@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:598c89fbdd90c0905c52966c53b301b6498db4c8f4ccd070293924a95d651b9e",
+  "scoredAt": "2026-10-01T11:11:35.581Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text that may be considered verbose."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is vendor-locked to Autodesk 3ds Max on Windows, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.25,
+    "baselineAvg": 40,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "create-simple-scene",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response B meets more rubric requirements, including parentheses, base_color_map, and saveMaxFile, whereas Response A lacks base_color_map, parentheses, and uses saveFile instead."
+      },
+      {
+        "name": "headless-render",
+        "baseline": 20,
+        "treatment": 90,
+        "rationale": "Response B fully meets the rubric with a complete 3dsmaxcmd.exe command line and scene script, while Response A lacks the required command line and key options."
+      },
+      {
+        "name": "scene-audit-python",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B omits required elements such as iterating over rt.geometry and using rt.getClassInstances(rt.BitmapTexture)."
+      }
+    ]
+  }
+}

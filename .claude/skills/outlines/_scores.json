@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:ebaf5b5661756f00b490fb3e8ce059b24d94f216ed83b2347826197d85ff4014",
+  "scoredAt": "2026-10-03T13:07:32.216Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path; it gives no guidance on handling errors such as invalid or unsupported schemas, backend CFG/regex incompatibilities, truncated output when max_new_tokens is too low, or model_validate_json failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.58,
+    "baselineAvg": 36,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "ticket-triage-fixed-labels",
+        "baseline": 5,
+        "treatment": 95,
+        "rationale": "Response A uses outlines.from_transformers with Choice([...]) from outlines.types, calls model.batch with max_new_tokens, and adds no retry or parsing loop, so it meets the rubric. Response B skips outlines and hand-rolls log-probability scoring with raw Transformers, so it misses every rubric requirement."
+      },
+      {
+        "name": "vllm-server-typed-extraction",
+        "baseline": 22,
+        "treatment": 96,
+        "rationale": "B matches the rubric: a Pydantic model with ge/le on price, openai.OpenAI with the given base_url, outlines.from_vllm(client, model_name), model(prompt, Product), and model_validate_json. A never uses outlines; it calls the raw OpenAI response_format API, which is a different approach and misses the outlines-specific steps."
+      },
+      {
+        "name": "regex-output-and-migrate-old-code",
+        "baseline": 82,
+        "treatment": 88,
+        "rationale": ""
+      }
+    ]
+  }
+}

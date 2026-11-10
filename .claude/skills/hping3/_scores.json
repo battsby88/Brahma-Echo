@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:70dbe64b6b5360806b28a8a4704144d5ad0ad2d460425ce036a38afd3af868cd",
+  "scoredAt": "2026-10-20T19:39:10.192Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose sections that could be trimmed."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes Linux and root privileges, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 10,
+    "treatmentAvg": 60,
+    "scenarios": [
+      {
+        "name": "measure-tcp-rtt",
+        "baseline": 30,
+        "treatment": 80,
+        "rationale": "Response A includes the required hping3 command with the correct flags and a summary line, but omits per‑packet RTT output; Response B does not meet the command or summary requirements."
+      },
+      {
+        "name": "probe-udp-firewall",
+        "baseline": 0,
+        "treatment": 40,
+        "rationale": "Response B includes the required hping3 command but does not show example reply status lines, while Response A does not use hping3 at all."
+      },
+      {
+        "name": "scan-open-ports-icmp-blocked",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response A uses hping3 but omits sample output, while Response B uses other tools and fails the rubric entirely."
+      }
+    ]
+  }
+}

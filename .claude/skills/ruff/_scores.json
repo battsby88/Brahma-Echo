@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6d0cf9ba3afe09548fdcae0d818a1620595ac712f65486c8c817139d6751d3f4",
+  "scoredAt": "2026-10-02T22:54:49.808Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path; it gives no troubleshooting for failures such as conflicting rule selections, a version mismatch between local, pre-commit and CI, or `--fix` changing code that breaks tests."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.13,
+    "baselineAvg": 72,
+    "treatmentAvg": 81,
+    "scenarios": [
+      {
+        "name": "migrate-flake8-isort-black",
+        "baseline": 88,
+        "treatment": 90,
+        "rationale": "Both cover uninstall/install, pyproject [tool.ruff.lint] with E/F/I, removing old configs, and running `ruff check --fix` then `ruff format`; A uses the exact `ruff check . --fix` ordering from the rubric and gives a firmer concrete answer, while B adds helpful FastAPI/Depends notes but hedges as a template and writes `ruff check --fix .` with slightly different argument order."
+      },
+      {
+        "name": "adopt-ruff-legacy-no-big-diff",
+        "baseline": 66,
+        "treatment": 62,
+        "rationale": "Both use `--add-noqa`, confirm `ruff check .` passes, and describe gradual noqa removal. B's RUF100 `--fix` guidance is stronger and it covers more ground, but it only runs `check` in CI, explicitly advises against `ruff format --check`, and adds distractor options. A's CI step also lacks `format --check`, but it treats formatting properly: it offers running `ruff format .` once and then enforcing `ruff format --check .`."
+      },
+      {
+        "name": "precommit-and-ci-setup",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "A matches the rubric closely, with the `ruff-check` hook, `--fix` args, `ruff-format`, a pinned rev, `ruff check .` and `ruff format --check .` in CI, and the Ruff version pinned in both places, while B uses the legacy `ruff` hook id, runs CI through ruff-action rather than the literal `ruff check .` and `ruff format --check .` commands, and pins an outdated version, although it does keep CI non-modifying and the pins aligned."
+      }
+    ]
+  }
+}

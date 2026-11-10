@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b673ea9fa60c1bbc7a1b8665205e721218fb6454e0791e59962c2113c98ec117",
+  "scoredAt": "2026-10-20T17:10:46.981Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all error scenarios and edge cases."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 10,
+    "baselineAvg": 0,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "deploy-multi-apps-with-captain-definition",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is empty."
+      },
+      {
+        "name": "api-automation-create-scale-ssl",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B matches all rubric requirements with correct endpoints and headers, while Response A uses different endpoints and headers, missing the rubric criteria."
+      },
+      {
+        "name": "add-custom-domain-ssl-via-api",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A uses different endpoints and headers."
+      }
+    ]
+  }
+}

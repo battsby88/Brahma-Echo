@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:26474284025b91a683d2fa3fc341efb571410247afa0aa2fad2922f3cbead102",
+  "scoredAt": "2026-10-24T17:22:00.941Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Hardcoded API key in example guard; should use config and constant-time comparison."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 4.35,
+    "baselineAvg": 20,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "auth-guard-fairing",
+        "baseline": 0,
+        "treatment": 60,
+        "rationale": "Response B includes most required elements (route, guard, fairing, launch) while Response A is incomplete; however B still misses the /api mount and uses Forbidden for invalid keys, so it scores lower than a perfect answer."
+      },
+      {
+        "name": "db-pool-postgres",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, while Response B fails to meet key requirements such as the correct feature flag, database name, and Rocket.toml configuration."
+      },
+      {
+        "name": "unit-test-local-client",
+        "baseline": 60,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B omits the required #[cfg(test)] module and ContentType usage, missing key elements."
+      }
+    ]
+  }
+}

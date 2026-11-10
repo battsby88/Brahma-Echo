@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1fca0aac458fae1b568e89570fb838db0f4cfa23a1cab1d844bf11d243d5b3e3",
+  "scoredAt": "2026-10-03T12:59:23.382Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "Examples are agent-narrated step lists with prompts and no concrete outputs, and Example 2 has a dangling 'Steps:' line and omits the CPU-specific code changes (use_cpu, dropping the quantization config)."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.19,
+    "baselineAvg": 63,
+    "treatmentAvg": 75,
+    "scenarios": [
+      {
+        "name": "bitext-download-and-chat-jsonl",
+        "baseline": 60,
+        "treatment": 72,
+        "rationale": "A gives the exact required download command, uses the instruction/response columns, builds system/user/assistant `messages` lines, and doesn't paste the token, but it assumes columns and only prints them at runtime; B has the same conversion shape, but it installs kaggle into a venv, adds hedging that the slug may be wrong, and also only checks columns in the script, though it does state the CSV's columns up front."
+      },
+      {
+        "name": "lora-config-16gb-gpu-t4",
+        "baseline": 66,
+        "treatment": 62,
+        "rationale": "Both use nf4 4-bit loading, fp16 with float16 compute dtype, r=16, max_length and processing_class, but A targets attention projections only and puts batch size 1 plus raised gradient accumulation first in its OOM advice, with a smaller model last as the rubric wants. B targets all linear layers, which includes the attention projections but goes beyond them, starts at batch size 1 with accumulation 16, and ranks sequence length first and a smaller model third, so its ordering departs from the rubric; its OOM advice is more thorough overall."
+      },
+      {
+        "name": "cpu-only-mental-health-faq",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "A names the dataset, includes the `kaggle datasets list -s ... --sort-by votes` search, and warns that bitsandbytes needs CUDA, then switches to Qwen2.5-0.5B-Instruct with use_cpu=True, batch size 1 with grad accumulation 16, max_length 256, a 500-row sample, a slow-training warning and a Kaggle GPU option; B names the dataset and uses a small model on CPU with use_cpu=True, but it never explicitly warns about bitsandbytes/CUDA, omits `--sort-by votes`, uses a larger max_length (512) and smaller accumulation (4), does not subsample for validation, and does not suggest a Kaggle GPU notebook."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:6cbb9128fd426dbee93396d3bb42dbe30cccdb8f41588e629e183020e3685b8e",
+  "scoredAt": "2026-10-21T23:19:43.664Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases, focusing only on the happy path."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.98,
+    "baselineAvg": 47,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "deploy-with-docker",
+        "baseline": 30,
+        "treatment": 90,
+        "rationale": "Response A covers all required steps (download, pin image, bind port, run compose) but omits the note about no 'v' prefix; Response B fails to download the correct tag, uses wrong port mapping, and misses the prefix note."
+      },
+      {
+        "name": "configure-ai-provider",
+        "baseline": 55,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A omits key variables and UI instructions."
+      },
+      {
+        "name": "import-bank-statement",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "Response B fully covers the required steps (endpoint, mapping, filtering, export) while Response A omits the /import/csv endpoint and the name/currency mapping."
+      }
+    ]
+  }
+}

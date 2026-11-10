@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:5697ae54244cf4309220ecf0296b085dd122d2cc585c37b19406183e9a2f0e45",
+  "scoredAt": "2026-10-13T17:04:50.219Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Skill does not cover error handling or edge cases such as missing API keys or network failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 4.41,
+    "baselineAvg": 17,
+    "treatmentAvg": 75,
+    "scenarios": [
+      {
+        "name": "add-evals-to-ci",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A includes a GitHub Actions workflow, promptfoo config, and PR comment posting, but omits the exact `npx eval run --ci` command and a numeric threshold; Response B lacks all rubric requirements."
+      },
+      {
+        "name": "compare-models",
+        "baseline": 20,
+        "treatment": 85,
+        "rationale": "Response B meets the rubric requirements by using promptfoo, LLM‑as‑judge scoring, latency, cost, and Markdown output, whereas Response A lacks promptfoo integration, proper scoring, and the required table."
+      },
+      {
+        "name": "catch-prompt-regressions",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response B provides a promptfoo config, llm-rubric assertions, and a GitHub Actions workflow, whereas Response A uses a different framework and lacks the required elements."
+      }
+    ]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:928cc2d922281bb0393569871358b82f78ad9d120383388aaf45cb09a0b5405d",
+  "scoredAt": "2026-10-02T22:50:14.772Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "WEAK"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path; there is no troubleshooting for common failures such as the Docker daemon not running, engine version mismatches, failed cache or service startup, or a failing check."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "examples",
+        "detail": "The two worked examples are prose descriptions of what the agent will do and contain no runnable code or sample output, and the monorepo example (Next.js plus Python) is not implemented anywhere in the skill."
+      },
+      {
+        "severity": "INFO",
+        "category": "security",
+        "detail": "The Linux install path downloads the release tarball and verifies its sha256 checksum before extracting. The CI-only Postgres password is a throwaway test value and secrets are passed through the Secret type, so there is nothing to flag."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.1,
+    "baselineAvg": 78,
+    "treatmentAvg": 86,
+    "scenarios": [
+      {
+        "name": "typescript-ci-module-with-cache",
+        "baseline": 88,
+        "treatment": 80,
+        "rationale": "Both use npm ci with a /root/.npm cache volume and @check on lint and test, but A applies defaultPath and ignore once in the constructor and adds the missing `.dagger` ignore, while B repeats the source argument on every function, which makes dagger check pass `--source` to each check."
+      },
+      {
+        "name": "integration-tests-with-postgres-service",
+        "baseline": 90,
+        "treatment": 88,
+        "rationale": "Both responses meet every rubric element: a Postgres service with withExposedPort(5432) and asService, withServiceBinding('db'), a DATABASE_URL pointing at host db, separate withExec calls for migrate and test, and a dagger call invocation; B edges ahead with a setup step, a parameterized test script and fuller explanatory notes, while A relies on a base() function it doesn't define and says only that it exists in the reference module."
+      },
+      {
+        "name": "deploy-with-secret-and-github-actions",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "B hits every rubric point: it uses a Secret argument with withSecretVariable, calls with `--deploy-token=env://DEPLOY_TOKEN`, and has a workflow with a `call:` input and a pinned `version:`. A uses a Secret and withSecretVariable correctly but writes `env:DEPLOY_TOKEN` instead of `env://`, and its workflow uses `verb`/`args` instead of `call:`, so it misses two of the three rubric items."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:21a7cf0470ce09ddf4b5c4dabeaececf7b6dffcf2fa374ece26fee320364fd6a",
+  "scoredAt": "2026-10-01T12:06:57.728Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error scenarios or edge cases for user inputs."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.67,
+    "baselineAvg": 27,
+    "treatmentAvg": 72,
+    "scenarios": [
+      {
+        "name": "draft-product-launch-okrs",
+        "baseline": 30,
+        "treatment": 60,
+        "rationale": "Response A better meets the rubric, providing labeled objectives, baselines, targets, and counter‑metrics, though it includes some activity metrics and lacks a time‑bound aspirational objective; Response B fails on labeling, time‑boundness, baselines, and counter‑metrics."
+      },
+      {
+        "name": "review-okrs-measurability",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B fully meets all rubric requirements, while Response A only partially addresses them."
+      },
+      {
+        "name": "align-okrs-company",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response B better meets the rubric, providing labeled objectives with baselines, targets, dependencies, and counter‑metrics, though it exceeds the required number of team objectives; Response A fails to meet key rubric items such as single company objective, baseline targets, and objective labeling."
+      }
+    ]
+  }
+}

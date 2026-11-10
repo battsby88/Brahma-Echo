@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:83680a52d66df63675007e1140dd8c4b0e1500be3fbf3771ff5b8caa4d259026",
+  "scoredAt": "2026-10-01T18:56:32.855Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover all potential error scenarios and edge cases, such as handling missing dependencies or environment variable misconfigurations."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive background information and verbose explanations that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.93,
+    "baselineAvg": 28,
+    "treatmentAvg": 82,
+    "scenarios": [
+      {
+        "name": "setup-new-mkdocs-site-with-mkdocstrings",
+        "baseline": 20,
+        "treatment": 85,
+        "rationale": "Response A covers almost all rubric items but omits the mkdocs serve note; Response B lacks key configuration details."
+      },
+      {
+        "name": "add-versioning-with-mike",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, while Response B omits the required 'extra.version.provider' entry, lacks the 'mike set-default' command, and does not explicitly remove the old gh-deploy step."
+      },
+      {
+        "name": "migrate-to-zensical-and-update-ci",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response A covers the required command sequence and CI workflow but lacks a plugin compatibility comparison; Response B fails to mention Zensical or the required build steps and omits the plugin comparison."
+      }
+    ]
+  }
+}

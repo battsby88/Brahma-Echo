@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:068164bd6f34b380f975b8074d370047ddf0c1cd8f765d5ae063ef8a218f62ef",
+  "scoredAt": "2026-10-20T17:50:02.055Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill file does not cover error handling or edge cases, focusing only on happy path examples."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "The skill is tightly coupled to the Guidance library, limiting its applicability to agents that support this specific framework."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.03,
+    "baselineAvg": 33,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "extract-product-review-json",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B uses gen_json and produces a JSON string, but also outputs additional text and code, violating the rubric’s requirement to output only the JSON string; Response A fails to meet any rubric criteria."
+      },
+      {
+        "name": "classify-ticket-priority-due",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B attempts to use the required functions but fails to match the exact regex pattern and output format, whereas Response A does not meet the rubric at all."
+      },
+      {
+        "name": "generate-command-list",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses satisfy all rubric requirements equally."
+      }
+    ]
+  }
+}

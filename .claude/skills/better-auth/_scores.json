@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:74097509942f04294f8e76a91d73f6beb8f62d54b5f12c737820a885ef38adb2",
+  "scoredAt": "2026-10-24T20:29:28.233Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as missing environment variables or database connection failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The instructions are heavily focused on Next.js and Hono, lacking guidance for other frameworks listed in compatibility, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.67,
+    "baselineAvg": 15,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "nextjs-email-password-auth",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A covers all rubric items; Response B omits key requirements."
+      },
+      {
+        "name": "nuxt-google-oauth",
+        "baseline": 45,
+        "treatment": 55,
+        "rationale": "Response A covers more rubric items (server config, API route, client usage) than Response B, though both miss key elements like authClient, signIn.social, session protection, and the npx generate step."
+      },
+      {
+        "name": "hono-drizzle-auth",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits key elements such as the correct imports, provider configuration, auth.handler usage, session middleware, trusted origins, client creation, and migration commands."
+      }
+    ]
+  }
+}

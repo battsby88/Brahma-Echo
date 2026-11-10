@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:f38185c4173621526e4913c8aee2ad3408a28df453001c5c6f86fc82b3f3f947",
+  "scoredAt": "2026-10-01T19:17:33.516Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.12,
+    "baselineAvg": 25,
+    "treatmentAvg": 78,
+    "scenarios": [
+      {
+        "name": "create-symfony-project-with-validation",
+        "baseline": 45,
+        "treatment": 80,
+        "rationale": "Response A meets most rubric items but omits messenger and mailer, while Response B lacks the required checkout-api command, MapRequestPayload usage, DTO, and messenger/mail packages."
+      },
+      {
+        "name": "setup-messenger-welcome-email",
+        "baseline": 30,
+        "treatment": 55,
+        "rationale": "Response A covers most rubric items but misses the composer require and exact worker command, while Response B lacks the required annotations, composer step, and worker command."
+      },
+      {
+        "name": "create-and-run-doctrine-migration",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not."
+      }
+    ]
+  }
+}

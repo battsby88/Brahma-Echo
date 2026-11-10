@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:074e346242fad700566f75420414f4565a768b829ce701c2fd2b41271d19343d",
+  "scoredAt": "2026-10-24T17:23:48.574Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill assumes a Node.js environment and does not provide equivalent guidance for other platforms, limiting cross-platform applicability."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.8,
+    "baselineAvg": 10,
+    "treatmentAvg": 98,
+    "scenarios": [
+      {
+        "name": "send-test-welcome-sandbox",
+        "baseline": 20,
+        "treatment": 95,
+        "rationale": "Response B fully satisfies the rubric with correct code, environment variable usage, sandbox flag, and 200 status mention, while Response A uses curl instead of sgMail.send and lacks key details."
+      },
+      {
+        "name": "bulk-promotional-scheduled-send",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric while Response A is empty."
+      },
+      {
+        "name": "verify-sendgrid-webhook",
+        "baseline": 10,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A lacks the required SendGrid library usage and signature verification steps."
+      }
+    ]
+  }
+}

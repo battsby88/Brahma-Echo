@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:fce8dfff9eb7cbbfe2cc5fd033826057cd3991c7222fd87be0066e1f1c0b772f",
+  "scoredAt": "2026-10-24T16:10:35.211Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.7,
+    "baselineAvg": 3,
+    "treatmentAvg": 37,
+    "scenarios": [
+      {
+        "name": "subdomain-inventory-keyless",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response B is closer to the rubric, providing the required uv run theHarvester command and mentioning output files, though it uses a different output name; Response A does not meet the rubric at all."
+      },
+      {
+        "name": "exposed-employee-emails",
+        "baseline": 0,
+        "treatment": 0,
+        "rationale": "Both responses lack the required command and explanation."
+      },
+      {
+        "name": "full-passive-enumeration-report",
+        "baseline": 10,
+        "treatment": 60,
+        "rationale": "Response A includes the required theHarvester command and parsing logic but omits the ips list; Response B fails to use theHarvester and misses all rubric requirements."
+      }
+    ]
+  }
+}

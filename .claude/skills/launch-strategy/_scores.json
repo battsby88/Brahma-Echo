@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:7dbb6771c4a7409d07a633551f6708aa774ed062914e839074e369acd1ac9ea0",
+  "scoredAt": "2026-10-01T20:10:36.723Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.45,
+    "baselineAvg": 38,
+    "treatmentAvg": 55,
+    "scenarios": [
+      {
+        "name": "product-hunt-launch-plan",
+        "baseline": 35,
+        "treatment": 65,
+        "rationale": "Response B covers more rubric items, including stages, rollback, and launch time, while Response A lacks many required sections."
+      },
+      {
+        "name": "internal-feature-launch",
+        "baseline": 25,
+        "treatment": 65,
+        "rationale": "Response B covers more rubric items, including a detailed timeline and runbook, whereas Response A lacks key elements such as tier designation, staged rollout, rollback trigger, and review template."
+      },
+      {
+        "name": "waitlist-beta-launch",
+        "baseline": 55,
+        "treatment": 35,
+        "rationale": "Response A provides a detailed timeline with owners and milestones, whereas Response B only lists a few headings and lacks the comprehensive detail required by the rubric."
+      }
+    ]
+  }
+}

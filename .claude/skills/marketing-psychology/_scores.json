@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "skillHash": "sha256:adfc99945a8015d5d9affb593df87f6241e826aa878cc1d9fcadca75f54311c2",
+  "scoredAt": "2026-10-01T20:17:29.630Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive background and literature references that may be considered padded explanations beyond what is necessary for actionable guidance."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.7,
+    "baselineAvg": 7,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "increase-annual-subscriptions",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B lacks the required hypothesis card, citation, sample‑size calculation, and guardrails."
+      },
+      {
+        "name": "honest-countdown",
+        "baseline": 0,
+        "treatment": 65,
+        "rationale": "Response B addresses most rubric points but omits the required sample‑size calculation, whereas Response A fails to meet any of the rubric requirements."
+      },
+      {
+        "name": "attribute-framing-experiment",
+        "baseline": 20,
+        "treatment": 65,
+        "rationale": "Response A covers most rubric items but omits the hypothesis card, evidence_grade, and a 5% lift sample-size, while Response B lacks nearly all required elements."
+      }
+    ]
+  }
+}

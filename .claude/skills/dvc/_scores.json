@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:96bdcbcd6bdda2eea10ab653de862faabddb2a3a4e302fe39c6040e44e4e474c",
+  "scoredAt": "2026-10-24T21:49:55.529Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases such as network failures or permission errors."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.39,
+    "baselineAvg": 28,
+    "treatmentAvg": 95,
+    "scenarios": [
+      {
+        "name": "add-dataset-and-push",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements exactly, while Response A deviates in remote naming and bucket path, though it otherwise follows the workflow."
+      },
+      {
+        "name": "create-training-stage-and-show-metrics",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with DVC stage creation, commits, and metric display, while Response B lacks any DVC integration or metric handling."
+      },
+      {
+        "name": "run-queued-experiments-and-apply-best",
+        "baseline": 5,
+        "treatment": 85,
+        "rationale": "Response A largely follows the DVC workflow with a minor deviation in parallelism, while Response B diverges entirely by using MLflow instead of DVC."
+      }
+    ]
+  }
+}

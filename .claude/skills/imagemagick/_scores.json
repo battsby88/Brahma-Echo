@@ -1,0 +1,64 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:7ea9b2e2aa0b03d80ce754f0195b0c6cff5b6264e4a7a2e3b8b01dc15baef312",
+  "scoredAt": "2026-10-20T19:41:56.020Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 80,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions focus on happy path usage and do not cover error handling or edge cases such as missing dependencies or unsupported formats."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains extensive explanatory text and guidelines that add verbosity beyond the core instructions."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The install instructions rely on macOS brew and Debian/Ubuntu apt, indicating minor platform assumptions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 3.83,
+    "baselineAvg": 23,
+    "treatmentAvg": 88,
+    "scenarios": [
+      {
+        "name": "batch-resize-convert-webp",
+        "baseline": 50,
+        "treatment": 65,
+        "rationale": "Response B uses the required mogrify command and most flags, missing only quality, while Response A omits mogrify and format, making it less compliant."
+      },
+      {
+        "name": "create-contact-sheet",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A fails to use the required command prefix and output filename."
+      },
+      {
+        "name": "generate-animated-gif",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B satisfies all rubric criteria, whereas Response A fails to use magick, the correct delay value, and the required output filename."
+      }
+    ]
+  }
+}

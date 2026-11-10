@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:5029e53656d8d73c654441c5c00b7aef7b62838c95a86522e074b6323b231aae",
+  "scoredAt": "2026-10-01T11:58:41.617Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for user requests."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.35,
+    "baselineAvg": 37,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "generate-readme-cli-tool",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric items, whereas Response B contains no content."
+      },
+      {
+        "name": "generate-api-docs-express",
+        "baseline": 40,
+        "treatment": 60,
+        "rationale": "Response A gives concrete examples and covers many user endpoints, while Response B is a spec lacking examples and authentication details."
+      },
+      {
+        "name": "create-howto-deploy-docker-ecs",
+        "baseline": 70,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements, while Response A lacks a troubleshooting section and proper H3 hierarchy."
+      }
+    ]
+  }
+}

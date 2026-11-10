@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a974605037cfb3c4689770f5b6b290c52c0a40a3a5431f0813b243218b760d83",
+  "scoredAt": "2026-10-24T14:45:36.111Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.7,
+    "baselineAvg": 7,
+    "treatmentAvg": 77,
+    "scenarios": [
+      {
+        "name": "llm-extraction-product-list",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not meet any of them."
+      },
+      {
+        "name": "css-extraction-lazy-load",
+        "baseline": 20,
+        "treatment": 80,
+        "rationale": "Response A covers almost all rubric items except the exact wait_for selector, while Response B does not use the required JsonCssExtractionStrategy or CrawlerRunConfig at all."
+      },
+      {
+        "name": "deep-crawl-with-session",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A partially meets the rubric but omits the required login js_code and uses the wrong max_pages value, whereas Response B provides no relevant content."
+      }
+    ]
+  }
+}

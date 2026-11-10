@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:c28469b7a1aea80523b8f61a88e7c46e5351a3313f9af91fbc8a19b26fd3eadb",
+  "scoredAt": "2026-10-24T21:20:54.209Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 8.5,
+    "baselineAvg": 10,
+    "treatmentAvg": 85,
+    "scenarios": [
+      {
+        "name": "add-snipcart-to-static-site",
+        "baseline": 20,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies every rubric requirement, while Response B omits the required script placement, loadStrategy, currency, and checkout button with cart count."
+      },
+      {
+        "name": "add-product-with-custom-options",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies all rubric requirements, while Response B does not use the required data-item attributes at all."
+      },
+      {
+        "name": "add-product-via-mcp",
+        "baseline": 10,
+        "treatment": 55,
+        "rationale": "Response A includes the required JSON body and secret key header but omits the specific MCP command reference, while Response B lacks both the command and header entirely."
+      }
+    ]
+  }
+}

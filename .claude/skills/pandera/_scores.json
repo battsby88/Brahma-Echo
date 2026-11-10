@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:1c85131e52b41dd77b4a7c19059859fef1c6878e63220c4be8abb2555118cc37",
+  "scoredAt": "2026-10-02T22:52:39.997Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.64,
+    "baselineAvg": 53,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "lazy-validation-failure-report",
+        "baseline": 82,
+        "treatment": 72,
+        "rationale": "Both use lazy=True, catch SchemaErrors, and print index/column/check/failure_case; A uses a DataFrameModel-style OrderSchema, but imports it from an external file and never defines it, while B defines a self-contained DataFrameSchema (not a DataFrameModel) and adds csv_line."
+      },
+      {
+        "name": "polars-users-data-contract",
+        "baseline": 25,
+        "treatment": 97,
+        "rationale": "Response B uses pandera.polars with a DataFrameModel, Field(unique=True, gt=0) and isin, validates pl.read_parquet with lazy=True, and avoids pandas types, so it meets the rubric. Response A hand-rolls the checks in plain Polars and mentions pandera only in passing, so it misses the core requirements."
+      },
+      {
+        "name": "orders-schema-cross-column-checks",
+        "baseline": 52,
+        "treatment": 93,
+        "rationale": "Response A matches the rubric closely: it uses a pa.DataFrameModel with Field constraints, two @pa.dataframe_check methods that handle null shipped_at, and an inner Config with strict and coerce set to True. Response B uses the DataFrameSchema object API with Check objects and lambda checks. It gets the validation logic right but not the required class-based model, the Field constraints, or the inner Config class, so it only partly meets the rubric."
+      }
+    ]
+  }
+}

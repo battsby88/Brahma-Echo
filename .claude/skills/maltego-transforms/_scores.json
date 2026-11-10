@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:bf01bea6dbb65cdb72cafcdee2bb44f08b8ea9bdadcef021389dcae3171aec87",
+  "scoredAt": "2026-10-03T12:03:03.315Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Error handling is shown only for HTTP status codes; edge cases such as malformed crt.sh JSON, rate limiting (429), empty results, network timeouts or missing 'data' keys in Hunter responses are not covered, and there is no migration code example despite migration being a stated use case."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 7.08,
+    "baselineAvg": 13,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "ct-logs-subdomain-transform",
+        "baseline": 5,
+        "treatment": 92,
+        "rationale": "B matches the rubric: an async @register_transform function typed AsyncGenerator[DNSName], imports from maltego.entities and maltego.server, yields results, sets a 30s timeout, and raises MaltegoException on a non-200 status; A uses the legacy maltego-trx DiscoverableTransform/addEntity pattern the rubric rules out, is synchronous, doesn't yield, and doesn't raise MaltegoException."
+      },
+      {
+        "name": "hunter-emails-with-api-key-setting",
+        "baseline": 30,
+        "treatment": 93,
+        "rationale": "B declares the key as a TransformSetting with auth=True and is_global=True, attaches it with settings=[...], reads it from the settings dict, yields EmailAddress from a Domain input, and raises MaltegoException on 401; A uses a different API (global_setting, popup), no auth=True, reads the key via request.getTransformSetting, and sends a UI message on 401 instead of raising MaltegoException."
+      },
+      {
+        "name": "migrate-maltego-trx-and-serve",
+        "baseline": 3,
+        "treatment": 90,
+        "rationale": "Response A matches the rubric: it says maltego-trx is archived, ports each transform to an async @register_transform function, runs the server with MaltegoServerSettings and run_server over local-only HTTP on 127.0.0.1:3000, and adds the printed /seed URL in Maltego, while Response B keeps using maltego-trx and covers none of this."
+      }
+    ]
+  }
+}

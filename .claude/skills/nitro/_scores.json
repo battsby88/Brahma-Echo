@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:e7d3084300a59005ffd688771f11e4942bdb41756bfc22510d41f4fe0e4a29b0",
+  "scoredAt": "2026-10-24T19:41:38.399Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover all possible error scenarios and edge cases, such as missing routes or storage failures."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6,
+    "baselineAvg": 15,
+    "treatmentAvg": 90,
+    "scenarios": [
+      {
+        "name": "protected-api-health-check",
+        "baseline": 15,
+        "treatment": 100,
+        "rationale": "Response B meets all rubric requirements; Response A does not."
+      },
+      {
+        "name": "cached-endpoint-with-scheduled-task",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B meets every rubric requirement, while Response A does not provide the required Nitro files or configuration."
+      },
+      {
+        "name": "deploy-to-cloudflare-workers",
+        "baseline": 30,
+        "treatment": 70,
+        "rationale": "Response B covers most rubric items, including the specific build command, KV bindings, and a wrangler.toml snippet, while Response A omits the preset command, KV bindings, and storage driver details."
+      }
+    ]
+  }
+}

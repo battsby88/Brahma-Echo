@@ -1,0 +1,48 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3ceb8c498b48f9091b7c06dfb84367f7f82908fe8a4057ec2c85132cfae7d153",
+  "scoredAt": "2026-10-24T19:26:24.914Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 100,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": []
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 6.67,
+    "baselineAvg": 15,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "install-and-verify-mtls",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully meets all rubric items, while Response A omits key steps such as CRD installation, Viz stack, namespace annotation, and SECURED/MESHED verification."
+      },
+      {
+        "name": "canary-rollout-with-traffic-splitting",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric, while Response B does not mention HTTPRoute, linkerd viz, or the required commands."
+      },
+      {
+        "name": "restrict-service-with-authorization-policy",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with Linkerd resources and verification, while Response B uses Istio and omits required Linkerd objects."
+      }
+    ]
+  }
+}

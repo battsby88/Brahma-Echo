@@ -1,0 +1,59 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b56d71e47357559c0e0af1be1066d7824320c579c1d2119c1d9622402c8a7b18",
+  "scoredAt": "2026-10-24T19:10:45.450Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The skill does not cover error handling or edge cases for unsupported formats or ffmpeg failures."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The code uses bash syntax that may not work on Windows without a Unix-like shell, indicating minor platform assumptions."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.67,
+    "baselineAvg": 60,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "convert-mkv-to-mp4-stream-copy",
+        "baseline": 100,
+        "treatment": 100,
+        "rationale": "Both responses include an ffmpeg command with -i, -c copy, -movflags +faststart, and outputting the same base name with a .mp4 extension."
+      },
+      {
+        "name": "extract-and-normalize-audio",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response A includes a single ffmpeg command that satisfies all rubric items, while Response B splits the process into separate steps and never uses the loudnorm filter on the video input in one command."
+      },
+      {
+        "name": "create-gif-with-palette",
+        "baseline": 80,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric items exactly, while Response B omits the required 480 width scale, though it otherwise satisfies the rest."
+      }
+    ]
+  }
+}

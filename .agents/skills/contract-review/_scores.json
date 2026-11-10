@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:3ecd0b3cb7bfa8e4d2aa0838b058d146574b1ecbfee490364c5fcfce75090dd4",
+  "scoredAt": "2026-10-13T11:49:24.222Z",
+  "backend": "claude-code",
+  "model": "claude-haiku-4-5-20251001",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Does not address error scenarios such as corrupted files, encrypted PDFs, non-English contracts, or memory constraints for extremely long documents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.79,
+    "baselineAvg": 24,
+    "treatmentAvg": 67,
+    "scenarios": [
+      {
+        "name": "employment-offer-negotiation",
+        "baseline": 10,
+        "treatment": 50,
+        "rationale": "Response A correctly interprets the task and addresses all four rubric elements (identifies employment contract type, mentions non-compete duration/geography checks, IP assignment red flags, and promises risk-ranked recommendations), though execution is blocked by lack of contract; Response B incorrectly refuses the task based on a false scope claim and attempts none of the required analysis."
+      },
+      {
+        "name": "vendor-saas-risk-assessment",
+        "baseline": 58,
+        "treatment": 91,
+        "rationale": "Response A identifies SLA and data protection risks but fails the liability cap requirement—it mentions liability only as a red flag to escalate without assessing specific caps against market practices. Response B directly addresses all four rubric requirements: identifies missing SLAs as the top risk with specific benchmarks (99.9%), explicitly calls out missing DPAs with detailed required contents, assesses liability caps with concrete market standards (one month = too low, 12 months = minimum for critical systems, unlimited for data breaches), and provides prioritized, actionable negotiation points with model language."
+      },
+      {
+        "name": "nda-scope-evaluation",
+        "baseline": 5,
+        "treatment": 60,
+        "rationale": "Response A refuses to engage and provides no attempt at the four core rubric requirements (extract definition/duration/exceptions, assess reasonableness, identify scope issues, recommend changes). Response B demonstrates clear understanding of what needs to be analyzed and promises to deliver most of it (definition, exceptions, duration, missing clauses, risk flags) with appropriate disclaimers, though it hasn't performed the analysis yet because the document hasn't been provided."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a0e2d3024b74532c507cd4a4c460ef1572469a938ef4f8cb1e97ba4a9e776e84",
+  "scoredAt": "2026-10-03T13:02:25.354Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "WEAK",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "actionability",
+        "detail": "The Agents, hooks, Save/load and streaming sections give API names without runnable code, and the migration table refers to MIGRATION.md instead of showing the changes, so only the RAG and custom-component examples can be run as written."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 9.3,
+    "baselineAvg": 9,
+    "treatmentAvg": 93,
+    "scenarios": [
+      {
+        "name": "rag-pipeline-3x-chat-generator",
+        "baseline": 12,
+        "treatment": 95,
+        "rationale": "Response A matches the rubric: separate indexing and query pipelines, in-memory store, ChatPromptBuilder with a ChatMessage template list, OpenAIChatGenerator, question passed to both the embedder and prompt_builder, and the answer read via replies[0].text. Response B uses the legacy PromptBuilder and OpenAIGenerator, has no indexing pipeline with DocumentWriter, and prints replies[0] as a string rather than .text."
+      },
+      {
+        "name": "migrate-2x-code-to-3x",
+        "baseline": 3,
+        "treatment": 88,
+        "rationale": "Response B covers every rubric item (OpenAIChatGenerator with .text, Pipeline with run_async, PromptBuilder with required_variables=None, and ExtractiveReader moved to transformers-haystack as TransformersExtractiveReader), while Response A declines to answer and supplies none of them."
+      },
+      {
+        "name": "custom-component-save-load-yaml",
+        "baseline": 12,
+        "treatment": 95,
+        "rationale": "A covers all rubric points: the allowlist explanation, both allowed_modules and the env var fix, the unsafe=True warning, and the three Mock components. B never mentions the allowlist or the safe fixes, offers wrong diagnoses, and recommends patching OpenAI components instead of the Mock components."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:a34aa9517420a6d72d18bc4a41c3d50f0b42926c5ed90bf1c45847aa796060a7",
+  "scoredAt": "2026-10-01T18:26:29.842Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill contains verbose sections that could be trimmed for brevity."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.53,
+    "baselineAvg": 15,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "terraform-http-and-tcp-monitor",
+        "baseline": 0,
+        "treatment": 50,
+        "rationale": "Response A uses the wrong provider and resource names; Response B uses the correct provider and policy reference but fails to name the monitors exactly as required by the rubric."
+      },
+      {
+        "name": "logtail-node-configuration",
+        "baseline": 45,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies all rubric requirements, while Response A fails to use the required env variables, endpoint, and flush call."
+      },
+      {
+        "name": "terraform-escalation-policy",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A does not meet the required resource type or structure."
+      }
+    ]
+  }
+}

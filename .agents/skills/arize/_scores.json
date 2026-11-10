@@ -1,0 +1,59 @@
+{
+  "version": "1.2.1",
+  "skillHash": "sha256:3d20f5cb3477a3fb2d6f34beaadc23721fabf567e4f2be3f0b68d1c8412a1e98",
+  "scoredAt": "2026-11-04T23:52:29.149Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 87,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not explicitly cover error handling or edge cases such as missing environment variables or misconfiguration."
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill is Python-specific and relies on Python packages, limiting its applicability to non-Python AI agents."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.57,
+    "baselineAvg": 28,
+    "treatmentAvg": 72,
+    "scenarios": [
+      {
+        "name": "expose-phoenix-with-authentication",
+        "baseline": 20,
+        "treatment": 60,
+        "rationale": "Response B covers most rubric items (host, password, secret, serve, API key) but incorrectly sets PHOENIX_ENABLE_AUTH to true instead of false, whereas Response A omits all required variables and details."
+      },
+      {
+        "name": "instrument-openai-with-http-traces",
+        "baseline": 50,
+        "treatment": 80,
+        "rationale": "Response A follows the rubric more closely, providing the required register call and OpenAI instrumentation, while Response B omits the register usage and key details."
+      },
+      {
+        "name": "evaluate-llm-spans-faithfulness",
+        "baseline": 15,
+        "treatment": 75,
+        "rationale": "Response B meets most rubric items (client query, dataframe, judge, evaluator, filtering by label) while Response A omits the required client, dataframe, and evaluator steps."
+      }
+    ]
+  }
+}

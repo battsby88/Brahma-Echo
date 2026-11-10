@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "skillHash": "sha256:2f61a0dd439d134dd8c5bd39f1c2f29e6e27596b3274061f36d7fc709b501449",
+  "scoredAt": "2026-05-13T10:33:53.026Z",
+  "backend": "subagent",
+  "model": "claude-sonnet-4-6",
+  "quality": {
+    "score": 77,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "FAIL",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Instructions do not cover error handling or edge cases for API failures."
+      },
+      {
+        "severity": "HIGH",
+        "category": "crossPlatform",
+        "detail": "Skill is vendor-locked to Google Vertex AI and Node.js, not cross-platform."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "baselineAvg": 25,
+    "treatmentAvg": 95,
+    "multiplier": 3.8,
+    "scenarios": [
+      {
+        "name": "Imagen background swap with user-provided mask",
+        "baseline": 25,
+        "treatment": 95,
+        "rationale": "Baseline reaches for @google-cloud/vertexai or the REST predict endpoint and misses the AI SDK generateImage surface with imagen-3.0-capability-001 and the EDIT_MODE_BGSWAP / MASK_MODE_USER_PROVIDED enums the rubric checks."
+      },
+      {
+        "name": "Veo 3.1 9:16 video ad with audio via AI SDK",
+        "baseline": 25,
+        "treatment": 95,
+        "rationale": "Baseline manually polls the Vertex predictLongRunning REST endpoint; treatment uses experimental_generateVideo with vertex.video, generateAudio:true, and pollTimeoutMs:600000 as documented."
+      }
+    ]
+  }
+}

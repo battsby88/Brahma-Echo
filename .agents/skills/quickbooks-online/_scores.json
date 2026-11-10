@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:08d47ea1cfaffa71575d8d15827025aef293d1b41cfc732deb489503f68c2967",
+  "scoredAt": "2026-10-20T20:08:20.705Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "WEAK",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "crossPlatform",
+        "detail": "The skill requires Python 3.10+ or Node.js 18+, which is a minor platform assumption."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SUSPICIOUS",
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "missingChecksums",
+        "detail": "The instructions mention installing intuit-oauth via pip without specifying a checksum, which is a medium security concern."
+      }
+    ]
+  },
+  "impact": {
+    "multiplier": 2.52,
+    "baselineAvg": 33,
+    "treatmentAvg": 83,
+    "scenarios": [
+      {
+        "name": "generate-qbo-profit-loss",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric by calling profit_and_loss, using summary_rows, and listing the top 5 expense categories; Response A does not include any code or calls to the required functions."
+      },
+      {
+        "name": "create-invoice-and-payment",
+        "baseline": 50,
+        "treatment": 50,
+        "rationale": "Both responses omit the required upsert_customer call, so they only partially satisfy the rubric."
+      },
+      {
+        "name": "refresh-oauth-token",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric by using get_valid_token, handling invalid_grant, and calling auth_url, whereas Response A lacks the required get_valid_token call and auth_url function."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:b006e8538244f7be271146b0e01c696db5f2c0c558800c5d498f41df883c1121",
+  "scoredAt": "2026-10-02T23:25:18.252Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path and does not address error scenarios or edge cases such as unparseable files, unsupported languages, tool installation failures, or very large repositories, and the Example 2 output mentions nesting depth and git-history ranking that the instructions never explain how to produce."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.23,
+    "baselineAvg": 71,
+    "treatmentAvg": 87,
+    "scenarios": [
+      {
+        "name": "python-hotspots-with-analyzer",
+        "baseline": 62,
+        "treatment": 85,
+        "rationale": "Both use lizard with -C 15 -L 100 -w and radon cc -s -n C and exclude migrations and tests, though neither excludes node_modules, vendor, dist, build, __pycache__ or .git. B adds the Critical/Warning/OK tier table and a refactoring order, while A offers only a custom severity script with no tiers, so B covers more of the rubric."
+      },
+      {
+        "name": "eslint-cognitive-complexity-setup",
+        "baseline": 55,
+        "treatment": 80,
+        "rationale": "B matches the rubric closely: flat config scoped to src/**/*.{js,ts}, both rules at threshold 15, and `npx eslint src/`. It uses 'error' rather than 'warn' but explains the choice. A is more elaborate and has CI extras, but it uses 'error', scopes to .ts/.tsx, runs `npm run lint` instead of `npx eslint src/`, and includes an odd override command. Neither says cognitive complexity is a better readability measure; A only notes that the two metrics count differently."
+      },
+      {
+        "name": "manual-cognitive-complexity-count",
+        "baseline": 95,
+        "treatment": 95,
+        "rationale": "Both responses compute cyclomatic 6 and cognitive 9 with correct per-construct breakdowns, but neither mentions the else in the cyclomatic list differently; A omits the explicit OK (<15) classification that B includes, while B's ordering is slightly less clean, so B edges out on rubric coverage."
+      }
+    ]
+  }
+}

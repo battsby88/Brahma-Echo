@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:eae6611487506d102e7c03f0847c100b155d23e0993dd830f30d10efd7b2f19e",
+  "scoredAt": "2026-10-03T12:00:51.674Z",
+  "backend": "claude-code",
+  "model": "claude-sonnet-5-5",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "Covers mostly the happy path and gives no troubleshooting for common failures such as out-of-memory errors, a missing or renamed model repo, failed downloads, or unsupported image formats in the batch loop."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 1.61,
+    "baselineAvg": 57,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "batch-describe-photos-to-csv",
+        "baseline": 55,
+        "treatment": 95,
+        "rationale": "B calls generate() with the required `image=[...]` keyword and reads `.text` from the result; A passes the image list positionally and falls back to a str, so it misses the `image=` keyword requirement. Both load the model once and use load_config, apply_chat_template with num_images=1, and CSV output. B builds the prompt inside the loop, which is a minor inefficiency."
+      },
+      {
+        "name": "private-local-vision-server",
+        "baseline": 62,
+        "treatment": 90,
+        "rationale": "B hits every rubric item: `--model`, `--host 127.0.0.1` and a port, the note that the default is 0.0.0.0, `--api-key` as an option, `/v1/chat/completions` with an `image_url` part plus a text part, and the OpenAI SDK `base_url`. A uses the correct `image_url` format and mentions the SDK, but it curls `/chat/completions` first and only suggests `/v1/` after a 404. It also says the server has no auth and never mentions `--api-key`."
+      },
+      {
+        "name": "lora-finetune-invoice-model",
+        "baseline": 55,
+        "treatment": 90,
+        "rationale": "A matches the rubric closely: it installs `mlx-vlm[train]`, gives the full `mlx_vlm.lora` command with rank and alpha, states the `images`/`question`/`answer` columns, and shows inference through `--adapter-path` and `load(..., adapter_path=...)`. B installs plain `mlx-vlm` without the train extra, omits `--lora-alpha`, and says the dataset needs `images` and `messages` columns instead of the `question`/`answer` columns, though it does show the adapter inference paths and a data-prep script."
+      }
+    ]
+  }
+}

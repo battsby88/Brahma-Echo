@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:cea7be5c0fde3bf39cf1742b3076cae63b0d305bd2f28cff107aff39daa87de4",
+  "scoredAt": "2026-10-24T16:18:33.873Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "WEAK",
+      "conciseness": "PASS",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "completeness",
+        "detail": "The instructions do not cover error handling or edge cases, focusing only on happy paths."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 2.79,
+    "baselineAvg": 33,
+    "treatmentAvg": 92,
+    "scenarios": [
+      {
+        "name": "deploy-local-express-with-env-and-domain",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A fully satisfies the rubric with all required commands and explicit references, while Response B omits the mandatory variable env and domain create commands and relies on a different deployment approach."
+      },
+      {
+        "name": "deploy-monorepo-app-dir",
+        "baseline": 30,
+        "treatment": 85,
+        "rationale": "Response A covers the required zbpack.json creation, commit, and deploy command, missing only a brief mention of the build log, while Response B uses a different config file and does not meet the rubric."
+      },
+      {
+        "name": "graphql-list-services",
+        "baseline": 20,
+        "treatment": 90,
+        "rationale": "Response B fully meets the rubric with a JavaScript fetch snippet, correct headers, query, environment variable usage, and logging of results, while Response A lacks a fetch example, uses Python, and references a different env variable."
+      }
+    ]
+  }
+}
