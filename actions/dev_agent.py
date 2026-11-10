@@ -14,15 +14,21 @@ def get_base_dir():
 
 
 BASE_DIR         = get_base_dir()
-API_CONFIG_PATH  = get_user_data_dir() / "config" / "api_keys.json"
+# API_CONFIG_PATH  = get_user_data_dir() / "config" / "api_keys.json"  # Now using secure key manager
 PROJECTS_DIR     = Path.home() / "Desktop" / "BrahmaProjects"
 MAX_FIX_ATTEMPTS = 5
 MODEL_PLANNER    = "gemini-flash-latest"
 MODEL_WRITER     = "gemini-flash-latest"
 
+try:
+    from core.api_keys_compat import get_gemini_api_key
+except ImportError:
+    def get_gemini_api_key() -> str:
+        return ""
+
+
 def _get_api_key() -> str:
-    with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)["gemini_api_key"]
+    return get_gemini_api_key()
 
 
 def _get_model(model_name: str):
@@ -280,7 +286,7 @@ def _open_vscode(project_dir: Path) -> bool:
         try:
             subprocess.Popen(
                 [cmd, str(project_dir)],
-                shell=True,
+                shell=False,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
             )

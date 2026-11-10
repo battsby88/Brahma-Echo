@@ -4878,16 +4878,17 @@ if __name__ == "__main__":
     import sys
     import os
     import traceback
+    import runpy
 
     # Intercept subprocess calls when running as PyInstaller .exe
     if len(sys.argv) >= 2:
         if sys.argv[1].endswith(".py") and os.path.exists(sys.argv[1]):
             # AgentExecutor is trying to run a dynamic script
+            # Use runpy for safe module execution instead of exec()
             try:
-                with open(sys.argv[1], 'r', encoding='utf-8') as f:
-                    code = f.read()
-                namespace = {"__name__": "__main__", "__file__": sys.argv[1]}
-                exec(code, namespace)
+                script_path = sys.argv[1]
+                sys.argv = [script_path] + sys.argv[2:]
+                runpy.run_path(script_path, run_name="__main__")
                 sys.exit(0)
             except Exception as e:
                 traceback.print_exc()

@@ -27,20 +27,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 CONFIG_DIR = get_user_data_dir() / "config"
 PATCH_HISTORY_FILE = CONFIG_DIR / "patch_history.json"
 BACKUPS_DIR = CONFIG_DIR / "patch_backups"
-API_CONFIG_PATH = CONFIG_DIR / "api_keys.json"
+# API_CONFIG_PATH = CONFIG_DIR / "api_keys.json"  # Now using secure key manager
+
+try:
+    from core.secure_keys import get_api_key
+except ImportError:
+    def get_api_key(key_name: str) -> str:
+        return ""
 
 
 def _get_gemini_api_key() -> str:
-    """Retrieves the Gemini API key from api_keys.json or environment variables."""
-    if API_CONFIG_PATH.exists():
-        try:
-            with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                key = data.get("gemini_api_key", "").strip()
-                if key:
-                    return key
-        except Exception:
-            pass
+    """Retrieves the Gemini API key from secure key manager or environment variables."""
+    key = get_api_key("gemini_api_key")
+    if key:
+        return key
     return (os.environ.get("GEMINI_API_KEY", "") or os.environ.get("GOOGLE_API_KEY", "")).strip()
 
 # Core files strictly protected from modification to prevent self-destruction

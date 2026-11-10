@@ -16,7 +16,17 @@ def _get_base_dir() -> Path:
 
 
 BASE_DIR        = _get_base_dir()
-API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"
+# API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"  # Now using secure key manager
+
+try:
+    from core.api_keys_compat import get_gemini_api_key
+except ImportError:
+    def get_gemini_api_key() -> str:
+        return ""
+
+
+def _get_gemini_api_key() -> str:
+    return get_gemini_api_key()
 
 _MONTH_MAP: dict[str, int] = {
 

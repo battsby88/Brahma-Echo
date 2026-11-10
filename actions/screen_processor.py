@@ -30,7 +30,18 @@ def get_base_dir():
     return Path(__file__).resolve().parent.parent
 
 BASE_DIR        = get_base_dir()
-API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"
+# API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"  # Now using secure key manager
+
+try:
+    from core.api_keys_compat import get_gemini_api_key, load_api_keys, save_api_keys
+except ImportError:
+    def get_gemini_api_key() -> str:
+        return ""
+    def load_api_keys() -> dict:
+        return {}
+    def save_api_keys(keys: dict) -> bool:
+        return False
+
 
 LIVE_MODEL          = "models/gemini-2.5-flash-native-audio-preview-12-2025"
 CHANNELS            = 1
@@ -41,22 +52,10 @@ IMG_MAX_W = 640
 IMG_MAX_H = 360
 JPEG_Q    = 55
 
-SYSTEM_PROMPT = (
-    "You are Brahma AI - Lite, an open-source assistant. "
-    "Analyze images with technical precision and intelligence. "
-    "Help the user in a way they can understand — don't be overly complex. "
-    "Be concise, smart, and helpful like Brahma AI, personal assistant to User. "
-    "Respond in maximum 2 short sentences. Speed is priority. "
-    "Address the user as 'sir' for a tone of respect. "
-    "Ask if the user needs any further help with their problem."
-)
-
 
 def _get_api_key() -> str:
     try:
-        with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-            keys = json.load(f)
-        key = keys.get("gemini_api_key", "")
+        key = get_gemini_api_key()
         if not key:
             raise ValueError("gemini_api_key not found")
         return key
@@ -66,8 +65,7 @@ def _get_api_key() -> str:
 
 def _get_camera_index() -> int:
     try:
-        with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-            cfg = json.load(f)
+        cfg = load_api_keys()
         if "camera_index" in cfg:
             return int(cfg["camera_index"])
     except Exception:
@@ -93,13 +91,9 @@ def _get_camera_index() -> int:
             print(f"[Camera] [WARN]  Index {idx}: no valid frame.")
 
     try:
-        cfg = {}
-        if API_CONFIG_PATH.exists():
-            with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-                cfg = json.load(f)
+        cfg = load_api_keys()
         cfg["camera_index"] = best_index
-        with open(API_CONFIG_PATH, "w", encoding="utf-8") as f:
-            json.dump(cfg, f, indent=4)
+        save_api_keys(cfg)
         print(f"[Camera] [SAVE] Camera index {best_index} saved to config.")
     except Exception as e:
         print(f"[Camera] [WARN]  Could not save camera index: {e}")

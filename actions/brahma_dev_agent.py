@@ -6,6 +6,7 @@ import json
 import fnmatch
 import logging
 import subprocess
+import shlex
 from pathlib import Path
 from typing import Any, Callable, Optional
 
@@ -18,8 +19,14 @@ def get_base_dir() -> Path:
     return Path(__file__).resolve().parent.parent
 
 BASE_DIR = get_base_dir()
-API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"
+# API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"  # Now using secure key manager
 SETTINGS_PATH = get_user_data_dir() / "config" / "app_settings.json"
+
+try:
+    from core.secure_keys import get_api_key
+except ImportError:
+    def get_api_key(key_name: str) -> str:
+        return ""
 
 # ==============================================================================
 # NATIVE CLAUDE-CODE TOOLS (REBRANDED FOR BRAHMA DEV)
@@ -43,7 +50,14 @@ class NativeTools:
         self._notify(f"⚡ Running command: {command}")
         try:
             is_win = sys.platform.startswith("win")
-            shell_cmd = ["powershell", "-NoProfile", "-Command", command] if is_win else command
+            if is_win:
+                # Windows: use powershell with explicit command list
+                shell_cmd = ["powershell", "-NoProfile", "-Command", command]
+                shell_flag = False
+            else:
+                # Unix: parse command into args, no shell=True
+                shell_cmd = shlex.split(command)
+                shell_flag = False
             
             res = subprocess.run(
                 shell_cmd,
@@ -51,7 +65,7 @@ class NativeTools:
                 capture_output=True,
                 text=True,
                 timeout=timeout,
-                shell=not is_win
+                shell=shell_flag
             )
             stdout = res.stdout.strip()
             stderr = res.stderr.strip()
@@ -314,9 +328,7 @@ class BrahmaDevAgent:
     def _call_llm(self) -> str:
         """Dispatches conversation to Gemini directly with model fallback and rate-limit retries."""
         try:
-            with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-                keys = json.load(f)
-            gemini_key = keys.get("gemini_api_key", "").strip()
+            gemini_key = get_api_key("gemini_api_key")
 
             if gemini_key:
                 import time

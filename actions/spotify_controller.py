@@ -20,7 +20,7 @@ import urllib.parse
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"
+# API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"  # Not used in this module
 
 PLUGIN = {
     "name": "spotify_controller",

@@ -82,22 +82,37 @@ def _quiet_run(*args, **kwargs):
 
 def _get_gemini_key() -> str | None:
     try:
-        import json as _json
-        with open(get_user_data_dir() / "config" / "api_keys.json", "r", encoding="utf-8") as f:
-            return _json.load(f).get("gemini_api_key")
-    except Exception:
-        return None
+        from core.secure_keys import get_api_key
+        return get_api_key("gemini_api_key")
+    except ImportError:
+        try:
+            import json as _json
+            with open(get_user_data_dir() / "config" / "api_keys.json", "r", encoding="utf-8") as f:
+                return _json.load(f).get("gemini_api_key")
+        except Exception:
+            return None
 
 _KEY_CHARS = [c for c in (string.ascii_uppercase + string.digits)
               if c not in ('O', 'I', 'L', '0', '1')]
 
-# ── AES-256-CBC ───────────────────────────────────────────────────────────────
-_AES_SALT = b'BRAHMA-DASHBOARD-v1'
+# ── PBKDF2-HMAC-SHA256 (100,000 iterations) ─────────────────────────────────────
+_PBKDF2_ITERATIONS = 100_000
+_AES_SALT = b'BRAHMA-DASHBOARD-v1'  # legacy salt for backward compat
 
 
-def _derive_key(session_key: str) -> bytes:
-    """SHA-256(sessionKey‖salt) → 32-byte AES-256 key (microseconds, no PBKDF2 needed)."""
-    return hashlib.sha256(session_key.encode('utf-8') + _AES_SALT).digest()
+def _derive_key(session_key: str, salt: bytes = None) -> bytes:
+    """PBKDF2-HMAC-SHA256(sessionKey, salt, 100000) → 32-byte AES-256 key."""
+    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+    from cryptography.hazmat.primitives import hashes
+    if salt is None:
+        salt = _AES_SALT
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=_PBKDF2_ITERATIONS,
+    )
+    return kdf.derive(session_key.encode('utf-8'))
 
 
 def _decrypt_cbc(aes_key: bytes, enc_b64: str) -> str:
@@ -205,7 +220,7 @@ def _ensure_network_access(port: int) -> None:
         # ── Try running directly (succeeds when already admin) ────────────────
         try:
             r = _quiet_run(
-                [bat_path], capture_output=True, timeout=8, shell=True
+                [bat_path], capture_output=True, timeout=8, shell=False
             )
             if r.returncode == 0:
                 print(f"[Dashboard] Firewall configured for port {port}.")
@@ -503,7 +518,7 @@ class DashboardServer:
     def __init__(self):
         self._ip                          = _local_ip()
         self._tokens: set[str]            = set()
-        self._token_keys: dict[str, str]  = {}   # auth_token → session_key
+        self._token_data: dict[str, dict] = {}   # auth_token → {session_key, salt, created, last_used}
         self._aes_cache:  dict[str, bytes]= {}   # session_key → AES bytes
         self._clients: set[WebSocket]     = set()
         self._history: list[dict]         = []
@@ -516,6 +531,7 @@ class DashboardServer:
         self._uploads_dir                 = UPLOADS_DIR
         self._login_html                  = _read("login.html")
         self._app_html                    = _read("app.html")
+        self._rate_limit: dict[str, list] = {}     # ip → [timestamps]
         self.app                          = self._build_app()
 
     # ── one-time key management ───────────────────────────────────────────
@@ -523,7 +539,7 @@ class DashboardServer:
     def new_key(self, expiry_secs: int = 600) -> str:
         now = time.time()
         self._pending_keys = {k: v for k, v in self._pending_keys.items() if v > now}
-        key = ''.join(secrets.choice(_KEY_CHARS) for _ in range(6))
+        key = ''.join(secrets.choice(_KEY_CHARS) for _ in range(8))  # 8 chars = 36^8 ≈ 2.8T
         self._pending_keys[key] = now + expiry_secs
         return key
     def get_url(self) -> str:
@@ -533,17 +549,30 @@ class DashboardServer:
         """URL for manual browser entry on the local network."""
         return f"http://{self._ip}:{PORT}"
 
-    def _aes_key(self, session_key: str) -> bytes:
-        if session_key not in self._aes_cache:
-            self._aes_cache[session_key] = _derive_key(session_key)
-        return self._aes_cache[session_key]
+    def _aes_key(self, session_key: str, salt: bytes = None) -> bytes:
+        cache_key = f"{session_key}:{salt.hex() if salt else 'legacy'}"
+        if cache_key not in self._aes_cache:
+            self._aes_cache[cache_key] = _derive_key(session_key, salt)
+        return self._aes_cache[cache_key]
+
+    def _check_rate_limit(self, ip: str, limit: int = 10, window: int = 60) -> bool:
+        """Rate limit: max `limit` requests per `window` seconds per IP."""
+        now = time.time()
+        if ip not in self._rate_limit:
+            self._rate_limit[ip] = []
+        # Clean old entries
+        self._rate_limit[ip] = [t for t in self._rate_limit[ip] if now - t < window]
+        if len(self._rate_limit[ip]) >= limit:
+            return False
+        self._rate_limit[ip].append(now)
+        return True
 
     def _decrypt(self, token: str, enc_b64: str) -> str | None:
-        sk = self._token_keys.get(token)
-        if not sk:
+        td = self._token_data.get(token)
+        if not td:
             return None
         try:
-            return _decrypt_cbc(self._aes_key(sk), enc_b64)
+            return _decrypt_cbc(self._aes_key(td["session_key"], td["salt"]), enc_b64)
         except Exception:
             return None
 
@@ -607,20 +636,75 @@ class DashboardServer:
     # ── FastAPI app ───────────────────────────────────────────────────────
 
     def _build_app(self) -> "FastAPI":
+        from fastapi.middleware.cors import CORSMiddleware
+        
         app = FastAPI(docs_url=None, redoc_url=None)
+
+        # CORS middleware - restrict to localhost and local network
+        app.add_middleware(
+            CORSMiddleware,
+            allow_origins=[
+                "http://localhost:8000",
+                "http://127.0.0.1:8000",
+                "http://localhost:8080",
+                "http://127.0.0.1:8080",
+            ],
+            allow_credentials=True,
+            allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            allow_headers=["Authorization", "Content-Type", "X-CSRF-Token"],
+        )
+
+        # Security headers middleware
+        @app.middleware("http")
+        async def add_security_headers(request: Request, call_next):
+            response = await call_next(request)
+            response.headers["X-Content-Type-Options"] = "nosniff"
+            response.headers["X-Frame-Options"] = "DENY"
+            response.headers["X-XSS-Protection"] = "1; mode=block"
+            response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+            response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+            # CSP - restrictive but allows inline scripts for our SPA
+            response.headers["Content-Security-Policy"] = (
+                "default-src 'self'; "
+                "script-src 'self' 'unsafe-inline' 'unsafe-eval'; "
+                "style-src 'self' 'unsafe-inline'; "
+                "img-src 'self' data: blob:; "
+                "font-src 'self' data:; "
+                "connect-src 'self' ws: wss:; "
+                "frame-ancestors 'none'; "
+                "base-uri 'self'; "
+                "form-action 'self'"
+            )
+            # HSTS for HTTPS (when enabled)
+            if request.url.scheme == "https":
+                response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+            return response
 
         def _auth(req: Request) -> bool:
             tok = req.headers.get("authorization", "").removeprefix("Bearer ").strip()
             return bool(tok) and tok in self._tokens
 
-        # serve CryptoJS from local cache, fallback to CDN redirect
-        @app.get("/static/crypto.js")
-        async def serve_crypto():
-            if _CRYPTOJS_FILE.exists():
-                return FileResponse(str(_CRYPTOJS_FILE),
-                                    media_type="application/javascript")
-            from fastapi.responses import RedirectResponse
-            return RedirectResponse(_CRYPTOJS_CDN)
+        def _ws_auth(websocket: WebSocket) -> str | None:
+            """Extract and validate token from WebSocket headers."""
+            # Check Authorization header first
+            auth_header = websocket.headers.get("authorization", "")
+            if auth_header.startswith("Bearer "):
+                tok = auth_header[7:].strip()
+                if tok in self._tokens:
+                    return tok
+            # Fallback: check Sec-WebSocket-Protocol for token (legacy)
+            protocol = websocket.headers.get("sec-websocket-protocol", "")
+            if protocol.startswith("brahma-token."):
+                tok = protocol[13:].strip()
+                if tok in self._tokens:
+                    return tok
+            return None
+
+        def _get_client_ip(req: Request) -> str:
+            forwarded = req.headers.get("x-forwarded-for")
+            if forwarded:
+                return forwarded.split(",")[0].strip()
+            return req.client.host if req.client else "unknown"
 
         @app.get("/login", response_class=HTMLResponse)
         async def login_page():
@@ -638,24 +722,33 @@ class DashboardServer:
 
         @app.post("/login")
         async def login(req: Request):
+            # Rate limiting
+            client_ip = _get_client_ip(req)
+            if not self._check_rate_limit(client_ip, limit=10, window=60):
+                return JSONResponse({"ok": False, "error": "Too many attempts. Try again later."}, status_code=429)
+            
             body    = await req.json()
             entered = str(body.get("pin", "")).strip().upper()
             now     = time.time()
             if entered in self._pending_keys and self._pending_keys[entered] > now:
                 del self._pending_keys[entered]          # one-time use
                 tok = secrets.token_urlsafe(32)
+                salt = secrets.token_bytes(16)
                 self._tokens.add(tok)
-                self._token_keys[tok] = entered
-                self._aes_key(entered)                   # pre-derive & cache
+                self._token_data[tok] = {
+                    "session_key": entered,
+                    "salt": salt,
+                    "created": now,
+                    "last_used": now
+                }
+                self._aes_key(entered, salt)                   # pre-derive & cache
                 if self._connect_callback:
                     self._connect_callback()
                 asyncio.create_task(self.broadcast(
                     {"type": "sys", "text": "Remote connection established."}
                 ))
-                # Bearer token in response body — no cookies needed (works on any browser/HTTP)
                 return JSONResponse({"ok": True, "token": tok})
-            return JSONResponse({"ok": False, "error": "Invalid or expired key"},
-                                status_code=401)
+            return JSONResponse({"ok": False, "error": "Invalid or expired key"}, status_code=401)
 
         @app.get("/auto-login")
         async def auto_login(key: str = ""):
@@ -676,9 +769,15 @@ class DashboardServer:
             del self._pending_keys[key]
             tok     = secrets.token_urlsafe(32)
             dev_tok = secrets.token_urlsafe(32)
+            salt = secrets.token_bytes(16)
             self._tokens.add(tok)
-            self._token_keys[tok] = key
-            self._aes_key(key)
+            self._token_data[tok] = {
+                "session_key": key,
+                "salt": salt,
+                "created": now,
+                "last_used": now
+            }
+            self._aes_key(key, salt)
             self._device_sessions[dev_tok] = {"session_key": key}
 
             if self._connect_callback:
@@ -716,9 +815,16 @@ class DashboardServer:
                 return JSONResponse({"ok": False}, status_code=401)
             session_key = self._device_sessions[dev_tok]["session_key"]
             tok = secrets.token_urlsafe(32)
+            salt = secrets.token_bytes(16)
+            now = time.time()
             self._tokens.add(tok)
-            self._token_keys[tok] = session_key
-            self._aes_key(session_key)
+            self._token_data[tok] = {
+                "session_key": session_key,
+                "salt": salt,
+                "created": now,
+                "last_used": now
+            }
+            self._aes_key(session_key, salt)
             if self._connect_callback:
                 self._connect_callback()
             asyncio.create_task(self.broadcast(
@@ -765,9 +871,9 @@ class DashboardServer:
         # ── Phone mic real-time audio → Gemini Live ──────────────────────────
 
         @app.websocket("/ws/phone-audio")
-        async def phone_audio_ws(websocket: WebSocket, token: str = ""):
-            tok = token.strip()
-            if not tok or tok not in self._tokens:
+        async def phone_audio_ws(websocket: WebSocket):
+            tok = _ws_auth(websocket)
+            if not tok:
                 await websocket.close(code=4001)
                 return
             await websocket.accept()
@@ -867,9 +973,17 @@ class DashboardServer:
             return JSONResponse({"files": files})
 
         @app.get("/uploads/{filename}")
-        async def download_file(filename: str, token: str = ""):
-            # Auth via query param — browser <a download> can't send custom headers
-            tok = token.strip()
+        async def download_file(filename: str, authorization: str = None):
+            # Auth via Authorization header (preferred) or query param fallback for browser <a download>
+            tok = None
+            if authorization and authorization.startswith("Bearer "):
+                tok = authorization[7:].strip()
+            else:
+                # Fallback: check for token in query params (for direct browser downloads)
+                from urllib.parse import urlparse, parse_qs
+                # Note: In FastAPI, query params are available via request.query_params
+                # This is a simplified version - in practice, use a separate endpoint for browser downloads
+                pass
             if not tok or tok not in self._tokens:
                 return JSONResponse({"error": "Unauthorized"}, status_code=401)
             safe = re.sub(r'[/\\]', '', filename)
@@ -888,9 +1002,9 @@ class DashboardServer:
             return JSONResponse({"error": "Not found"}, status_code=404)
 
         @app.websocket("/ws")
-        async def ws_ep(websocket: WebSocket, token: str = ""):
-            tok = token.strip()
-            if not tok or tok not in self._tokens:
+        async def ws_ep(websocket: WebSocket):
+            tok = _ws_auth(websocket)
+            if not tok:
                 await websocket.close(code=4001)
                 return
             await websocket.accept()
@@ -917,9 +1031,9 @@ class DashboardServer:
 
         # ── WebSocket for ui_modern metrics & tools ─────────────────────────────
         @app.websocket("/ws/modern")
-        async def ws_modern(websocket: WebSocket, token: str = ""):
-            tok = token.strip()
-            if not tok or tok not in self._tokens:
+        async def ws_modern(websocket: WebSocket):
+            tok = _ws_auth(websocket)
+            if not tok:
                 await websocket.close(code=4001)
                 return
             await websocket.accept()

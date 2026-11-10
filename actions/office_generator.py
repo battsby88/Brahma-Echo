@@ -17,17 +17,23 @@ def get_base_dir() -> Path:
     return Path(__file__).resolve().parent.parent
 
 BASE_DIR = get_base_dir()
-API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"
+# API_CONFIG_PATH = get_user_data_dir() / "config" / "api_keys.json"  # Now using secure key manager
+
+try:
+    from core.api_keys_compat import get_gemini_api_key
+except ImportError:
+    def get_gemini_api_key() -> str:
+        return ""
 
 
-import concurrent.futures
+def _get_gemini_api_key() -> str:
+    return get_gemini_api_key()
+
 
 def _call_gemini_json(prompt: str, system_instruction: str) -> Optional[dict]:
     """Generates structured JSON using Gemini with model failover, timeouts, and retries."""
     try:
-        with open(API_CONFIG_PATH, "r", encoding="utf-8") as f:
-            keys = json.load(f)
-        gemini_key = keys.get("gemini_api_key", "").strip()
+        gemini_key = _get_gemini_api_key()
 
         if gemini_key:
             from google import genai
