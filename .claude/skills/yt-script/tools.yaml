@@ -1,69 +1,22 @@
 skill: yt-script
-version: "1.0"
+version: '1.0'
 tools:
-  - name: yt_script_generate
-    description: "Generate a YouTube script from a topic with specified tone and length"
-    entrypoint: scripts/generate.py
-    entrypoint_type: python
-    parameters:
+- name: yt-script_run
+  description: Run the skill
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    args:
       type: object
-      properties:
-        topic:
-          type: string
-          description: "The video topic"
-        tone:
-          type: string
-          enum: [educational, entertainment, viral, documentary]
-          default: educational
-        length_seconds:
-          type: integer
-          minimum: 30
-          maximum: 1800
-          default: 300
-        format:
-          type: string
-          enum: [script, outline, bullet_points]
-          default: script
-    timeout_seconds: 120
-    requires_sandbox: true
-    allowed_paths: ["scripts/", "templates/", "output/"]
-    returns:
-      type: object
-      properties:
-        script:
-          type: string
-        word_count:
-          type: integer
-        estimated_duration_seconds:
-          type: integer
-    examples:
-      - args:
-          topic: "How AI agents work"
-          tone: "educational"
-          length_seconds: 300
-        expected:
-          script: "Today we'll explore how AI agents work..."
-          word_count: 450
-          estimated_duration_seconds: 300
-
-  - name: yt_script_optimize
-    description: "Optimize an existing script for retention and engagement"
-    entrypoint: scripts/optimize.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties:
-        script:
-          type: string
-          description: "Existing script text"
-        target_platform:
-          type: string
-          enum: [youtube, tiktok, reels, shorts]
-          default: youtube
-        optimize_for:
-          type: string
-          enum: [retention, clicks, watch_time, engagement]
-          default: retention
-    timeout_seconds: 60
-    requires_sandbox: true
-    allowed_paths: ["scripts/", "templates/"]
+      description: Arguments for the skill

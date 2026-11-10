@@ -1,0 +1,28 @@
+skill: openclaw-docker-e2e-authoring
+version: '1.0'
+tools:
+- name: docker_run
+  description: Run Docker operation
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    operation:
+      type: string
+      enum:
+      - build
+      - run
+      - push
+      - compose
+    image:
+      type: string

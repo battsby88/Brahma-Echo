@@ -1,0 +1,25 @@
+skill: sentry
+version: '1.0'
+tools:
+- name: sentry_capture
+  description: Capture Sentry event
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    level:
+      type: string
+    message:
+      type: string
+    extra:
+      type: object

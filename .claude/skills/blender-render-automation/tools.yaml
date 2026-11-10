@@ -1,0 +1,27 @@
+skill: blender-render-automation
+version: '1.0'
+tools:
+- name: blender_run
+  description: Run Blender operation
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    operation:
+      type: string
+      enum:
+      - render
+      - export
+      - script
+    file:
+      type: string

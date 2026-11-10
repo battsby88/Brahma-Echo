@@ -1,0 +1,29 @@
+skill: jira
+version: '1.0'
+tools:
+- name: jira_issue
+  description: Manage Jira issue
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    operation:
+      type: string
+      enum:
+      - create
+      - update
+      - transition
+    key:
+      type: string
+    fields:
+      type: object

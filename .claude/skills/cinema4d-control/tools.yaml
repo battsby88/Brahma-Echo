@@ -1,103 +1,27 @@
 skill: cinema4d-control
-version: "1.0"
+version: '1.0'
 tools:
-  - name: cinema4d_add_primitive
-    description: "Add a primitive object to Cinema 4D scene"
-    entrypoint: scripts/add_primitive.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties:
-        primitive_type:
-          type: string
-          enum: [cube, sphere, cone, cylinder, torus, plane, disc, pyramid, platonic, tube, capsule]
-          default: cube
-        name:
-          type: string
-        position:
-          type: array
-          items: {type: number}
-          default: [0, 0, 0]
-        rotation:
-          type: array
-          items: {type: number}
-          default: [0, 0, 0]
-        scale:
-          type: array
-          items: {type: number}
-          default: [1, 1, 1]
-    timeout_seconds: 30
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        object_name:
-          type: string
-        primitive_type:
-          type: string
-        success:
-          type: boolean
-
-  - name: cinema4d_mograph_cloner
-    description: "Create a MoGraph cloner on an object"
-    entrypoint: scripts/mograph_cloner.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties:
-        object_name:
-          type: string
-        mode:
-          type: string
-          enum: [grid, linear, radial, object, honeycomb]
-          default: grid
-        count:
-          type: integer
-          default: 10
-        spacing:
-          type: number
-          default: 100.0
-    timeout_seconds: 30
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        cloner_name:
-          type: string
-        count:
-          type: integer
-        success:
-          type: boolean
-
-  - name: cinema4d_render
-    description: "Render the Cinema 4D scene"
-    entrypoint: scripts/render.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties:
-        renderer:
-          type: string
-          enum: [standard, redshift, octane]
-          default: standard
-        output_path:
-          type: string
-        frame:
-          type: integer
-        resolution:
-          type: array
-          items: {type: integer}
-          default: [1920, 1080]
-    timeout_seconds: 300
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        output_path:
-          type: string
-        renderer:
-          type: string
-        render_time_seconds:
-          type: number
-        success:
-          type: boolean
+- name: c4d_run
+  description: Run Cinema 4D operation
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    operation:
+      type: string
+      enum:
+      - render
+      - export
+      - mograph
+    file:
+      type: string

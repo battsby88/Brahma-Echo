@@ -1,93 +1,27 @@
 skill: autocad-control
-version: "1.0"
+version: '1.0'
 tools:
-  - name: autocad_ping
-    description: "Test connection to AutoCAD"
-    entrypoint: scripts/ping.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties: {}
-    timeout_seconds: 10
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        connected:
-          type: boolean
-        version:
-          type: string
-
-  - name: autocad_create_line
-    description: "Create a line in AutoCAD"
-    entrypoint: scripts/create_line.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties:
-        start:
-          type: array
-          items: {type: number}
-          description: "Start point X,Y,Z"
-        end:
-          type: array
-          items: {type: number}
-          description: "End point X,Y,Z"
-        layer:
-          type: string
-          default: "0"
-    timeout_seconds: 30
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        entity_handle:
-          type: string
-        success:
-          type: boolean
-
-  - name: autocad_create_circle
-    description: "Create a circle in AutoCAD"
-    entrypoint: scripts/create_circle.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties:
-        center:
-          type: array
-          items: {type: number}
-          description: "Center point X,Y,Z"
-        radius:
-          type: number
-        layer:
-          type: string
-          default: "0"
-    timeout_seconds: 30
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        entity_handle:
-          type: string
-        success:
-          type: boolean
-
-  - name: autocad_list_tools
-    description: "List all available AutoCAD MCP tools"
-    entrypoint: scripts/list_tools.py
-    entrypoint_type: python
-    parameters:
-      type: object
-      properties: {}
-    timeout_seconds: 30
-    requires_sandbox: true
-    returns:
-      type: object
-      properties:
-        tools:
-          type: array
-          items: {type: string}
-        count:
-          type: integer
-        success:
-          type: boolean
+- name: autocad_run
+  description: Run AutoCAD operation
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    operation:
+      type: string
+      enum:
+      - plot
+      - export
+      - lisp
+    file:
+      type: string

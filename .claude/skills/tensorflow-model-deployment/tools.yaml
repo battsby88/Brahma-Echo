@@ -1,0 +1,25 @@
+skill: tensorflow-model-deployment
+version: '1.0'
+tools:
+- name: tf_train
+  description: Train TensorFlow model
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    model:
+      type: string
+    data:
+      type: string
+    epochs:
+      type: integer

@@ -1,0 +1,25 @@
+skill: llamafile
+version: '1.0'
+tools:
+- name: llama_run
+  description: Run Llama model
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    model:
+      type: string
+    prompt:
+      type: string
+    params:
+      type: object

@@ -1,0 +1,26 @@
+skill: 3dsmax-scripting
+version: '1.0'
+tools:
+- name: max_run
+  description: Run 3ds Max operation
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    operation:
+      type: string
+      enum:
+      - render
+      - script
+    file:
+      type: string

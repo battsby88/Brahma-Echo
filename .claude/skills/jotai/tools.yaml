@@ -1,0 +1,22 @@
+skill: jotai
+version: '1.0'
+tools:
+- name: jotai_run
+  description: Run the skill
+  entrypoint: scripts/run.py
+  entrypoint_type: python
+  timeout_seconds: 60
+  requires_sandbox: true
+  returns:
+    type: object
+    properties:
+      success:
+        type: boolean
+      output:
+        type: object
+      error:
+        type: string
+  parameters:
+    args:
+      type: object
+      description: Arguments for the skill
