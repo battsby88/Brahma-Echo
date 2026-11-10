@@ -52,6 +52,9 @@ from actions.file_controller   import file_controller
 from actions.office_builder     import create_presentation, create_spreadsheet
 from actions.docx_tools        import word_document
 from actions.pdf_tools         import create_pdf
+from actions.blender_control   import blender_control
+from actions.cinema4d_control  import cinema4d_control
+from actions.autocad_control   import autocad_control
 from actions.brahma_connect    import (
     connect_list_devices,
     connect_get_device,
@@ -60,6 +63,7 @@ from actions.brahma_connect    import (
     connect_pair_device,
     connect_disconnect_device,
 )
+from core.skill_registry import load_skills_at_startup, get_skill_registry
 from actions.web_search        import web_search as web_search_action
 from actions.computer_control  import computer_control
 from actions.game_updater      import game_updater
@@ -1843,6 +1847,169 @@ TOOL_DECLARATIONS = [
             "required": ["description"]
         }
     },
+    {
+        "name": "blender_control",
+        "description": (
+            "Controls Blender 3D via MCP (cli-anything-blender or blender-mcp). "
+            "Use for: creating scenes, adding objects (cube, sphere, cylinder, etc.), "
+            "transforming objects, creating materials, rendering (Cycles/Eevee/Workbench), "
+            "executing bpy Python code, undo/redo. Requires Blender installed and MCP server running."
+        ),
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "action": {
+                    "type": "STRING",
+                    "description": "scene_new | scene_open | scene_save | object_add | object_remove | object_transform | list_objects | get_object_info | material_create | material_assign | render | python_execute | undo | redo"
+                },
+                "path": {"type": "STRING", "description": "File path for scene_open/scene_save"},
+                "object_type": {"type": "STRING", "description": "CUBE | SPHERE | CYLINDER | CONE | TORUS | PLANE | MONKEY"},
+                "name": {"type": "STRING", "description": "Object/material name"},
+                "location": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "X,Y,Z location"},
+                "rotation": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "X,Y,Z rotation (radians)"},
+                "scale": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "X,Y,Z scale"},
+                "color": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "R,G,B color (0-1)"},
+                "metallic": {"type": "NUMBER", "description": "Metallic factor (0-1)"},
+                "roughness": {"type": "NUMBER", "description": "Roughness factor (0-1)"},
+                "engine": {"type": "STRING", "description": "CYCLES | EEVEE | WORKBENCH"},
+                "output_path": {"type": "STRING", "description": "Render output path"},
+                "samples": {"type": "INTEGER", "description": "Render samples"},
+                "resolution": {"type": "ARRAY", "items": {"type": "INTEGER"}, "description": "Width,Height"},
+                "code": {"type": "STRING", "description": "Python code to execute in Blender"},
+                "object_name": {"type": "STRING", "description": "Target object name"},
+                "material_name": {"type": "STRING", "description": "Material name to assign"}
+            },
+            "required": ["action"]
+        }
+    },
+    {
+        "name": "cinema4d_control",
+        "description": (
+            "Controls Cinema 4D via MCP (cinema4d-mcp from vladmdgolam). "
+            "Use for: scene info, object management (primitives: cube, sphere, cone, cylinder, torus, plane, etc.), "
+            "transforms, keyframes, materials (standard, Redshift, Octane), MoGraph cloners, "
+            "Python execution (full C4D API), rendering (Standard/Redshift/Octane), save/load .c4d files. "
+            "Requires Cinema 4D R2024+ running with plugin loaded."
+        ),
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "action": {
+                    "type": "STRING",
+                    "description": "ping | get_scene_info | list_objects | get_object_info | add_primitive | modify_object | delete_object | group_objects | set_keyframe | create_material | assign_material | list_materials | execute_python | save_scene | load_scene | render | mograph_cloner | inspect_redshift_materials"
+                },
+                "name": {"type": "STRING", "description": "Object/material name"},
+                "primitive_type": {"type": "STRING", "description": "cube | sphere | cone | cylinder | torus | plane | disc | pyramid | platonic | tube | capsule"},
+                "position": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "X,Y,Z position"},
+                "rotation": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "X,Y,Z rotation"},
+                "scale": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "X,Y,Z scale"},
+                "visible": {"type": "BOOLEAN", "description": "Object visibility"},
+                "names": {"type": "ARRAY", "items": {"type": "STRING"}, "description": "Object names for grouping"},
+                "group_name": {"type": "STRING", "description": "Group/null name"},
+                "property": {"type": "STRING", "description": "Property to keyframe (position, rotation, scale)"},
+                "frame": {"type": "INTEGER", "description": "Frame number"},
+                "value": {"description": "Keyframe value"},
+                "color": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "R,G,B color (0-1)"},
+                "roughness": {"type": "NUMBER", "description": "Roughness (0-1)"},
+                "metallic": {"type": "NUMBER", "description": "Metallic (0-1)"},
+                "emission": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "Emission color"},
+                "code": {"type": "STRING", "description": "Python code to execute in Cinema 4D"},
+                "path": {"type": "STRING", "description": "File path for save/load"},
+                "output_path": {"type": "STRING", "description": "Render output path"},
+                "renderer": {"type": "STRING", "description": "standard | redshift | octane"},
+                "object_name": {"type": "STRING", "description": "Object for MoGraph cloner"},
+                "mode": {"type": "STRING", "description": "grid | linear | radial | object | honeycomb"},
+                "count": {"type": "INTEGER", "description": "Clone count"},
+                "spacing": {"type": "NUMBER", "description": "Clone spacing"},
+                "material_name": {"type": "STRING", "description": "Material to assign"}
+            },
+            "required": ["action"]
+        }
+    },
+    {
+        "name": "autocad_control",
+        "description": (
+            "Controls AutoCAD via MCP (U-C4N AutoCAD MCP Pro - 240+ tools) or headless AutoCAD LT (cad-edit via accoreconsole.exe). "
+            "MCP Pro (requires AutoCAD running): Full DWG/DXF editing - lines, circles, polylines, text, dimensions, hatches, blocks, layers, "
+            "entity query/modify/delete, LISP execution, persistent skills, PDF plotting. "
+            "LT Headless (no AutoCAD window needed, AutoCAD LT 2024+): keynote updates, revision clouds, batch DWG edits via AutoLISP. "
+            "Use for: mechanical sheets, P&ID, floor plans, pipe/cable takeoffs, ISO GD&T, title blocks, schedules."
+        ),
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "action": {
+                    "type": "STRING",
+                    "description": "MCP: ping | list_tools | list_skills | open_drawing | save_drawing | get_drawing_info | create_line | create_circle | create_polyline | create_text | create_mtext | create_dimension | create_hatch | create_block | insert_block | create_layer | set_layer | list_layers | query_entities | modify_entity | delete_entity | execute_lisp | save_skill | get_skill | plot_pdf | LT: lt_edit_drawing | lt_update_keynote | lt_add_revision_cloud"
+                },
+                "path": {"type": "STRING", "description": "DWG/DXF file path"},
+                "start": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "Line start X,Y,Z"},
+                "end": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "Line end X,Y,Z"},
+                "center": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "Circle center X,Y,Z"},
+                "radius": {"type": "NUMBER", "description": "Circle radius"},
+                "points": {"type": "ARRAY", "items": {"type": "ARRAY", "items": {"type": "NUMBER"}}, "description": "Polyline points [[x,y,z],...]"},
+                "closed": {"type": "BOOLEAN", "description": "Closed polyline"},
+                "text": {"type": "STRING", "description": "Text content"},
+                "position": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "Insertion point X,Y,Z"},
+                "height": {"type": "NUMBER", "description": "Text height"},
+                "layer": {"type": "STRING", "description": "Layer name"},
+                "style": {"type": "STRING", "description": "Text style"},
+                "width": {"type": "NUMBER", "description": "MText width"},
+                "offset": {"type": "NUMBER", "description": "Dimension offset"},
+                "pattern": {"type": "STRING", "description": "Hatch pattern"},
+                "scale": {"type": "NUMBER", "description": "Hatch/block scale"},
+                "name": {"type": "STRING", "description": "Block/layer/skill name"},
+                "entities": {"type": "ARRAY", "items": {"type": "OBJECT"}, "description": "Entities for block creation"},
+                "base_point": {"type": "ARRAY", "items": {"type": "NUMBER"}, "description": "Block base point"},
+                "rotation": {"type": "NUMBER", "description": "Rotation angle"},
+                "color": {"type": "INTEGER", "description": "Layer color (ACI 1-255)"},
+                "linetype": {"type": "STRING", "description": "Line type"},
+                "lineweight": {"type": "INTEGER", "description": "Line weight"},
+                "on": {"type": "BOOLEAN", "description": "Layer on/off"},
+                "frozen": {"type": "BOOLEAN", "description": "Layer frozen"},
+                "locked": {"type": "BOOLEAN", "description": "Layer locked"},
+                "query": {"type": "OBJECT", "description": "Entity query criteria"},
+                "handle": {"type": "STRING", "description": "Entity handle"},
+                "properties": {"type": "OBJECT", "description": "Properties to modify"},
+                "code": {"type": "STRING", "description": "AutoLISP code"},
+                "description": {"type": "STRING", "description": "Skill description"},
+                "output_path": {"type": "STRING", "description": "PDF output path"},
+                "layout": {"type": "STRING", "description": "Layout name"},
+                "paper_size": {"type": "STRING", "description": "Paper size"},
+                "dwg_path": {"type": "STRING", "description": "DWG path for LT headless"},
+                "lisp_code": {"type": "STRING", "description": "AutoLISP code for LT"},
+                "old_keynote": {"type": "STRING", "description": "Old keynote value"},
+                "new_keynote": {"type": "STRING", "description": "New keynote value"}
+            },
+            "required": ["action"]
+        }
+    },
+    {
+        "name": "replica_pipeline",
+        "description": (
+            "Replica 11-skill app cloning pipeline. Orchestrates the complete app cloning workflow: "
+            "recon (reverse-engineer screens/flows/data-model/stack) -> architect (plan stack/DB/API) -> "
+            "design (rebuild design system/tokens/components) -> build (frontend+wiring) -> "
+            "backend (auth/DB/Stripe/email/jobs/integrations) -> test (E2E/parity/bugs) -> "
+            "diff (visual/image diff) -> entrepreneur (read 140+ reviews for pain points) -> "
+            "brand (name/trademark/domain/palette/logo/voice sweep) -> "
+            "launch (landing page/pricing/store listing) -> deploy (preflight/DNS/production). "
+            "Run individual skills or the full pipeline. Each skill reads/writes to replica/ folder."
+        ),
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "action": {
+                    "type": "STRING",
+                    "description": "recon | architect | design | build | backend | test | diff | entrepreneur | brand | launch | deploy | full_pipeline"
+                },
+                "target_app": {"type": "STRING", "description": "App to clone (URL, name, or description)"},
+                "workspace_path": {"type": "STRING", "description": "Working directory (default: ./replica)"},
+                "skill_args": {"type": "OBJECT", "description": "Additional arguments for specific skill"}
+            },
+            "required": ["action"]
+        }
+    },
 ]
 
 
@@ -1902,6 +2069,16 @@ class BrahmaLive:
             audio_devices.prefetch()
         except Exception:
             pass
+
+        # Initialize skill registry
+        try:
+            skills = load_skills_at_startup()
+            self._skill_registry = get_skill_registry()
+            print(f"[BrahmaLive] Skill registry initialized with {len(skills)} skills")
+        except Exception as e:
+            print(f"[BrahmaLive] Skill registry init failed: {e}")
+            self._skill_registry = None
+
         self._last_activity = time.monotonic()
         self._idle_prompts = [
             "Hey, you there?",
@@ -2793,6 +2970,79 @@ class BrahmaLive:
             return False
         except Exception:
             return False
+
+    def _run_replica_pipeline(self, args: dict) -> str:
+        """Run Replica 11-skill app cloning pipeline."""
+        action = args.get("action", "full_pipeline")
+        target_app = args.get("target_app", "")
+        workspace_path = args.get("workspace_path", "./replica")
+        skill_args = args.get("skill_args", {})
+
+        if not target_app and action != "full_pipeline":
+            return "Error: target_app is required for individual skills"
+
+        try:
+            import subprocess
+            import os
+            
+            # Ensure workspace exists
+            os.makedirs(workspace_path, exist_ok=True)
+            
+            # Map actions to skill scripts
+            skill_scripts = {
+                "recon": "replica-recon",
+                "architect": "replica-architect", 
+                "design": "replica-design",
+                "build": "replica-build",
+                "backend": "replica-backend",
+                "test": "replica-test",
+                "diff": "replica-diff",
+                "entrepreneur": "replica-entrepreneur",
+                "brand": "replica-brand",
+                "launch": "replica-launch",
+                "deploy": "replica-deploy",
+            }
+            
+            if action == "full_pipeline":
+                # Run all skills in sequence
+                results = []
+                for skill_name in ["recon", "architect", "design", "build", "backend", "test", "diff", "entrepreneur", "brand", "launch", "deploy"]:
+                    try:
+                        # Each skill is a CLI tool - check if installed
+                        script_path = f"/workspace/app/.claude/skills/{skill_scripts[skill_name]}"
+                        if os.path.exists(script_path):
+                            # Run the skill
+                            cmd = ["python", "-m", skill_scripts[skill_name], target_app, workspace_path]
+                            result = subprocess.run(cmd, capture_output=True, text=True, timeout=300, cwd=workspace_path)
+                            results.append(f"{skill_name}: {'OK' if result.returncode == 0 else f'FAILED - {result.stderr[:200]}'}")
+                        else:
+                            results.append(f"{skill_name}: SKIPPED (not installed)")
+                    except subprocess.TimeoutExpired:
+                        results.append(f"{skill_name}: TIMEOUT")
+                    except Exception as e:
+                        results.append(f"{skill_name}: ERROR - {e}")
+                return "Replica pipeline completed:\n" + "\n".join(results)
+            elif action in skill_scripts:
+                # Run single skill
+                script_path = f"/workspace/app/.claude/skills/{skill_scripts[action]}"
+                if not os.path.exists(script_path):
+                    return f"Skill {action} not installed at {script_path}"
+                
+                cmd = ["python", "-m", skill_scripts[action], target_app, workspace_path]
+                # Add any extra skill_args
+                for k, v in skill_args.items():
+                    cmd.extend([f"--{k}", str(v)])
+                
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=300, cwd=workspace_path)
+                if result.returncode == 0:
+                    return f"Replica {action} completed:\n{result.stdout}"
+                else:
+                    return f"Replica {action} failed:\n{result.stderr}"
+            else:
+                return f"Unknown action: {action}. Available: {list(skill_scripts.keys())} + full_pipeline"
+                
+        except Exception as e:
+            return f"Replica pipeline error: {e}"
 
     def _connect_tool_voice(self, name: str, raw_result: str) -> str | None:
         if not str(name or "").startswith("connect_"):
@@ -4000,6 +4250,23 @@ class BrahmaLive:
                 from actions.upload_video import upload_video
                 r = await loop.run_in_executor(None, lambda: upload_video(parameters=args, player=self.ui, speak=self.speak))
                 result = r or "Video publishing ready."
+
+            elif name == "blender_control":
+                r = await loop.run_in_executor(None, lambda: blender_control(action=args.get("action", ""), **args))
+                result = r or "Blender action completed."
+
+            elif name == "cinema4d_control":
+                r = await loop.run_in_executor(None, lambda: cinema4d_control(action=args.get("action", ""), **args))
+                result = r or "Cinema 4D action completed."
+
+            elif name == "autocad_control":
+                r = await loop.run_in_executor(None, lambda: autocad_control(action=args.get("action", ""), **args))
+                result = r or "AutoCAD action completed."
+
+            elif name == "replica_pipeline":
+                r = await loop.run_in_executor(None, lambda: self._run_replica_pipeline(args))
+                result = r or "Replica pipeline completed."
+
             elif name == "shutdown_brahma":
                 self.ui.write_log("SYS: Shutdown requested.")
                 self.speak("Goodbye, sir.")
