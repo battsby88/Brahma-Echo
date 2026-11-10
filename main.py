@@ -64,6 +64,8 @@ from actions.brahma_connect    import (
     connect_disconnect_device,
 )
 from core.skill_registry import load_skills_at_startup, get_skill_registry
+from core.skill_tool_loader import load_skill_tools_at_startup, get_skill_tool_declarations, register_skill_tools_with_brahma, get_skill_tool_loader
+from core.skill_executor import execute_skill_tool
 from actions.web_search        import web_search as web_search_action
 from actions.computer_control  import computer_control
 from actions.game_updater      import game_updater
@@ -2079,6 +2081,18 @@ class BrahmaLive:
             print(f"[BrahmaLive] Skill registry init failed: {e}")
             self._skill_registry = None
 
+        # Initialize skill tools (load tools.yaml from skills and register as tools)
+        try:
+            tools_loaded = load_skill_tools_at_startup()
+            registered_count = register_skill_tools_with_brahma()
+            self._skill_tool_loader = get_skill_tool_loader()
+            self._skill_tool_names = set(self._skill_tool_loader.loaded_tools.keys())
+            print(f"[BrahmaLive] Skill tools loaded: {len(tools_loaded)} tools from skills, {registered_count} registered as tools")
+        except Exception as e:
+            print(f"[BrahmaLive] Skill tools init failed: {e}")
+            self._skill_tool_loader = None
+            self._skill_tool_names = set()
+
         self._last_activity = time.monotonic()
         self._idle_prompts = [
             "Hey, you there?",
@@ -3043,6 +3057,38 @@ class BrahmaLive:
                 
         except Exception as e:
             return f"Replica pipeline error: {e}"
+
+    def _execute_skill_tool(self, skill_name: str, tool_name: str, args: dict) -> str:
+        """Execute a skill tool via the skill executor."""
+        try:
+            import asyncio
+            from core.skill_executor import execute_skill_tool
+            from core.skill_registry import get_skill_registry
+            
+            registry = get_skill_registry()
+            if not registry:
+                return f"Error: Skill registry not available"
+            
+            # Run async executor in sync context
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            try:
+                result = loop.run_until_complete(
+                    execute_skill_tool(skill_name, tool_name, args, registry)
+                )
+            finally:
+                loop.close()
+            
+            if result.get("success"):
+                output = result.get("output")
+                if output:
+                    return f"Skill tool {tool_name} completed:\n{json.dumps(output, indent=2)}"
+                return f"Skill tool {tool_name} completed successfully"
+            else:
+                return f"Skill tool {tool_name} failed: {result.get('error', 'Unknown error')}"
+                
+        except Exception as e:
+            return f"Skill tool {tool_name} error: {e}"
 
     def _connect_tool_voice(self, name: str, raw_result: str) -> str | None:
         if not str(name or "").startswith("connect_"):
@@ -4266,6 +4312,15 @@ class BrahmaLive:
             elif name == "replica_pipeline":
                 r = await loop.run_in_executor(None, lambda: self._run_replica_pipeline(args))
                 result = r or "Replica pipeline completed."
+
+            # Handle dynamic skill tools (loaded from tools.yaml)
+            elif name in getattr(self, "_skill_tool_names", set()):
+                skill_name = self._skill_tool_loader.get_skill_for_tool(name)
+                if skill_name:
+                    r = await loop.run_in_executor(None, lambda: self._execute_skill_tool(skill_name, name, args))
+                    result = r or f"Skill tool {name} completed."
+                else:
+                    result = f"Skill tool {name} not found in loader"
 
             elif name == "shutdown_brahma":
                 self.ui.write_log("SYS: Shutdown requested.")

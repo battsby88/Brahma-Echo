@@ -1,0 +1,90 @@
+skill: blender-control
+version: "1.0"
+tools:
+  - name: blender_scene_new
+    description: "Create a new Blender scene"
+    entrypoint: scripts/scene_new.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Scene name"
+          default: "Scene"
+    timeout_seconds: 30
+    requires_sandbox: true
+    returns:
+      type: object
+      properties:
+        scene_name:
+          type: string
+        success:
+          type: boolean
+
+  - name: blender_object_add
+    description: "Add a primitive object to the scene"
+    entrypoint: scripts/object_add.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        object_type:
+          type: string
+          enum: [CUBE, SPHERE, CYLINDER, CONE, TORUS, PLANE, MONKEY]
+          default: CUBE
+        name:
+          type: string
+        location:
+          type: array
+          items: {type: number}
+          default: [0, 0, 0]
+        rotation:
+          type: array
+          items: {type: number}
+          default: [0, 0, 0]
+        scale:
+          type: array
+          items: {type: number}
+          default: [1, 1, 1]
+    timeout_seconds: 30
+    requires_sandbox: true
+    returns:
+      type: object
+      properties:
+        object_name:
+          type: string
+        success:
+          type: boolean
+
+  - name: blender_render
+    description: "Render the current scene"
+    entrypoint: scripts/render.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        engine:
+          type: string
+          enum: [CYCLES, EEVEE, WORKBENCH]
+          default: CYCLES
+        output_path:
+          type: string
+        samples:
+          type: integer
+          default: 128
+        resolution:
+          type: array
+          items: {type: integer}
+          default: [1920, 1080]
+    timeout_seconds: 300
+    requires_sandbox: true
+    returns:
+      type: object
+      properties:
+        output_path:
+          type: string
+        render_time_seconds:
+          type: number
+        success:
+          type: boolean

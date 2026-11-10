@@ -1,0 +1,80 @@
+skill: youtube-full
+version: "1.0"
+tools:
+  - name: yt_viral_research
+    description: "Research viral topics and trends for YouTube"
+    entrypoint: scripts/viral_research.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        niche:
+          type: string
+          description: "Content niche/category"
+        timeframe:
+          type: string
+          enum: [day, week, month, year]
+          default: week
+        min_views:
+          type: integer
+          default: 100000
+    timeout_seconds: 60
+    requires_sandbox: true
+    returns:
+      type: object
+      properties:
+        topics:
+          type: array
+          items: {type: object}
+        success:
+          type: boolean
+
+  - name: yt_retention_analysis
+    description: "Analyze retention patterns for a video or channel"
+    entrypoint: scripts/retention_analysis.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        video_url:
+          type: string
+          description: "YouTube video URL"
+        channel_url:
+          type: string
+          description: "YouTube channel URL (alternative to video_url)"
+    timeout_seconds: 60
+    requires_sandbox: true
+    returns:
+      type: object
+      properties:
+        retention_data:
+          type: object
+        success:
+          type: boolean
+
+  - name: yt_thumbnail_generate
+    description: "Generate thumbnail concepts and prompts"
+    entrypoint: scripts/thumbnail_generate.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        topic:
+          type: string
+        style:
+          type: string
+          enum: [clickbait, educational, minimal, bold, cinematic]
+          default: clickbait
+        count:
+          type: integer
+          default: 5
+    timeout_seconds: 30
+    requires_sandbox: true
+    returns:
+      type: object
+      properties:
+        thumbnails:
+          type: array
+          items: {type: object}
+        success:
+          type: boolean

@@ -1,0 +1,60 @@
+skill: replica-recon
+version: "1.0"
+tools:
+  - name: replica_recon
+    description: "Reverse-engineer an app: screens, user flows, data model, tech stack"
+    entrypoint: scripts/recon.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        target_app:
+          type: string
+          description: "App to analyze (URL, name, or description)"
+        workspace_path:
+          type: string
+          description: "Working directory for output"
+          default: "./replica"
+        depth:
+          type: string
+          enum: [quick, standard, deep]
+          default: standard
+    timeout_seconds: 180
+    requires_sandbox: true
+    allowed_paths: ["scripts/", "templates/", "output/"]
+    returns:
+      type: object
+      properties:
+        screens:
+          type: array
+          items: {type: object}
+        flows:
+          type: array
+          items: {type: object}
+        data_model:
+          type: object
+        tech_stack:
+          type: object
+    examples:
+      - args:
+          target_app: "Notion"
+          workspace_path: "./replica"
+        expected:
+          screens: [...]
+          flows: [...]
+
+  - name: replica_recon_screens
+    description: "Extract screen inventory from an app"
+    entrypoint: scripts/screens.py
+    entrypoint_type: python
+    parameters:
+      type: object
+      properties:
+        target_app:
+          type: string
+        max_screens:
+          type: integer
+          default: 50
+    timeout_seconds: 120
+    requires_sandbox: true
+    allowed_paths: ["scripts/", "output/"]
