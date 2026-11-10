@@ -1,0 +1,36 @@
+{
+  "name": "Brahma Echo",
+  "short_name": "Brahma",
+  "description": "Modern Claymorphism Interface for Brahma Echo AI Assistant",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e8eaeF",
+  "theme_color": "#2d6fff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/brahma-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "System overview",
+      "url": "./index.html",
+      "icons": [{ "src": "assets/brahma-logo.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Command Palette",
+      "short_name": "Commands",
+      "description": "Search tools & actions",
+      "url": "./index.html#commands",
+      "icons": [{ "src": "assets/brahma-logo.svg", "sizes": "192x192" }]
+    }
+  ]
+}

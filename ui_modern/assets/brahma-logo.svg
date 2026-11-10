@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none" aria-hidden="true">
+  <!-- Claymorphism background -->
+  <rect width="128" height="128" rx="24" fill="#e8eaeF"/>
+  <rect x="4" y="4" width="120" height="120" rx="20" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2"/>
+  <rect x="4" y="4" width="120" height="120" rx="20" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="2" transform="translate(-4,-4)"/>
+  
+  <!-- Inner clay surface -->
+  <rect x="16" y="16" width="96" height="96" rx="16" fill="#f0f2f5">
+    <filter id="clay-inner">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feOffset dx="-1" dy="-1" result="offset1"/>
+      <feOffset dx="1" dy="1" result="offset2"/>
+      <feBlend in="SourceGraphic" in2="offset1" mode="normal"/>
+      <feBlend in2="offset2" mode="normal"/>
+    </filter>
+  </rect>
+  
+  <!-- Brahma "B" Mark -->
+  <g transform="translate(64, 64)">
+    <!-- Outer glow -->
+    <circle r="36" fill="url(#accent-glow)" opacity="0.3"/>
+    
+    <!-- Main B shape -->
+    <path d="M-24 -32 
+             V 32 
+             M-24 -32 
+             H 16 
+             A 16 16 0 0 1 16 0 
+             H 2 
+             A 16 16 0 0 1 2 -16 
+             H 16 
+             A 16 16 0 0 1 16 16 
+             H 2 
+             A 16 16 0 0 1 2 32 
+             H 16" 
+          stroke="#2d6fff" 
+          stroke-width="8" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          fill="none"
+          filter="drop-shadow(0 4px 8px rgba(45,111,255,0.3))"/>
+    
+    <!-- Accent dot -->
+    <circle cx="20" cy="-36" r="4" fill="#ff6b2d" filter="drop-shadow(0 2px 4px rgba(255,107,45,0.4))"/>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="accent-glow" cx="0" cy="0" r="1">
+      <stop offset="0%" stop-color="#2d6fff"/>
+      <stop offset="70%" stop-color="#ff6b2d"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    
+    <!-- Claymorphism shadows -->
+    <filter id="clay-shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+      <feOffset dx="4" dy="4" result="offset-dark"/>
+      <feFlood flood-color="rgba(0,0,0,0.12)" result="color-dark"/>
+      <feComposite in="color-dark" in2="offset-dark" operator="in" result="shadow-dark"/>
+      <feOffset dx="-4" dy="-4" result="offset-light"/>
+      <feFlood flood-color="rgba(255,255,255,0.9)" result="color-light"/>
+      <feComposite in="color-light" in2="offset-light" operator="in" result="shadow-light"/>
+      <feMerge>
+        <feMergeNode in="shadow-dark"/>
+        <feMergeNode in="shadow-light"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

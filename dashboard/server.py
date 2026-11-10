@@ -569,6 +569,41 @@ class DashboardServer:
                 dead.add(ws)
         self._clients -= dead
 
+    async def broadcast_metrics(self, cpu: float = None, ram: float = None, voice: float = None, tool: dict = None) -> None:
+        """Broadcast metrics to all connected clients (ui_modern)."""
+        payload = {"type": "metrics"}
+        if cpu is not None:
+            payload["cpu"] = cpu
+        if ram is not None:
+            payload["ram"] = ram
+        if voice is not None:
+            payload["voice"] = voice
+        if tool is not None:
+            payload["tool"] = tool
+        await self.broadcast(payload)
+
+    async def broadcast_tool_result(self, result: dict) -> None:
+        """Broadcast tool execution result."""
+        payload = {"type": "tool_result", "payload": result}
+        await self.broadcast(payload)
+
+    async def broadcast_voice_state(self, state: str, metadata: dict = None) -> None:
+        """Broadcast voice state change."""
+        payload = {"type": "voice_state", "payload": {"state": state}}
+        if metadata:
+            payload["payload"].update(metadata)
+        await self.broadcast(payload)
+
+    async def broadcast_skills(self, skills: list) -> None:
+        """Broadcast skills list."""
+        payload = {"type": "skills", "payload": skills}
+        await self.broadcast(payload)
+
+    async def broadcast_system(self, info: dict) -> None:
+        """Broadcast system info."""
+        payload = {"type": "system", "payload": info}
+        await self.broadcast(payload)
+
     # ── FastAPI app ───────────────────────────────────────────────────────
 
     def _build_app(self) -> "FastAPI":
@@ -875,6 +910,36 @@ class DashboardServer:
                             await self._command_queue.put(t)
                             if self._wake_callback:
                                 self._wake_callback()
+            except WebSocketDisconnect:
+                pass
+            finally:
+                self._clients.discard(websocket)
+
+        # ── WebSocket for ui_modern metrics & tools ─────────────────────────────
+        @app.websocket("/ws/modern")
+        async def ws_modern(websocket: WebSocket, token: str = ""):
+            tok = token.strip()
+            if not tok or tok not in self._tokens:
+                await websocket.close(code=4001)
+                return
+            await websocket.accept()
+            self._clients.add(websocket)
+            # Send recent history
+            for entry in self._history[-100:]:
+                try:
+                    await websocket.send_json(entry)
+                except Exception:
+                    break
+            try:
+                while True:
+                    data = await websocket.receive_json()
+                    # Handle commands from ui_modern
+                    if data.get("type") == "subscribe":
+                        pass  # Already subscribed
+                    elif data.get("type") == "execute_tool":
+                        # Forward to Brahma Live
+                        if self._wake_callback:
+                            self._wake_callback()
             except WebSocketDisconnect:
                 pass
             finally:
