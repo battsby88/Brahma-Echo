@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "blender": {
+      "command": "cli-anything-blender",
+      "args": [],
+      "description": "Blender 3D scene editing via CLI Anything (bpy script generation, live preview, Cycles/Eevee render)"
+    },
+    "blender-mcp": {
+      "command": "blender-mcp",
+      "args": [],
+      "description": "Blender MCP server for scene manipulation, object creation, materials, rendering"
+    },
+    "cinema4d": {
+      "command": "cinema4d-mcp",
+      "args": [],
+      "description": "Cinema 4D MCP server for scene manipulation, object creation, Redshift/Octane materials, MoGraph, Python execution"
+    },
+    "autocad": {
+      "command": "autocad-mcp",
+      "args": [],
+      "env": {
+        "AUTOCAD_MCP_BACKEND": "auto",
+        "ALLOWED_PATHS": "C:\\Users\\%USERNAME%\\Documents\\AutoCAD",
+        "TOOL_PROFILE": "full",
+        "TOOL_PACKS": "all",
+        "DISCOVERY_MODE": "search"
+      },
+      "description": "AutoCAD MCP Pro (U-C4N) - 240+ tools for DWG/DXF, mechanical sheets, P&ID, floor plans via COM or ezdxf"
+    },
+    "autocad-lt": {
+      "command": "cad-edit",
+      "args": [],
+      "description": "AutoCAD LT / headless DWG editing via accoreconsole.exe AutoLISP - no AutoCAD window needed"
+    },
+    "replica": {
+      "command": "replica-skill",
+      "args": [],
+      "description": "Replica 11-skill app cloning pipeline: recon -> architect -> design -> build -> backend -> test -> diff -> entrepreneur -> brand -> launch -> deploy"
+    }
+  }
+}
