@@ -76,15 +76,17 @@ def test_html_structure(result: TestResult):
         ('data-theme="light"', "Theme attribute"),
         ('class="app-shell"', "App shell"),
         ('class="header"', "Header"),
-        ('class="sidebar"', "Sidebar"),
-        ('class="main-content"', "Main content"),
+        ('class="left-nav"', "Left sidebar"),
+        ('class="center-panel"', "Center panel"),
+        ('class="right-tools"', "Right sidebar"),
         ('id="visualizerCanvas"', "Visualizer canvas"),
-        ('id="toolLogList"', "Tool log list"),
+        ('id="chatMessages"', "Chat messages"),
         ('id="commandPaletteOverlay"', "Command palette"),
         ('id="commandPaletteInput"', "Command palette input"),
         ('id="themeToggle"', "Theme toggle"),
         ('id="listenToggle"', "Listen toggle"),
         ('id="sidebarToggle"', "Sidebar toggle"),
+        ('id="toolsClose"', "Tools close"),
         ('manifest.json', "Manifest link"),
         ('sw.js', "Service worker registration"),
         ('styles.css', "Stylesheet link"),
@@ -101,19 +103,19 @@ def test_html_structure(result: TestResult):
 # Test: CSS Tokens
 # ==========================================================================
 def test_css_tokens(result: TestResult):
-    """Verify claymorphism CSS tokens exist."""
+    """Verify glassmorphism CSS tokens exist."""
     css = (ROOT / "ui_modern/styles.css").read_text(encoding="utf-8")
     tokens = [
-        "--clay-radius-sm", "--clay-radius-md", "--clay-radius-lg", "--clay-radius-xl",
-        "--clay-shadow-light", "--clay-shadow-dark", "--clay-inner-light", "--clay-inner-dark",
-        "--bg-primary", "--bg-secondary", "--bg-tertiary",
-        "--text-primary", "--text-secondary", "--text-tertiary",
-        "--accent-primary", "--accent-success", "--accent-warning", "--accent-error",
+        "--glass-radius-sm", "--glass-radius-md", "--glass-radius-lg", "--glass-radius-xl", "--glass-radius-2xl",
+        "--glass-shadow", "--glass-shadow-strong", "--glass-shadow-ultra", "--glass-highlight", "--glass-inner-shadow",
+        "--glass-frost", "--glass-tint", "--glass-smoke", "--glass-crystal", "--glass-depth",
+        "--glass-border", "--glass-border-strong",
+        "--blur-xs", "--blur-sm", "--blur-md", "--blur-lg", "--blur-xl", "--blur-2xl", "--blur-ultra",
         "[data-theme=\"dark\"]",  # Dark theme
-        ".clay-surface", ".clay-panel", ".clay-card",
-        ".clay-button", ".clay-button--primary", ".clay-button--ghost",
-        ".clay-input", ".clay-badge", ".toggle",
-        ".visualizer-canvas", ".tool-log", ".command-palette",
+        ".glass-panel", ".glass-strong", ".glass-card",
+        ".glass-btn", ".glass-btn--primary", ".glass-btn--ghost",
+        ".glass-input", ".glass-badge", ".glass-toggle",
+        ".visualizer-canvas", ".command-palette",
     ]
     for token in tokens:
         if token in css:
