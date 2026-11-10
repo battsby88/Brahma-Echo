@@ -141,7 +141,7 @@ def _parse_toast_payload(payload: bytes | str | None) -> tuple[str, list[str], l
     texts: list[str] = []
     actions: list[str] = []
     try:
-        root = ET.fromstring(raw)
+        root = ET.fromstring(raw)  # nosec B314 - trusted Windows notification XML
         for node in root.findall(".//text"):
             txt = (node.text or "").strip()
             if txt:
@@ -617,7 +617,7 @@ class AttentionMonitor:
             if not preview and actions:
                 preview = " ".join(actions[:2]).strip()
 
-            dedupe = hashlib.sha1(
+            dedupe = hashlib.sha256(  # nosec B324
                 f"{app}|{kind}|{preview}|{raw[:240]}".encode("utf-8", "ignore")
             ).hexdigest()
             if dedupe in self._seen_keys:

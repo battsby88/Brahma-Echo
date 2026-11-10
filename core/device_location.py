@@ -105,7 +105,7 @@ def _reverse_geocode_osm(lat: float, lon: float) -> Optional[str]:
     try:
         url = f"https://nominatim.openstreetmap.org/reverse?format=json&lat={lat}&lon={lon}"
         req = urllib.request.Request(url, headers={"User-Agent": "BrahmaAI-LocationEngine/1.0"})
-        with urllib.request.urlopen(req, timeout=3.0) as resp:
+        with urllib.request.urlopen(req, timeout=3.0) as resp:  # nosec B310 - trusted OSM API
             data = json.loads(resp.read().decode("utf-8"))
             addr = data.get("address", {})
             return (
@@ -131,7 +131,7 @@ def _detect_via_ip_services() -> Optional[Dict[str, Any]]:
     for name, url, city_k, lat_k, lon_k, reg_k in endpoints:
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "curl/7.68.0"})
-            with urllib.request.urlopen(req, timeout=2.5) as resp:
+            with urllib.request.urlopen(req, timeout=2.5) as resp:  # nosec B310 - trusted IP APIs
                 data = json.loads(resp.read().decode("utf-8"))
                 city = data.get(city_k)
                 if city and isinstance(city, str) and city.strip() and city.lower() != "none":

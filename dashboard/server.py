@@ -350,7 +350,7 @@ def _ensure_crypto_js() -> None:
     try:
         import urllib.request
         print("[Dashboard] Downloading CryptoJS (one-time setup)…")
-        urllib.request.urlretrieve(_CRYPTOJS_CDN, str(_CRYPTOJS_FILE))
+        urllib.request.urlretrieve(_CRYPTOJS_CDN, str(_CRYPTOJS_FILE))  # nosec B310 - trusted CDN
         print("[Dashboard] CryptoJS cached — will serve locally from now on.")
     except Exception as e:
         print(f"[Dashboard] CryptoJS download failed: {e}")
@@ -1068,7 +1068,7 @@ class DashboardServer:
         ssl_cert = get_user_data_dir() / "config" / "certs" / "brahma.crt"
         asyncio.get_event_loop().run_in_executor(None, _ensure_network_access, PORT + 1)
         cfg = uvicorn.Config(
-            self.app, host="0.0.0.0", port=PORT + 1, log_level="warning",
+            self.app, host="0.0.0.0", port=PORT + 1, log_level="warning",  # nosec B104 - local dashboard needs LAN access
             ssl_keyfile=str(ssl_key), ssl_certfile=str(ssl_cert),
             log_config=None, access_log=False,
         )
@@ -1085,7 +1085,7 @@ class DashboardServer:
         asyncio.get_event_loop().run_in_executor(None, _ensure_network_access, PORT)
 
         cfg = uvicorn.Config(
-            self.app, host="0.0.0.0", port=PORT, log_level="warning",
+            self.app, host="0.0.0.0", port=PORT, log_level="warning",  # nosec B104 - local dashboard needs LAN access
             log_config=None, access_log=False,
         )
 

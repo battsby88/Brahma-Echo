@@ -927,7 +927,7 @@ def _load_related_images(profile: dict[str, Any], slides: list[dict[str, Any]], 
             if len(results) >= max_images:
                 break
             ext = Path(urlparse(image_url).path).suffix.lower() or ".jpg"
-            dest = image_cache_dir / f"{hashlib.sha1(image_url.encode('utf-8')).hexdigest()[:16]}{ext}"
+            dest = image_cache_dir / f"{hashlib.sha256(image_url.encode('utf-8')).hexdigest()[:16]}{ext}"
             if dest.exists() and dest.stat().st_size > 0:
                 results.append(dest)
                 continue

@@ -310,7 +310,7 @@ class MeetingAssistant:
                         continue
                     try:
                         wav_bytes = _wav_bytes(pcm, channels, samplerate)
-                        digest = hashlib.sha1(wav_bytes).hexdigest()
+                        digest = hashlib.sha256(wav_bytes).hexdigest()  # nosec B324
                         if digest == self._last_audio_hash:
                             continue
                         speech = self._transcribe_audio(client, wav_bytes)
