@@ -1,7 +1,7 @@
 skill: gcp-secret-manager
 version: '1.0'
 tools:
-- name: gcp_run
+- name: gcp-secret-manager_run
   description: Run GCP operation
   entrypoint: scripts/run.py
   entrypoint_type: python

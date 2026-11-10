@@ -1,7 +1,7 @@
 skill: cold-email
 version: '1.0'
 tools:
-- name: email_send
+- name: cold-email_run
   description: Send email
   entrypoint: scripts/run.py
   entrypoint_type: python

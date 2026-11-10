@@ -1,7 +1,7 @@
 skill: gcp-to-aws
 version: '1.0'
 tools:
-- name: aws_run
+- name: gcp-to-aws_run
   description: Run AWS CLI operation
   entrypoint: scripts/run.py
   entrypoint_type: python

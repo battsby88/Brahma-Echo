@@ -1,7 +1,7 @@
 skill: gitcrawl
 version: '1.0'
 tools:
-- name: git_run
+- name: gitcrawl_run
   description: Run git operation
   entrypoint: scripts/run.py
   entrypoint_type: python

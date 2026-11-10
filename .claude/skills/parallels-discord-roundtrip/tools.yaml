@@ -1,7 +1,7 @@
 skill: parallels-discord-roundtrip
 version: '1.0'
 tools:
-- name: discord_send
+- name: parallels-discord-roundtrip_run
   description: Send Discord message
   entrypoint: scripts/run.py
   entrypoint_type: python

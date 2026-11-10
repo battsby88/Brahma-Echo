@@ -1,7 +1,7 @@
 skill: duckdb
 version: '1.0'
 tools:
-- name: duckdb_query
+- name: duckdb_run
   description: Query DuckDB
   entrypoint: scripts/run.py
   entrypoint_type: python

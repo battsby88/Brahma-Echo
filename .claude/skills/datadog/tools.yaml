@@ -1,7 +1,7 @@
 skill: datadog
 version: '1.0'
 tools:
-- name: dd_metric
+- name: datadog_run
   description: Send Datadog metric
   entrypoint: scripts/run.py
   entrypoint_type: python

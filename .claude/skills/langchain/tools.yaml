@@ -1,7 +1,7 @@
 skill: langchain
 version: '1.0'
 tools:
-- name: lc_run
+- name: langchain_run
   description: Run LangChain chain
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: elasticsearch-file-ingest
 version: '1.0'
 tools:
-- name: es_query
+- name: elasticsearch-file-ingest_run
   description: Query Elasticsearch
   entrypoint: scripts/run.py
   entrypoint_type: python

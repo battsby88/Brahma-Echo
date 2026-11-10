@@ -1,7 +1,7 @@
 skill: obsidian
 version: '1.0'
 tools:
-- name: obsidian_note
+- name: obsidian_run
   description: Manage Obsidian note
   entrypoint: scripts/run.py
   entrypoint_type: python

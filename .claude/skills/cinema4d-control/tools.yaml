@@ -1,7 +1,7 @@
 skill: cinema4d-control
 version: '1.0'
 tools:
-- name: c4d_run
+- name: cinema4d-control_run
   description: Run Cinema 4D operation
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: postgresql
 version: '1.0'
 tools:
-- name: pg_query
+- name: postgresql_run
   description: Run PostgreSQL query
   entrypoint: scripts/run.py
   entrypoint_type: python

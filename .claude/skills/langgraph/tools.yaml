@@ -1,7 +1,7 @@
 skill: langgraph
 version: '1.0'
 tools:
-- name: lg_run
+- name: langgraph_run
   description: Run LangGraph graph
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: email-deliverability-debugger
 version: '1.0'
 tools:
-- name: email_send
+- name: email-deliverability-debugger_run
   description: Send email
   entrypoint: scripts/run.py
   entrypoint_type: python

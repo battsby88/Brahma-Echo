@@ -1,7 +1,7 @@
 skill: elasticsearch-esql
 version: '1.0'
 tools:
-- name: es_query
+- name: elasticsearch-esql_run
   description: Query Elasticsearch
   entrypoint: scripts/run.py
   entrypoint_type: python

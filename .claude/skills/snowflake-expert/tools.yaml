@@ -1,7 +1,7 @@
 skill: snowflake-expert
 version: '1.0'
 tools:
-- name: sf_query
+- name: snowflake-expert_run
   description: Query Snowflake
   entrypoint: scripts/run.py
   entrypoint_type: python

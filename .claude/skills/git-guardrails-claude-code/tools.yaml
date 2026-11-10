@@ -1,7 +1,7 @@
 skill: git-guardrails-claude-code
 version: '1.0'
 tools:
-- name: git_run
+- name: git-guardrails-claude-code_run
   description: Run git operation
   entrypoint: scripts/run.py
   entrypoint_type: python

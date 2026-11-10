@@ -1,7 +1,7 @@
 skill: skill-security-auditor
 version: '1.0'
 tools:
-- name: sec_scan
+- name: skill-security-auditor_run
   description: Run security scan
   entrypoint: scripts/run.py
   entrypoint_type: python

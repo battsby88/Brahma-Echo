@@ -1,7 +1,7 @@
 skill: blender-render-automation
 version: '1.0'
 tools:
-- name: blender_run
+- name: blender-render-automation_run
   description: Run Blender operation
   entrypoint: scripts/run.py
   entrypoint_type: python

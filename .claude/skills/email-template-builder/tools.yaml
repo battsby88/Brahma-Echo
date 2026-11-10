@@ -1,7 +1,7 @@
 skill: email-template-builder
 version: '1.0'
 tools:
-- name: email_send
+- name: email-template-builder_run
   description: Send email
   entrypoint: scripts/run.py
   entrypoint_type: python

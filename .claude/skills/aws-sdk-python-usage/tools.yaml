@@ -1,7 +1,7 @@
 skill: aws-sdk-python-usage
 version: '1.0'
 tools:
-- name: aws_run
+- name: aws-sdk-python-usage_run
   description: Run AWS CLI operation
   entrypoint: scripts/run.py
   entrypoint_type: python

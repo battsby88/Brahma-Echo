@@ -1,7 +1,7 @@
 skill: sentry-cli
 version: '1.0'
 tools:
-- name: sentry_capture
+- name: sentry-cli_run
   description: Capture Sentry event
   entrypoint: scripts/run.py
   entrypoint_type: python

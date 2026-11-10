@@ -1,7 +1,7 @@
 skill: linear-sdk-scripting
 version: '1.0'
 tools:
-- name: linear_issue
+- name: linear-sdk-scripting_run
   description: Manage Linear issue
   entrypoint: scripts/run.py
   entrypoint_type: python

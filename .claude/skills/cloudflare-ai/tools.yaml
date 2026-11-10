@@ -1,7 +1,7 @@
 skill: cloudflare-ai
 version: '1.0'
 tools:
-- name: cf_run
+- name: cloudflare-ai_run
   description: Run Cloudflare operation
   entrypoint: scripts/run.py
   entrypoint_type: python

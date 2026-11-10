@@ -1,7 +1,7 @@
 skill: 3dsmax-rendering
 version: '1.0'
 tools:
-- name: max_run
+- name: 3dsmax-rendering_run
   description: Run 3ds Max operation
   entrypoint: scripts/run.py
   entrypoint_type: python

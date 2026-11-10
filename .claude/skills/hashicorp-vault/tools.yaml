@@ -1,7 +1,7 @@
 skill: hashicorp-vault
 version: '1.0'
 tools:
-- name: vault_read
+- name: hashicorp-vault_run
   description: Read Vault secret
   entrypoint: scripts/run.py
   entrypoint_type: python

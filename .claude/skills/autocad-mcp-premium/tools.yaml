@@ -1,7 +1,7 @@
 skill: autocad-mcp-premium
 version: '1.0'
 tools:
-- name: autocad_run
+- name: autocad-mcp-premium_run
   description: Run AutoCAD operation
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: prometheus
 version: '1.0'
 tools:
-- name: prom_query
+- name: prometheus_run
   description: Query Prometheus
   entrypoint: scripts/run.py
   entrypoint_type: python

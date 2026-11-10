@@ -1,7 +1,7 @@
 skill: openai-whisper-api
 version: '1.0'
 tools:
-- name: openai_run
+- name: openai-whisper-api_run
   description: Run OpenAI API
   entrypoint: scripts/run.py
   entrypoint_type: python

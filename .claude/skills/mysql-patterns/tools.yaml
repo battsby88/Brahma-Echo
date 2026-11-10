@@ -1,7 +1,7 @@
 skill: mysql-patterns
 version: '1.0'
 tools:
-- name: mysql_query
+- name: mysql-patterns_run
   description: Run MySQL query
   entrypoint: scripts/run.py
   entrypoint_type: python

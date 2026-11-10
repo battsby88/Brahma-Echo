@@ -1,7 +1,7 @@
 skill: huggingface
 version: '1.0'
 tools:
-- name: hf_run
+- name: huggingface_run
   description: Run HuggingFace model
   entrypoint: scripts/run.py
   entrypoint_type: python

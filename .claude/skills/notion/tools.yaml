@@ -1,7 +1,7 @@
 skill: notion
 version: '1.0'
 tools:
-- name: notion_page
+- name: notion_run
   description: Manage Notion page
   entrypoint: scripts/run.py
   entrypoint_type: python

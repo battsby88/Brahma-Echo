@@ -1,7 +1,7 @@
 skill: tensorflow-data-pipelines
 version: '1.0'
 tools:
-- name: tf_train
+- name: tensorflow-data-pipelines_run
   description: Train TensorFlow model
   entrypoint: scripts/run.py
   entrypoint_type: python

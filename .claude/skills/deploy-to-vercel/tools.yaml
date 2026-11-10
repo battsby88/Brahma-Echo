@@ -1,7 +1,7 @@
 skill: deploy-to-vercel
 version: '1.0'
 tools:
-- name: vercel_deploy
+- name: deploy-to-vercel_run
   description: Deploy to Vercel
   entrypoint: scripts/run.py
   entrypoint_type: python

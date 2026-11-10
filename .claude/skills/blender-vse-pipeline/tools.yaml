@@ -1,7 +1,7 @@
 skill: blender-vse-pipeline
 version: '1.0'
 tools:
-- name: blender_run
+- name: blender-vse-pipeline_run
   description: Run Blender operation
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: redis-observability
 version: '1.0'
 tools:
-- name: redis_run
+- name: redis-observability_run
   description: Run Redis command
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: blender-addon-dev
 version: '1.0'
 tools:
-- name: blender_run
+- name: blender-addon-dev_run
   description: Run Blender operation
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: secrets-vault-manager
 version: '1.0'
 tools:
-- name: vault_read
+- name: secrets-vault-manager_run
   description: Read Vault secret
   entrypoint: scripts/run.py
   entrypoint_type: python

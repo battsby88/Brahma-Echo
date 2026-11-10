@@ -1,7 +1,7 @@
 skill: mongodb-query-optimizer
 version: '1.0'
 tools:
-- name: mongo_query
+- name: mongodb-query-optimizer_run
   description: Run MongoDB query
   entrypoint: scripts/run.py
   entrypoint_type: python

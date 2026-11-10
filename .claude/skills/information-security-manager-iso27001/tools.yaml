@@ -1,7 +1,7 @@
 skill: information-security-manager-iso27001
 version: '1.0'
 tools:
-- name: sec_scan
+- name: information-security-manager-iso27001_run
   description: Run security scan
   entrypoint: scripts/run.py
   entrypoint_type: python

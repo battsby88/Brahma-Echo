@@ -1,7 +1,7 @@
 skill: security-guidance
 version: '1.0'
 tools:
-- name: sec_scan
+- name: security-guidance_run
   description: Run security scan
   entrypoint: scripts/run.py
   entrypoint_type: python

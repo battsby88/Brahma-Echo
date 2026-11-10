@@ -1,7 +1,7 @@
 skill: sequenzy-email-marketing
 version: '1.0'
 tools:
-- name: email_send
+- name: sequenzy-email-marketing_run
   description: Send email
   entrypoint: scripts/run.py
   entrypoint_type: python

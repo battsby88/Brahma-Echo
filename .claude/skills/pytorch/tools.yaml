@@ -1,7 +1,7 @@
 skill: pytorch
 version: '1.0'
 tools:
-- name: torch_train
+- name: pytorch_run
   description: Train PyTorch model
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: kubernetes-operator
 version: '1.0'
 tools:
-- name: k8s_run
+- name: kubernetes-operator_run
   description: Run Kubernetes operation
   entrypoint: scripts/run.py
   entrypoint_type: python

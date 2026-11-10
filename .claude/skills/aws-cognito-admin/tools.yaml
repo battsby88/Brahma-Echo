@@ -1,7 +1,7 @@
 skill: aws-cognito-admin
 version: '1.0'
 tools:
-- name: aws_run
+- name: aws-cognito-admin_run
   description: Run AWS CLI operation
   entrypoint: scripts/run.py
   entrypoint_type: python

@@ -1,7 +1,7 @@
 skill: anthropic-sdk
 version: '1.0'
 tools:
-- name: anthropic_run
+- name: anthropic-sdk_run
   description: Run Anthropic API
   entrypoint: scripts/run.py
   entrypoint_type: python

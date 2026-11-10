@@ -1,7 +1,7 @@
 skill: clawsweeper
 version: '1.0'
 tools:
-- name: aws_run
+- name: clawsweeper_run
   description: Run AWS CLI operation
   entrypoint: scripts/run.py
   entrypoint_type: python

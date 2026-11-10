@@ -1,7 +1,7 @@
 skill: gcp-networking-observability
 version: '1.0'
 tools:
-- name: gcp_run
+- name: gcp-networking-observability_run
   description: Run GCP operation
   entrypoint: scripts/run.py
   entrypoint_type: python

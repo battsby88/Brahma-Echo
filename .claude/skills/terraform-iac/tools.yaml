@@ -1,7 +1,7 @@
 skill: terraform-iac
 version: '1.0'
 tools:
-- name: tf_run
+- name: terraform-iac_run
   description: Run Terraform operation
   entrypoint: scripts/run.py
   entrypoint_type: python
